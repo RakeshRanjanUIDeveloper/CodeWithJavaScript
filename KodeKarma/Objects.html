@@ -73,6 +73,50 @@
         ]
         const pendingTasks = todos.filter((todo) => !todo.completed);
         console.log(pendingTasks);
+
+        function processArray(arr,commands){
+            const result = [];
+            commands.forEach(({start, end, operation}) =>{
+                const slicedArray = arr.slice(start,end);
+                /* console.log(slicedArray); */
+                switch(operation){
+                    case "reverse" :
+                        result.push(slicedArray.reverse());
+                        break;
+                    case "sum" :
+                        result.push(slicedArray.reduce((sum,num) => sum+num, 0))
+                        break;
+                    case "length" :
+                        result.push(slicedArray.length);
+                        break;
+                    default:
+                        throw new Error("Invalid Operations")
+                }
+            })
+            return result;
+        }
+        const arr = [10,20,30,40,50];
+        const commands = [
+            {start:1, end:4, operation:'reverse'},
+            {start:0, end:2, operation:'sum'},
+            {start:2, end:5, operation:'length'}
+        ];
+        console.log(processArray(arr,commands))
+
+
+        function calculateTotalBonuses(employees, minRating, bonusPercentage){
+            let totalBonuses = 0;
+            let eligibileEmployees = employees.filter((e) => e.performance >= minRating);
+            console.log(eligibileEmployees);
+            totalBonuses = eligibileEmployees.reduce((sum, cur) => sum+ cur.salary * 12 * (bonusPercentage / 100), 0)
+            return totalBonuses;
+        }
+        const employees =[
+            {name: 'Alice', salary:5000, department:'Engineering', performance:4},
+            {name: 'Bob', salary:4500, department:'Marketing', performance:3},
+            {name:'Charlie', salary:6000, department:'Sales', performance:5}
+        ]
+        console.log(calculateTotalBonuses(employees, 4,10))
     </script>
 </body>
 </html>
