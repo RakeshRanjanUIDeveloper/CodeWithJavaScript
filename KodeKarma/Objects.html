@@ -117,6 +117,19 @@
             {name:'Charlie', salary:6000, department:'Sales', performance:5}
         ]
         console.log(calculateTotalBonuses(employees, 4,10))
+
+
+        function createImmutablePrototype(baseObj, extensionProps){
+            const newObj = Object.create(baseObj);
+            Object.assign(newObj, extensionProps);
+            Object.freeze(newObj)
+            return newObj
+        }
+        const base = {greet : "Hello"};
+        const extension = {name : "Alice"}
+        const obj = createImmutablePrototype(base, extension);
+        console.log(obj.greet); //Hello
+        console.log(obj.name); //Alice
     </script>
 </body>
 </html>
