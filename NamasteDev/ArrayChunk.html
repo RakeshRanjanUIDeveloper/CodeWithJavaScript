@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function chunkArray(arr, n) {
+            if(!Array.isArray(arr)){
+                throw new TypeError("First Argument must be an array")
+            }
+            if(typeof n !== 'number' || n<= 0){
+                throw new RangeError("Chunk size must be a positive integer greater than 0")
+            }
+            const result = [];
+            for(let i =0; i<arr.length; i+=n){
+                result.push(arr.slice(i, i+n))
+            }
+            return result;
+        }
+        console.log(chunkArray([1, 2, 3, 4], 2));        // [[1, 2], [3, 4]]
+        console.log(chunkArray([1, 2, 3, 4, 5], 2));     // [[1, 2], [3, 4], [5]]
+        console.log(chunkArray([], 3));                 // []
+        console.log(chunkArray([1, 2, 3], 5));           // [[1, 2, 3]]
+        console.log(chunkArray([1, 2, 3], 1));           // [[1], [2], [3]]
+    </script>
+</body>
+
+</html>

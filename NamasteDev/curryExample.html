@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function curry(fn) {
+            return function curriedSum(...args) {
+                if (args.length >= fn.length) {
+                    return fn(...args);
+                } else {
+                    return function (...nextArgs) {
+                        return curriedSum(...args, ...nextArgs);
+                    };
+                }
+            };
+        }
+
+        function sum(a, b, c) {
+            return a + b + c;
+        }
+
+        const curriedSum = curry(sum);
+        console.log(curriedSum(1)(2)(3));
+        console.log(curriedSum(1, 2)(3));
+        console.log(curriedSum(1)(2, 3));
+        console.log(curriedSum(1, 2, 3));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function surpriseCrush(){
+            try {
+                let floristOpen = false;
+                if(!floristOpen){
+                    throw new Error("Florist is closed")
+                }
+                console.log("Bought Flowers for Crush!!");
+            } catch (error) {
+                console.log("Plan B : Wrote a heartfelt not instead.");
+            }
+        }
+        surpriseCrush();
+
+        function rememberAnniversary(partner){
+            if(!partner){
+                throw new Error("Anniversary rminder failed: No Partner found!!");
+            }
+            console.log(`Remembered the Anniversary with ${partner}`);
+            try {
+                rememberAnniversary(null)
+            } catch (error) {
+                console.log("Oops:", error.message);
+            }
+        }
+
+
+        function reconcile(){
+            try {
+                throw new Error("Fight Over dinner plans!")
+            } catch (error) {
+                console.log("Handled the fight :", error.message);
+            }finally{
+                console.log("Apologized and hugged.");
+            }
+        }
+        reconcile()
+
+        async function meetFriend() {
+            const promise = new Promise((resolve,reject) =>{
+                const trafficJam = false;
+                setTimeout(() => {
+                    if(trafficJam){
+                        reject("Stuck in Traffic, Can't make it!!")
+                    }else{
+                        resolve("Reached the Cafe")
+                    }
+                }, 2000);
+            })
+            try {
+                const message = await promise;
+                console.log(message);
+            } catch (error) {
+                console.log("Error:" , error);
+            }
+        }
+        meetFriend()
+
+        async function fetchData() {
+            try {
+                const response = await fetch('https://dummyjson.com/products');
+                if(!response.ok){
+                    throw new Error("Failed to fetch Product list")
+                }
+                const data = await response.json();
+                console.log("Product Data: ", data);
+            } catch (error) {
+               console.log("API Error: ", error.message); 
+            }
+        }
+        fetchData();
+    </script>
+</body>
+</html>
