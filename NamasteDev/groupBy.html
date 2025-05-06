@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function groupBy(arr, key){
+            const result = {};
+            for(const item of arr){
+                console.log(item); // Here it will print individual Object
+                const keyValue = item[key];
+                console.log(keyValue); // Here it will print individual age Value
+                if(!result.hasOwnProperty(keyValue)){
+                    result[keyValue] = [] // Here for every keyValue it creates empty array so that object will be pushed later on
+                }
+                result[keyValue].push(item)
+            }
+            return result
+        }
+
+        // 25: []
+        // 25: [{name:Alice, age: 25}, {name: Saurabh, age:25}]
+
+        const users = [
+            {name: 'Alice', age:25},
+            {name: 'Bob', age:30},
+            {name: 'Charlie', age:25}
+        ];
+        console.log(groupBy(users, 'age'));
+    </script>
+</body>
+</html>
