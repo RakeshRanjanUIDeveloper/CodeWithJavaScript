@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log(a);
+var a = 5;
+// o/p - undefined  variable hoist happened here but not value/assignment
+
+console.log(b);
+let b = 10;
+// o/p - Reference Error -
+
+var a = 1;
+function test() {
+  console.log(a);
+  var a = 2;
+}
+test();
+// o/p- undefined - var is functional scope
+
+(function(){
+  console.log(typeof x);
+  var x = 10;
+})();
+// o/p - undefined
+
+let a = 10;
+(() => {
+  console.log(a);
+  let a = 20;
+})();
+// o/p - Reference Error
+
+console.log(null == undefined); // true
+
+console.log([] == []); // false
+
+console.log(typeof null); //object
+
+for (let i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 0); // 0,1,2
+}
+
+for (var i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 0); // 3,3,3
+}
+
+const obj = {
+  a: 10,
+  foo: function () {
+    console.log(this.a); //10
+  }
+};
+obj.foo();
+
+const obj1 = {
+  a: 10,
+  foo: () => {
+    console.log(this.a); // undefined
+  }
+};
+obj1.foo();
+
+let a = 5;
+const obj2 = {
+  a: 10,
+  foo: function () {
+    return () => this.a;
+  }
+};
+const arrow = obj2.foo();
+console.log(arrow());//5
+
+
+let a = 5;
+const obj4 = {
+  a: 10,
+  foo:  () => {
+    return () => this.a;
+  }
+};
+const arrow = obj4.foo();
+console.log(arrow()); //undefined
+
+
+function a() {
+  console.log(this);//window
+}
+a();
+
+"use strict";
+function a() {
+  console.log(this);//undefined
+}
+a();
+
+const obj = {
+  foo() {
+    return this;
+  }
+};
+console.log(obj.foo() === obj); // true
+
+const a = {};
+const b = { key: "b" };
+const c = { key: "c" };
+ 
+a[b] = 123; 
+a[c] = 456; 
+ 
+console.log(a[b]); //456
+
+const a = {};
+const b = { key: "b" };
+const c = { key: "c" };
+const d = 0;
+ 
+a[b] = 123; 
+a[c] = 456; 
+a[d] = a[c]
+ 
+console.log(a[d]);//456
+
+console.log(NaN === NaN);// false
+
+const a = b = 5;
+console.log(a); // 5
+console.log(b); //5
+
+let a, b;
+a = b = 5;
+console.log(typeof a, typeof b);
+
+
+ 
+    </script>
+</body>
+</html>

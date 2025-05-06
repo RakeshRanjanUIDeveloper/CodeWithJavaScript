@@ -1,0 +1,183 @@
+WHY was Arrow function introduced? 
+
+To simplify function syntax, especially when working with this. 
+
+Arrow functions inherit this from their lexical (outer) scope, making them perfect for callbacks inside methods. 
+
+Arrow Function is clean and readable. 
+
+
+ This Keyword 
+
+this keyword refers to the object that is currently executing the function. 
+
+The value of this depends on how a function is invoked. 
+
+In Global Scope 
+
+console.log(this); // window object 
+
+Inside Regular function: 
+
+function show() { 
+
+console.log(this); // window object 
+
+} 
+
+show(); 
+
+ 
+
+'use strict'; 
+
+function strictShow() { 
+
+console.log(this); // undefined 
+
+} 
+
+strictShow();	 
+ 
+strict mode disables the default binding to window 
+
+ 
+
+  
+
+Inside an Object Method - When a function is called as a method of an object, this refers to that object. 
+
+const person = { 
+
+      name: 'Alice', 
+
+greet() { 
+
+    console.log(this.name); 
+
+  } 
+
+}; 
+
+  
+
+person.greet(); 
+
+ 
+
+Inside Arrow Function - Arrow functions do not have their own this. They inherit this from their parent (lexical) scope. Greet method lexical parent scope is the global scope. In the global scope, this refers to window. So window.name="" or undefined 
+
+const person = { 
+
+name: 'Bob', 
+
+  greet: () => { 
+
+    console.log(this.name); // `this` is not person here 
+
+  } 
+
+}; 
+
+  
+
+person.greet(); 
+
+ 
+
+ 
+
+Constructor Function - In a constructor, this refers to the newly created object. 
+
+function User(name) { 
+
+  this.name = name; 
+
+} 
+
+const u = new User("Charlie"); 
+
+console.log(u.name); // Charlie 
+
+ 
+
+ 
+
+Class Method - this refers to the class instance. 
+
+class Animal { 
+
+  constructor(type) { 
+
+    this.type = type; 
+
+  } 
+
+ 
+
+  speak() { 
+
+    console.log("I'm a " + this.type); 
+
+  } 
+
+} 
+
+  
+
+const a = new Animal("Dog"); 
+
+a.speak(); // I'm a Dog 
+
+ 
+
+DOM Event Handler - as event handlers, this refers to the HTML element that received the event.
+<button id="myBtn">Click me</button> 
+
+<script> 
+
+  document.getElementById("myBtn").addEventListener("click", function() { 
+
+    console.log(this); // the button element 
+
+  }); 
+
+</script> 
+============ 
+But with arrow functions, this is inherited: 
+
+ 
+document.getElementById("myBtn").addEventListener("click", () => { 
+
+  console.log(this); // likely window, not the button 
+
+}); 
+Using call, apply, and bind - 
+
+call immediately invokes the function. It explicitly sets this to the user object. 
+
+Apply immediately invokes the function. It explicitly sets this to the user object, except it takes arguments as an array 
+
+bind does not invoke the function immediately. Instead, it returns a new function where this is permanently bound to user. 
+
+function sayHello() { 
+
+  console.log(this.name); 
+
+} 
+
+  
+
+const user = { name: "David" }; 
+
+  
+
+sayHello.call(user);  // David 
+
+sayHello.apply(user); // David 
+
+  
+
+const boundFn = sayHello.bind(user); 
+
+boundFn(); // David 
