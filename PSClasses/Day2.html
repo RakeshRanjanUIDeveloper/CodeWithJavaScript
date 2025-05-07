@@ -7,48 +7,65 @@
 </head>
 <body>
     <script>
-        console.log(a);
+console.log(a);
 var a = 5;
 // o/p - undefined  variable hoist happened here but not value/assignment
+//Reason: Variable a is hoisted (declaration only)
 
 console.log(b);
 let b = 10;
-// o/p - Reference Error -
+// o/p - Reference Error 
+//Reason: let is hoisted but is in the temporal dead zone (TDZ) until the declaration is evaluated. So you can't access it before it's declared.
 
-var a = 1;
+var c = 1;
 function test() {
-  console.log(a);
-  var a = 2;
+  console.log(c);
+  var c = 2;
 }
 test();
 // o/p- undefined - var is functional scope
+//Reason: Inside test(), var a is function-scoped, so it shadows the outer a. It's hoisted inside test, so console.log(a) sees undefined.
 
 (function(){
   console.log(typeof x);
   var x = 10;
 })();
 // o/p - undefined
+//Reason: var x is hoisted, but not the value. So typeof x evaluates as undefined
 
-let a = 10;
+let d = 10;
 (() => {
-  console.log(a);
-  let a = 20;
+  console.log(d);
+  let d = 20;
 })();
 // o/p - Reference Error
+//Reason: let d = 20 creates a new a in TDZ. Even though outer a exists, it’s shadowed. TDZ causes error when accessing before declaration.
 
-console.log(null == undefined); // true
+console.log(null == undefined); 
+// true
+//Reason: Loose equality (==) treats null and undefined as equal.
 
-console.log([] == []); // false
 
-console.log(typeof null); //object
+console.log([] == []); 
+// false
+//Reason: Arrays are compared by reference, not content. Two different arrays are not equal.
+
+console.log(typeof null); 
+//object
+//Reason: This is a long-standing JavaScript bug — typeof null returns "object".
+
 
 for (let i = 0; i < 3; i++) {
-  setTimeout(() => console.log(i), 0); // 0,1,2
+  setTimeout(() => console.log(i), 0); 
 }
+// 0,1,2
+//Reason: let creates a new i for each iteration due to block scope.
 
 for (var i = 0; i < 3; i++) {
-  setTimeout(() => console.log(i), 0); // 3,3,3
+  setTimeout(() => console.log(i), 0); 
 }
+// 3,3,3
+//Reason: var is function-scoped, so the same i is shared. By the time the setTimeout runs, the loop has finished, and i === 3.
 
 const obj = {
   a: 10,
@@ -57,6 +74,7 @@ const obj = {
   }
 };
 obj.foo();
+//Reason: Regular function keeps the context of obj, so this.a is 10.
 
 const obj1 = {
   a: 10,
@@ -65,6 +83,7 @@ const obj1 = {
   }
 };
 obj1.foo();
+//Reason: Arrow functions do not bind this. this refers to the global object (window in browser), where a is not defined.
 
 let a = 5;
 const obj2 = {
@@ -75,6 +94,7 @@ const obj2 = {
 };
 const arrow = obj2.foo();
 console.log(arrow());//5
+//Reason: Arrow function inherits this from foo (a regular function), and this in foo refers to obj2.
 
 
 let a = 5;
@@ -86,18 +106,22 @@ const obj4 = {
 };
 const arrow = obj4.foo();
 console.log(arrow()); //undefined
+//Reason: Both foo and the returned arrow function inherit this from their outer (global) context. this.a is undefined globally.
+
 
 
 function a() {
   console.log(this);//window
 }
 a();
+// Reason: Regular function called without context defaults this to global.
 
 "use strict";
 function a() {
   console.log(this);//undefined
 }
 a();
+//Reason: In strict mode, this in a regular function is undefined when not bound.
 
 const obj = {
   foo() {
@@ -105,6 +129,7 @@ const obj = {
   }
 };
 console.log(obj.foo() === obj); // true
+// Reason: foo() is called as a method of obj, so this === obj.
 
 const a = {};
 const b = { key: "b" };
@@ -114,28 +139,31 @@ a[b] = 123;
 a[c] = 456; 
  
 console.log(a[b]); //456
+// Reason: Object keys are coerced to strings. Both b and c become "[object Object]", so second assignment overwrites the first.
 
 const a = {};
 const b = { key: "b" };
 const c = { key: "c" };
 const d = 0;
- 
 a[b] = 123; 
 a[c] = 456; 
 a[d] = a[c]
- 
 console.log(a[d]);//456
+// Reason: a[c] = 456, so a[d] = 456. Again, object keys are coerced to strings.
 
 console.log(NaN === NaN);// false
+R//Reason: NaN is not equal to anything, including itself.
 
 const a = b = 5;
 console.log(a); // 5
 console.log(b); //5
+// Reason: b = 5 is evaluated first, and b becomes global (in non-strict mode). Then a is const
 
 let a, b;
 a = b = 5;
 console.log(typeof a, typeof b);
-
+//"number" "number"
+// Reason: b = 5 assigns 5 to global b, and then a = b. Both are numbers.
 
  
     </script>

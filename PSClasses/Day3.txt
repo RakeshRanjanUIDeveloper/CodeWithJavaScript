@@ -1,0 +1,23 @@
+Closure -
+1. Closure is a function together bundled with its lexical Enviornment. 
+2. Closure allows a function to remember and access its lexical scope, even its executed outside its original scope.
+3. Function along with its lexical scope forms a closure.
+4. What is Lexical Scope -
+        1. It is a concept that determines the accessibility of variables and functions based on where they are defined
+============================================================================================================================
+Event Loop -
+    1. JS is synchronous single threaded language. It has 1 callstack and it can do one task at a time. 
+    This callstack is present inside the JS engine. All the JS code get executed inside the callstack.
+    2. Event Loop is a mechanism that enables the execution of code in an asynchronous and non blocking manner.
+    3. Event Loop works by continously checking the execution stack and task queue.
+    4. Event Loop acts like gate keeper and check if something there in callback Queue and if something there then it pushes inside callStack
+    5. Task Queue - MicroTask Queue and Callback Queue
+    6. MicroTask Queue has higher priority than Callback queue.
+    7. MicroTask Queue handles - Promise, Mutation Observer
+    8. Callback Queue handle - I/O events, SetTimeOut
+    9. Callback Queue tasks get executed after the MicroTask queue is empty.
+==================================================================================================================================
+
+    
+     
+

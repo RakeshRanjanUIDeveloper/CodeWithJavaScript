@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function isAnagram(str1, str2){
+            // let val1 = str1.toLowerCase().split('').sort().join('');
+            // let val2 = str2.toLowerCase().split('').sort().join('');
+            // if(val1 === val2){
+            //     return true
+            // }else{
+            //     return false
+            // }
+
+            const format = (str) => str.toLowerCase().replace(/[^a-z]/g, '').split('').sort().join('');
+            
+            return format(str1) === format(str2)
+        }
+        console.log(isAnagram('listen', 'silent')); //true
+        console.log(isAnagram('hello', 'world')); // false
+        console.log((isAnagram('Triangle', 'Integral'))); //True
+    </script>
+</body>
+</html>
