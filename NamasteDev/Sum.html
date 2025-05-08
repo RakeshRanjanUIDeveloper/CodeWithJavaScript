@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function sum(...args){
+            if(!args.every((arg) => typeof arg === 'number' && Number.isFinite(arg))){
+                throw new TypeError("All arguments must be finite numbers.")
+            }
+            return args.reduce((acc, curr) => acc+curr, 0)
+        }
+        console.log(sum(1,2,3));
+        console.log(sum(10));
+        console.log(sum());
+        console.log(sum(5, -5, 10, 20));
+        console.log(sum(100, 200, 300, 400));
+    </script>
+</body>
+</html>

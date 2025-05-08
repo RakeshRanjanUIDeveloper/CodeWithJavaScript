@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function detectType(value) {
+            if (value === null) {
+                console.log('null is null');
+                return 'null';
+            }
+            if (Array.isArray(value)) {
+                console.log('[] is array');
+                return 'array';
+            }
+            console.log(value, 'is', typeof value);
+            return typeof value;
+        }
+        detectType('hello');
+        detectType(123);
+        detectType(true);
+        detectType(undefined);
+        detectType({});
+        detectType([]);
+        detectType(null);
+        detectType(function () { });
+        detectType(Symbol('id'));
+
+    </script>
+</body>
+
+</html>
