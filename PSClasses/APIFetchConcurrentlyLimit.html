@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const orderIds = [1, 2, 3];
+        async function fetchOrderDetails(orderId){
+            const res = await fetch(`https://dummyjson.com/carts/${orderId}`);
+            if(!res.ok) throw new Error("Order Fetch Failed");
+            console.log(res.json())
+            return res.json(); 
+        }
+
+        async function fetchProductDetails(productId) {
+            try {
+                const res = await fetch(`https://dummyjson.com/products/${productId}`);
+                if(!res.ok) throw new Error();
+                return await res.json();
+            } catch (error) {
+                return {title : 'Product Not Available'}
+            }
+        }
+        async function withConcurrencyLimit (tasks, limit){
+            const results = [];
+            const executing = [];
+            for(const taks of tasks){
+                const p = task().catch((error) => error);
+                results.push(p);
+                if(limit <= tasks.length){
+                    
+                }
+            }
+        }
+        async function main() {
+            const orders = await Promise.all(orderIds.map((id) => fetchOrderDetails(id)));
+            console.log("Orders Fetched :", orders)
+
+            const productFetchTasks = [];
+            orders.forEach((order) =>{
+                 order.products.forEach((product) =>{
+                    productFetchTasks.push(async() =>{
+                        const detail = await fetchProductDetails(product.id);
+                        return {
+                            orderId: order.id,
+                            productId:product.id,
+                            detail
+                        }
+                    })
+                 })   
+            })
+        }
+        main();
+    </script>
+</body>
+</html>

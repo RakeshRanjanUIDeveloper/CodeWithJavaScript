@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let salary = 10000;
+        let yearlyIncrement = 20;
+        let carAmount = 2500000;
+        let months = 0;
+        let sum = 0
+        function monthsToBuyCar(salary, yearlyIncrement, carAmount) {
+            let baseSalary = salary * 12;
+            while (sum < carAmount) {
+                sum += salary;
+                console.log(sum)
+                months++;
+                if (months % 12 === 0) {
+                    baseSalary += baseSalary * (yearlyIncrement / 100);
+                }
+            }
+            let years = Math.floor(months / 12);
+            console.log(years)
+            let remainingMonths = months % 12;
+            console.log(remainingMonths)
+            return { years, remainingMonths }
+        }
+        let result = monthsToBuyCar(salary, yearlyIncrement, carAmount);
+        console.log(`It will take ${result.years} years and ${result.remainingMonths} months to buy the car.`);
+    </script>
+</body>
+
+</html>
