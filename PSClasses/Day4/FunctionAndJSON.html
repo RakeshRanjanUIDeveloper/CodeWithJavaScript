@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Create a dummy JSON structure — 
+1 month salary calculation — 30 days (8 days)
+Permanent , Temporary and consultant 3 types of employees are there 
+In case of permanent employees, 1 leave balance to be there in account. If more than 1 leave is taken , he will have leave of pay. They have weekly offs
+Working days -> 30  Per day -> sal amount / 30
+In case of temporary employees, no weekly offs and salary is getting based on weekoffs. 
+No leave balance available.
+In case of consultants, it is based on no of hours/month No no.of days. 
+Per hour calculation will be there</p>
+<p>
+    Hint — 
+calculateSalary(type, baseSalary, noOfLeaves, perHour)
+calculateSalary(employee)
+
+employeesArray.map((employee) => {
+	var salary = calculateSalary(employee);
+	console.log(salary);
+});
+ 
+ 
+Var employeesArray = [
+	{
+		id: ‘’,
+		type: “Permanent”,
+		leaves: {
+			leavesTaken: ‘2’,
+			sanctionedLeave: ‘1’
+		}
+		baseSalary: 100000,
+		workingDays: 30
+	},
+		{
+		id: ‘2’,
+		type: “Temporary”,
+		leaves: {
+			leavesTaken: ‘2’,
+			sanctionedLeave: ‘0’
+		}
+		baseSalary: 100000,
+		workingDays: 22
+	},
+ 
+{
+		id: ‘3’,
+		type: “Consultant”,
+		leaves: {
+			leavesTaken: 0,
+			sanctionedLeave: ‘0’
+		}
+		hourlySalary: 10000,
+		noOfHoursInAMonth: 40,
+	},
+ 
+ 
+]
+</p>
+</body>
+</html>
