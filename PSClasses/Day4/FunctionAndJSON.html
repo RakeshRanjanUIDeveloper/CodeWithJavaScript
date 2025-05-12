@@ -24,43 +24,68 @@ employeesArray.map((employee) => {
 	var salary = calculateSalary(employee);
 	console.log(salary);
 });
- 
- 
-Var employeesArray = [
-	{
-		id: ‘’,
-		type: “Permanent”,
-		leaves: {
-			leavesTaken: ‘2’,
-			sanctionedLeave: ‘1’
-		}
-		baseSalary: 100000,
-		workingDays: 30
-	},
-		{
-		id: ‘2’,
-		type: “Temporary”,
-		leaves: {
-			leavesTaken: ‘2’,
-			sanctionedLeave: ‘0’
-		}
-		baseSalary: 100000,
-		workingDays: 22
-	},
- 
-{
-		id: ‘3’,
-		type: “Consultant”,
-		leaves: {
-			leavesTaken: 0,
-			sanctionedLeave: ‘0’
-		}
-		hourlySalary: 10000,
-		noOfHoursInAMonth: 40,
-	},
- 
- 
-]
+
 </p>
+<script>
+	let employeesArray = [
+		{
+			id:'1',
+			type:'Permanent',
+			baseSalary : 100000,
+			workingDays: 30,
+			leaves: {
+				leaveTaken : 2,
+				sactionedLeave: 1
+			}
+		},
+		{
+			id:'2',
+			type:'Temporary',
+			baseSalary : 50000,
+			workingDays: 22,
+			leaves: {
+				leaveTaken : 2,
+				sactionedLeave: 0
+			}
+		},
+		{
+			id:'3',
+			type:'Consultant',
+			hourlySalary : 5000,
+			noOfHoursInMonth: 50,
+			leaves: {
+				leaveTaken : 0,
+				sactionedLeave: 0
+			}
+		}
+	]
+
+	employeesArray.map((employee) => {
+		let salary = calculateSalary(employee);
+		console.log(salary);
+	})
+
+	function calculateSalary(employee){
+				let baseSalary = employee.baseSalary;
+				let eachDaySalary = baseSalary/12;
+		switch(employee.type){
+			case 'Permanent' :
+				let totalLeaves = employee.leaves.leaveTaken - employee.leaves.sactionedLeave; 
+				let permanentEmployeefinalSalary = baseSalary - (eachDaySalary - totalLeaves);
+				return permanentEmployeefinalSalary
+				break;
+			case 'Temporary' :
+				let temporaryEmployeefinalSalary = employee.baseSalary - (eachDaySalary* employee.leaves.leaveTaken);
+				return temporaryEmployeefinalSalary
+				break;
+			case 'Consultant' :
+				let consultantEmployeefinalSalary = employee.hourlySalary * employee.noOfHoursInMonth;
+				return consultantEmployeefinalSalary
+				break;
+			default:
+				console.log("Invalid Employee.")
+		}
+	}
+</script>
 </body>
 </html>
