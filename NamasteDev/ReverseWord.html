@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function reverseWords(sentence){
+            // Step 1: Split the sentence into words
+            let eachWord = sentence.split(' ')
+
+            //Step 2: Reverse each word individually
+            let reverdsedWords = eachWord.map((word) => word.split('').reverse().join(''))
+          
+            //Step 3: Join the reversed words into a sentence and return
+            return reverdsedWords.join(' ')
+            
+        }
+        console.log(reverseWords('Hello World'));
+        console.log(reverseWords('Javascript is fun'));
+        console.log(reverseWords(' Lead  and Trail'));
+        console.log(reverseWords(""));
+        console.log(reverseWords("OneWord"));
+    </script>
+</body>
+</html>

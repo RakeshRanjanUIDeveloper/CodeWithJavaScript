@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //arr.reduce((acc, curr, i, arr) => {}, initialValue)
+        // Array.prototype.myReduce = function (callback, initialValue) {
+        //     var acc = initialValue;
+        //     for (let i = 0; i < this.length; i++) {
+        //         acc = acc ? callback(acc, this[i], i, this) : this[i]
+        //     }
+        //     return acc;
+        // }
+        // console.log([1, 2, 3].myReduce((acc, curr) => acc + curr));
+        // console.log([1, 2, 3].myReduce((acc, curr) => acc + curr, 10));
+        // console.log([].myReduce((acc, curr) => acc + curr, 5));
+        // console.log([].myReduce((acc, curr) => acc + curr));
+    </script>
+    <script>
+        Array.prototype.myReduce = function (callback, initialValue) {
+            if (typeof callback !== 'function') {
+                throw new TypeError(callback + ' is not a function');
+            }
+            const array = this;
+            const hasInitialValue = arguments.length >= 2;
+            if (array.length === 0 && !hasInitialValue) {
+                throw new TypeError('Reduce of empty array with no initial value');
+            }
+            let accumulator = hasInitialValue ? initialValue : array[0];
+            let startIndex = hasInitialValue ? 0 : 1;
+            for (let i = startIndex; i < array.length; i++) {
+                accumulator = callback(accumulator, array[i], i, array);
+            }
+            return accumulator;
+        };
+        console.log([1, 2, 3].myReduce((acc, curr) => acc + curr));
+        console.log([1, 2, 3].myReduce((acc, curr) => acc + curr, 10));
+        console.log([].myReduce((acc, curr) => acc + curr, 5));
+        console.log([].myReduce((acc, curr) => acc + curr));
+
+    </script>
+</body>
+
+</html>

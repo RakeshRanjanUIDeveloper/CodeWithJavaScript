@@ -15,17 +15,6 @@ In case of temporary employees, no weekly offs and salary is getting based on we
 No leave balance available.
 In case of consultants, it is based on no of hours/month No no.of days. 
 Per hour calculation will be there</p>
-<p>
-    Hint — 
-calculateSalary(type, baseSalary, noOfLeaves, perHour)
-calculateSalary(employee)
-
-employeesArray.map((employee) => {
-	var salary = calculateSalary(employee);
-	console.log(salary);
-});
-
-</p>
 <script>
 	let employeesArray = [
 		{
@@ -65,25 +54,42 @@ employeesArray.map((employee) => {
 		console.log(salary);
 	})
 
+	// function calculateSalary(employee){
+	// 			let baseSalary = employee.baseSalary;
+	// 			let eachDaySalary = baseSalary/30;
+	// 	switch(employee.type){
+	// 		case 'Permanent' :
+	// 			let totalLeaves = employee.leaves.leaveTaken - employee.leaves.sactionedLeave; 
+	// 			let permanentEmployeefinalSalary = baseSalary - (eachDaySalary - totalLeaves);
+	// 			return permanentEmployeefinalSalary
+	// 			break;
+	// 		case 'Temporary' :
+	// 			let temporaryEmployeefinalSalary = employee.baseSalary - (eachDaySalary* employee.leaves.leaveTaken);
+	// 			return temporaryEmployeefinalSalary
+	// 			break;
+	// 		case 'Consultant' :
+	// 			let consultantEmployeefinalSalary = employee.hourlySalary * employee.noOfHoursInMonth;
+	// 			return consultantEmployeefinalSalary
+	// 			break;
+	// 		default:
+	// 			console.log("Invalid Employee.")
+	// 	}
+	// }
+
 	function calculateSalary(employee){
-				let baseSalary = employee.baseSalary;
-				let eachDaySalary = baseSalary/12;
+		let eachDaySalary = employee.baseSalary ? employee.baseSalary/30 : 0;
 		switch(employee.type){
-			case 'Permanent' :
-				let totalLeaves = employee.leaves.leaveTaken - employee.leaves.sactionedLeave; 
-				let permanentEmployeefinalSalary = baseSalary - (eachDaySalary - totalLeaves);
-				return permanentEmployeefinalSalary
-				break;
+			case 'Permanent' : 
+				let unpaidLeaves = employee.leaves.leaveTaken - employee.leaves.sactionedLeave;
+					unpaidLeaves = unpaidLeaves>0 ? unpaidLeaves : 0;
+					return employee.baseSalary - (eachDaySalary*unpaidLeaves);
 			case 'Temporary' :
-				let temporaryEmployeefinalSalary = employee.baseSalary - (eachDaySalary* employee.leaves.leaveTaken);
-				return temporaryEmployeefinalSalary
-				break;
+				return employee.baseSalary - (eachDaySalary * employee.leaves.leaveTaken);
 			case 'Consultant' :
-				let consultantEmployeefinalSalary = employee.hourlySalary * employee.noOfHoursInMonth;
-				return consultantEmployeefinalSalary
-				break;
-			default:
-				console.log("Invalid Employee.")
+				return employee.hourlySalary * employee.noOfHoursInMonth;
+			default :
+				console.log("Invalid Employee");
+				return 0;
 		}
 	}
 </script>

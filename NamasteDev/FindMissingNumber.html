@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function findMissingNumber(nums) {
+            // const n = nums.length;
+            // const expectedSum = (n*(n+1))/2;
+            // const actualSum = nums.reduce((acc, curr) => acc+curr, 0);
+            // return expectedSum - actualSum
+
+            if (!nums || nums.length < 2) {
+                console.log("Not enough data to determine missing number.");
+                return;
+            }
+            let sortedNums = nums.sort((a, b) => a - b);
+            // step 1 - find max value
+            let max = sortedNums[nums.length - 1];
+            // step 2 - find min value
+            let min = sortedNums[0];
+            // step 3 - loop from min to max to find the missing number
+            for (let i = min; i <= max; i++) {
+                if (!sortedNums.includes(i)) {
+                    console.log(`Missing Number is `, i);
+                }
+            }
+            console.log("No number is missing in the range.");
+        }
+        findMissingNumber([3,0,1]);
+        findMissingNumber([0, 1]);
+        findMissingNumber([9,6,4,2,3,5,7,0,1]);
+        findMissingNumber([0])
+    </script>
+</body>
+
+</html>

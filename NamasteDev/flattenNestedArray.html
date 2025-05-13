@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function flattenArray(arr) {
+            let result = [];
+            arr.forEach(element => {
+                if (!Array.isArray(element)) {
+                    result.push(element)
+                } else {
+                    result = result.concat(flattenArray(element))
+                }
+            });
+            return result
+        }
+        console.log(flattenArray([1, [2, [3, 4], 5], 6]));
+        console.log(flattenArray([['a'], ['b', ['c', 'd'], 'e']]));
+    </script>
+</body>
+
+</html>
