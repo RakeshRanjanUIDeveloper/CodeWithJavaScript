@@ -18,16 +18,18 @@
             let baseSalary = salary * 12;
             while (sum < carAmount) {
                 sum += salary;
-                console.log(sum)
+                console.log(salary)
+                // console.log(sum)
                 months++;
                 if (months % 12 === 0) {
                     baseSalary += baseSalary * (yearlyIncrement / 100);
+                    salary = baseSalary / 12;
                 }
             }
             let years = Math.floor(months / 12);
-            console.log(years)
+            // console.log(years)
             let remainingMonths = months % 12;
-            console.log(remainingMonths)
+            // console.log(remainingMonths)
             return { years, remainingMonths }
         }
         let result = monthsToBuyCar(salary, yearlyIncrement, carAmount);

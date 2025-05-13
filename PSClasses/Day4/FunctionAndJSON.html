@@ -54,44 +54,41 @@ Per hour calculation will be there</p>
 		console.log(salary);
 	})
 
-	// function calculateSalary(employee){
-	// 			let baseSalary = employee.baseSalary;
-	// 			let eachDaySalary = baseSalary/30;
-	// 	switch(employee.type){
-	// 		case 'Permanent' :
-	// 			let totalLeaves = employee.leaves.leaveTaken - employee.leaves.sactionedLeave; 
-	// 			let permanentEmployeefinalSalary = baseSalary - (eachDaySalary - totalLeaves);
-	// 			return permanentEmployeefinalSalary
-	// 			break;
-	// 		case 'Temporary' :
-	// 			let temporaryEmployeefinalSalary = employee.baseSalary - (eachDaySalary* employee.leaves.leaveTaken);
-	// 			return temporaryEmployeefinalSalary
-	// 			break;
-	// 		case 'Consultant' :
-	// 			let consultantEmployeefinalSalary = employee.hourlySalary * employee.noOfHoursInMonth;
-	// 			return consultantEmployeefinalSalary
-	// 			break;
-	// 		default:
-	// 			console.log("Invalid Employee.")
-	// 	}
-	// }
-
 	function calculateSalary(employee){
-		let eachDaySalary = employee.baseSalary ? employee.baseSalary/30 : 0;
+				let baseSalary = employee.baseSalary;
+				let eachDaySalary = baseSalary/employee.workingDays;
+				let totalLeaves = employee.leaves.leaveTaken - employee.leaves.sactionedLeave;
+				let finalSalary = baseSalary - (eachDaySalary * totalLeaves);
 		switch(employee.type){
-			case 'Permanent' : 
-				let unpaidLeaves = employee.leaves.leaveTaken - employee.leaves.sactionedLeave;
-					unpaidLeaves = unpaidLeaves>0 ? unpaidLeaves : 0;
-					return employee.baseSalary - (eachDaySalary*unpaidLeaves);
+			case 'Permanent':
 			case 'Temporary' :
-				return employee.baseSalary - (eachDaySalary * employee.leaves.leaveTaken);
+				return finalSalary
+				break;
 			case 'Consultant' :
-				return employee.hourlySalary * employee.noOfHoursInMonth;
-			default :
-				console.log("Invalid Employee");
-				return 0;
+				let consultantEmployeefinalSalary = employee.hourlySalary * employee.noOfHoursInMonth;
+				return consultantEmployeefinalSalary
+				break;
+			default:
+				console.log("Invalid Employee.")
 		}
 	}
+
+	// function calculateSalary(employee){
+	// 	let eachDaySalary = employee.baseSalary ? employee.baseSalary/30 : 0;
+	// 	switch(employee.type){
+	// 		case 'Permanent' : 
+	// 			let unpaidLeaves = employee.leaves.leaveTaken - employee.leaves.sactionedLeave;
+	// 				unpaidLeaves = unpaidLeaves>0 ? unpaidLeaves : 0;
+	// 				return employee.baseSalary - (eachDaySalary*unpaidLeaves);
+	// 		case 'Temporary' :
+	// 			return employee.baseSalary - (eachDaySalary * employee.leaves.leaveTaken);
+	// 		case 'Consultant' :
+	// 			return employee.hourlySalary * employee.noOfHoursInMonth;
+	// 		default :
+	// 			console.log("Invalid Employee");
+	// 			return 0;
+	// 	}
+	// }
 </script>
 </body>
 </html>

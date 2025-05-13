@@ -15,7 +15,9 @@
                 if (!Array.isArray(element)) {
                     result.push(element)
                 } else {
-                    result = result.concat(flattenArray(element))
+                    // result = result.concat(flattenArray(element))
+                    // result = result.push([...flattenArray(element)]) wrong Approach
+                    result = [...result, ...flattenArray(element)]
                 }
             });
             return result
