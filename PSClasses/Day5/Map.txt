@@ -1,0 +1,113 @@
+Map --
+ 
+A data structure that contains values in form of key-value pair.
+ 
+Similar to object -- key value pair ==> map is a little easier
+ 
+{
+    "India": "Delhi",
+    "USA": "Washington DC",
+    "Japan": "Tokyo"
+}
+ 
+ 
+let a = [1,3,5] ==> a[1] --> a[1] = 3
+ 
+{
+    0: 1,
+    1: 3,
+    2: 5
+}
+ 
+Map -->
+ 
+Every key should be unique.
+ 
+Other data structures -- Dictionary 
+(word --> meaning)
+ 
+JS --
+ 
+let myMap = {}; -- object 
+let myMap = new Map(); --> DS ##
+ 
+ 
+//set
+myMap.set({"Japan" : "Tokyo}) --> DS ##
+myMap["Japan"] = "Tokyo"; --> object
+ 
+ 
+//get 
+myMap.get("India") ---> "Delhi" --> DS
+myMap["India"] ---> object ##
+ 
+sessionStorage.setItem("jwt", "abcdabaskdas");
+sessionStorage.getItem("jwt") --> abcdabaskdas
+ 
+ 
+// has 
+myMap.has(key) -- boolean true / false 
+myMap[value] !== undefined
+ 
+console.log(obj.hasOwnProperty('a')); // true
+console.log(obj.hasOwnProperty('toString')); // false (inherited)
+ 
+// delete 
+myMap.delete(key)
+ 
+ 
+object = {
+    2: [10,24,34],
+    3: [100,102,109]
+}
+ 
+Object
+ 
+Object.keys(object) --> [2,3]
+Object.values(object) --> [[10,24,34], [100,102,109]]
+Object.entries(object) --> [10,24,34], [100,102,109]
+ 
+ 
+Q. Write a JS program to find count of each character in a string.
+Q. Given a string, find the shortest substring that contains no repeating characters. (not for now)
+Q. Given an array of strings, group the strings based on their starting character, and return a Map where each key is the starting character and the value is an array of strings that start with that character.
+ 
+Input: ["abc", "bca", "acb", "cab", "cba", "bac"]
+ 
+Output: Map {
+  'a' => ['abc', 'acb'],
+  'b' => ['bca', 'bac'],
+  'c' => ['cab', 'cba']
+}
+ 
+    
+const obj = { a: 1, b: 2 };
+ 
+for (let key in obj) {
+  if (obj.hasOwnProperty(key)) {
+    console.log(key); // Only own properties
+  }
+}
+ 
+// Objectives :
+ 
+a. Difference between key and map
+b. What is Map ?
+c. Functions of map
+d. When to use map 
+e. Object key value properties 
+f. in vs hasOwnProperty
+ 
+ 
+// output --
+ 
+var a; 
+console.log(a); 
+a=10;
+ 
+o/p - 10 X --> undefined
+ 
+ 
+null Vs undefined --
+ 
+null == undefined --> true -->  typeof null {object} & typeof undefined undefined  

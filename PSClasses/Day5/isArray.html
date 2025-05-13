@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+* {
+    font-family: Graphik;
+    color: #000;
+    font-weight: 500;
+    font-size: 18px;
+}
+section {
+  margin-bottom: 1.5rem;
+}
+
+h3 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin: 0.3rem 0;
+}
+
+ol {
+  padding-left: 1.5rem;
+}
+
+    </style>
+</head>
+
+<body>
+<section>
+  <h3>What is Array.isArray()?</h3>
+  <p>
+    <code>Array.isArray()</code> is a built-in static method in JavaScript that checks whether a given value is an array or not.
+  </p>
+</section>
+
+<section>
+  <h3>Return Values</h3>
+  <ol>
+    <li><strong>true</strong> – if the value is an array</li>
+    <li><strong>false</strong> – if the value is not an array</li>
+  </ol>
+</section>
+
+<section>
+  <h3>Why is it needed?</h3>
+  <p>
+    Arrays in JavaScript are a special type of object, so using <code>typeof</code> on an array will return <code>"object"</code> — not <code>"array"</code>.
+  </p>
+  <p>
+    This is why <code>Array.isArray()</code> is necessary — it accurately identifies if a variable is an array.
+  </p>
+</section>
+
+<section>
+  <h3>Use Cases of Array.isArray()</h3>
+  <ol>
+    <li>Type Checking Before Iteration</li>
+    <li>Working with API Responses</li>
+    <li>Validating Function Arguments</li>
+    <li>Handling JSON or Dynamic Data</li>
+    <li>Building Utility Functions</li>
+  </ol>
+</section>
+
+    <script>
+        // Type checking
+        function processItems(items){
+            if(Array.isArray(items)){
+                items.forEach((item) =>{
+                    console.log(item)
+                })
+            }else{
+                console.log("Not an Array, skipping processing")
+            }
+        }
+        processItems([1,2,3,4,5]);
+        processItems("Hello")
+
+        //Working with API Response
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(res => res.json())
+            .then(data => {
+                if(Array.isArray(data)){
+                    data.map((product) => console.log(product.name) )
+                }
+            })
+
+        //Validating Function Arguments
+        function calculateSum(arr){
+            if(!Array.isArray(arr)){
+                throw new Error("Input Must be an Array")
+            }
+            return arr.reduce((acc,curr) => acc+curr, 0)
+        }
+        console.log(calculateSum([1,2,3,4,5]))
+        calculateSum(1,2,3)
+
+
+        // Handing JSON
+        const json= '[1,2,3]';
+        const parsed = JSON.parse(json);
+        if(Array.isArray(parsed)){
+            console.log("Its an Array!!")
+        }
+    </script>
+</body>
+
+</html>
