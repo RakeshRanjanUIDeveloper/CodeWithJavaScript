@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+          font-family: Graphik;
+          color: #000;
+          font-weight: 500;
+          font-size: 18px;
+        }
+    
+        section {
+          margin-bottom: 1.5rem;
+        }
+    
+        h3 {
+          color: #333;
+          margin-bottom: 0.5rem;
+        }
+    
+        p {
+          margin: 0.3rem 0;
+        }
+    
+        ol {
+          padding-left: 1.5rem;
+        }
+      </style>
+</head>
+<body>
+    <div>
+        <h2><code>instanceof</code> Operator in JavaScript</h2>
+      
+        <p>
+          The <code>instanceof</code> operator in JavaScript is used to check whether an object is an instance of a particular constructor or class.
+        </p>
+        <p>
+          It's a crucial part of JavaScript's prototype-based inheritance system.
+        </p>
+      
+        <h3>Syntax</h3>
+        <pre><code>object instanceof Constructor</code></pre>
+      
+        <h3>What It Does</h3>
+        <ul>
+          <li>Returns <code>true</code> if <code>object</code> is an instance of <code>Constructor</code> or any class in its prototype chain.</li>
+          <li>Otherwise, returns <code>false</code>.</li>
+        </ul>
+      
+        <p><strong>Note:</strong> It works with <strong>objects only</strong>.</p>
+      </div>
+      
+
+    <script>
+        function Animal() {}
+        let dog = new Animal();
+        console.log(dog instanceof Animal);
+    </script>
+</body>
+</html>

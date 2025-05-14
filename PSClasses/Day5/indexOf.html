@@ -1,23 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        * {
+            font-family: Graphik;
+            color: #000;
+            font-weight: 500;
+            font-size: 18px;
+        }
+        section {
+          margin-bottom: 1.5rem;
+        }
+        
+        h3 {
+          color: #333;
+          margin-bottom: 0.5rem;
+        }
+        
+        p {
+          margin: 0.3rem 0;
+        }
+        
+        ol {
+          padding-left: 1.5rem;
+        }
+        
+            </style>
 </head>
+
 <body>
-    charAt
-indexOf
-concat
-isArray
-instanceof
-in
-hasOwnProperty
-Object.keys
-Object.values
-Object.entries
-Object.from
+    <p>It is a built-in string and array method used to find the position of a specified value within a string or an array.</p>
+
+    <ol>
+      <li><strong>For Strings:</strong> <code>String.prototype.indexOf()</code></li>
+      <li><strong>For Arrays:</strong> <code>Array.prototype.indexOf()</code></li>
+    </ol>
+    
+    <p><strong>Syntax:</strong></p>
+    <ol>
+      <li><code>str.indexOf(searchValue, fromIndex)</code></li>
+      <li><strong>searchValue (required):</strong> The string to search for.</li>
+      <li><strong>fromIndex (optional):</strong> The index to start the search from. Defaults to 0.</li>
+    </ol>
+    
+    <p><strong>Returns:</strong></p>
+    <ol>
+      <li>The index (0-based) of the first occurrence of the specified substring.</li>
+      <li>Returns <code>-1</code> if the value is not found.</li>
+    </ol>
+    
+
+
+    <script>
+        const sentence = 'JavaScript is awesome';
+        console.log(sentence.indexOf("is"));      // 11
+        console.log(sentence.indexOf("Java"));    // 0
+        console.log(sentence.indexOf("python"));  // -1
+        console.log(sentence.indexOf("a"));       // 1 (first 'a')
+        console.log(sentence.indexOf("a", 2));    // 3 (next 'a' after index 2)
+
+        const str = 'say hello to my little friend';
+        if(str.indexOf('hello') !== -1){
+            console.log("Substring found");
+        }
+
+        //Prevent duplicate entries in an array
+        let myarr = [1,2,3];
+        if(myarr.indexOf(2) === -1){
+            myarr.push(2);
+        }else{
+            console.log("2 is already present");
+        }
+       console.log(myarr);
+
+       //Remove an item
+        let arr = 'i eat banana daily';
+        const index = arr.indexOf('banana');
+        console.log(index);
+        if(index !== -1){
+            arr.splice(index, 1)
+        }
+        console.log(arr);
+
+    </script>
 
 
 </body>
+
 </html>

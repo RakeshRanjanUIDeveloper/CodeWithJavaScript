@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>What Does "Isomorphic" Mean in Strings?</h2>
+    <ol>
+        <li>Two strings are isomorphic if the characters in one string can be replaced to get the second string, with the order preserved</li>
+        <li>Each character from the first string maps to one and only one character in the second string.</li>
+    </ol>
+    <h3>Rules</h3>
+    <ol>
+        <li>Each character must map to another character uniquely</li>
+        <li>The mapping must be one-to-one.</li>
+        <li>The structure or pattern of the characters must match.</li>
+    </ol>
+    <script>
+        function areIsomorphic(str1, str2){
+           if(str1.length !== str2.length) return false;
+        
+            let map1={};
+            let map2={};
+
+            for(let i=0; i<str1.length; i++){
+                let c1 = str1[i]; // d,g,g
+                let c2 = str2[i]; // e,f,f
+
+                if(!map1[c1]){
+                    map1[c1] = c2;
+                }
+                if(!map2[c2]){
+                    map2[c2] = c1;
+                }
+
+                if(map1[c1] !== c2 || map2[c2] !== c1){
+                    return false
+                }
+
+            }
+            return true
+        }
+        console.log(areIsomorphic("dgg", "eff"));
+    </script>
+</body>
+</html>

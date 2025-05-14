@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      font-family: Graphik;
+      color: #000;
+      font-weight: 500;
+      font-size: 18px;
+    }
+
+    section {
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      margin: 0.3rem 0;
+    }
+
+    ol {
+      padding-left: 1.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <h2><code>concat()</code> Method in JavaScript</h2>
+
+    <p>The <code>concat()</code> method in JavaScript is used primarily with <strong>arrays</strong> and
+      <strong>strings</strong>.</p>
+    <p>It’s a <strong>non-mutating method</strong>, meaning it doesn’t change the original array or string—it returns a
+      new one.</p>
+
+    <h3>Syntax</h3>
+    <pre><code>let newArray = array1.concat(array2, array3, ...);</code></pre>
+
+    <h3>What it Does</h3>
+    <ul>
+      <li>Combines two or more arrays.</li>
+      <li>Returns a new array, leaving the originals untouched.</li>
+    </ul>
+
+    <h3><code>concat()</code> with Strings</h3>
+    <pre><code>let newString = string1.concat(string2, string3, ...);</code></pre>
+    <ul>
+      <li>Joins two or more strings into one.</li>
+      <li>Returns a new string.</li>
+    </ul>
+  </div>
+
+
+
+  <script>
+    const arr1 = [1, 2, 3];
+    const arr2 = [4, 5, 6];
+    const result = arr1.concat(arr2);
+    console.log(result);
+
+    const str1 = 'Hello';
+    const str2 = 'World';
+    const output = str1.concat(str2);
+    console.log(output);
+
+    const flat = [1, 2, 3].concat([4, 5]);
+    console.log(flat);
+  </script>
+</body>
+
+</html>

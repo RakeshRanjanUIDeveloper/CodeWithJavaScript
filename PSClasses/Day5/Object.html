@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            font-family: Graphik;
+            color: #000;
+            font-weight: 500;
+            font-size: 18px;
+        }
+        section {
+          margin-bottom: 1.5rem;
+        }
+        
+        h3 {
+          color: #333;
+          margin-bottom: 0.5rem;
+        }
+        
+        p {
+          margin: 0.3rem 0;
+        }
+        
+        ol {
+          padding-left: 1.5rem;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div>
+        <h2>JavaScript Object Methods Explained</h2>
+      
+        <h3><code>hasOwnProperty</code></h3>
+        <ul>
+          <li>Checks whether the object has the specified property as its own (not inherited from the prototype chain).</li>
+          <li><code>object.hasOwnProperty(property)</code></li>
+        </ul>
+      
+        <h3><code>Object.keys()</code></h3>
+        <ul>
+          <li>Returns an array of the object's own enumerable property names (keys).</li>
+        </ul>
+      
+        <h3><code>Object.values()</code></h3>
+        <ul>
+          <li>Returns an array of the values of the object’s own enumerable properties.</li>
+        </ul>
+      
+        <h3><code>Object.entries()</code></h3>
+        <ul>
+          <li>Returns an array of key-value pairs, where each pair is an array <code>[key, value]</code>.</li>
+        </ul>
+      
+        <h3><code>Object.fromEntries()</code></h3>
+        <ul>
+          <li>The reverse of <code>Object.entries()</code>.</li>
+          <li>It converts an array of key-value pairs back into an object.</li>
+        </ul>
+      </div>
+      
+
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Method</th>
+                <th>Purpose</th>
+                <th>Output Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>hasOwnProperty</code></td>
+                <td>Check if object owns a property</td>
+                <td><code>true</code> or <code>false</code></td>
+            </tr>
+            <tr>
+                <td><code>Object.keys()</code></td>
+                <td>Get array of keys</td>
+                <td><code>["name", "age"]</code></td>
+            </tr>
+            <tr>
+                <td><code>Object.values()</code></td>
+                <td>Get array of values</td>
+                <td><code>["Rakesh", 30]</code></td>
+            </tr>
+            <tr>
+                <td><code>Object.entries()</code></td>
+                <td>Get array of [key, value] pairs</td>
+                <td><code>[["name", "Rakesh"], ["age", 30]]</code></td>
+            </tr>
+            <tr>
+                <td><code>Object.fromEntries()</code></td>
+                <td>Convert entries back to object</td>
+                <td><code>{ name: "Rakesh", age: 30 }</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        const person = {
+            name: 'Rakesh',
+            age: 34
+        }
+        console.log(person.hasOwnProperty("age")); //true
+        console.log(person.hasOwnProperty('toString')); // false (inherited from prototype)
+
+        console.log(Object.keys(person)); // ['name', 'age']
+        console.log(Object.values(person)); // ['Rakesh', 30]
+        console.log(Object.entries(person)); // [["name", "Rakesh"], ["age", 34]]
+        const entries = Object.entries(person);
+        const newperson = Object.fromEntries(entries)
+        console.log(newperson); // {name:'Rakesh', age:34}
+    </script>
+</body>
+
+</html>
