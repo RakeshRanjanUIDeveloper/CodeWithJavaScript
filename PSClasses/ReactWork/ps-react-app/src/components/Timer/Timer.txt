@@ -1,0 +1,7 @@
+1. setInterval 
+ - setInterval repeatedly calls setCount with 1 sec delay
+ - setInterval return an Interval Id 
+ - That Interval Id is use to cancel the Interval
+2. clearInterval
+ - clearInterval stops the execution of the repetitive task that was created using setInterval 
+ - setIntervalId(null) makes sure we clear the old interval ID, so that on the next click of "Start", we create a new interval 

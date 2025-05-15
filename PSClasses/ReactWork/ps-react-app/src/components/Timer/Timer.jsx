@@ -2,19 +2,21 @@ import React, { useState } from "react";
 import "./Timer.css";
 const Timer = () => {
   const [count, setCount] = useState(0);
-
+  const [intervalId, setIntervalId] = useState(null);
 
   const handleStart = () => {
-       let timerId = setInterval(() =>{
-            setCount((prev) => prev+1)
-       }, 1000) 
+    setIntervalId(setInterval(()=>{
+        setCount((prev) => prev+1)
+    }, 1000))
   };
-
   const handlePause = () => {
-      
+      clearInterval(intervalId)
+      setIntervalId(null)
   };
   const handleReset = () => {
-    setCount(count===0)
+      clearInterval(intervalId);
+      setIntervalId(null);
+      setCount(0);
   };
   return (
     <div className="timer-container">

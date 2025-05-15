@@ -1,0 +1,19 @@
+1. In class component, it must extend the base class from React.Component so that it inherits all the functionality needed to behave like React Component.
+2. Constructor() is part of ES6 classes.
+    - In React, it is used for initialize the state.
+    - To Bind the method if needed.
+3. super(props)
+    - super() call the parent class constructor ( in this case its React.Component)
+    - we must call super(props) before using 'this' in the constructor.
+    - It passes props up to the base 'Component' class so React can initialize this.props
+4. Execution Sequence 
+    - constructor -> render  -> componentDidMount -> componentWillUnMount
+5. Why doesn't timerId have var, let, or const?
+    - timerId is being set as a property on the class instance.
+    - It is not a variable, it belongs to the instance.
+    - this.timerId ===> Clock.timerId
+6. Why is everything accessed using this (like this.state, this.setState)?
+    - React treats each component as an object. 
+    - this refers to the current instance of the component.
+    - this ensure that we are working with specific Object's data and function.
+    
