@@ -1,0 +1,69 @@
+/* index.css */
+
+/* Box-sizing reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin & padding */
+body,
+h1, h2, h3, h4, h5, h6,
+p, ul, ol, figure,
+blockquote, dl, dd {
+  margin: 0;
+  padding: 0;
+}
+
+/* Set core body defaults */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #333;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove list styles */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Remove anchor underline */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Set default image style */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Button reset */
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+/* Input & textarea reset */
+input,
+textarea {
+  font: inherit;
+  border: none;
+  outline: none;
+}
+
+/* Root container to allow full height layouts */
+#root {
+  isolation: isolate;
+}
