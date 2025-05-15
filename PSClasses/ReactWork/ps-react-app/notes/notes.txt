@@ -1,0 +1,200 @@
+
+1. What is React.js and How Does It Differ from Other JavaScript Frameworks?
+
+    React.js Overview:
+    - A JavaScript library developed by Facebook for building user interfaces, especially single-page applications (SPAs).
+    - Focuses on the view layer of the Model-View-Controller (MVC) architecture.
+    - Enables developers to build reusable UI components and manage their state efficiently.
+
+    Key Features of React.js:
+        1. Component-Based Architecture – UI is divided into small, reusable components.
+        2. Virtual DOM – Enhances rendering efficiency by updating only changed parts of the real DOM.
+        3. Declarative Syntax – UI is described based on state, and React handles updates.
+        4. JSX – JavaScript XML syntax allows HTML-like code within JavaScript.
+        5. Unidirectional Data Flow – Data flows from parent to child via props.
+        6. Ecosystem – Integrates with libraries like Redux for state management and tools for routing and testing.
+
+    Differences from Other Frameworks:
+        - Uses components for UI instead of templates.
+        - Emphasizes simplicity and flexibility over structure (compared to Angular).
+        - Offers better performance via the Virtual DOM.
+        - Boasts a large ecosystem and community support.
+
+    Why Choose React.js?
+        1. Flexibility – Easy to integrate into existing or new projects.
+        2. Large Community – Access to libraries, tools, and support.
+        3. Performance – Efficient rendering using the Virtual DOM.
+        4. Industry Adoption – Used by Facebook, Instagram, Netflix, Airbnb, etc.
+
+2. Explain the Concept of Virtual DOM in React.js and Its Advantages
+
+    What is Virtual DOM?
+    - A lightweight JavaScript representation of the actual DOM.
+    - React updates the Virtual DOM first, then syncs only the necessary changes to the real DOM.
+
+    How It Works:
+        1. React creates an initial Virtual DOM tree on first load.
+        2. When state/props change, a new Virtual DOM is generated.
+        3. A diffing algorithm compares old and new trees (reconciliation).
+        4. Only minimal changes are applied to the actual DOM.
+
+    Advantages:
+        1. Improved Performance – Minimizes expensive DOM operations.
+        2. Efficient Reconciliation – Optimized updates through diffing.
+        3. Abstraction – Avoids direct DOM manipulation.
+        4. Cross-Browser Consistency – Standardized DOM updates.
+        5. Predictable Rendering – UI always reflects the current state.
+        6. Framework Integration – Works well with other tools/frameworks.
+        7. Supports Component Architecture – Easier debugging and reuse.
+
+    Key Terms:
+        - Reconciliation – Comparing old vs. new Virtual DOM.
+        - Diffing Algorithm – Efficient change detection.
+        - Batching – Grouping changes for minimal updates.
+
+3. What Are the Key Features of React.js That Make It Unique?
+
+    1. Component-Based Architecture
+    - Encapsulated components that manage their own state.
+    - Promotes reusability, modularity, and testability.
+
+    2. Virtual DOM
+    - In-memory DOM improves rendering speed.
+    - Updates only what is necessary.
+
+    3. Declarative Syntax
+    - UI automatically reflects current state.
+    - Less manual DOM manipulation.
+
+    4. Unidirectional Data Flow
+    - Data flows from parent to child via props.
+    - Easier debugging and predictable behavior.
+
+    5. JSX (JavaScript XML)
+    - HTML-like syntax within JavaScript.
+    - More readable and expressive UI code.
+
+    6. React Hooks
+    - Functions like useState and useEffect manage state and lifecycle in functional components.
+
+    7. Developer Tools
+    - React DevTools for inspecting component hierarchy and state.
+
+    8. Rich Ecosystem
+    - Includes Redux, React Router, Next.js, etc.
+
+    9. Cross-Platform Support
+    - React Native enables mobile app development with shared codebase.
+
+    10. High Performance
+        - SSR with frameworks like Next.js.
+        - Virtual DOM improves speed.
+
+    11. Backward Compatibility
+        - Rarely introduces breaking changes.
+
+4. What is JSX? Explain Its Syntax and Benefits
+
+    What is JSX?
+        - A syntax extension for JavaScript that looks like HTML.
+        - Used to describe UI within JavaScript logic.
+        - Transpiled (by Babel) to JavaScript using React.createElement.
+
+    JSX Syntax Highlights:
+        1. Expressions: Enclose JavaScript in `{}`.
+        2. Tags: Similar to HTML but are React elements.
+        3. Attributes: Use `className` instead of `class`, `htmlFor` instead of `for`.
+        4. Self-Closing Tags: For components with no children.
+        5. Multiline JSX: Must return one enclosing tag (e.g., `<div>` or `<>`).
+        6. Conditionals: Typically use ternary operators.
+        7. Loops: Use array methods like `.map()`.
+
+    Benefits of JSX:
+        1. Declarative and Readable – Similar to HTML.
+        2. Less Boilerplate – Concise component syntax.
+        3. Better Error Checking – Detailed compiler warnings.
+        4. Integration with JavaScript – Logic and UI together.
+        5. Easier Debugging – Visual structure matches logic.
+        6. Performance – Optimized rendering with Virtual DOM.
+
+5. How do you create components in React.js?
+     - Components are the building blocks of any React application. 
+     - We can split the UI into independent, reusable pieces, and manage their own state and logic.
+     - There are two main ways to create components in React:
+        - Function Components
+        - Class Components 
+
+6. What is the difference between state and props in React.js?
+    props
+     - props are used to pass data from parent to child components.
+     - Immutable - props cannot be changed by the receiving component.
+     - props are controlled by the parent component.
+
+    state
+     - State is a local data storage specific to a component, used to manage dynamic data or UI changes.
+     - Mutable – can be updated using setState() or useState() hook.
+     - Controlled and managed within the component itself.
+
+7. Explain the component lifecycle methods in React.js.
+    - React components go through three main phases in their lifecycle:
+        - Mounting – Component is being created and inserted into the DOM.
+            - These methods are called in order when a component is initialized and added to the DOM.
+            - constructor()	 -> render() -> componentDidMount()	
+            - constructor() -Initializes state and binds event handlers.
+            - render() - Returns JSX to render UI. Required method.
+            - componentDidMount() - Called once after component is added to DOM. Used for API calls,DOM manipulation.
+        - Updating – Component is re-rendered due to changes in props or state.
+            - Triggered by changes in props, state
+            - render()	-Re-renders the component.
+            - componentDidUpdate() - Called after the DOM has updated.
+        - Unmounting – Component is removed from the DOM.
+            - Called when the component is about to be removed from the DOM.
+            - componentWillUnmount() - Clean up tasks like removing event listeners, canceling timers or network requests.
+
+8. How do we handle events in React.js?
+    - React uses camelCase for event names and JSX functions
+    - <button onClick={handleClick}>Click Me</button>
+    - <button onClick={() => greet(name)}>Greet</button>
+    - 1st Approach - onClick={handleClick}
+        - This passes a function reference to the onClick handler.
+        - The function is not invoked immediately; React calls it when the event occurs.
+        - No new function is created on each render, which improves performance.
+        - It's a cleaner and more efficient approach for handlers that don’t require arguments.
+        - No need for .bind() in functional component.
+    - 2nd Approach - onClick={() => greet(name)}
+        - This creates a new arrow function on every render, which wraps the actual function call.
+        - Useful when we need to pass arguments to the handler.
+        - Creates a new function each time, which can affect performance if overused—especially in deeply nested or large components.
+        - The arrow function has no own this, but captures the parent scope, making it easier to use in some contexts.
+
+9. What is the purpose of using keys in React.js lists?
+    - Using key, React identify which items have changed, been added, or removed, improving rendering performance.
+    - Without proper keys, React may reuse elements incorrectly, leading to unexpected UI behavior.
+    - Avoid using array index as key - Only use it when the list is static and never changes.
+    - React uses keys to Track which DOM nodes correspond to which React elements.
+    - Optimize by only updating what’s changed.
+
+10. How do you conditionally render elements in React.js?
+    - Using if Statements
+    - Using Ternary Operator (inline if-else)
+    - Using Logical AND (&&) Operator
+    - Using switch Statements
+
+11. What is the use of refs in React.js?
+    - Refs (short for references) in React are used to access or interact directly with DOM elements 
+    - or React components that are rendered in the UI, without using state.
+    When to Use Refs
+        - To focus an input field.
+        - To trigger animations directly on DOM nodes.
+        - To measure the dimensions or position of DOM elements.
+        - To manipulate DOM elements (e.g., scrolling).
+        - To access child components' methods.
+    How to Create a Ref
+        - Using useRef (in Functional Components)
+        - const inputRef = useRef(null)
+        - useRef is also used to hold mutable values (like timers) that persist across renders without causing re-renders.
+
+12. Explain the concept of controlled and uncontrolled components in React.js.
+
+
+
