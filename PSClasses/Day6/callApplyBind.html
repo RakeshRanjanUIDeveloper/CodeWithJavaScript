@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const employee = {
+            name: 'Rakesh',
+            designation: 'Team Lead'
+        }
+        const person ={
+            name : 'Misu',
+            designation: 'Software Engineer'
+        }
+
+        function printDetails(location, state){
+            console.log(this.name + " is a " + this.designation + " from " +location + ", " +state);
+        }
+
+        printDetails.call(employee, "Bangalore");
+        printDetails.call(person, "Ranchi")
+
+        printDetails.apply(employee, ["Bangalore", "Karnatak"])
+        printDetails.apply(person, ["Ranchi", "Jharkhand"])
+
+        let printInfo = printDetails.bind(employee, ["Bangalore", "Karnatak"]);
+        printInfo();
+        //bind() expects arguments to be passed individually, not as an array.
+        //location = ["Bangalore", "Karnatak"]
+        //state = undefined
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+Map-
+ - map() is a method available on arrays in JavaScript.
+ - It is used to transform each element of an array
+ - It returns a new array with the same number of elements.
+Syntax - 
+    - const newArray = arr.map(callback(currentValue, index,array), thisArgs);
+    - thisArgs - ? check in the call today
+KeyPoints -
+    - Does not mutate the original array.
+    - Returns a new array.
+    - Commonly used for transforming data,
+- If we use curly braces {} but forget return, we'll get undefined in the output
+- If we dont return anything then resulting array will contain undefined.
+- map() can returns a nested array if each callback returns an array.
+- map() skips empty slots (holes), but retains them in the result as empty slots.
+

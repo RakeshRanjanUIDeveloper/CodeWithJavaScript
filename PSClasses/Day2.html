@@ -46,7 +46,9 @@ console.log(null == undefined);
 //Reason: Loose equality (==) treats null and undefined as equal.
 
 
-console.log([] == []); 
+
+console.log([] == []);
+console.log([] === []);
 // false
 //Reason: Arrays are compared by reference, not content. Two different arrays are not equal.
 
@@ -93,7 +95,7 @@ const obj2 = {
   }
 };
 const arrow = obj2.foo();
-console.log(arrow());//5
+console.log(arrow());//10
 //Reason: Arrow function inherits this from foo (a regular function), and this in foo refers to obj2.
 
 
@@ -152,7 +154,7 @@ console.log(a[d]);//456
 // Reason: a[c] = 456, so a[d] = 456. Again, object keys are coerced to strings.
 
 console.log(NaN === NaN);// false
-R//Reason: NaN is not equal to anything, including itself.
+//Reason: NaN is not equal to anything, including itself.
 
 const a = b = 5;
 console.log(a); // 5
