@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const arr1 = [
+            {
+                id: 1,
+                name: 'Alice'
+            },
+            {
+                id: 2,
+                name: 'Bob'
+            }
+        ];
+        const arr2 = [
+            {
+                id: 2,
+                age:30
+            },
+            {
+                id: 3,
+                name: 'Charlie'
+            }
+        ]
+        function mergeData(arr1, arr2){
+            const map = new Map();
+            
+            for(let obj of arr1){
+                map.set(obj.id, {...obj})
+            }
+            for(let obj of arr2){
+                if(map.has(obj.id)){
+                    map.set(obj.id, {...map.get(obj.id), ...obj})
+                }else{
+                    map.set(obj.id, {...obj})
+                }
+            }
+            return Array.from(map.values())
+        }
+       console.log(mergeData(arr1, arr2))
+    </script>
+</body>
+</html>

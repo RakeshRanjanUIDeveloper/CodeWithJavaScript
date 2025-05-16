@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let str= ''
+        function formatList(arr){
+            if(arr.length === 1){
+                return str= arr[0]
+            }
+            if(arr.length === 0){
+                return ""
+            }
+            if(arr.length >1){
+                let lastItem = arr[arr.length - 1]
+                let withoutlastItem = arr.slice(0, -1);
+                let str = withoutlastItem.join(', ') + ' and ' + lastItem;
+                return str
+            }
+        }
+        console.log(formatList(['Apple']))
+        console.log(formatList(['Apple', 'Banana']))
+        console.log(formatList(['Apple', 'Banana', 'Cherry']))
+    </script>
+</body>
+</html>
