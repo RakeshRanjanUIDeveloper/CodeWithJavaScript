@@ -9,7 +9,7 @@
     "id": 2,
     "title": "Write unit tests for Node.js app",
     "priority": "P2",
-    "status": "Inprogress"
+    "status": "In Progress"
   },
   {
     "id": 3,
@@ -27,7 +27,7 @@
     "id": 5,
     "title": "Fix the login bug in mobile app",
     "priority": "P1",
-    "status": "Inprogress"
+    "status": "In Progress"
   },
   {
     "id": 6,
@@ -45,7 +45,7 @@
     "id": 8,
     "title": "Optimize database queries",
     "priority": "P2",
-    "status": "Inprogress"
+    "status": "In Progress"
   },
   {
     "id": 9,
@@ -57,6 +57,6 @@
     "id": 10,
     "title": "Bug fix in checkout flow",
     "priority": "P1",
-    "status": "Inprogress"
+    "status": "In Progress"
   }
 ]

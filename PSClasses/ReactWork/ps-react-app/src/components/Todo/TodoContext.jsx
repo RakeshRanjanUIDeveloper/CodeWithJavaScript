@@ -1,5 +1,5 @@
 import {createContext, useState } from "react";
-import todosData from '../data/todos.json'
+import todosData from './data/todos.json'
 
 //Create Context
 export const TodoContext = createContext();
