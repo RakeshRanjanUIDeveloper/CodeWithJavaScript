@@ -5,11 +5,11 @@ import Timer from './components/Timer/Timer';
 import TodoList from './components/Todo/TodoList';
 function App() {
   return (
-    <TodoList />
-    // <React.Fragment>
-    //       <Timer />
-    //       <Clock />
-    // </React.Fragment>
+   /*  <TodoList /> */
+    <React.Fragment>
+         <Timer />
+        <Clock />
+    </React.Fragment>
   )
 }
 

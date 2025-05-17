@@ -1,0 +1,17 @@
+React -
+    1. What is state Lifting? Explain with Examples in Details.
+    2. Check Folder Structure Machine Coding Round - Have System Design
+    3. Syntehtic Events in React - Understaand in Next Class
+
+JavaScript -
+    1. Meta tag in HTML
+    2. Splice Vs Slice
+    3. Output Based Questions - Refer html file
+    4. IIFE - Learn properly with Examples - Refer HTML file
+    5. Clouser Example - Refer HTML File
+    5. For the Next Class
+        1. Promise -> Theory & Coding
+        2. Higher Order Function
+        3. Write a JS Program to make a deep copy
+        4. PolyFills - Map/Filter/Reduce/Call/Apply/Bind/Debounce/Throttle
+        5. 

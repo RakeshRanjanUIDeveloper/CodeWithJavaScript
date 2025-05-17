@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        console.log(typeof new String("str") === typeof String("str"));
+
+        // Closure Example
+        function makeAdder(x) {
+            return function (y) {
+                return x + y;
+            };
+        }
+        const add5 = makeAdder(5);
+        console.log(add5(10)); // 15
+        console.log(add5(3)); //8
+
+        //Closure Example
+        function createFunctions() {
+            let result = [];
+            for (var i = 0; i < 3; i++) {
+                result.push(() => i);
+            }
+            return result;
+        }
+
+        const funcs = createFunctions();
+        console.log(funcs[0]());
+        console.log(funcs[1]());
+        console.log(funcs[2]());
+
+        // Closure
+
+        function createFunctionns() {
+            let result = [];
+            for (var i = 0; i < 3; i++) {
+                result.push(((x) => () => x)(i));
+            }
+            return result;
+        }
+        const funccs = createFunctionns();
+        console.log(funccs[0]()); // [() => 0] — 0
+        console.log(funccs[1]()); // [() => 1] — 1
+        console.log(funccs[2]()); // [() => 2] — 2
+
+        for (var i = 0; i < 3; i++) {
+            (function (x) {
+                setTimeout(() => console.log(x), 100);
+            })(i);
+        }
+    </script>
+</body>
+
+</html>

@@ -7,7 +7,7 @@ const Timer = () => {
   const handleStart = () => {
     setIntervalId(setInterval(()=>{
         setCount((prev) => prev+1)
-    }))
+    }, 1000))
   };
   const handlePause = () => {
       clearInterval(intervalId)
