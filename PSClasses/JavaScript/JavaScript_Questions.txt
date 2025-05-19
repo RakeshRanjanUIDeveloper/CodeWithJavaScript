@@ -9,4 +9,6 @@ Programs -
 	1. Write a JS Program to implement Isomorphic ?
 	2. Write a JS Program to make a deep copy 
 	3. Create polyfills - Map/Filter/Reduce/Call/Apply/Bind/Debounce/Throttle
-	4. 
+	4. Write a JS program to implement flatMap array without using flat function.
+	5. Program on Swtich case (Employee Salary Calculation)
+	6. 
