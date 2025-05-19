@@ -1,20 +1,353 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        @media screen and (max-width: 768px) {
+
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+            }
+
+            th {
+                position: sticky;
+                top: 0;
+                background-color: #f4f4f4;
+            }
+
+            td {
+                border: none;
+                border-bottom: 1px solid #ccc;
+                padding: 10px 5px;
+            }
+        }
+
+        ol li {
+            margin: 10px 0;
+        }
+    </style>
 </head>
+
 <body>
+    <h2>About Promise</h2>
+    <ol>
+        <li>A Promise in JavaScript is an object representing the eventual completion or failure of an asynchronous
+            operation.</li>
+        <li>Creating a Promise is possible using the Promise constructor, which requires the executor function. The
+            executor function receives two arguments, namely, resolve and reject.</li>
+        <li>A Promise has three states. Pending, fulfilled, rejected</li>
+        <li>Promise can only transition from Pending to Fulfilled or Rejected. Once it is in either state, it cannot
+            change to another state.</li>
+        <li>Chaining multiple Promises together means that you perform several asynchronous operations in a specific
+            order, where each operation depends on the success of the previous operation.</li>
+        <li>To convert a callback-based function to a Promise-based function, you can wrap the callback-based function
+            with a Promise and pass the resolve and reject functions to it.</li>
+        <li>Async/await and Promises with .then are two different approaches to handling asynchronous code in
+            JavaScript.</li>
+    </ol>
+
+    <h2>JavaScript Promise Methods Comparison</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Method</th>
+                <th>Returns When...</th>
+                <th>Resolves / Rejects</th>
+                <th>Output</th>
+                <th>Use Case Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>Promise.all</code></td>
+                <td>All promises are fulfilled</td>
+                <td>✅ Resolves with all results<br>❌ Rejects if any fail</td>
+                <td>Array of resolved values</td>
+                <td>Run multiple independent API calls and need all of them</td>
+            </tr>
+            <tr>
+                <td><code>Promise.allSettled</code></td>
+                <td>All promises are settled (fulfilled or rejected)</td>
+                <td>✅ Always resolves</td>
+                <td>Array of <code>{status, value/reason}</code> objects</td>
+                <td>You want to know outcomes of all, even if some fail</td>
+            </tr>
+            <tr>
+                <td><code>Promise.race</code></td>
+                <td>First promise settles (fulfilled or rejected)</td>
+                <td>Resolves/rejects with the first one</td>
+                <td>Value or error of first settled promise</td>
+                <td>Timeout logic or return fastest response</td>
+            </tr>
+            <tr>
+                <td><code>Promise.any</code></td>
+                <td>First fulfilled promise</td>
+                <td>✅ Resolves with first success<br>❌ Rejects if all fail</td>
+                <td>First resolved value<br>(or <code>AggregateError</code>)</td>
+                <td>Wait for the first success, ignore rejections</td>
+            </tr>
+            <tr>
+                <td><code>Promise.resolve</code></td>
+                <td>Immediately</td>
+                <td>✅ Resolves with given value or promise</td>
+                <td>The given value or Promise result</td>
+                <td>Convert value or object to a resolved promise</td>
+            </tr>
+            <tr>
+                <td><code>Promise.reject</code></td>
+                <td>Immediately</td>
+                <td>❌ Rejects with given reason</td>
+                <td>Rejection reason</td>
+                <td>Simulate errors or rejections</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>Comparison: <code>.then()</code> vs <code>async/await</code></h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Feature</th>
+                <th><code>.then()</code></th>
+                <th><code>async/await</code></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Syntax style</td>
+                <td>Method chaining</td>
+                <td>Synchronous-looking, cleaner syntax</td>
+            </tr>
+            <tr>
+                <td>Readability</td>
+                <td>Can get nested and hard to follow</td>
+                <td>Easier to read, especially with multiple steps</td>
+            </tr>
+            <tr>
+                <td>Error handling</td>
+                <td>Uses <code>.catch()</code></td>
+                <td>Uses <code>try { } catch { }</code> blocks</td>
+            </tr>
+            <tr>
+                <td>Chaining</td>
+                <td>Requires chaining <code>.then()</code> repeatedly</td>
+                <td>Use <code>await</code> sequentially inside functions</td>
+            </tr>
+            <tr>
+                <td>Return value</td>
+                <td>Each <code>.then()</code> returns a Promise</td>
+                <td><code>async</code> functions automatically return Promises</td>
+            </tr>
+            <tr>
+                <td>Use in loops</td>
+                <td>Hard to handle inside <code>for</code> loops</td>
+                <td>Works well with <code>for</code> / <code>while</code> loops</td>
+            </tr>
+        </tbody>
+    </table>
+    <button id="load">Load Post</button>
+    <button id="cancel">Cancel Request</button>
     <script>
-        function fetchUser(userId){
+        //Create a simple Promise that resolves after 1 second.
+        const promise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve("Done!!")
+            }, 1000)
+        })
+        promise.then((result) => console.log(result))
+
+        //function to return a Promise.
+        function loadScript(src) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = () => resolve(script);
+                script.onerror = () => reject(new Error(`script load error for ${src}`))
+                document.head.append(script);
+            })
+        }
+        loadScript("../test.js")
+    </script>
+    <script>
+        function fetchUser(userId) {
             return fetch(`https://dummyjson.com/users/${userId}`)
-            .then(response => response.json())
+                .then(response => response.json())
         }
         fetchUser(1)
             .then(data => console.log(data))
             .catch(err => console.log(err))
 
     </script>
+    <script>
+        //Promise.all()
+        const userId = 1;
+        const userUrl = `https://jsonplaceholder.typicode.com/users/${userId}`;
+        const postsUrl = `https://jsonplaceholder.typicode.com/posts?userId=${userId}`;
+        const todosUrl = `https://jsonplaceholder.typicode.com/todos?userId=${userId}`;
+
+        Promise.all([
+            fetch(userUrl).then((res) => res.json()),
+            fetch(postsUrl).then((res) => res.json()),
+            fetch(todosUrl).then((res) => res.json())
+        ])
+            .then(([user, posts, todos]) => {
+                console.log("User Info:", user);
+                console.log("User's Posts:", posts);
+                console.log("User's Todos:", todos);
+            })
+            .catch((error) => console.error("Something went wrong:", error))
+    </script>
+    <script>
+        //Promise.allSettled()
+        const userIds = [1, 2, 9999];
+        function fetchUser(id) {
+            return fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error(`User ${id} not found`)
+                    }
+                    return res.json()
+                })
+        }
+        const promises = userIds.map((id) => fetchUser(id));
+        Promise.allSettled(promises)
+            .then((results) => {
+                results.forEach((result, index) => {
+                    if (result.status === 'fulfilled') {
+                        console.log(`User ${userIds[index]}:`, result.value);
+                    } else {
+                        console.warn(`User ${userIds[index]} failed:`, result.reason.message);
+                    }
+                })
+            })
+    </script>
+    <script>
+        //Customr delay using Promise
+        function delay(ms) {
+            return new Promise((resolve) => setTimeout(resolve, ms))
+        }
+        delay(1000).then(() => console.log("1 second passed"))
+    </script>
+    <script>
+        // Cancel a fetch request using AbortController
+        let controller;
+        document.getElementById('load').addEventListener('click', () => {
+            controller = new AbortController();
+            const signal = controller.signal;
+            fetch('https://jsonplaceholder.typicode.com/posts/1', { signal })
+                .then((res) => res.json())
+                .then((data) => console.log("Post Loaded", data))
+                .catch((error) => {
+                    if (error.name === 'AbortError') {
+                        console.log("Fetch was aborted");
+                    } else {
+                        console.log("Fetch Error", error);
+                    }
+                })
+        })
+        document.getElementById('cancel').addEventListener('click', () => {
+            if (controller) {
+                controller.abort()
+            }
+        })
+    </script>
+    <script>
+        //Promise Chaining
+        function getUser(userId) {
+            return fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
+                .then((res) => {
+                    if (!res.ok) {
+                        throw new Error('User not found')
+                    }
+                    return res.json()
+                })
+        }
+        function getPostsByUser(userId) {
+            return fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`)
+                .then((res) => res.json())
+        }
+        function getCommentsForPost(postId) {
+            return fetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`)
+                .then((res) => res.json())
+        }
+
+        getUser(1)
+            .then((user) => {
+                console.log("👤 User:", user);
+                return getPostsByUser(user.id)
+            })
+            .then((posts) => {
+                console.log("📝 Posts:", posts);
+                if (posts.length === 0) throw new Error("No posts found for the user");
+                return getCommentsForPost(posts[0].id)
+            })
+            .then((comments) => {
+                console.log("💬 Comments on first post:", comments);
+            })
+            .catch((error) => {
+                console.error("❌ Error:", error.message);
+            })
+    </script>
+    <script>
+        async function loadUserAndPosts() {
+            try {
+                const userRes = await fetch('https://jsonplaceholder.typicode.com/users/1');
+                const user = await userRes.json();
+                console.log("Async Await User:", user);
+
+                const postsRes = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${user.id}`);
+                const posts = await postsRes.json();
+                console.log("Async Await Posts:", posts);
+            } catch (error) {
+                console.error("Async Await Error:", error);
+            }
+        }
+
+        loadUserAndPosts();
+
+    </script>
 </body>
+
 </html>
