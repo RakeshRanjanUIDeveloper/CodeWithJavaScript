@@ -1,0 +1,12 @@
+Theory -
+	1. WHY was Arrow function introduced?
+	2. Splice vs Slice
+	3. Explain IIFE with programs
+	4. Explain Closure with programs
+	5. Explain Higher Order Function  
+
+Programs - 
+	1. Write a JS Program to implement Isomorphic ?
+	2. Write a JS Program to make a deep copy 
+	3. Create polyfills - Map/Filter/Reduce/Call/Apply/Bind/Debounce/Throttle
+	4. 

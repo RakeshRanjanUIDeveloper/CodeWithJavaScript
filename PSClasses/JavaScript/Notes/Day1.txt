@@ -181,3 +181,9 @@ sayHello.apply(user); // David
 const boundFn = sayHello.bind(user); 
 
 boundFn(); // David 
+
+
+
+1. Call/Apply/Bind
+    - Function Borrowing
+    - for Math Operations
