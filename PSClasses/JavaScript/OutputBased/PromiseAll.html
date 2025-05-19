@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function fetchUser(){
+            return new Promise((resolve) =>{
+                setTimeout(() => resolve({id:1, name:'John'}), 1000)
+            })
+        }
+        function fetchTasks(){
+            return new Promise((resolve) =>{
+                setTimeout(() => resolve(['Task1', 'Task2']), 1500)
+            })
+        }
+        function fetchMessage(){
+            return new Promise((resolve) =>{
+                setTimeout(() => resolve(["Message1", "Message2"]), 500)
+            })
+        }
+
+        Promise.all([fetchUser(), fetchTasks(), fetchMessage()])
+                .then((user, tasks, messages) => {
+                    console.log(user);
+                    console.log(tasks);
+                    console.log(messages);
+                })
+                .catch((error) =>{
+                    console.error(error)
+                })
+    </script>
+</body>
+</html>

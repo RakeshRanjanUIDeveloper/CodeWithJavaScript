@@ -1,3 +1,0 @@
-1. Call/Apply/Bind
-    - Function Borrowing
-    - for Math Operations
