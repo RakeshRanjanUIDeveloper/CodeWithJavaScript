@@ -87,7 +87,22 @@
         <li>Async/await and Promises with .then are two different approaches to handling asynchronous code in
             JavaScript.</li>
     </ol>
-
+    <h2>How does Promise work in JavaScript?</h2>
+    <ol>
+        <li>When you create a Promise, you pass an executor function which immediately runs and receives two functions: resolve and reject.</li>
+        <li>Calling resolve(value) marks the Promise as fulfilled with that value.</li>
+        <li>Calling reject(reason) marks it as rejected with an error or reason.</li>
+        <li>A Promise has three states: Pending (initial state), Fulfilled (operation succeeded), Rejected (operation failed)</li>
+        <li>You attach handlers to the Promise with .then() for success and .catch() for failure. These handlers are executed asynchronously once the Promise settles.</li>
+        <li>This mechanism allows writing asynchronous code in a more readable, chainable way instead of deeply nested callbacks, and ensures predictable handling of async results.</li>
+    </ol>
+    <p>I use a Promise when the operation is asynchronous and I need to handle its result or failure at a later time. Promises are ideal for managing API calls, timeouts, or chaining multiple async operations in a cleaner, more readable way than callbacks.</p>
+    <h2>When Should we use a Promise?</h2>
+    <ol>
+        <li>Whenever working with asynchronous operations - means asks that don’t complete immediately and return results later.</li>
+        <li>when we want to chain multiple async steps in order.</li>
+        <li>API calls / network requests, Timers </li>
+    </ol>
     <h2>JavaScript Promise Methods Comparison</h2>
     <table>
         <thead>

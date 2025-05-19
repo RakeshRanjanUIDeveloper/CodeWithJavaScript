@@ -3,7 +3,10 @@ Theory -
 	2. Splice vs Slice
 	3. Explain IIFE with programs
 	4. Explain Closure with programs
-	5. Explain Higher Order Function  
+	5. Explain Higher Order Function 
+	6. How does Promise work in JavaScript?
+	7.  When Should we use a Promise?
+
 
 Programs - 
 	1. Write a JS Program to implement Isomorphic ?
@@ -11,4 +14,4 @@ Programs -
 	3. Create polyfills - Map/Filter/Reduce/Call/Apply/Bind/Debounce/Throttle
 	4. Write a JS program to implement flatMap array without using flat function.
 	5. Program on Swtich case (Employee Salary Calculation)
-	6. 
+	6. Write polyfill for Map/Filter/Reduce
