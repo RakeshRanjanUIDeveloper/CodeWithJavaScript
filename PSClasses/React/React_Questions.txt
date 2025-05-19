@@ -1,7 +1,7 @@
 Machine Coding -
-	1. Create a Timer which has start, pause and Reset. 
-	2. Create a clock using life cycle methods. Hint - tick method
-	3. Create a Todo 
+	1. Create a Timer which has start, pause and Reset. - Done
+	2. Create a clock using life cycle methods. Hint - tick method - Done
+	3. Create a Todo - WIP
 	4. Build Folder Structure
 	5. 
 

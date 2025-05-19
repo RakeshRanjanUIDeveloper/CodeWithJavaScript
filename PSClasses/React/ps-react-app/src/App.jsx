@@ -3,12 +3,14 @@ import './App.css'
 import Clock from './components/Clock/Clock';
 import Timer from './components/Timer/Timer';
 import TodoList from './components/Todo/TodoList';
+import UserPosts from './components/UserPosts/UserPosts';
 function App() {
   return (
    /*  <TodoList /> */
     <React.Fragment>
-         <Timer />
-        <Clock />
+        {/* <Timer />
+        <Clock /> */}
+        <UserPosts />
     </React.Fragment>
   )
 }
