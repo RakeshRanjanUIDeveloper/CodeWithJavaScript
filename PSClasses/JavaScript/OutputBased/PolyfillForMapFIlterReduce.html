@@ -10,10 +10,9 @@
 <body>
     <script>
         //Array.map((num, i, arr)=>{})
-        //arr.reduce((acc,curr, i, arr) => {}, initialValue)
-
 
         //Polyfill for Map
+
         Array.prototype.myMap = function (cb) {
             let temp = [];
             for (let i = 0; i < this.length; i++) {
@@ -24,31 +23,41 @@
         let arr = [1, 2, 3, 4];
         console.log(arr.myMap((num) => num * 2))
 
+      const results =  arr.map((num, i, arr) => {
+            console.log(arr)
+            return num * 5
+        }
+        );
+
+        console.log(results)
 
         //Polyfill for Filter
-        Array.prototype.myFilter = function(cb){
+        Array.prototype.myFilter = function (cb) {
             let temp = [];
-            for(let i=0; i<this.length; i++){
-                if(cb(this[i], i, this)){
+            for (let i = 0; i < this.length; i++) {
+                if (cb(this[i], i, this)) {
                     temp.push(this[i])
                 }
             }
             return temp;
         }
-        let numbers = [1,2,3,4,5];
+        let numbers = [1, 2, 3, 4, 5];
         console.log(numbers.myFilter((num) => num > 2))
 
 
         //PolyFill for Reduce
-        Array.prototype.myReduce = function(cb, initialValue){
+        
+        //arr.reduce((acc,curr, i, arr) => {}, initialValue)
+
+        Array.prototype.myReduce = function (cb, initialValue) {
             let accumulator = initialValue;
-            for(let i=0; i<this.length; i++){
+            for (let i = 0; i < this.length; i++) {
                 accumulator = accumulator ? cb(accumulator, this[i], i, this) : this[i]
             }
             return accumulator
         }
 
-        let digits = [1,2,3,4];
+        let digits = [1, 2, 3, 4];
         console.log(digits.myReduce((acc, curr) => acc + curr, 0))  
     </script>
 </body>

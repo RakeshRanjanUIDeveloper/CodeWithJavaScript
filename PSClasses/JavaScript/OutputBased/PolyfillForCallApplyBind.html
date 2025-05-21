@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Difference Between call(), apply(), and bind()</title>
   <style>
@@ -8,120 +9,131 @@
       width: 100%;
       font-family: Arial, sans-serif;
     }
-    th, td {
+
+    th,
+    td {
       border: 1px solid #ddd;
       padding: 10px;
     }
+
     th {
       background-color: #f4f4f4;
       text-align: left;
     }
+
     tr:nth-child(even) {
       background-color: #f9f9f9;
     }
   </style>
 </head>
+
 <body>
 
-<h2>Difference Between <code>call()</code>, <code>apply()</code>, and <code>bind()</code> in JavaScript</h2>
+  <h2>Difference Between <code>call()</code>, <code>apply()</code>, and <code>bind()</code> in JavaScript</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Method</th>
-      <th>Definition</th>
-      <th>Description</th>
-      <th>Syntax</th>
-      <th>When to Use</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>call()</code></td>
-      <td>Executes a function with a specified <code>this</code> value and individual arguments.</td>
-      <td>Invokes the function immediately and allows passing arguments one by one.</td>
-      <td><code>fn.call(thisArg, arg1, arg2, ...)</code></td>
-      <td>When you want to invoke a function immediately with specific context and separate arguments.</td>
-    </tr>
-    <tr>
-      <td><code>apply()</code></td>
-      <td>Similar to <code>call()</code>, but accepts arguments as an array.</td>
-      <td>Invokes the function immediately with a specified <code>this</code> and arguments passed as an array.</td>
-      <td><code>fn.apply(thisArg, [arg1, arg2, ...])</code></td>
-      <td>When arguments are already in an array or array-like structure.</td>
-    </tr>
-    <tr>
-      <td><code>bind()</code></td>
-      <td>Creates a new function with a specified <code>this</code> value, without calling it.</td>
-      <td>Returns a new function that can be called later, preserving the given <code>this</code> context.</td>
-      <td><code>const newFn = fn.bind(thisArg)</code></td>
-      <td>When you want to delay function execution or reuse it with a preset <code>this</code> context.</td>
-    </tr>
-  </tbody>
-</table>
+  <table>
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>Definition</th>
+        <th>Description</th>
+        <th>Syntax</th>
+        <th>When to Use</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>call()</code></td>
+        <td>Executes a function with a specified <code>this</code> value and individual arguments.</td>
+        <td>Invokes the function immediately and allows passing arguments one by one.</td>
+        <td><code>fn.call(thisArg, arg1, arg2, ...)</code></td>
+        <td>When you want to invoke a function immediately with specific context and separate arguments.</td>
+      </tr>
+      <tr>
+        <td><code>apply()</code></td>
+        <td>Similar to <code>call()</code>, but accepts arguments as an array.</td>
+        <td>Invokes the function immediately with a specified <code>this</code> and arguments passed as an array.</td>
+        <td><code>fn.apply(thisArg, [arg1, arg2, ...])</code></td>
+        <td>When arguments are already in an array or array-like structure.</td>
+      </tr>
+      <tr>
+        <td><code>bind()</code></td>
+        <td>Creates a new function with a specified <code>this</code> value, without calling it.</td>
+        <td>Returns a new function that can be called later, preserving the given <code>this</code> context.</td>
+        <td><code>const newFn = fn.bind(thisArg)</code></td>
+        <td>When you want to delay function execution or reuse it with a preset <code>this</code> context.</td>
+      </tr>
+    </tbody>
+  </table>
 
-<script>
+  <script>
     //PolyFill of Call
-    Function.prototype.myCall = function(context={}, ...args){
-        if(typeof this !== 'function'){
-            throw new Error(this + "It's not callable")
-        }
-        context.fn=this;
-        context.fn(...args);
+    Function.prototype.myCall = function (context = {}, ...args) {
+      if (typeof this !== 'function') {
+        throw new Error(this + "It's not callable")
+      }
+      console.log(this)
+   
+      context.fn = this;
+         console.log(context)
+      context.fn(...args);
+       delete(context.fn)
     }
 
-    const car ={
-        name: 'Toyota',
-        price: '1000000'
+    const car = {
+      name: 'Toyota',
+      price: '1000000'
     }
-    function purchaseCar(location){
-        console.log(`I have purchased ${this.name} and it costs ${this.price} Rs., in ${location}`);
+    function purchaseCar(location) {
+      console.log(`I have purchased ${this.name} and it costs ${this.price} Rs., in ${location}`);
     }
     purchaseCar.myCall(car, 'Bangalore')
 
-</script>
-<script>
+  </script>
+  <script>
     //Polyfill for Apply
-    Function.prototype.myApply = function(context={}, args= []){
-        if(typeof this !== 'function'){
-            throw new Error(this + "It's not callable")
-        }
-        if(!Array.isArray(args)){
-            throw new Error("CreateListFromArrayLike called on non object")
-        }
-        context.fn=this;
-        context.fn(...args);
+    Function.prototype.myApply = function (context = {}, args = []) {
+      if (typeof this !== 'function') {
+        throw new Error(this + "It's not callable")
+      }
+      if (!Array.isArray(args)) {
+        throw new Error("CreateListFromArrayLike called on non object")
+      }
+      context.fn = this;
+      context.fn(...args);
+      delete(context.fn)
     }
 
-    const student ={
-        name: 'Rakesh',
-        locality: 'Marathahalli'
+    const student = {
+      name: 'Rakesh',
+      locality: 'Marathahalli'
     }
-    function purchaseCar(location, country){
-        console.log(`I am ${this.name} and live in ${this.locality}, ${location} ${country}`);
+    function purchaseCar(location, country) {
+      console.log(`I am ${this.name} and live in ${this.locality}, ${location} ${country}`);
     }
-    purchaseCar.myApply(student, ['Bangalore','India'])
-</script>
-<script>
+    purchaseCar.myApply(student, ['Bangalore', 'India'])
+  </script>
+  <script>
     //PolyFill for Bind
-    const book ={
-        name: 'JavaScript Book',
-        author: 'Rakesh'
+    const book = {
+      name: 'JavaScript Book',
+      author: 'Rakesh'
     }
-    function purchaseBook(location, country){
-        console.log(`I am  reading ${this.name} by ${this.author} in ${location} ${country}`);
+    function purchaseBook(location, country) {
+      console.log(`I am  reading ${this.name} by ${this.author} in ${location} ${country}`);
     }
-    Function.prototype.myBind = function(context={}, ...args){
-        if(typeof this !== 'function'){
-            throw new Error(this + "can not be bound as it's not a callable")
-        }
-        context.fn=this;
-        return function(...newArgs){
-            return context.fn(...args, ...newArgs)
-        }
+    Function.prototype.myBind = function (context = {}, ...args) {
+      if (typeof this !== 'function') {
+        throw new Error(this + "can not be bound as it's not a callable")
+      }
+      context.fn = this;
+      return function (...newArgs) {
+        return context.fn(...args, ...newArgs)
+      }
     }
     const newFunc = purchaseBook.myBind(book, 'Bangalore');
     console.log(newFunc("India"));
-</script>
+  </script>
 </body>
+
 </html>

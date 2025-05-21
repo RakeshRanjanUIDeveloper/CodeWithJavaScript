@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import fakeUserFetch from './fakeUserFetch'
+//import fakeUserFetch from './fakeUserFetch'
 import { fakePostFetch } from './fakePostFetch';
 
 const UserPosts = () => {
@@ -8,11 +8,14 @@ const UserPosts = () => {
     useEffect(() =>{
         const fetchUserAndPosts = async (userId) =>{
             try {
-                const userResponse = await fakeUserFetch(`https://jsonplaceholder.typicode.com/users/${userId}`);
-                if(userResponse.status === 200){
-                    console.log(userResponse.data)
-                    setUser(userResponse.data);
+                const userResponse = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`);
+                if(!userResponse.ok){
+                    throw new Error("Fetching error")
                 }
+                const finaldata = await userResponse.json();
+                console.log(finaldata)
+                setUser(finaldata);
+                
                 
                 const postResponse = await fakePostFetch(`https://jsonplaceholder.typicode.com/posts/${userId}`);
                 if(postResponse.status === 200){

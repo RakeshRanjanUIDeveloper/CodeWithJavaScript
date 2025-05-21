@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //arr.reduce((acc, curr, i, arr) => {}, initialValue);
+
+        Array.prototype.myReduce = function(cb, initialValue){
+            let accumulator = initialValue;
+            for (let i = 0; i < this.length; i++) {
+                accumulator = accumulator ? cb(accumulator, this[i], i, this) : this[i]
+            }
+            return accumulator
+        }
+        let numbers = [1,2,3,4,5];
+        const result = numbers.myReduce((acc, curr) => acc+curr, 0);
+        console.log(result)
+    </script>
+    <script>
+        Function.prototype.myCall = function(){
+
+        }
+        let person = {
+            name:'Rakesh',
+            city:'bangalore'
+        }
+        function printDetails(){
+            console.log(this) // window object
+            console.log(`I am ${this.name} and i stay in ${this.city}`)
+        }
+        printDetails()
+       // printDetails.myCall(person)
+    </script>
+</body>
+</html>

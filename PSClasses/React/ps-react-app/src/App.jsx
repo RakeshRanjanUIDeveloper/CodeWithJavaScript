@@ -12,9 +12,10 @@ function App() {
     <React.Fragment>
         {/* <Timer />
         <Clock /> 
-        <UserPosts />
-        <TempCalculator />*/}
-        <Accordion />
+       
+        <TempCalculator />
+        <Accordion />*/}
+         <UserPosts />
     </React.Fragment>
   )
 }
