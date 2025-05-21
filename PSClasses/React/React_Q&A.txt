@@ -1,0 +1,9 @@
+1. What is state Lifting? Explain with Examples in Details.
+    - State Lifting in React is when you move state up to a common parent component so that multiple child components
+     (even instances of the same component) can share and update the same piece of state.
+    - Why do we Lift state ?
+        - React promotes unidirectional data flow.
+        - If two or more components need to access or modify the same state, then that state should live 
+            in their closest common ancestor.
+        - By lifting the state up, we make one source of truth.
+    - 
