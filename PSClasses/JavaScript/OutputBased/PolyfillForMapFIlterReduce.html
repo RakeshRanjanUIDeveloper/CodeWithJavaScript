@@ -35,7 +35,10 @@
         Array.prototype.myFilter = function (cb) {
             let temp = [];
             for (let i = 0; i < this.length; i++) {
-                if (cb(this[i], i, this)) {
+                if (cb(this[i], i, this)) { 
+                    // Does the callback return true or false for the current element?
+                    // If true, the element passes the test.
+                    // If false, it gets filtered out.
                     temp.push(this[i])
                 }
             }
