@@ -130,6 +130,7 @@
       return function (...newArgs) {
         return context.fn(...args, ...newArgs)
       }
+      
     }
     const newFunc = purchaseBook.myBind(book, 'Bangalore');
     console.log(newFunc("India"));

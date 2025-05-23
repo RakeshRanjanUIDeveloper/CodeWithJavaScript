@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Function.prototype.myCall = function(context={}, ...args){
+            if(typeof this !== 'function'){
+                throw new Error("some error")
+            }
+            context.fn = this;
+            context.fn(...args)
+            delete(context.fn); // Bus conductor example
+        }
+
+        const student ={
+            name:'ABC',
+            rollno: 123
+        }
+        function printDetails(university){
+            console.log(`I am ${this.name}  and my roll no is ${this.rollno} at ${university}`)
+        }
+
+        printDetails.myCall(student, 'VTU')
+    </script>
+
+    <script>
+        //arr.Map((num, i, array) => )
+
+        Array.prototype.myMap = function(cb){
+            const temp = [];
+            for (let i = 0; i < this.length; i++) {
+                if(cb(this[i], i, this)){
+                    temp.push(this[i])
+                }
+                
+            }
+            return temp
+        }
+        
+        const numbers = [1,2,3,4,5];
+        const result = numbers.myMap((num, i) => num > 3);
+        console.log(result)
+    </script>
+    <script>
+        //arr.reduce((acc, curr) => )
+        Array.prototype.myReduce = function(cb, initialValue){
+            let accumulator = initialValue;
+            for (let i = 0; i < this.length; i++) {
+                accumulator = accumulator ? cb(this[i], i, this) : this[i]
+            }
+            return accumulator
+        }
+
+        const digits = [1,2,3,4,5];
+        const results = digits.reduce((acc, curr) => acc + curr, 0);
+        console.log(results)
+    </script>
+</body>
+</html>
