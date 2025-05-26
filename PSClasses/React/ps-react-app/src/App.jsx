@@ -6,6 +6,7 @@ import TodoList from './components/Todo/TodoList';
 import UserPosts from './components/UserPosts/UserPosts';
 import TempCalculator from './components/StateLifting/TempCalculator';
 import Accordion from './components/Accordion/Accordion';
+import Chips from './components/Chips/Chips';
 function App() {
   return (
    /*  <TodoList /> */
@@ -14,8 +15,9 @@ function App() {
         <Clock /> 
        
         <TempCalculator />
-        <Accordion />*/}
-         <UserPosts />
+        <Accordion />
+         <UserPosts />*/}
+         <Chips />
     </React.Fragment>
   )
 }
