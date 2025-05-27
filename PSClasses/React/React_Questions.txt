@@ -24,3 +24,20 @@ Questions -
     	11. How to optimize images in React ?
     	12. Why are middleware used in Redux ?
     	13. Why do we use TypeScript ?
+
+
+
+Life cycle components
+Virtual DOM
+How Virtual DOm works. how reconciliation works
+react hooks - 
+tick tac toe - machine coding
+timer - machine coding
+toggle -
+table render 
+accordion -
+normal
+setimmediatepropagation
+settick
+settimeout
+promise
