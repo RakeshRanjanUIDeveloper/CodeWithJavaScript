@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>About Debounce</h2>
+    <ol>
+        <li>A debounce function in JavaScript ensures that a function is not called too frequently. </li>
+        <li>It delays the execution of the function until after a specified delay time has elapsed since the last time it was invoked.</li>
+    </ol>
+
+    <script>
+        Function.prototype.myDebounce = function(delay){
+            const func = this;
+            let timeoutId;
+            return function(...args){
+                const context = this;
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => {
+                    func.apply(context, args)
+                }, delay);
+            }
+        }
+
+        function logMessages(msg){
+            console.log(msg);
+        }
+        const debouncedLog = logMessages.myDebounce(10000);
+        debouncedLog("Hello")
+    </script>
+</body>
+</html>

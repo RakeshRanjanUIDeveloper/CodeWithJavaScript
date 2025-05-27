@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExecutionOrder</title>
+</head>
+
+<body>
+    <script>
+        console.log('1. Normal code'); // synchronous
+
+        // process.nextTick(() => {
+        //     console.log('2. process.nextTick'); // microtask
+        // });
+
+        queueMicrotask(() => {
+            console.log('2. queueMicrotask (instead of process.nextTick)'); // microtask
+        });
+
+        Promise.resolve().then(() => {
+            console.log('3. Promise.then'); // microtask
+        });
+
+        setTimeout(() => {
+            console.log('4. setTimeout'); // macrotask (timer phase)
+        }, 0);
+
+        setImmediate?.(() => {
+            console.log('5. setImmediate'); // macrotask (check phase)
+        });
+
+    </script>
+</body>
+
+</html>

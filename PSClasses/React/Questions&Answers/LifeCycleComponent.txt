@@ -1,0 +1,94 @@
+2. Explain Life cycle component in React ?
+    - Lifecycle Methods of React Components are like checkpoints at different stages of a component's life.
+    - There are 3 phases in Life cycle component
+        - Mouting phase 
+            - Mounting refers to the process of creating and inserting a component into DOM for the first time in a React application. 
+            - During mounting, React initializes the component, sets up its internal state (if any), and inserts it into the DOM.
+            - constructor(), render() and componentDidMount()
+        - Updating phase
+            - Updating refers to the process of a component being re-rendered due to changes in its state or props.
+            - This phase occurs whenever a component's internal state is modified or its parent component passes new props.
+            - When an update happens, React re-renders the component to reflect the changes and ensures that the DOM is updated accordingly.
+            - shouldComponentUpdate(), render() and componentDidUpdate()
+        - Unmounting Phase
+            - 
+            - componentWillUnmount()
+        - Error Handling phase  
+            - componentDidCatch(error, info)	
+================>
+1. What is the role of the constructor() method in class components?
+    - The constructor() method is used to initialize the component's state and bind event handler methods.
+    - It is called before the component is mounted.
+    - if you use the constructor, it is necessary to call super(props) to correctly initialize the component and
+      make the this.props reference available. 
+class MyComponent extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            count: 0,
+        };
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick() {
+        this.setState({ count: this.state.count + 1 });
+    }
+
+    render() {
+        return <button onClick={this.handleClick}>Clicked {this.state.count} times</button>;
+    }
+}
+================>
+2. What is componentDidMount() used for?
+    - It is called immediately after a component is mounted (inserted into the DOM). 
+    - It is commonly used to trigger side effects such as fetching data from an API or interacting with the DOM.
+
+class MyComponent extends React.Component {
+    componentDidMount() {
+        fetch('https://api.example.com/data')
+            .then((response) => response.json())
+            .then((data) => this.setState({ data }));
+    }
+
+    render() {
+        return <div>{this.state.data ? this.state.data.name : 'Loading...'}</div>;
+    }
+}
+===============>
+3. What is shouldComponentUpdate(), and how is it used?
+    - It  is called before the component re-renders when its state or props change.
+    - It returns a boolean value (true or false) indicating whether React should proceed with the update.
+    - By default, React re-renders the component whenever state or props change, 
+    - but shouldComponentUpdate() can be used to optimize performance by preventing unnecessary re-renders.
+class MyComponent extends React.Component {
+    shouldComponentUpdate(nextProps, nextState) {
+        // Only update if the count has changed
+        return nextState.count !== this.state.count;
+    }
+
+    render() {
+        return <p>Count: {this.state.count}</p>;
+    }
+}
+===============>
+4. What is componentDidUpdate() used for?
+    - It is called immediately after a component has been updated in the DOM.
+    -  It can be used to handle side effects after an update, such as making network requests or manually updating the DOM.
+
+class MyComponent extends React.Component {
+    componentDidUpdate(prevProps, prevState) {
+        // If the count has changed, log a message
+        if (prevState.count !== this.state.count) {
+            console.log(`Count updated: ${this.state.count}`);
+        }
+    }
+
+    render() {
+        return <p>Count: {this.state.count}</p>;
+    }
+}
+=================>
+5. What is the componentWillUnmount() method used for?
+    - It is called right before a component is removed from the DOM. 
+    - It is used to clean up any resources that were allocated during the component's life,
+    - such as clearing timers, canceling network requests, or removing event listeners.

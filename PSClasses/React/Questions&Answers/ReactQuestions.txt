@@ -1,0 +1,38 @@
+Machine Coding -
+	1. Create a Timer which has start, pause and Reset. - Done
+	2. Create a clock using life cycle methods. Hint - tick method - Done
+	3. Create a Todo - WIP
+	4. Build Folder Structure
+	5. You're given two API endpoints: - Done
+		- GET /user → Returns the current user. -> { "id": 1, "name": "Alice" }
+		- GET /posts?userId=1 → Returns posts for a specific user. -> [
+			{ "id": 101, "title": "Post A" },
+			{ "id": 102, "title": "Post B" }
+		]
+	6. Product Listing App
+	7. accordion
+	8. Table
+	9. tick tac toe 
+
+
+Questions -
+	1. What is state Lifting? Explain with Examples in Details. - done - Refer Q&A
+	2. Synthetic Events in React - Understand in Next Class
+	3. What is Micro Front end Architecture ?
+	5. Security Practices in React ?
+    6. Lazy Loading in React ?
+    7. const [value, setValue] = useState('0'); => why const is used, why not let or var
+    8. useMemo - Why it is used 
+    9. useCallback - Why it is used ?
+    10. When we can use Context?
+    11. How to optimize images in React ?
+    12. Why are middleware used in Redux ?
+    13. Why do we use TypeScript ?
+	14. Explain Life cycle components in React ? - done - refer Q&A
+	15. What is Virtual DOM ? How it works ? How reconciliation works ?
+	16. What are react hooks ? why it is used ? 
+
+
+
+
+

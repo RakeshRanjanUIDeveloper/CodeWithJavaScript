@@ -1,0 +1,18 @@
+- React Hooks are functions and They were introduced in React 16.8.
+- Hooks allow functional components to manage state, side effects, and other lifecycle features previously only available 
+  in class components.
+- There are following hooks in react    
+    - useState
+    - useEffect
+    - useContext
+    - useRef
+    - useReducer
+    - useMemo
+    - useCallback
+    - useLayoutEffect
+    - useImperativeHandle
+===========>
+1. useState 
+    - useState returns an array with exactly two values:
+    - The current state. During the first render, it will match the initialState you have passed.
+    - The set function that lets you update the state to a different value and trigger a re-render.
