@@ -1,6 +1,6 @@
 import './App.css'
 import Accordion from './components/Accordion'
-import Products from './components/Products'
+import ProductCard from './components/ProductCard'
 import './Styles/Products.css'
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
          <Accordion />
       </div>
       <div className='product-display'>
-        <Products />
+        <ProductCard />
       </div>
     </div>
 

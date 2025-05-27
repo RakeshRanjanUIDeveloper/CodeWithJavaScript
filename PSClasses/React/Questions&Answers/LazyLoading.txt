@@ -1,0 +1,38 @@
+What is Lazy Loading in React ?
+ - It is a design pattern used to optimize performance by loading components only when they’re needed, 
+  rather than at initial load. 
+ - This helps reduce the bundle size and speeds up page load time.
+--------------------
+Why Use Lazy Loading?
+ - Improves app performance by splitting the code into smaller chunks (called code splitting).
+ - Prevents loading unnecessary components upfront.
+ - Useful in large applications with many routes or heavy components.
+---------------------
+How It Works in React
+ - React provides two main functions to implement lazy loading:
+ - React.lazy() – used to define a component to be loaded lazily.
+    - React.lazy() must be used at the top level (not inside a function or condition).
+    - Example of Lazy load the About component
+    - const About = React.lazy(() => import("./About"));
+ - Suspense – wraps the lazy-loaded component and shows a fallback (e.g., a loader) while it’s being fetched.
+    - Suspense must wrap the lazy component and provide a fallback UI (like a spinner or message).
+    - const MyComponent = React.lazy(() => import('./MyComponent'));
+    - <Suspense fallback={<div>Loading...</div>}>
+        <MyComponent />
+      </Suspense>
+-------------------------------
+Example of Lazy Loading 
+
+import React, { Suspense } from "react";
+const MyComponent = React.lazy(() => import("./MyComponent"));
+function App() {
+  return (
+    <div>
+      <h1>Main App</h1>
+      <Suspense fallback={<div>Loading...</div>}>
+        <MyComponent />
+      </Suspense>
+    </div>
+  );
+}
+

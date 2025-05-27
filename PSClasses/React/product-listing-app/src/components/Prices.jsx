@@ -21,8 +21,8 @@ const Prices = () => {
     <React.Fragment>
         <div className='prices-lists'>
             {
-                pricesData.map((p) => (
-                    <div className='price-list'>
+                pricesData.map((p, index) => (
+                    <div className='price-list' key={index}>
                         {p.value}
                     </div>
                 ))

@@ -11,7 +11,6 @@
             - When an update happens, React re-renders the component to reflect the changes and ensures that the DOM is updated accordingly.
             - shouldComponentUpdate(), render() and componentDidUpdate()
         - Unmounting Phase
-            - 
             - componentWillUnmount()
         - Error Handling phase  
             - componentDidCatch(error, info)	

@@ -6,4 +6,3 @@
         - If two or more components need to access or modify the same state, then that state should live 
             in their closest common ancestor.
         - By lifting the state up, we make one source of truth.
--------------------------------------------------------------------------------------------------------------------------------

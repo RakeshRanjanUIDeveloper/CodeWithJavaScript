@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import "../Styles/Products.css";
 import ProductSearch from "./ProductSearch";
-const ProductCard = ({ allProducts }) => {
-    const [filteredProducts, setFilteredProducts] = useState(allProducts);
-    const handleSearch = (searchText) =>{
-        const filteredProducts = allProducts.filter((p) => p.title.toLowerCase().includes(searchText))
-        setFilteredProducts(filteredProducts)
-    }
+import { ProductContext } from "./ProductContext";
+
+const ProductCard = () => {
+    const {productList, handleSearch, filteredProducts, setFilteredProducts} = useContext(ProductContext);
     useEffect(() =>{
-        setFilteredProducts(allProducts)
-    }, [allProducts])
+        setFilteredProducts(productList)
+    }, [productList])
+
   return (
     <React.Fragment>
         <ProductSearch onSearch={handleSearch} />

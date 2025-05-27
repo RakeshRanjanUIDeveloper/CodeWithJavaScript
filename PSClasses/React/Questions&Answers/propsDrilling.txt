@@ -1,0 +1,25 @@
+About props drilling
+- It is a process of passing data from a parent component to deeply nested child components through multiple 
+  layers of intermediate components - even if those intermediate components don’t need that data themselves.
+- Props drilling is the default way React allows data flow — from top (parent) to bottom (child).
+- It’s fine for small apps or shallow component trees.
+===========================
+Advantages
+- It’s easy to see and trace where data is coming from.
+- It uses only core React functionality.
+============================
+Disadvantages
+- Components that don’t use the props still have to accept and forward them.
+- As app grows, passing props down many levels can make code messy.
+- Unnecessary re-renders may occur as props change, affecting all intermediate components.
+- Intermediate components become aware of data they don’t actually need.
+=============================
+How to Solve Props Drilling?
+- Share data globally without drilling props - React Context API	4
+- State management libraries that avoid manual prop passing. - Redux, Zustand
+===============================
+Why wouldn’t you use props drilling in a large application?
+- Because it makes intermediate components tightly coupled with data they don’t need, leading to poor maintainability 
+  and unnecessary re-renders. For large apps.
+- I prefer using Context API or a global state management library to avoid deeply nested prop chains.
+

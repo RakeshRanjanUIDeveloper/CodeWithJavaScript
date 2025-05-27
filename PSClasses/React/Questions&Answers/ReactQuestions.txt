@@ -16,23 +16,30 @@ Machine Coding -
 
 
 Questions -
-	1. What is state Lifting? Explain with Examples in Details. - done - Refer Q&A
-	2. Synthetic Events in React - Understand in Next Class
-	3. What is Micro Front end Architecture ?
-	5. Security Practices in React ?
-    6. Lazy Loading in React ?
-    7. const [value, setValue] = useState('0'); => why const is used, why not let or var
-    8. useMemo - Why it is used 
-    9. useCallback - Why it is used ?
-    10. When we can use Context?
-    11. How to optimize images in React ?
-    12. Why are middleware used in Redux ?
-    13. Why do we use TypeScript ?
-	14. Explain Life cycle components in React ? - done - refer Q&A
-	15. What is Virtual DOM ? How it works ? How reconciliation works ?
-	16. What are react hooks ? why it is used ? 
+	- What is state Lifting? Explain with Examples in Details. - done
+	- Explain Life cycle components in React ? - done 
+	- What is Virtual DOM ? How it works ? How reconciliation works ? - done
+	- Lazy Loading in React ? - done
+	- Why is const used in const [value, setValue] = useState('0') and not let or var? - done
+	- props drilling - done
+	- What are react hooks ? why it is used ? - WIP
+
+	Synthetic Events in React - Understand in Next Class
+	What is Micro Front end Architecture ?
+	Security Practices in React ?
+    useMemo - Why it is used 
+    useCallback - Why it is used ?
+    When we can use Context?
+    How to optimize images in React ?
+    Why are middleware used in Redux ?
+    Why do we use TypeScript ?
+	how to do unmounting in hook - cleanup function 
+    how many virtual dom can be there in react at a time
+   Why we use <StrictMode> ? what is the need ?
+   build - _build -> bundle - react make 2 budle - one for without lazy component - one for lazy component - Machine coding
 
 
+ 
 
 
 
