@@ -1,0 +1,19 @@
+What is <StrictMode> in React?
+- <StrictMode> is a helper component provided by React.
+- It enables additional checks and warnings for its descendants in the React component tree.
+- It's mainly used during development (not in production) to help developers identify potential problems in their code.
+========================================================
+Why is <StrictMode> used?
+- Detect unsafe lifecycle methods (like componentWillMount, componentWillReceiveProps, etc.)
+- Warn about deprecated APIs
+- Identify side effects that may break with future versions of React
+- Double-invoke certain functions in development to help catch side effects
+========================================================
+Advantages of Using <StrictMode>
+- Detects issues that are easy to miss in a large app
+- Warns when you're using outdated or unsafe methods
+- Ensures your app is compatible with upcoming React features
+- Double-invokes functions to help surface unintentional side-effects (like mutations or API calls in render)
+=========================================================
+Disadvantages of Using <StrictMode>
+-Not suitable for production debugging

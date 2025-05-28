@@ -1,0 +1,11 @@
+How Many Virtual DOMs Can Be There in React at a Time?
+- In React, at any given point, there are typically two virtual DOMs in memory:
+- Current (Old) Virtual DOM – representing the UI before the latest update.
+- Updated (New) Virtual DOM – representing the UI after the latest state or prop change.
+- React compares these two virtual DOMs using a process called "reconciliation" to determine what has changed, 
+  and then it updates the real DOM (browser DOM) accordingly in an efficient way.
+-Usually: 2 virtual DOMs at a time:
+   - One for previous render
+   - One for new render
+- React does not create separate virtual DOMs per component.
+- React maintains a single unified virtual DOM tree that represents the entire component hierarchy at a given point in time.

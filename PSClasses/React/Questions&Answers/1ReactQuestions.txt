@@ -22,6 +22,9 @@ Questions -
 	- Lazy Loading in React ? - done
 	- Why is const used in const [value, setValue] = useState('0') and not let or var? - done
 	- props drilling - done
+	- What is <StrictMode>? Why it is used ? - Done
+	- How Many Virtual DOMs Can Be There in React at a Time? - Done
+	- 
 	- What are react hooks ? why it is used ? - WIP
 
 	Synthetic Events in React - Understand in Next Class
@@ -34,8 +37,6 @@ Questions -
     Why are middleware used in Redux ?
     Why do we use TypeScript ?
 	how to do unmounting in hook - cleanup function 
-    how many virtual dom can be there in react at a time
-   Why we use <StrictMode> ? what is the need ?
    build - _build -> bundle - react make 2 budle - one for without lazy component - one for lazy component - Machine coding
 
 

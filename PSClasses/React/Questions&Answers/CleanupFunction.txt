@@ -1,0 +1,40 @@
+About Cleanup function
+=======================
+- Cleanup function is a function returned from inside the useEffect hook.
+- React automatically calls this function when: The component unmounts
+- Only one cleanup function can be returned from a useEffect.
+- Syntax
+useEffect(() => {
+  // Effect logic
+  return () => {
+    //Cleanup function logic here
+  };
+}, [/* dependencies */]);
+===========================================
+When Does It Run?
+  -Component unmounts	
+  -Dependency array changes	
+  -Empty dependency array ([])	- Only once, on unmount
+==========================================
+Why Is It Needed?
+- Removing event listeners
+- Clearing intervals or timeouts
+- Aborting fetch requests
+- Closing WebSocket connections
+- Cleaning up external libraries (e.g., chart instances)
+==========================================
+What Happens If You Don’t Use Cleanup?
+ - Memory leaks (event handlers or intervals continue running)
+ - React warnings (e.g., setting state on unmounted components)
+ - Unintended behavior (e.g., duplicated listeners)
+=========================================
+Timer Cleanup 
+useEffect(() => {
+  const intervalId = setInterval(() => {
+    console.log('Tick...');
+  }, 1000);
+
+  return () => {
+    clearInterval(intervalId); // 🧼 Cleanup to stop interval
+  };
+}, []);

@@ -8,6 +8,7 @@ import TempCalculator from './components/StateLifting/TempCalculator';
 import Accordion from './components/Accordion/Accordion';
 import Chips from './components/Chips/Chips';
 import UseState from './Hooks/UseState';
+import MyTodo from './components/Curd/MyTodo';
 function App() {
   return (
    /*  <TodoList /> */
@@ -18,8 +19,9 @@ function App() {
         <TempCalculator />
         <Accordion />
          <UserPosts />
-         <Chips />*/}
-         <UseState />
+         <Chips />
+         <UseState />*/}
+         <MyTodo />
     </React.Fragment>
   )
 }
