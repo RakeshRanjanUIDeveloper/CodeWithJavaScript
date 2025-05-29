@@ -24,7 +24,7 @@ Questions -
 	- props drilling - done
 	- What is <StrictMode>? Why it is used ? - Done
 	- How Many Virtual DOMs Can Be There in React at a Time? - Done
-	- 
+	- What is cleanup function ? how to do unmounting ? - done
 	- What are react hooks ? why it is used ? - WIP
 
 	Synthetic Events in React - Understand in Next Class
@@ -36,8 +36,7 @@ Questions -
     How to optimize images in React ?
     Why are middleware used in Redux ?
     Why do we use TypeScript ?
-	how to do unmounting in hook - cleanup function 
-   build - _build -> bundle - react make 2 budle - one for without lazy component - one for lazy component - Machine coding
+    build - _build -> bundle - react make 2 budle - one for without lazy component - one for lazy component - Machine coding
 
 
  
