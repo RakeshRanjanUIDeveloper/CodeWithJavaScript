@@ -10,6 +10,7 @@ import Chips from './components/Chips/Chips';
 import UseState from './Hooks/UseState/UseState';
 import MyTodo from './components/Curd/MyTodo';
 import UseEffect from './Hooks/UseEffect/UseEffect';
+import DarkModeToggle from './components/DarkModeToggle/DarkModeToggle';
 function App() {
   return (
    /*  <TodoList /> */
@@ -23,8 +24,9 @@ function App() {
          <Chips />
          <MyTodo />
          <UseState />
-         */}
          <UseEffect />
+         */}
+         <DarkModeToggle />
     </React.Fragment>
   )
 }
