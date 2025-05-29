@@ -21,11 +21,11 @@ const ProductCard = () => {
             <div className="product-details">
               <h3>{p.title}</h3>
               <div className="product-rating">
-                <p>{p.rating.rate}</p>
-                <p>{p.rating.count}</p>
+                <p>Rating {p.rating.rate} </p>
+                <p> ({p.rating.count})</p>
               </div>
               <div className="product-category">{p.category}</div>
-              <p>{p.description.slice(0, 50)}</p>
+              <p>{p.description}</p>
               <h3>${p.price}</h3>
             </div>
             <div className="product-buttons">

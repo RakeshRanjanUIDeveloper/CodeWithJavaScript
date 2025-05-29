@@ -37,18 +37,30 @@ export const ProductProvider = ({ children }) => {
     setFilteredProducts(filteredProducts);
   };
 
-   const handleCategoryChange = (category) =>{
-    const updatedCheckbox = selectedCheckbox.includes(category) ? selectedCheckbox.filter((c) => c !== category) : [...selectedCheckbox, category];
-    setSelectedCheckbox(updatedCheckbox)
-    
+  const handleCategoryChange = (c) => {
+    let category = c.target.value;
+    const updatedCheckbox = selectedCheckbox.includes(category)
+      ? selectedCheckbox.filter((c) => c !== category)
+      : [...selectedCheckbox, category];
+    setSelectedCheckbox(updatedCheckbox);
+
     setFilteredProducts(
-      updatedCheckbox.length === 0 ? productList : productList.filter((p) => updatedCheckbox.includes(p.category))
-    )
- }
+      updatedCheckbox.length === 0
+        ? productList
+        : productList.filter((p) => updatedCheckbox.includes(p.category))
+    );
+  };
 
-//  const handlePriceChange = () =>{
+  const handlePriceChange = ({ min, max }) => {
+    const minVal = parseFloat(min) || 0;
+    const maxVal = parseFloat(max) || Infinity;
 
-//  }
+    const filtered = productList.filter(
+      (p) => p.price >= minVal && p.price <= maxVal
+    );
+
+    setFilteredProducts(filtered);
+  };
   return (
     <ProductContext.Provider
       value={{
@@ -59,7 +71,8 @@ export const ProductProvider = ({ children }) => {
         setFilteredProducts,
         categoriesList,
         handleCategoryChange,
-        selectedCheckbox
+        selectedCheckbox,
+        handlePriceChange,
       }}
     >
       {children}

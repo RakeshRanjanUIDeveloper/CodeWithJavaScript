@@ -9,7 +9,7 @@ const Categories = () => {
             {
                 categoriesList.map((c) => (
                     <div className='category-list' key={c}  >
-                        <input type='checkbox' onChange={() => handleCategoryChange(c)} checked={selectedCheckbox.includes(c)} />
+                        <input type='checkbox' value={c} onChange={(c) => handleCategoryChange(c)} checked={selectedCheckbox.includes(c)} />
                         <div className='category-title'>{c}</div>
                     </div>
                 ))
