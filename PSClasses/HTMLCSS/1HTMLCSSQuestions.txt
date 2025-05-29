@@ -1,0 +1,25 @@
+What is a <!DOCTYPE> declaration in HTML, and why is it important? - Done
+What is a <meta> tag in HTML, and why are its attributes important? - Done
+Where should the <script> tag be placed in an HTML document, and why? - Done
+What are block-level, inline, and semantic HTML elements? Can you give examples of each? - done
+Will a webpage still work without using semantic tags? What are the implications for accessibility and SEO? - WIP
+Can a <section> tag be placed inside a <div>? What are best practices?
+Which HTML tags are considered inline elements?
+What techniques or tags are used to improve accessibility in HTML?
+What are SCSS and Sass in CSS? How do they work, and what are they used for?
+What are the similarities and differences between SCSS and Sass?
+What is a mixin in Sass/SCSS, and how is it used?
+What does @include do in Sass/SCSS?
+How does SCSS compile into CSS? How does the browser understand it?
+What are the different position values in CSS? What is the default position?
+What is the difference between CSS Grid and Flexbox? When should you use each?
+How do you create layouts using Flexbox and Grid? Explain fr units in Grid
+What is the calc() function in CSS, and how is it used?
+What are shadow elements in CSS? (e.g., box-shadow, text-shadow)
+How does the :nth-child() pseudo-class work in CSS?
+How do you disable an HTML element using CSS or HTML attributes?
+What is the difference between visibility: hidden and display: none in CSS?
+What is the Box Model in CSS? How do padding, margin, border, and content work together?
+How can you prevent a CSS property from being changed while inspecting or testing in the browser?
+============================================================================================================================
+What is CSS (Cascading Style Sheets) and what is it used for?
