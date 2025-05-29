@@ -38,7 +38,22 @@ Questions -
     Why do we use TypeScript ?
     build - _build -> bundle - react make 2 budle - one for without lazy component - one for lazy component - Machine coding
 
-
+Uncontrolled component
+controlled component
+Syntehtic events
+Real Events
+Controlled form - working example
+Uncontrolled form - working example
+useRef, how does useRef does not trigger rerender
+native events
+==========
+Context - 
+When context get failed
+How to debug in useContext
+=========================
+File Manager
+===========
+Ui responsive
  
 
 
