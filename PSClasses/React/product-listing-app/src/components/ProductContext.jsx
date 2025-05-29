@@ -8,7 +8,8 @@ export const ProductProvider = ({ children }) => {
   const [productList, setProductList] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState(productList);
   const [categoriesList, setCategoriesList] = useState([]);
-  
+  const [selectedCheckbox, setSelectedCheckbox] = useState([]);
+
   useEffect(() => {
     const fetchCategoriesList = async () => {
       const response = await fetch(
@@ -37,10 +38,17 @@ export const ProductProvider = ({ children }) => {
   };
 
    const handleCategoryChange = (category) =>{
-    const filteredProducts = productList.filter((c) => c.category === category);
-    setFilteredProducts(filteredProducts)
+    const updatedCheckbox = selectedCheckbox.includes(category) ? selectedCheckbox.filter((c) => c !== category) : [...selectedCheckbox, category];
+    setSelectedCheckbox(updatedCheckbox)
+    
+    setFilteredProducts(
+      updatedCheckbox.length === 0 ? productList : productList.filter((p) => updatedCheckbox.includes(p.category))
+    )
  }
 
+//  const handlePriceChange = () =>{
+
+//  }
   return (
     <ProductContext.Provider
       value={{
@@ -50,7 +58,8 @@ export const ProductProvider = ({ children }) => {
         filteredProducts,
         setFilteredProducts,
         categoriesList,
-        handleCategoryChange
+        handleCategoryChange,
+        selectedCheckbox
       }}
     >
       {children}

@@ -28,6 +28,14 @@ const Prices = () => {
                 ))
             }
         </div>
+        <div className='price-boxes'>
+            <div className='price-min-box'>
+                <input type='text' placeholder='$min' />
+            </div>
+            <div className='price-max-box'>
+                <input type='text' placeholder='$max' />
+            </div>
+        </div>
     </React.Fragment>
   )
 }
