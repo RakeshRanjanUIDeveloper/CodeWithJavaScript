@@ -1,23 +1,23 @@
 /* General page styling */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f6f8;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    padding-top: 50px;
-}
+/* body { */
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    /* background-color: #f4f6f8; */
+    /* margin: 0; */
+    /* padding: 0; */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* padding-top: 50px; */
+/* } */
 
 /* Main container */
-div {
-    max-width: 500px;
-    width: 100%;
-    background-color: #ffffff;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
+/* div { */
+    /* max-width: 500px; */
+    /* width: 100%; */
+    /* background-color: #ffffff; */
+    /* padding: 2rem; */
+    /* border-radius: 12px; */
+    /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); */
+/* } */
 
 /* Input for AddTodo */
 input[type="text"] {
