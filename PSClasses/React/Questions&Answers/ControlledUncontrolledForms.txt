@@ -1,0 +1,15 @@
+Controlled Forms in React
+- In a controlled form, React state fully controls the form inputs.
+- Input values are stored in React state and updated via event handlers.
+- The input’s value prop is set by React state.
+- Every change triggers a React state update and re-render.
+====================================================================================================================
+Uncontrolled Forms in React
+- In an uncontrolled form, form inputs manage their own state internally (like normal HTML inputs).
+- React does not control input values via state.
+- To access input values, we use refs (useRef) to get the DOM element and read values on demand (e.g., on submit).
+- No re-render when input changes
+
+
+
+

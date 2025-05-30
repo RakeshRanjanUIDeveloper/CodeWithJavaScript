@@ -25,6 +25,9 @@ Questions -
 	- What is <StrictMode>? Why it is used ? - Done
 	- How Many Virtual DOMs Can Be There in React at a Time? - Done
 	- What is cleanup function ? how to do unmounting ? - done
+	- Explain Controlled and Uncontrolled component - Done
+	- Explain Controlled and Uncontrolled Form with Examples - Done
+	- What is useRef ? how does useRef does not trigger rerender ? - Done
 	- What are react hooks ? why it is used ? - WIP
 
 	Synthetic Events in React - Understand in Next Class
@@ -38,14 +41,8 @@ Questions -
     Why do we use TypeScript ?
     build - _build -> bundle - react make 2 budle - one for without lazy component - one for lazy component - Machine coding
 
-Uncontrolled component
-controlled component
-Syntehtic events
-Real Events
-Controlled form - working example
-Uncontrolled form - working example
-useRef, how does useRef does not trigger rerender
-native events
+
+Syntehtic events, Real Events, native events
 ==========
 Context - 
 When context get failed

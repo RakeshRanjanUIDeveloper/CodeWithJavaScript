@@ -1,0 +1,17 @@
+About useRef 
+==============================================================================================================
+Syntax - const ref = useRef(initialValue);
+- Returns an object: { current: initialValue }
+- we can update ref.current, and React will not re-render the component.
+==============================================================================================================
+Why useRef does not trigger a re-render ?
+- React only re-renders when: State (useState) changes, Props change, Context changes
+- Because React doesn't watch ref.current for changes.
+- React treats ref.current as a mutable container
+==============================================================================================================
+When to use useRef
+- To store DOM elements 
+- To keep mutable values between renders without triggering re-renders
+- To store previous values (usePrevious)
+- To hold timers, flags, or counters used in logic but not UI
+

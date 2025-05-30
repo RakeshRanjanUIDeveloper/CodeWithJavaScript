@@ -11,13 +11,17 @@ import UseState from './Hooks/UseState/UseState';
 import MyTodo from './components/Curd/MyTodo';
 import UseEffect from './Hooks/UseEffect/UseEffect';
 import DarkModeToggle from './components/DarkModeToggle/DarkModeToggle';
+import ControlledInput from './components/ControlledUncontrolled/ControlledInput';
+import UncontrolledInput from './components/ControlledUncontrolled/UncontrolledInput';
+import ControlledForm from './components/ControlledUncontrolled/ControlledForm';
+import UncontrolledForm from './components/ControlledUncontrolled/UncontrolledForm';
+import ExampleUseRef from './Hooks/UseRef/ExampleUseRef';
 function App() {
   return (
    /*  <TodoList /> */
     <React.Fragment>
         {/* <Timer />
         <Clock /> 
-       
         <TempCalculator />
         <Accordion />
          <UserPosts />
@@ -25,8 +29,12 @@ function App() {
          <MyTodo />
          <UseState />
          <UseEffect />
-         */}
-         <DarkModeToggle />
+         <DarkModeToggle />*/}
+         <ControlledInput />
+         <UncontrolledInput />
+         <ControlledForm />
+         <UncontrolledForm />
+         <ExampleUseRef />
     </React.Fragment>
   )
 }

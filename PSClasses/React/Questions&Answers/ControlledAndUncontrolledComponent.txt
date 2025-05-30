@@ -1,0 +1,27 @@
+About Controlled Component
+- A Controlled Component is a component where React controls the input's value via state.
+- The form data is handled by the React component state. 
+- The value of the input element is set by React and changes only when the state updates via setState (or hooks like useState).
+===================================================================================
+About Uncontrolled Component
+- An Uncontrolled Component is where the form data is handled by the DOM itself rather than React.
+- An uncontrolled component lets the DOM manage the value, and we access it using refs.
+- Instead of controlling the input’s value via React state, we use refs to access the input’s current value when needed.
+- Input value is managed by the browser's DOM.
+- React doesn't update or control the value on every keystroke.
+============================================================================================
+When would you choose an uncontrolled component over a controlled one?
+- For inputs like file uploads, where value cannot be set programmatically
+- When performance is a concern in large forms
+============================================================================================
+Can you mix controlled and uncontrolled components in the same form?
+- Yes, but it's not recommended. It can lead to unpredictable behavior and warnings like
+- "A component is changing an uncontrolled input to be controlled..."
+============================================================================================
+How do you reset an uncontrolled input?
+- inputRef.current.value = '';
+============================================================================================
+Is file input controlled or uncontrolled in React? Why?
+- File inputs are inherently uncontrolled in React. 
+- We cannot set the value of a file input programmatically for security reasons. 
+- We must use ref to access the selected file(s).
