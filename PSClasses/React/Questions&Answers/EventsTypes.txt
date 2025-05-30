@@ -9,3 +9,4 @@ Native Events
 =======================================================================================================================
 Real Events
 - Directly attaching event listeners to DOM elements using addEventListener
+- 
