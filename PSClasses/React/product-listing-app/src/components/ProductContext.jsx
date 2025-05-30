@@ -1,34 +1,45 @@
 import { createContext, useEffect, useState } from "react";
+import useFetch from "./useFetch";
+import Loading from "../components/Loading";
+import Error from "./Error";
 
 //Create Context
 export const ProductContext = createContext();
 
 //Create Provider Component
 export const ProductProvider = ({ children }) => {
-  const [productList, setProductList] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState(productList);
-  const [categoriesList, setCategoriesList] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [selectedCheckbox, setSelectedCheckbox] = useState([]);
+  const [productList, setProductList] = useState([]);
+  const [categoriesList, setCategoriesList] = useState([]);
+
+  const {
+    data: productData,
+    isLoading: productsLoading,
+    error: productsError,
+    success: productsSuccess,
+  } = useFetch({ url: "https://fakestoreapi.com/products" });
+  const {
+    data: categoriesData,
+    isLoading: categoriesLoading,
+    error: categoriesError,
+    success: categoriesSuccess,
+  } = useFetch({ url: "https://fakestoreapi.com/products/categories" });
+
+
 
   useEffect(() => {
-    const fetchCategoriesList = async () => {
-      const response = await fetch(
-        "https://fakestoreapi.com/products/categories"
-      );
-      const data = await response.json();
-      setCategoriesList(data);
-    };
-    fetchCategoriesList();
-  }, []);
+    if (productsSuccess && productData) {
+      setProductList(productData);
+      setFilteredProducts(productData);
+    }
+  }, [productsSuccess, productData]);
 
   useEffect(() => {
-    const fetchProductData = async () => {
-      const response = await fetch("https://fakestoreapi.com/products");
-      const data = await response.json();
-      setProductList(data);
-    };
-    fetchProductData();
-  }, []);
+    if (categoriesSuccess && categoriesData) {
+      setCategoriesList(categoriesData);
+    }
+  }, [categoriesSuccess, categoriesData]);
 
   const handleSearch = (searchText) => {
     const filteredProducts = productList.filter((p) =>
@@ -61,6 +72,9 @@ export const ProductProvider = ({ children }) => {
 
     setFilteredProducts(filtered);
   };
+
+  if (productsLoading || categoriesLoading) return <Loading />;
+  if (productsError || categoriesError) return <Error />;
   return (
     <ProductContext.Provider
       value={{
