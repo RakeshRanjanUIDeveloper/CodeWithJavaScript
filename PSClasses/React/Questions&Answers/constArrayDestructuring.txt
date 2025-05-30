@@ -1,5 +1,4 @@
 
-================
 - const [value, setValue] = useState('0');
 - const is used because we are using array destructuring to extract the state value
   and the updater function from useState()

@@ -1,7 +1,7 @@
 Machine Coding -
 	1. Create a Timer which has start, pause and Reset. - Done
 	2. Create a clock using life cycle methods. Hint - tick method - Done
-	3. Create a Todo - WIP
+	3. Create a Todo - Done
 	4. Build Folder Structure
 	5. You're given two API endpoints: - Done
 		- GET /user → Returns the current user. -> { "id": 1, "name": "Alice" }
@@ -9,12 +9,10 @@ Machine Coding -
 			{ "id": 101, "title": "Post A" },
 			{ "id": 102, "title": "Post B" }
 		]
-	6. Product Listing App
-	7. accordion
+	6. Product Listing App - WIP
+	7. accordion - done
 	8. Table
 	9. tick tac toe 
-
-
 Questions -
 	- What is state Lifting? Explain with Examples in Details. - done
 	- Explain Life cycle components in React ? - done 
@@ -28,6 +26,7 @@ Questions -
 	- Explain Controlled and Uncontrolled component - Done
 	- Explain Controlled and Uncontrolled Form with Examples - Done
 	- What is useRef ? how does useRef does not trigger rerender ? - Done
+	- Syntehtic events, Real Events, native events - Done
 	- What are react hooks ? why it is used ? - WIP
 
 	Synthetic Events in React - Understand in Next Class
@@ -42,7 +41,7 @@ Questions -
     build - _build -> bundle - react make 2 budle - one for without lazy component - one for lazy component - Machine coding
 
 
-Syntehtic events, Real Events, native events
+
 ==========
 Context - 
 When context get failed
@@ -51,7 +50,39 @@ How to debug in useContext
 File Manager
 ===========
 Ui responsive
- 
+ What is web pack
+what is tree shacking
+what is concurrent rendering
+how react 18 is different from react 16
+useMemo - - real time example
+useCallback - real time example
+useLayoutEffect 
+useImperativeLayout 
+fetch in React18
+================
+Ticktactoe
+================
+custom hook to get the data  -> 
+React hook rules
+=====================================
+What is server side rendering ?
+How we can do server side rendering in React ?
+=======================================================
+Daily 10 Questions on React 
+Daily 10 Questions on JS
+=======================================================
+Generator function
+Pagination
+Shallow clone and Deep Clone
+========================================
+What is bundle optimization ?
+how to use Bundle Caching ?
+How to do Bundle Profiling ?
+React Testing Library / Jest
+
+
+
+
 
 
 

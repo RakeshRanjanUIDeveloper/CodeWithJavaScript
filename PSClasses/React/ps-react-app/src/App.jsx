@@ -18,23 +18,25 @@ import UncontrolledForm from './components/ControlledUncontrolled/UncontrolledFo
 import ExampleUseRef from './Hooks/UseRef/ExampleUseRef';
 function App() {
   return (
-   /*  <TodoList /> */
+   
     <React.Fragment>
+    <TodoList /> 
         {/* <Timer />
         <Clock /> 
         <TempCalculator />
         <Accordion />
          <UserPosts />
          <Chips />
-         <MyTodo />
+         
          <UseState />
          <UseEffect />
-         <DarkModeToggle />*/}
+         <DarkModeToggle />
          <ControlledInput />
          <UncontrolledInput />
          <ControlledForm />
          <UncontrolledForm />
          <ExampleUseRef />
+         <MyTodo />*/}
     </React.Fragment>
   )
 }

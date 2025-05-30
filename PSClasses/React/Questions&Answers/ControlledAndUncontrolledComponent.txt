@@ -1,6 +1,6 @@
 About Controlled Component
 - A Controlled Component is a component where React controls the input's value via state.
-- The form data is handled by the React component state. 
+- The form data is handled state.  by the React component
 - The value of the input element is set by React and changes only when the state updates via setState (or hooks like useState).
 ===================================================================================
 About Uncontrolled Component
