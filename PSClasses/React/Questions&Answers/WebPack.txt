@@ -1,0 +1,30 @@
+WebPack
+=======================================================================================================================
+- Webpack is a module bundler primarily used in modern JavaScript applications.
+- It  takes the many different files your project uses (JavaScript, CSS, images, etc.) and 
+  bundles them into one or more optimized files to improve performance and manageability.
+=======================================================================================================================
+What is Webpack
+- Webpack is a build tool that:
+ - Bundles multiple JavaScript modules into a single file (or smaller chunked files).
+ - Handles other file types (like CSS, images) using loaders.
+ - Can transform, minify, and optimize assets.
+ - Allows code splitting for lazy loading. 
+=======================================================================================================================
+Why is Webpack used in React Projects?
+ - Compiles JSX into browser-readable JavaScript.
+ - Bundles all modules (React components, styles, assets) into optimized files.
+=====================================================================================================================
+What are the feature of Webpack ?
+- JSX and ES6+ support	
+- Module bundling	
+- Code splitting	
+- Hot Module Replacement	
+- Tree shaking	
+- Asset management	
+======================================================================================================================
+Advantages of Using Webpack in React
+- Performance optimization : Minifies code, removes dead code, and reduces bundle size.
+- Modularity : Supports ES Modules; enables writing clean, modular components.
+- Customizable : Highly configurable to suit project needs (via webpack.config.js).
+- Ecosystem compatibility : Works well with Babel, PostCSS, Sass, TypeScript, and others.

@@ -1,0 +1,14 @@
+About Context -
+===============================================================================================================
+- A way to share data across the component tree without passing props manually at every level 
+- Useful for global data (like themes, auth, settings, etc.).
+===============================================================================================================
+When to use Context
+- We need to share state or data across many components.
+- want to avoid prop drilling (passing data through intermediate components).
+- We are managing global concerns like:
+  - Theme (dark/light)
+  - Auth (logged-in user)
+  - Locale/Language
+  - App-wide settings
+  - UI preferences (sidebar open, font size, etc.)

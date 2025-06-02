@@ -1,0 +1,32 @@
+Concurrent Rendering
+=================================================================================================
+- Concurrent Rendering is a React internal capability.
+- It allows to prepare multiple UI versions at the same time and interrupt rendering when needed.
+- It enables React to:
+  - Pause rendering
+  - Abort rendering
+  - Resume rendering
+  - Prioritize more important updates (like user input)
+======================================================================================================
+Traditional vs Concurrent Rendering
+ - Traditional
+   - React renders everything from top to bottom in one go.
+   - If a component takes time, the UI freezes until it's done.
+ - Concurrent
+   - React can interrupt rendering mid-way.
+   - It can skip to higher-priority tasks like clicks or typing.
+   - It lets background updates finish later.
+=========================================================================================================
+Benefits of Concurrent Rendering
+- Interruptible rendering	
+- Prioritization
+- Background rendering	
+- Better user experience	
+=========================================================================================================
+How Do we Enable It?
+- Concurrent rendering is automatically enabled when we use features like:
+    - React.lazy()	
+    - startTransition()
+    - useDeferredValue()
+    - Suspense for data fetching	
+

@@ -1,0 +1,29 @@
+TreeShaking
+===========================================================================================
+- Tree shaking is a term in JavaScript build tools (like Webpack).
+- It refers to the process of removing unused code from final bundle, making app smaller and faster.
+=============================================================================================================
+Why is it called "Tree Shaking"?
+ - Think of your codebase like a tree:
+   - The main parts of your app are the trunk and branches.
+   - Utility functions, components, etc., are leaves on the tree.
+   - If some leaves (code) are never used, the tree shaker shakes them off during the build.
+===============================================================================================================
+How Tree Shaking Works ?
+- It works by:
+ - Analyzing import/export statements.
+ - Identifying which exports are not used.
+ - Removing those unused exports from the final bundle.
+=================================================================================================================
+Benefits of Tree Shaking ?
+- Smaller bundle size → Faster load times.
+- Better performance → Especially important for mobile and low-bandwidth users.
+======================================================================================================================
+How to Enable Tree Shaking (e.g., with Webpack)
+- Use ES Modules (import/export).
+- Use mode: 'production' in webpack.config.js:
+    module.exports = {
+    mode: 'production',  // enables built-in optimizations like tree shaking
+    };
+- Avoid side effects in modules or mark them with "sideEffects": false
+

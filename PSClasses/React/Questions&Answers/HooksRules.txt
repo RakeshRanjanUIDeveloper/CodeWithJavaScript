@@ -1,0 +1,15 @@
+Hooks Rule
+========================================================================================================
+- Only Call Hooks at the Top Level.
+- Call hooks from function components or custom hooks.
+=======================================================================================================
+✅ Call Hooks from React function components.
+✅ Call Hooks from custom Hooks.
+========================================================================================================
+- Don’t call Hooks inside loops, conditions, nested functions, or try/catch/finally blocks. 
+🔴 Do not call Hooks inside conditions or loops.
+🔴 Do not call Hooks after a conditional return statement.
+🔴 Do not call Hooks in event handlers.
+🔴 Do not call Hooks in class components.
+🔴 Do not call Hooks inside functions passed to useMemo, useReducer, or useEffect.
+🔴 Do not call Hooks inside try/catch/finally blocks.

@@ -15,3 +15,6 @@ Programs -
 	4. Write a JS program to implement flatMap array without using flat function.
 	5. Program on Swtich case (Employee Salary Calculation)
 	6. Write polyfill for Map/Filter/Reduce
+	Generator function
+
+Shallow clone and Deep Clone
