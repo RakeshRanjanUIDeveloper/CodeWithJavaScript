@@ -16,12 +16,14 @@ import UncontrolledInput from './components/ControlledUncontrolled/UncontrolledI
 import ControlledForm from './components/ControlledUncontrolled/ControlledForm';
 import UncontrolledForm from './components/ControlledUncontrolled/UncontrolledForm';
 import ExampleUseRef from './Hooks/UseRef/ExampleUseRef';
+import TicTacToe from './components/TicTacToe/TicTacToe';
 function App() {
   return (
    
     <React.Fragment>
+      {/* 
     <TodoList /> 
-        {/* <Timer />
+      <Timer />
         <Clock /> 
         <TempCalculator />
         <Accordion />
@@ -37,6 +39,7 @@ function App() {
          <UncontrolledForm />
          <ExampleUseRef />
          <MyTodo />*/}
+         <TicTacToe />
     </React.Fragment>
   )
 }
