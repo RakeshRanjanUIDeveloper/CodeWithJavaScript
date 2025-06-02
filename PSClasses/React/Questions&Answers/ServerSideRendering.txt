@@ -1,0 +1,15 @@
+What is Server-Side Rendering (SSR)?
+=======================================================================================================================
+- Server-Side Rendering (SSR) means that your React components are rendered on the server, 
+  and the fully rendered HTML is sent to the browser.
+- Server prepares the page, and the browser just displays it.
+========================================================================================================================
+Why Use SSR in React?
+- Better SEO: Search engines can see your content right away
+- Faster First Load: Users see the content sooner
+- Sharing URLs: Social media previews work better
+=========================================================================================================================
+How to Do Server-Side Rendering in React
+- Using Next.js => Next.js is a React framework that supports SSR out of the box.
+- Manually with Express + ReactDOMServer => We can create your own SSR setup using Node.js and ReactDOMServer
+

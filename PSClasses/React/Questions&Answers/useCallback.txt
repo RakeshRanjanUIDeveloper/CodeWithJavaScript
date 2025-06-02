@@ -1,0 +1,11 @@
+useCallback
+=============================================================================================================================
+-useCallback is a Hook that returns a memoized version of a callback function -one that only changes if the dependencies change
+=============================================================================================================================
+Why Use It?
+- React re-renders components when their state or props change. 
+- If we pass a new function to a child component on every render, it can cause unnecessary re-renders.
+- useCallback avoids that by returning the same function instance if dependencies haven't changed.
+==============================================================================================================================
+Advantages
+- Especially with memoized child components (React.memo)

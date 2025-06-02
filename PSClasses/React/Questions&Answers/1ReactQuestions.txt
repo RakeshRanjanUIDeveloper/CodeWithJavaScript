@@ -34,34 +34,28 @@ Questions -
 	- what is concurrent rendering ? - Done
 	- What are the Rules of Hooks ? - Done
 	- When we can use Context? - Done
+	- useMemo - - real time example - Done
+    - useCallback - real time example - Done
+	- What is server side rendering ?  How we can do server side rendering in React ? - Done
+	- What is Micro Front end Architecture ? - Done
 	- What are react hooks ? why it is used ? - WIP
-
-
-	What is Micro Front end Architecture ?
+=======================================================
 	Security Practices in React ?
-    useMemo - Why it is used 
-    useCallback - Why it is used ?
     How to optimize images in React ?
     Why are middleware used in Redux ?
     Why do we use TypeScript ?
     build - _build -> bundle - react make 2 budle - one for without lazy component - one for lazy component - Machine coding
 	Context -  When context get failed How to debug in useContext
     how react 18 is different from react 16
-    useMemo - - real time example
-    useCallback - real time example
     useLayoutEffect 
     useImperativeLayout 
     fetch in React18
-	
-    What is server side rendering ?
-    How we can do server side rendering in React ?
 	What is bundle optimization ?
 	how to use Bundle Caching ?
 	How to do Bundle Profiling ?
 	React Testing Library / Jest
-=======================================================
-Daily 10 Questions on React 
-Daily 10 Questions on JS
+    Daily 10 Questions on React 
+    Daily 10 Questions on JS
 
 
 

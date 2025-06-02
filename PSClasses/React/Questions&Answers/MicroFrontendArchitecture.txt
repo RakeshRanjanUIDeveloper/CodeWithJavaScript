@@ -1,0 +1,18 @@
+Micro Frontend Architecture
+=========================================================================================================================
+-Micro Frontend Architecture is a design pattern where a frontend application is split into smaller, independent pieces.
+-each built, deployed, and managed separately — but together, they form a complete app.
+-The concept of micro frontend comes from microservice architecture. 
+-Basically, Microservice is an architecture in which an application is decomposed into small independent services 
+ that can be worked independently and combined with a fully working service by combining all the services.
+===========================================================================================================================
+Characteristics of Micro Frontend Architecture
+- Modularity: The application is broken into smaller, self-contained modules based on features or domains.
+- Independent Development: Each team can develop, test, and deploy their micro frontend without relying on others.
+- Scalability: Teams and features can scale independently as the project grows.
+- Reuse and Composition: Micro frontends can be reused and composed like building blocks across different applications.
+- Isolation and Fault Tolerance: A failure in one micro frontend doesn’t crash the entire application.
+- Flexibility in Deployment: Micro frontends can be deployed separately without redeploying the whole app.
+- Improved Performance: Only necessary micro frontends are loaded, reducing initial load time in some cases.
+- Team Autonomy and Ownership: Teams have full control over the tech stack, codebase, and deployment of their micro frontend.
+=============================================================================================================================

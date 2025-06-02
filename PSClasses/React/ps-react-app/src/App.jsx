@@ -17,6 +17,10 @@ import ControlledForm from './components/ControlledUncontrolled/ControlledForm';
 import UncontrolledForm from './components/ControlledUncontrolled/UncontrolledForm';
 import ExampleUseRef from './Hooks/UseRef/ExampleUseRef';
 import TicTacToe from './components/TicTacToe/TicTacToe';
+import UserList from './Hooks/useMemo/UserList';
+import UserListWithoutUseMemo from './Hooks/useMemo/UserListWithoutUseMemo';
+import TodoLists from './Hooks/useCallback/TodoLists';
+
 function App() {
   return (
    
@@ -38,8 +42,11 @@ function App() {
          <ControlledForm />
          <UncontrolledForm />
          <ExampleUseRef />
-         <MyTodo />*/}
+         <MyTodo />
          <TicTacToe />
+         <UserList />
+         <UserListWithoutUseMemo />*/}
+         <TodoLists />
     </React.Fragment>
   )
 }
