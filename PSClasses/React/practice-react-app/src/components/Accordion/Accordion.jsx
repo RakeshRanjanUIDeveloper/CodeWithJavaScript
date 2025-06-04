@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import './Accordion.css'
 const Accordion = () => {
     const [allPosts, setAllPosts] = useState([]);
-    const [show, setShow] = useState(false);
     const [openIndex, setOpenIndex] = useState(null);
 
     useEffect(() =>{
@@ -20,11 +19,15 @@ const Accordion = () => {
 
     const firstfivePosts = allPosts.slice(0,5);
     const handleAccordion = (accordionId) =>{
-        setShow(true)
+       if(openIndex === accordionId){
+        setOpenIndex(null)
+       }else{
+        setOpenIndex(accordionId)
+       }
     }
   return (
     <div className='accordion-container'>
-        <h2>Accordion</h2>
+        <h2>Accordion</h2> 
         {
             firstfivePosts.map((post) => (
                 <div className='accordion-item' key={post.id}>
@@ -34,7 +37,7 @@ const Accordion = () => {
 
                     <div className='accordion-content'>
                         {
-                            show && <p>{post.body}</p>
+                           openIndex === post.id  && <p>{post.body}</p>
                         }
                     </div>
                 </div>
