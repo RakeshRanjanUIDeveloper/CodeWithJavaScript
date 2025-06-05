@@ -50,12 +50,11 @@ Questions -
     useLayoutEffect 
     useImperativeLayout 
     fetch in React18
+	
 	What is bundle optimization ?
 	how to use Bundle Caching ?
 	How to do Bundle Profiling ?
 	React Testing Library / Jest
-    Daily 10 Questions on React 
-    Daily 10 Questions on JS
 
 
 
