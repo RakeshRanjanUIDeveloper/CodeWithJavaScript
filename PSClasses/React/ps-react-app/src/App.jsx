@@ -20,6 +20,8 @@ import TicTacToe from './components/TicTacToe/TicTacToe';
 import UserList from './Hooks/useMemo/UserList';
 import UserListWithoutUseMemo from './Hooks/useMemo/UserListWithoutUseMemo';
 import TodoLists from './Hooks/useCallback/TodoLists';
+import CartDetails from './components/PromiseAll/CartDetails';
+import Joke from './components/Joke/Joke';
 
 function App() {
   return (
@@ -45,8 +47,10 @@ function App() {
          <MyTodo />
          <TicTacToe />
          <UserList />
-         <UserListWithoutUseMemo />*/}
+         <UserListWithoutUseMemo />
          <TodoLists />
+         <CartDetails />*/}
+         <Joke />
     </React.Fragment>
   )
 }
