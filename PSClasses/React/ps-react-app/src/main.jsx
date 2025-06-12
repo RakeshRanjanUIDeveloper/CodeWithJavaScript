@@ -6,7 +6,6 @@ import { TodoProvider } from './components/Todo/TodoContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {/* <App /> */}
    <TodoProvider>
           <App />
     </TodoProvider> 
