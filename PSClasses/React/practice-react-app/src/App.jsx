@@ -7,6 +7,7 @@ import EvenOrOddChecker from './components/EvenOrOddChecker/EvenOrOddChecker'
 import GuessTheNumber from './components/GuessTheNumber/GuessTheNumber'
 import InputFocus from './components/InputFocus/InputFocus'
 import ProgressBar from './components/ProgressBar/ProgressBar'
+import RecipeExplorer from './components/RecipeExplorer/RecipeExplorer'
 import TodoList from './components/TodoApp/TodoList'
 import TogglePassword from './components/TogglePassword/TogglePassword'
 
@@ -21,8 +22,9 @@ function App() {
       <Authentication />
       <GuessTheNumber />
       <InputFocus />
-      <EvenOrOddChecker /> */}
-      <ProgressBar />
+      <EvenOrOddChecker />
+      <ProgressBar /> */}
+      <RecipeExplorer />
     </>
   )
 }
