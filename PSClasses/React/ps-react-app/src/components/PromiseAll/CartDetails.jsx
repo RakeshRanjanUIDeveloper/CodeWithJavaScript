@@ -30,6 +30,7 @@ const CartDetails = () => {
         productDetails.forEach((prod) => {
           productDetailsMap[prod.id] = prod
         })
+        console.log(productDetailsMap)
         const detailedCarts = cartResults.map((cart) => ({
           id: cart.id,
           products: cart.products.map((product) => ({
@@ -57,6 +58,7 @@ const CartDetails = () => {
               <div key={index} style={{ paddingLeft: '20px' }}>
                 <p><strong>Title</strong> - {product.title}</p>
                 <p><strong>Description</strong> - {product.description}</p>
+                <hr />
               </div>
             ))}
           </div>

@@ -1,0 +1,78 @@
+/* Container styling */
+.color-manager {
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Control buttons and checkboxes */
+.color-manager button {
+  padding: 8px 16px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.color-manager button:hover {
+  background-color: #155fa0;
+}
+
+.color-manager .controls {
+  margin: 20px 0 10px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Grid layout for color blocks */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 16px;
+}
+
+/* Individual color box */
+.color-box {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  cursor: default;
+  transition: transform 0.2s;
+}
+
+.color-box:hover {
+  transform: scale(1.05);
+}
+
+/* Clickable red boxes */
+.color-box.red {
+  cursor: pointer;
+  background-color: red;
+}
+
+.color-box.green {
+  background-color: green;
+}
+
+.color-box.magenta {
+  background-color: magenta;
+}
+
+.color-box.yellow {
+  background-color: goldenrod;
+}
+
+/* Checkbox label */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
