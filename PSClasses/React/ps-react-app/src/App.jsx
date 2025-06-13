@@ -22,6 +22,7 @@ import UserListWithoutUseMemo from './Hooks/useMemo/UserListWithoutUseMemo';
 import TodoLists from './Hooks/useCallback/TodoLists';
 import CartDetails from './components/PromiseAll/CartDetails';
 import Joke from './components/Joke/Joke';
+import ColorGame from './components/ColorGame/ColorGame';
 
 function App() {
   return (
@@ -49,8 +50,9 @@ function App() {
          <UserList />
          <UserListWithoutUseMemo />
          <TodoLists />
-         <CartDetails />*/}
-         <Joke />
+         <CartDetails />
+         <Joke />*/}
+         <ColorGame />
     </React.Fragment>
   )
 }
