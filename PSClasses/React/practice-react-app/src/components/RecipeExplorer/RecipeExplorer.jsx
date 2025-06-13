@@ -25,7 +25,7 @@ const RecipeExplorer = () => {
 
 
     const handleCart = () =>{
-        setCartCounts(cartCounts +1)
+        setCartCounts((prevCartCount) => prevCartCount +1)
     }
     return (
         <React.Fragment>
