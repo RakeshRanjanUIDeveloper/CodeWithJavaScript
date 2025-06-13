@@ -9,6 +9,7 @@ import InputFocus from './components/InputFocus/InputFocus'
 import ProgressBar from './components/ProgressBar/ProgressBar'
 import TodoList from './components/TodoApp/TodoList'
 import TogglePassword from './components/TogglePassword/TogglePassword'
+import Tooltip from './components/Tooltip/Tooltip'
 
 
 function App() {
@@ -21,8 +22,9 @@ function App() {
       <Authentication />
       <GuessTheNumber />
       <InputFocus />
-      <EvenOrOddChecker /> */}
-      <ProgressBar />
+      <EvenOrOddChecker /> 
+      <ProgressBar />*/}
+      <Tooltip />
     </>
   )
 }
