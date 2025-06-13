@@ -23,6 +23,7 @@ import TodoLists from './Hooks/useCallback/TodoLists';
 import CartDetails from './components/PromiseAll/CartDetails';
 import Joke from './components/Joke/Joke';
 import ColorGame from './components/ColorGame/ColorGame';
+import SuspenseLazyFallback from './components/SuspenseLazyFallback/SuspenseLazyFallback';
 
 function App() {
   return (
@@ -50,8 +51,9 @@ function App() {
          <UserListWithoutUseMemo />
          <TodoLists />
          <CartDetails />
-         <Joke /> */}
-         <ColorGame />
+         <Joke /> 
+         <ColorGame />*/}
+         <SuspenseLazyFallback />
     </React.Fragment>
   )
 }

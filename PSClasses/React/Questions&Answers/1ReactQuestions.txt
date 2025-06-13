@@ -55,7 +55,30 @@ Questions -
 	how to use Bundle Caching ?
 	How to do Bundle Profiling ?
 	React Testing Library / Jest
+(c) => handleBoxClick(c) - javascript event
+=================================>
+() => handleBoxClick(c) -> related to function 
+===============================================================
 
+
+
+React Suspense
+React fallback
+Lazy Loading
+---->
+API endpoint
+	promise - laoding
+	promise resolve nai - loading
+	promise resolve - data
+	error - error screen
+===============================
+endpoint
+https://jsonplaceholder.typicode.com/posts?_limit=10&_page=$%7Bpage%7D 
+===============================
+Add a loader for API response using Suspense + fetch + wrapPromise pattern.
+Build an infinite scroll feed with Suspense and cache.
+Show skeleton loaders while a component is lazily loaded.
+Implement error boundaries with Suspense.
 
 
 
