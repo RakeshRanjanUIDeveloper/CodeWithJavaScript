@@ -22,11 +22,7 @@ import UserListWithoutUseMemo from './Hooks/useMemo/UserListWithoutUseMemo';
 import TodoLists from './Hooks/useCallback/TodoLists';
 import CartDetails from './components/PromiseAll/CartDetails';
 import Joke from './components/Joke/Joke';
-<<<<<<< HEAD
-import ColorManager from './components/ColorManager/ColorManager';
-=======
 import ColorGame from './components/ColorGame/ColorGame';
->>>>>>> ae249cadc212200467572ef66fe1a57f885d8ec4
 
 function App() {
   return (
@@ -39,8 +35,7 @@ function App() {
         <TempCalculator />
         <Accordion />
          <UserPosts />
-         <Chips />
-         
+         <Chips />  
          <UseState />
          <UseEffect />
          <DarkModeToggle />
@@ -54,17 +49,9 @@ function App() {
          <UserList />
          <UserListWithoutUseMemo />
          <TodoLists />
-<<<<<<< HEAD
-         
          <CartDetails />
-           <Joke />*/}
-           <ColorManager />
-       
-=======
-         <CartDetails />
-         <Joke />*/}
+         <Joke /> */}
          <ColorGame />
->>>>>>> ae249cadc212200467572ef66fe1a57f885d8ec4
     </React.Fragment>
   )
 }
