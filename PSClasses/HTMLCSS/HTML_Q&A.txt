@@ -69,4 +69,60 @@ Will a webpage still work without using semantic tags? What are the implications
 - However, not using semantic tags has important implications, especially for accessibility and SEO (Search Engine Optimization).
 - Using just <div> and <span> can build any layout or content structure, but they don’t communicate meaning. 
   Semantic tags add context which is vital for: Screen Readers
+==================================================================================================================
+Can a <section> tag be placed inside a <div>? What are best practices?
+- Yes, a <section> tag can absolutely be placed inside a <div> — and it is valid HTML.
+- A <div> is a non-semantic container used purely for layout or grouping.
+- A <section> is a semantic element used to define a thematic grouping of content.
+- Use <section> for meaningful groupings of related content with a heading
+- Each <section> should ideally have a heading (<h1>–<h6>).
+- Prefer <div> for styling/layout only
+===================================================================================================================
+Can you apply width in span tag, take one div and span tag- apply width in both
+- By default, the <span> tag is inline, and inline elements do not respect width, height, padding-top/bottom, or margin-top/bottom`.
+- <div> is a block element, and block elements do respect width.
+- The <span> will not obey the width unless you change its display to inline-block or block.
+=====================================================================================================================
+Which HTML tags are considered inline elements?
+- Inline elements:
+    - Do not start on a new line.
+    - Only take up as much width as necessary.
+    - Cannot set width, height, margin-top, or margin-bottom (unless display is changed)
+- Common Inline HTML Elements
+    - span, a, img, input, b, strong, i, label, select, textarea, code, time.
+- Inline elements can be nested inside block elements.
+- but block elements should not be placed inside inline elements.
+- We can style inline elements using display: inline-block or display: block if we need to apply width/height.
+=======================================================================================================================
+What techniques or tags are used to improve accessibility in HTML?
+- Accessibility (a11y) in HTML ensures your web content is usable by everyone, including people using screen readers,
+  keyboard navigation, or assistive technologies.
+- List of techniques and tags used to improve accessibility:
+    - Use semantic elements so assistive technologies can understand page structure.
+    - ARIA attributes help where semantic HTML falls short.
+    - Always provide a meaningful alt attribute on <img>.
+    - Proper Labeling for Forms
+    - Keyboard Navigation -Use native HTML buttons and links instead of clickable <div> or <span>.
+    - Maintain a logical and hierarchical structure of headings (<h1>, <h2>, …). Avoid skipping levels (e.g., <h1> followed by <h4>).
+    - Ensure sufficient contrast between text and background (at least 4.5:1 for normal text).
+    - Assistive tech can navigate quickly using regions: haeder, footer, main, nav
+=========================================================================================================================
+How do you disable an HTML element using CSS or HTML attributes?
+ - Using HTML disabled attribute (preferred for form elements) Eg: <input type="text" disabled />
+ - Using CSS to mimic disabling (not real disable) : CSS alone cannot truly disable an element but you can simulate it visually and behaviorally:
+ - <button class="disabled-btn">Click Me</button>
+ - .disabled-btn {
+  pointer-events: none; /* disables clicks */
+  opacity: 0.5;         /* makes it look disabled */
+  cursor: not-allowed;  /* changes the mouse cursor */
+}
+ - Disable via JavaScript (dynamic control) - document.getElementById('myInput').disabled = true;
+ - We cannot disable non-form elements (like <div>, <span>, <p>) using the disabled attribute.But we can block interaction
+   using CSS:
+   .blocked {
+  pointer-events: none;
+  user-select: none;
+}
+==========================================================================================================================
+
 

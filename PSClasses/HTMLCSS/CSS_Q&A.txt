@@ -1,0 +1,43 @@
+What is CSS (Cascading Style Sheets) and what is it used for?
+ - CSS is a style sheet language used to describe the presentation (look and feel) of HTML elements on a web page.
+ - It allows US to control layout, colors, fonts, spacing, and responsive behavior—separately from OUR HTML structure.
+ - CSS uses a cascade algorithm to determine which styles apply when there are conflicts.
+ - It prioritizes based on:
+   - Importance (!important)
+   - Specificity (ID > Class > Tag)
+   - Source order (later rules override earlier ones)
+ - Why CSS is Important
+    - Keeps structure (HTML) and style (CSS) separate (inline, Internal, External)
+    - Makes code reusable and scalable
+    - Enables responsive design for different screens
+    - Enhances user experience (UX)
+========================================================================================================================
+What is the difference between visibility: hidden and display: none in CSS?
+ - visibility: hidden and display: none are both CSS properties used to hide elements
+ - display: none	
+    - Element is completely removed from the layout flow.
+    - It doesn’t occupy space.
+    - Behaves like the element is not in the DOM visually.
+ - visibility: hidden
+    - Element is hidden from view, but still occupies space in the layout.
+    - Acts like transparent/ghost content. 
+========================================================================================================================
+What is the Box Model in CSS? How do padding, margin, border, and content work together?
+ - Box Model consists of: content, padding, borders and margins.
+ - * {
+  box-sizing: border-box;
+}
+========================================================================================================================
+What are the different position values in CSS? What is the default position?
+ - position property determines how an element is positioned in the document flow and 
+   how it behaves with respect to its parent or surrounding elements.
+ - static - (Default). Element is positioned according to normal document flow.
+ - relative	- Positioned relative to its normal position. Still takes up space in the flow.
+ - absolute	- Positioned relative to the nearest positioned ancestor (i.e., the nearest relative, absolute, or fixed parent). Removed from normal flow.
+ - fixed	- Positioned relative to the viewport. Doesn't move when the page scrolls.
+ - sticky	- Switches between relative and fixed depending on scroll position.
+========================================================================================================================
+Difference between border-box and content-box
+- The box-sizing property defines how the total width and height of an element is calculated.
+- box-sizing: content-box => Width = content only. Padding and border added outside.
+- box-sizing: border-box; => Width includes content + padding + border.
