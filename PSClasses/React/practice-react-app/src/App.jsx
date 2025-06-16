@@ -1,7 +1,9 @@
 
 import './App.css'
 import Accordion from './components/Accordion/Accordion'
+import AgeCalculator from './components/AgeCalculator/AgeCalculator'
 import Authentication from './components/Authentication/Authentication'
+import BlogPosts from './components/BlogPost/BlogPosts'
 import Counter from './components/Counter/Counter'
 import EvenOrOddChecker from './components/EvenOrOddChecker/EvenOrOddChecker'
 import GuessTheNumber from './components/GuessTheNumber/GuessTheNumber'
@@ -25,8 +27,10 @@ function App() {
       <EvenOrOddChecker /> 
       <ProgressBar />
       <Tooltip />
-      <TogglePassword />*/}
+      <TogglePassword />
         <RecipeExplorer />
+        <AgeCalculator />*/}
+        <BlogPosts />
     </>
   )
 }

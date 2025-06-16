@@ -1,0 +1,32 @@
+/* BlogPost.css */
+.blog-card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.blog-card {
+  border: 1px solid #050505;
+  background: #f7f7f7;
+  padding: 20px 10px;
+  line-height: 1.2;
+  font-family: Graphik, sans-serif;
+}
+
+.blog-card h3 {
+  font-weight: 600;
+  font-size: 1.3rem;
+  text-align: left;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.blog-card .tags {
+  color: blue;
+  margin-bottom: 20px;
+}
+
+.blog-card .reactions {
+  font-size: 0.95rem;
+  color: #333;
+}
