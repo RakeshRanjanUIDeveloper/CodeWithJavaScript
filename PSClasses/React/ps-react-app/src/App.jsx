@@ -24,6 +24,7 @@ import CartDetails from './components/PromiseAll/CartDetails';
 import Joke from './components/Joke/Joke';
 import ColorGame from './components/ColorGame/ColorGame';
 import SuspenseLazyFallback from './components/SuspenseLazyFallback/SuspenseLazyFallback';
+import ErrorBoundaryWithSuspense from './components/ErrorBoundaryWithSuspense/ErrorBoundaryWithSuspense';
 
 function App() {
   return (
@@ -52,8 +53,9 @@ function App() {
          <TodoLists />
          <CartDetails />
          <Joke /> 
-         <ColorGame />*/}
-         <SuspenseLazyFallback />
+         <ColorGame />
+         <SuspenseLazyFallback />*/}
+         <ErrorBoundaryWithSuspense />
     </React.Fragment>
   )
 }
