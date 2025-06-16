@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const obj = {
+            a:10,
+            arrow : () =>{
+                console.log(this.a); // undefined
+            },
+            regular: function(){
+                console.log(this.a); //a 
+            }
+        }
+        obj.arrow() 
+        // Arrow functions do not have their own this. they inherit this from their enclosing lexical scope — 
+        // in this case, the global scope, where this refers to the window object (in browsers).
+        // Since window.a is not defined (unless you explicitly define it), this.a is undefined.
+        obj.regular() 
+        // Regular functions do have their own this, which is determined by how the function is called.
+        //In this case, it's called as obj.regular(), so this refers to obj.
+        //obj.a is 10, so this.a is 10.
+
+
+
+
+        console.log(null == undefined);  
+        // true 
+        // Because == treats null and undefined as equal by a special rule in JavaScript's equality algorithm.
+        console.log(null === undefined); 
+        // false
+        // Because === checks both value and type, and null and undefined have different types.
+        // null is "object", undefined is "undefined"
+        console.log([] == ![]);  
+        //true
+        //[] is a truthy value, but in a loose equality (==) comparison with false, 
+        // JavaScript coerces [] to a primitive, which becomes an empty string "", 
+        // and then "" is coerced to 0, just like false becomes 0, so 0 == 0 → true.
+    </script>
+</body>
+</html>

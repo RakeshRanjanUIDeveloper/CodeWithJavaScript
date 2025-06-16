@@ -2,14 +2,12 @@ const obj = {
 
   a: 10,
 
-  arrow: () => console.log(this.a),// undefined
-
+  arrow: () => console.log(this.a)
   regular() {
 
     console.log(this.a); //10
 
   }
-
 };
 ==========================
 const a = {};
