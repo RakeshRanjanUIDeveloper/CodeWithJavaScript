@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const Square = ({value}) => {
+const Square = ({value, onSquareClick}) => {
   return (
     <React.Fragment>
         <button style={{
@@ -9,7 +9,7 @@ const Square = ({value}) => {
         fontSize: '24px',
         margin: '5px',
         cursor: 'pointer'
-      }} className='square'>{value}</button>
+      }} className='square' onClick={onSquareClick}>{value}</button>
     </React.Fragment>
   )
 }

@@ -47,15 +47,16 @@ function App() {
          <UncontrolledForm />
          <ExampleUseRef />
          <MyTodo />
-         <TicTacToe />
+         
          <UserList />
          <UserListWithoutUseMemo />
          <TodoLists />
          <CartDetails />
          <Joke /> 
          <ColorGame />
-         <SuspenseLazyFallback />*/}
-         <ErrorBoundaryWithSuspense />
+         <SuspenseLazyFallback />
+         <ErrorBoundaryWithSuspense />*/}
+         <TicTacToe />
     </React.Fragment>
   )
 }
