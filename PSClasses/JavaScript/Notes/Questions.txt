@@ -1,14 +1,4 @@
-const obj = {
 
-  a: 10,
-
-  arrow: () => console.log(this.a)
-  regular() {
-
-    console.log(this.a); //10
-
-  }
-};
 ==========================
 const a = {};
 const b = { key: 'b' };
@@ -19,45 +9,6 @@ a[c] = 456;
  
 console.log(a[b]); // 456
 ==========================
-console.log(null == undefined);  // ? true
-console.log(null === undefined); // ? false
-console.log([] == ![]);          // ? true
-=============================
-console.log('1');
- 
-setTimeout(() => {
-  console.log('2 - setTimeout');
-}, 0);
- 
-Promise.resolve().then(() => {
-  console.log('3 - promise');
-});
- 
-process.nextTick(() => {
-  console.log('4 - nextTick');
-});
- 
-setImmediate(() => {
-  console.log('5 - setImmediate');
-});
- 
-queueMicrotask(() => {
-  console.log('6 - queueMicrotask');
-});
- 
-console.log('7');
-================================
-
-==========
-sysnchronous
-MicroTask
-   - nextTick
-   - Ptomise
-    - QueueMicrosTask
-setTImeout -
-- setImmediate 
-
-
  function Counter() {
 
   const [count, setCount] = React.useState(0);

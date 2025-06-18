@@ -1,0 +1,90 @@
+Redux is a predictable state container for JavaScript apps.
+Redux stores the state of the application.
+In redux, a pattern is enforced to ensure all state transition are explicit and can be tracked.
+======================
+Why Redux ?
+To Manage global state of application in a predictable way.
+THe patterns and tools provided by Redux make it easier to understand why, where and how the state in application is being updated and how application logic will behave when those changes occur.
+=========================
+What is Redux Toolkit ?
+It is official, opinionated, batteries-included toolset for efficient redux development.
+It is also intended to be the standard way to write Redux logic in application.
+===========================================
+Why Redux Toolkit?
+configuring redux in app is complicated.
+in addition to redux, other packages have to installed to do something useful
+Redux requires too much boilerplate code.
+-----------------
+Redux toolkit serves as an abstraction over redux. it hides the difficult parts ensuring good developer experience.
+==============================================
+React-Redux is the official Redux UI binding library for React.
+============================================================
+npm init --yes
+npm install redux
+===========================================================
+ Store - Holds the state of the application
+ Action - Descri  bes what happened in the application
+ Reducer - Handles the action and decides how to update the state.
+	   Ties the store and actions together
+=============================================================
+3 Principles
+------------------------------------------------------------
+1st Principle -
+The global state of application is stored as an object inside a single store.
+Maintain application state in a single object which would be managed by Redux store.
+Lets assume we are tracking the number of cakes on the shelf.
+{
+ numberOfCakes: 10
+}
+------------------------------------------------------------
+2nd Principle - 
+The only way to change the state is to dispatch an action, an object that describes what happened.
+To update the state of the app, we need to let Redux know about that with an action.
+Not allowed to directly update the state object.
+CakeShop Example
+Scan the QR code and place an order - CAKE_ORDERED
+{
+type:"CAKE_ORDERED"
+}
+---------------------------------------------------------------
+3rd Principle - 
+To specify how the state tree is updated based on actions, we write pure reducers.
+Reducer - (previousState, action) => newState
+CakeShop Example
+Reducer is the Shopkeeper
+const reducer = (state = initialState, action) => {
+switch(action.type){
+case CAKE_ORDERED:
+return {
+numberOfCakes : state.numberOfCakes -1 
+}
+}}
+================================================================
+ Actions
+- The only way our application can interact with the store.
+- Carry some information from app to redux store.
+- Have a 'type' property that describes something that happened in the application
+- The 'type' property is typically defined as string constants
+- Action is an object with a 'type' property.
+- Action creator is a function that return an object
+const CAKE_ORDERED = 'CAKE_ORDERED';
+function orderCake() {
+    return {
+        type: CAKE_ORDERED,
+        quantity: 1
+    }
+}
+=======================================================================
+Reducers 
+- A function that accepts state and action as argument and return the next state of the application
+- Specify how the app's state changes in response to actions sent to the store.
+==================================================================================
+Store
+- One store for the entire application.
+- Responsibilities -
+ - Holds application state
+ - Allow access to state via getState()
+ - Allow state to be updated via dispatch(action)
+ - Registers listeners via subscribe(listner)
+ - Handles unregistering of listebers via the function returned by subscriber(listener)
+ 
