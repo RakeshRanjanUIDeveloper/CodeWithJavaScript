@@ -60,3 +60,31 @@ numberOfCakes : state.numberOfCakes -1
 }
 }}
 ================================================================
+ Actions
+- The only way our application can interact with the store.
+- Carry some information from app to redux store.
+- Have a 'type' property that describes something that happened in the application
+- The 'type' property is typically defined as string constants
+- Action is an object with a 'type' property.
+- Action creator is a function that return an object
+const CAKE_ORDERED = 'CAKE_ORDERED';
+function orderCake() {
+    return {
+        type: CAKE_ORDERED,
+        quantity: 1
+    }
+}
+=======================================================================
+Reducers 
+- A function that accepts state and action as argument and return the next state of the application
+- Specify how the app's state changes in response to actions sent to the store.
+==================================================================================
+Store
+- One store for the entire application.
+- Responsibilities -
+ - Holds application state
+ - Allow access to state via getState()
+ - Allow state to be updated via dispatch(action)
+ - Registers listeners via subscribe(listner)
+ - Handles unregistering of listebers via the function returned by subscriber(listener)
+ 
