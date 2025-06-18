@@ -8,6 +8,7 @@ import Counter from './components/Counter/Counter'
 import EvenOrOddChecker from './components/EvenOrOddChecker/EvenOrOddChecker'
 import GuessTheNumber from './components/GuessTheNumber/GuessTheNumber'
 import InputFocus from './components/InputFocus/InputFocus'
+import Pagination from './components/Pagination/Pagination'
 import ProgressBar from './components/ProgressBar/ProgressBar'
 import RecipeExplorer from './components/RecipeExplorer/RecipeExplorer'
 import TodoList from './components/TodoApp/TodoList'
@@ -29,8 +30,9 @@ function App() {
       <Tooltip />
       <TogglePassword />
         <RecipeExplorer />
-        <AgeCalculator />*/}
-        <BlogPosts />
+        <AgeCalculator />
+        <BlogPosts />*/}
+        <Pagination />
     </>
   )
 }
