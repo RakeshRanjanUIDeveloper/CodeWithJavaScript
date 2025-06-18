@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        console.log('1');
+        setTimeout(() => {
+            console.log('2 - setTimeout');
+        }, 0);
+        Promise.resolve().then(() => {
+            console.log('3 - promise');
+        });
+        process.nextTick(() => {
+            console.log('4 - nextTick');
+        });
+        setImmediate(() => {
+            console.log('5 - setImmediate');
+        });
+        queueMicrotask(() => {
+            console.log('6 - queueMicrotask');
+        });
+        console.log('7');
+        // 1, 7, 4, 6, 3, 2, 5
+
+        // synchronous code (1,7)
+        // process nextTick (4 nodejs)
+        // Microtask (6)
+        // Promise (3)
+        // setTimeout (2)
+        // setImmediate (5)
+synchronous
+MicroTask
+   - nextTick
+   - QueueMicrosTask
+   - Promise
+setTImeout 
+setImmediate 
+    </script>
+</body>
+
+</html>
