@@ -15,6 +15,7 @@ import TogglePassword from './components/TogglePassword/TogglePassword'
 import Tooltip from './components/Tooltip/Tooltip'
 import PasswordStrength from './components/PasswordStrength/PasswordStrength'
 import Pagination from './components/Pagination/Pagination'
+import PostList from './hooks/CustomHook/PostList'
 
 
 function App() {
@@ -34,8 +35,9 @@ function App() {
         <AgeCalculator />
         <BlogPosts />
         <PasswordStrength />
-        */}
-        <Pagination />
+        
+        <Pagination />*/}
+        <PostList />
     </>
   )
 }
