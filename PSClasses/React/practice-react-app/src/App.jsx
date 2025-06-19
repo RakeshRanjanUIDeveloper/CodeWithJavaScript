@@ -13,7 +13,7 @@ import RecipeExplorer from './components/RecipeExplorer/RecipeExplorer'
 import TodoList from './components/TodoApp/TodoList'
 import TogglePassword from './components/TogglePassword/TogglePassword'
 import Tooltip from './components/Tooltip/Tooltip'
-import PasswordStrength from './components/PasswordStrength'
+import PasswordStrength from './components/PasswordStrength/PasswordStrength'
 import Pagination from './components/Pagination/Pagination'
 
 
