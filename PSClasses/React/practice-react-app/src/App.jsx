@@ -16,6 +16,7 @@ import Tooltip from './components/Tooltip/Tooltip'
 import PasswordStrength from './components/PasswordStrength/PasswordStrength'
 import Pagination from './components/Pagination/Pagination'
 import PostList from './hooks/CustomHook/PostList'
+import CartsPagination from './components/CartsPagination/CartsPagination'
 
 
 function App() {
@@ -36,8 +37,9 @@ function App() {
         <BlogPosts />
         <PasswordStrength />
         
-        <Pagination />*/}
-        <PostList />
+        <Pagination />
+        <PostList />*/}
+        <CartsPagination />
     </>
   )
 }
