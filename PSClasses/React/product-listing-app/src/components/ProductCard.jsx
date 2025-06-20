@@ -2,10 +2,16 @@ import React, { useContext, useEffect } from "react";
 import "../Styles/Products.css";
 import ProductSearch from "./ProductSearch";
 import { ProductContext } from "./ProductContext";
+import ProductPagination from "./ProductPagination";
 
 const ProductCard = () => {
-  const { productList, handleSearch, filteredProducts, setFilteredProducts } =
+  const { productList, handleSearch, filteredProducts, setFilteredProducts, currentPage } =
     useContext(ProductContext);
+
+    const productsPerPage = 5;
+    const startIndex = (currentPage-1) * productsPerPage;
+    const endIndex = startIndex+productsPerPage;
+    const currentProducts = filteredProducts.slice(startIndex, endIndex)
 
   useEffect(() => {
     setFilteredProducts(productList);
@@ -13,10 +19,17 @@ const ProductCard = () => {
 
   return (
     <React.Fragment>
-      <ProductSearch onSearch={handleSearch} />
+      <div className="products-headers">
+          <div className="products-search">
+              <ProductSearch onSearch={handleSearch} />
+          </div>
+          <div className="products-pagination">
+              <ProductPagination />
+          </div>
+      </div>
       <div className="products">
-        {filteredProducts.length > 0 ? (
-          filteredProducts.map((p) => (
+        {currentProducts.length > 0 ? (
+          currentProducts.map((p) => (
             <div className="product" key={p.id}>
               <div className="product-image">
                 <img src={p.image} alt={p.title} />

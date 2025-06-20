@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Function.prototype.myCall = function(context={}, ...args){
+
+            // step 1 -  verifying that this refers to a function
+            if(typeof this !== 'function'){
+                throw new Error(this +" is not callable")
+            }
+            // step 2 - Assign the function (this) as a temporary property on the context object
+            context.fn=this;
+            
+            //step 3 -  invoke the function on the context object with the given arguments
+            context.fn(...args);
+            
+            // step 4 - removing the temporary function reference from the object
+            delete(context.fn)
+
+        }
+    const car = {
+      name: 'Toyota',
+      price: '1000000'
+    }
+    function purchaseCar(location){
+        console.log(`I have bought ${this.name} at ${this.price} in ${location}`);
+    }
+    purchaseCar.myCall(car, "Bangalore")
+    </script>
+</body>
+</html>

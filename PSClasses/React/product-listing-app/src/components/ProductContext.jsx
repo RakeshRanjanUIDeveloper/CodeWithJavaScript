@@ -12,6 +12,7 @@ export const ProductProvider = ({ children }) => {
   const [selectedCheckbox, setSelectedCheckbox] = useState([]);
   const [productList, setProductList] = useState([]);
   const [categoriesList, setCategoriesList] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1)
 
   const {
     data: productData,
@@ -46,6 +47,7 @@ export const ProductProvider = ({ children }) => {
       p.title.toLowerCase().includes(searchText)
     );
     setFilteredProducts(filteredProducts);
+    setCurrentPage(1)
   };
 
   const handleCategoryChange = (c) => {
@@ -87,6 +89,8 @@ export const ProductProvider = ({ children }) => {
         handleCategoryChange,
         selectedCheckbox,
         handlePriceChange,
+        currentPage,
+        setCurrentPage
       }}
     >
       {children}
