@@ -17,6 +17,7 @@ import PasswordStrength from './components/PasswordStrength/PasswordStrength'
 import Pagination from './components/Pagination/Pagination'
 import PostList from './hooks/CustomHook/PostList'
 import CartsPagination from './components/CartsPagination/CartsPagination'
+import Cars from './components/Cars/Cars'
 
 
 function App() {
@@ -38,8 +39,9 @@ function App() {
         <PasswordStrength />
         
         <Pagination />
-        <PostList />*/}
-        <CartsPagination />
+        <PostList />
+        <CartsPagination />*/}
+        <Cars />
     </>
   )
 }
