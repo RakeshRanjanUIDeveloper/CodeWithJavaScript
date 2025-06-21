@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>then() vs async/await</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      line-height: 1.6;
+    }
+    h2 {
+      color: #333;
+      margin-top: 30px;
+    }
+    code {
+      background-color: #f3f3f3;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+    pre {
+      background-color: #f9f9f9;
+      padding: 10px;
+      border-left: 4px solid #ccc;
+      overflow-x: auto;
+    }
+    button {
+      margin-top: 10px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Difference between <code>.then().catch()</code> and <code>async/await</code> in JavaScript</h1>
+
+  <h2>1. Syntax and Readability</h2>
+  <ul>
+    <li><strong>async/await:</strong> Easier to read and understand, especially in complex promise chains or nested logic.</li>
+    <li><strong>then():</strong> Uses chaining which can lead to callback hell.</li>
+  </ul>
+
+  <pre><code>// then()
+function fetchData() {
+  return new Promise(resolve => setTimeout(() => resolve("Data loaded"), 1000));
+}
+
+fetchData()
+  .then(data => {
+    console.log("Then:", data);
+    return "Step 1 complete";
+  })
+  .then(msg => console.log(msg));
+
+// async/await
+async function loadData() {
+  const data = await fetchData();
+  console.log("Async:", data);
+  const step = "Step 1 complete";
+  console.log(step);
+}
+loadData();
+</code></pre>
+
+  <h2>2. Error Handling</h2>
+  <ul>
+    <li><strong>async/await:</strong> Uses <code>try/catch</code>, which is cleaner and more readable.</li>
+    <li><strong>then():</strong> Requires <code>.catch()</code> at the end of the chain.</li>
+  </ul>
+
+  <pre><code>// then() with .catch()
+fetchData()
+  .then(() => {
+    throw new Error("Error in then");
+  })
+  .catch(err => console.error("Caught in .catch():", err.message));
+
+// async/await with try/catch
+async function handleError() {
+  try {
+    await fetchData();
+    throw new Error("Error in await");
+  } catch (err) {
+    console.error("Caught in try/catch:", err.message);
+  }
+}
+handleError();
+</code></pre>
+
+  <h2>3. Function Structure</h2>
+  <ul>
+    <li><strong>async/await:</strong> Must be used inside an <code>async</code> function.</li>
+    <li><strong>then():</strong> Can be used anywhere a promise is returned.</li>
+  </ul>
+
+  <pre><code>// then() can be used directly
+fetchData().then(res => console.log("Then result:", res));
+
+// async requires a function
+async function runAsync() {
+  const res = await fetchData();
+  console.log("Await result:", res);
+}
+runAsync();
+</code></pre>
+
+  <h2>4. Return Values and Scoping</h2>
+  <ul>
+    <li><strong>async/await:</strong> Treats promises like synchronous values within the function.</li>
+    <li><strong>then():</strong> Returns values down the chain to the next <code>.then()</code>.</li>
+  </ul>
+
+  <pre><code>// then() flow
+fetchData()
+  .then(res => {
+    console.log("Then:", res);
+    return "Next step";
+  })
+  .then(step => console.log(step));
+
+// async/await flow
+async function flowAsync() {
+  const res = await fetchData();
+  console.log("Await:", res);
+  const next = "Next step";
+  console.log(next);
+}
+flowAsync();
+</code></pre>
+
+</body>
+</html>

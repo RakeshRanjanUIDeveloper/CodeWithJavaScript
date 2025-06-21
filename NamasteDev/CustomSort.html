@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function customSort(arr) {
+            let stringArray = [];
+            let numberArray = [];
+            arr.forEach(element => {
+                if (typeof element === 'string' && element.length === 1) {
+                    stringArray.push(element)
+                }else if (typeof element === 'number') {
+                    numberArray.push(element)
+                } 
+            });
+            for (let i = 0; i < numberArray.length; i++) {
+                for (let j = i + 1; j < numberArray.length; j++) {
+                    if (numberArray[i] > numberArray[j]) {
+                        [numberArray[i], numberArray[j]] = [numberArray[j], numberArray[i]]
+                    }
+                }
+            }
+            for (let i = 0; i < stringArray.length; i++) {
+                for (let j = i + 1; j < stringArray.length; j++) {
+                    if (stringArray[i].localeCompare(stringArray[j]) > 0) {
+                        [stringArray[i], stringArray[j]] = [stringArray[j], stringArray[i]]
+                    }
+                }
+            }
+          return [...stringArray, ...numberArray]
+
+        }
+        const input = ["g", "s", 5, 2, "c", "e", 6, 1, "a"];
+        console.log(customSort(input))
+    </script>
+</body>
+
+</html>
