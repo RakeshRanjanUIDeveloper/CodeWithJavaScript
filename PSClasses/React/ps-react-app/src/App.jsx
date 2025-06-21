@@ -25,6 +25,10 @@ import Joke from './components/Joke/Joke';
 import ColorGame from './components/ColorGame/ColorGame';
 import SuspenseLazyFallback from './components/SuspenseLazyFallback/SuspenseLazyFallback';
 import ErrorBoundaryWithSuspense from './components/ErrorBoundaryWithSuspense/ErrorBoundaryWithSuspense';
+import Counter from './Hooks/UseReducer/Counter';
+import Todo from './Hooks/UseReducer/Todo';
+import MyTasks from './Hooks/UseReducer/MyTasks';
+
 
 function App() {
   return (
@@ -51,12 +55,17 @@ function App() {
          <UserList />
          <UserListWithoutUseMemo />
          <TodoLists />
-         <CartDetails />
+         
          <Joke /> 
          <ColorGame />
-         <SuspenseLazyFallback />
-         <ErrorBoundaryWithSuspense />*/}
+        
+         <ErrorBoundaryWithSuspense />
          <TicTacToe />
+          <SuspenseLazyFallback />
+          <CartDetails />*/}
+          <Counter />
+          <Todo />
+          <MyTasks />
     </React.Fragment>
   )
 }

@@ -15,8 +15,10 @@
             arr.forEach(element => {
                 if (typeof element === 'string' && element.length === 1) {
                     stringArray.push(element)
+
                 }else if (typeof element === 'number') {
                     numberArray.push(element)
+                    
                 } 
             });
             for (let i = 0; i < numberArray.length; i++) {
