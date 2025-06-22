@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            font-family: Graphik;
+            color: #000;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Object Basics Operations</h2>
+    <ul>
+        <li>Check if an Object is empty
+            <ul>
+                <li>Object.keys(obj) returns an array of the object</li>
+            </ul>
+        </li>
+        <li>Merge Two Objects
+            <ul>
+                <li>The spread syntax (...) copies all enumerable properties from obj1 and obj2 into a new object.</li>
+                <li>If both objects have the same key, the value from the second object (obj2) will overwrite the one from obj1.</li>
+            </ul>
+        </li>
+        <li>Clone an Object (shallow copy)
+            <ul>
+                <li>Only the top-level properties are copied.</li>
+                <li>Use shallow copy only when your object does not have nested objects </li>
+                <li>Using Spread Operator { ...obj }</li>
+                <li>Using Object.assign()</li>
+                <li>If we change a primitive value in the shallow copy, it does not affect the original object.</li>
+                <li>If we change a nested object or array, it does affect the original — because only the reference is copied.</li>
+            </ul>
+        </li>
+        <li>Deep Clone an Object (Deep Copy)
+            <ul>
+                <li>Using structuredClone()</li>
+                <li>Using JSON.parse(JSON.stringify(obj))</li>
+                <li>A deep copy creates a completely new and independent copy of every level of the object — including all nested objects and arrays.</li>
+                <li>If we change a nested object or array, it does not affect the original — because a completely new copy of the nested structure is created.</li>
+            </ul>
+        </li>
+        <li>Count Properties in an Object</li>
+        <li>Get Keys and Values as Separate Arrays</li>
+        <li>Check if an Object has a property - hasOwnProperty</li>
+        <li>Convert Object to Array of [Key, Value] pairs - entries</li>
+    </ul>
+    <script>
+        function isEmpty(obj) {
+            //Object.keys(obj) returns an array of the object
+            //console.log(Object.keys(obj))
+            return Object.keys(obj).length === 0
+        }
+        console.log(isEmpty({}));
+        console.log(isEmpty({ a: 1 }))
+    </script>
+    <script>
+        function mergeObject(obj1,obj2){
+            return {...obj1, ...obj2}
+        }
+        console.log(mergeObject({a:1, b:2},{x:'a', y:'b'}))
+    </script>
+    <script>
+        const originalObj = {a:1, b:2};
+        const shallowSpreadClone = {...originalObj};
+        console.log(shallowSpreadClone)
+        const shallowAssignClone = Object.assign(originalObj);
+        console.log(shallowAssignClone)
+        shallowSpreadClone.b=20
+        console.log(originalObj)
+    </script>
+    <script>
+        const originalObject = {a:1, b:{c:2}};
+        const deepCloneObject = structuredClone(originalObject);
+        console.log(deepCloneObject )
+        deepCloneObject.b.c=200;
+        console.log(originalObject)
+
+        const deepCloneObject2 = JSON.parse(JSON.stringify(originalObject));
+        console.log(deepCloneObject2)
+    </script>
+    <script>
+        function getObjectPropertyCount(obj){
+            return Object.keys(obj).length
+        }
+        console.log(getObjectPropertyCount({a:1,b:2,c:3}))
+    </script>
+    <script>
+        const person ={
+            name:'Rakesh',
+            age: 34,
+            location:'Bangalore'
+        }
+        const keys = Object.keys(person)
+        const values = Object.values(person)
+        console.log(keys, values)
+    </script>
+    <script>
+        function hasProperty(obj, key){
+            return obj.hasOwnProperty(key)
+        }
+        console.log(hasProperty({a:1,b:2}, 'a')); // true
+        console.log(hasProperty({a:1,b:2}, 'c')); // false
+    </script>
+    <script>
+        function objectToPairs(obj){
+            return Object.entries(obj)
+        }
+        console.log(objectToPairs({name:"Rakesh", age:34, location:'Bangalore'}))
+    </script>
+    <script>
+        function getAllMethods(obj){
+            return Object.keys(obj).filter((key) => typeof obj[key] === 'function')
+        }
+        console.log(getAllMethods({a:1, b:2, foo: () => console.log("first method"), soo:()=> console.log("second method")}))
+    </script>
+</body>
+
+</html>
