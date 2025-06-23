@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Largest And Smallest Number from an given Array</title>
+</head>
+<body>
+    <script>
+        function FormLargestAndSmallestNumber(arr){
+            const strArray = arr.map((num) => num.toString());
+            const largestNumber= [...strArray].sort((a,b) => (b+a).localeCompare(a+b)).join('')
+            const smallestNumber = [...strArray].sort((a,b) => (a+b).localeCompare(b+a)).join('')
+            return{
+                largestNumber :largestNumber,
+                smallestNumber:smallestNumber
+            }
+        }
+        console.log(FormLargestAndSmallestNumber([3,2,9,8,10,11]));
+    </script>
+</body>
+</html>
