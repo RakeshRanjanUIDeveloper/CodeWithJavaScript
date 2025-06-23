@@ -18,6 +18,7 @@ import Pagination from './components/Pagination/Pagination'
 import PostList from './hooks/CustomHook/PostList'
 import CartsPagination from './components/CartsPagination/CartsPagination'
 import Cars from './components/Cars/Cars'
+import TodoLists from './components/TodoLists/TodoLists'
 
 
 function App() {
@@ -40,8 +41,9 @@ function App() {
         
         <Pagination />
         <PostList />
-        <CartsPagination />*/}
-        <Cars />
+        <CartsPagination />
+        <Cars />*/}
+        <TodoLists />
     </>
   )
 }
