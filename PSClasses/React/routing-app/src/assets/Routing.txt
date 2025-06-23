@@ -1,0 +1,30 @@
+npm install react-router-dom
+ - TO install react routing package
+BrowserRouter
+ - It is a React component that enables routing using HTML5 History API
+ - It will used Only once, at the top of app (main.jsx). So all routes, links and navigation functions can work throughout the app
+ - It Tracks URL, syncs with Routes and Route components, and renders accordingly
+
+<Route path='*' element={<NotFound />} />
+ - The asterisk * acts as a catch-all.
+ - It matches any route that was not matched by the other <Route> definitions above it.
+
+ useSearchParams
+  - It is a React Router hook used to read and write URL query parameters
+  - searchParams.get() => ability to read query param
+  - setSearchParams() => ability to write query param
+  
+Link 
+ - It is a special component to navigate between routes in a React application without reloading the page.
+ - It is an alternative to using a regular HTML <a> tag.
+ - Loads the component without reloading the browser
+
+useNavigate
+ - It is a React Router hook that lets you programmatically change routes in our React app.
+ - Can go forward/back or replace history
+ - Use useNavigate() for logic-based, conditional redirection
+
+useParams
+ - essential React Router hook, especially for dynamic routes 
+ - It's used to access dynamic values passed in the route path, typically through a colon-prefixed variable in the route definition
+ - 
