@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function once(fn){
+            let called = false;
+            let result;
+            return function(...args){
+                if(!called){
+                   /*  result = fn(...args); */
+                    result = fn.apply(this, args); // preserve `this` context
+                    called = true
+                }
+                return result
+            }
+        }
+        function add(a,b){
+            return a+b
+        }
+        const onceAdd = once(add);
+        console.log(onceAdd(2,3)); // 5 - first time function executed
+        console.log(onceAdd(4,5)); // 5 - cached result
+        console.log(onceAdd(10,20)) // 5- cached result
+
+    </script>
+</body>
+</html>
