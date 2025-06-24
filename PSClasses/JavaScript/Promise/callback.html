@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callback</title>
+</head>
+<body>
+    <script>
+        //Write a function greetUser(name, callback)
+        // The function should greet the user and then call the callback.
+
+        function greetUser(name, callback){
+            console.log(`hello ${name}`)
+            callback()
+        }
+        greetUser("Rakesh", () =>{
+            console.log("I am the callback")
+        })
+
+
+        function fetchData(url, callback){
+            setTimeout(() =>{
+                console.log(`data is getting fetched from ${url}`)
+                callback()
+            }, 2000)
+            
+        }
+        fetchData('https://api.example.com', () =>{
+            console.log("Processing to fetch the data")
+        })
+
+
+        //Create a calculator using callbacks.
+        //The function takes two numbers and a callback (add, subtract, etc.).
+
+        function calculator(a,b,callback){
+            const result = callback(a,b);
+            console.log(result)
+        }
+        calculator(10,5, (a,b)=>{
+            return a+b
+        })
+        calculator(10,5, (a,b)=>{
+            return a-b
+        })
+
+        //Simulate an async API using setTimeout and callbacks.
+        // Example: getUser(id, callback) should return user info after 2 seconds.
+        function getUser(id,callback){
+            setTimeout(()=>{
+                const user ={
+                    id:id,
+                    name:'rakesh',
+                    email: "rakesh@example.com"
+                }
+                callback(user)
+            },2000)
+        }
+        getUser(1, (user) =>{
+            console.log("user data received", user)
+        })
+
+        //Write a function doTasksSequentially(callbacks) that accepts an array of functions (with callbacks) 
+        // and executes them one after the other.
+
+        function doTasksSequentially(arrayFunction, callback){
+            if(arrayFunction.length > 0){
+                for (let i = 0; i < arrayFunction.length; i++) {
+                    arrayFunction[i]()
+                }
+            }
+            callback()
+        }
+        function fn1(){
+            console.log("first")
+        }
+        function fn2(){
+            console.log("second")
+        }
+        doTasksSequentially([fn1, fn2], () =>{
+            console.log("I am the callback")
+        })
+    </script>
+</body>
+</html>

@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useSearchParams } from 'react-router-dom';
 const Home = () => {
      const [searchParams, setSearchParams] = useSearchParams();
+     
      const category = searchParams.get('category') || 'all';
 
     const products = [
