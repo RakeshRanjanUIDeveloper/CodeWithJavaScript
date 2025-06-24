@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function deepMergeImmutable(target, source) {
+            const result = Array.isArray(target) ? [...target] : { ...target };
+            for (const key in source) {
+                if (source.hasOwnProperty(key)) {
+                    const sourceValue = source[key];
+                    const targetValue = target[key];
+
+                    if (Array.isArray(sourceValue)) {
+                        result[key] = Array.isArray(targetValue)
+                            ? [...targetValue, ...sourceValue]
+                            : [...sourceValue];
+                    } else if (typeof sourceValue === 'object' && sourceValue !== null) {
+                        result[key] = deepMergeImmutable(targetValue || {}, sourceValue);
+                    } else {
+                        result[key] = sourceValue;
+                    }
+                }
+            }
+            return result;
+        }
+        const obj1 = { a: 1, b: { c: 2, d: 3 }, e: [4, 5] };
+        const obj2 = { b: { c: 10, f: 6 }, e: [7, 8], g: 9 };
+        const merged = deepMergeImmutable(obj1, obj2);
+        console.log(merged); // Correct merged result
+        console.log(obj1);   // Unchanged
+
+    </script>
+</body>
+
+</html>

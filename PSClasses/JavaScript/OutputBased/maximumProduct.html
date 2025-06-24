@@ -14,17 +14,30 @@
     <script>
         function maximumProduct(nums) {
             let result = 1;
-            const sortedNums = nums.sort((a, b) => b - a)
-            console.log(sortedNums);
+            let sortedNums = nums.sort((a, b) => b - a)
             let negativeCount = 0;
+            let negativeNumberArray = [];
+            let positiveNumberArray = [];
             for (let i = 0; i < sortedNums.length; i++) {
                 if (sortedNums[i] < 0) {
                     negativeCount++
-                    console.log(sortedNums[i]);
+                    negativeNumberArray.push(sortedNums[i])
+                    // console.log(sortedNums[i]);
+                } else {
+                    positiveNumberArray.push(sortedNums[i])
                 }
             }
-            console.log(negativeCount);
 
+            // console.log(negativeNumberArray);
+            // console.log(positiveNumberArray);
+            // console.log(negativeCount);
+            if (negativeCount % 2 === 0) {
+
+            } else {
+
+            }
+            sortedNums = [...negativeNumberArray, ...positiveNumberArray]
+            console.log(sortedNums);
             let finalLength = sortedNums.length - 1
             for (let i = 0; i < finalLength; i++) {
                 result = result * sortedNums[i]
@@ -33,6 +46,23 @@
         }
         console.log(maximumProduct([10, 20, 5, 2]));
         console.log(maximumProduct([-10, -10, 5, 2]));
+        console.log(maximumProduct([-1, -10, -5, 2]));
+
+
+        function maximumProducts(nums) {
+            const sorted = nums.sort((a, b) => a - b);
+            console.log(sorted)
+            const n = sorted.length;
+            // Product of 3 largest numbers
+            const product1 = sorted[n - 1] * sorted[n - 2] * sorted[n - 3];
+            // Product of 2 smallest (most negative) numbers and largest positive
+            const product2 = sorted[0] * sorted[1] * sorted[n - 1];
+
+            return Math.max(product1, product2);
+        }
+        console.log(maximumProducts([10, 20, 5, 2]));
+        console.log(maximumProducts([-10, -10, 5, 2]));
+        console.log(maximumProducts([-1, -10, -5, -2]));
     </script>
 </body>
 

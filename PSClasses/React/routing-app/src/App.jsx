@@ -4,7 +4,6 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import Home from './pages/Home'
 import Cart from './pages/Cart'
-import Checkout from './pages/Checkout'
 import Login from './pages/Login'
 import NotFound from './pages/NotFound'
 import ProtectedRoute from './routes/ProtectedRoute'
@@ -12,9 +11,9 @@ import ProtectedRoute from './routes/ProtectedRoute'
 import { Suspense, lazy } from 'react'
 const ProductDetails = lazy(() => import('./pages/ProductDetails'))
 const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
-// const Checkout = lazy(() => import('./pages/Checkout'));
-// const Orders = lazy(() => import('./pages/admin/Orders'));
-// const ManageProducts = lazy(() => import('./pages/admin/ManageProducts'));
+const Checkout = lazy(() => import('./pages/Checkout'));
+const Orders = lazy(() => import('./pages/admin/Orders'));
+const ManageProducts = lazy(() => import('./pages/admin/ManageProducts'));
 const App = () => {
   const isAdmin = true;
   return (
@@ -33,7 +32,8 @@ const App = () => {
               <AdminDashboard />
             </ProtectedRoute>
           } />
-
+          <Route path="orders" element={<Orders />} />
+          <Route path="products" element={<ManageProducts />} />
         </Routes>
       </Suspense>
 

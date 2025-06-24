@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Convert a callback-based function to return a Promise.
+        // Example: Convert getUser(id, callback) to getUser(id).then(...).
+
+        function getUser(id,callback){
+            setTimeout(() =>{
+                const user ={id, name:'Rakesh'}
+                callback(user)
+            }, 3000)
+        }
+        getUser(1, (user) =>{
+            console.log(user);
+        })
+
+
+        function getUserDetail(id){
+            return new Promise((resolve, reject) =>{
+                setTimeout(() =>{
+                    const user = {id, name:'Ranjan'}
+                    resolve(user)
+                },4000)
+            })
+        }
+        getUserDetail(1)
+            .then((res) =>{
+                console.log("User data:", res);
+            })
+            .catch((err) =>{
+                console.log(err);
+            })
+
+
+        //Promise Chaining
+        function userRegistration(id){
+            return new Promise((resolve, reject) =>{
+                setTimeout(() =>{
+                    const user ={id, name:'rakesh'}
+                    resolve(user)
+                }, 5000)
+            })
+        }
+        userRegistration(1)
+            .then(function validateUser(user){
+                console.log("user validated successfully", user.name);
+                return user
+            })
+            .then(function saveToDB(user){
+                console.log("users details saved to DB successfully", user.id);
+                return user
+            })
+            .then(function sendWelcomeEmail(user){
+                console.log("user welcome email has been sent", user);
+            })
+
+        //Create a getData() function that randomly either resolves with "Success" or rejects with "Error".
+        function getData(){
+            return new Promise((resolve, reject) =>{
+                const isSuccess = Math.random() > 0.5
+                if(isSuccess){
+                    resolve("Success")
+                }else{
+                    reject("Error")
+                }
+            })
+        }
+        getData()
+            .then((res)=>{
+                console.log(res);
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
+    </script>
+</body>
+</html>
