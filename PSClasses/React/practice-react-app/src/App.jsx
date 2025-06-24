@@ -19,6 +19,9 @@ import PostList from './hooks/CustomHook/PostList'
 import CartsPagination from './components/CartsPagination/CartsPagination'
 import Cars from './components/Cars/Cars'
 import TodoLists from './components/TodoLists/TodoLists'
+import ResizableLayout from './components/ResizableLayout/ResizableLayout'
+import Tabs from './components/Tabs/Tabs'
+import TabsData from './components/Tabs/TabsData'
 
 
 function App() {
@@ -42,8 +45,11 @@ function App() {
         <Pagination />
         <PostList />
         <CartsPagination />
-        <Cars />*/}
+        <Cars />
         <TodoLists />
+        <ResizableLayout />
+        */}
+        <TabsData />
     </>
   )
 }

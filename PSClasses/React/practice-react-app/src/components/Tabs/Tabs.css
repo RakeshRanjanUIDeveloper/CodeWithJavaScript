@@ -1,0 +1,13 @@
+.tabs-container {
+    display: flex;
+    gap: 10px;
+}
+.tab {
+    width: 33%;
+    text-align: center;
+
+}
+.tab-title {
+    border: 1px solid #bebebe;
+    cursor: pointer;
+}

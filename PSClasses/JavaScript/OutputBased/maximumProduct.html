@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>An array of numbers is given which can be integers from say -1000 to +1000.
+        I need to find out maximum product that can be taken out from 3 numbers in that array
+        - maximumProduct([10, 20, 5, 2]) maximumProduct([-10, -10, 5, 2])</h2>
+    <script>
+        function maximumProduct(nums) {
+            let result = 1;
+            const sortedNums = nums.sort((a, b) => b - a)
+            console.log(sortedNums);
+            let negativeCount = 0;
+            for (let i = 0; i < sortedNums.length; i++) {
+                if (sortedNums[i] < 0) {
+                    negativeCount++
+                    console.log(sortedNums[i]);
+                }
+            }
+            console.log(negativeCount);
+
+            let finalLength = sortedNums.length - 1
+            for (let i = 0; i < finalLength; i++) {
+                result = result * sortedNums[i]
+            }
+            return result
+        }
+        console.log(maximumProduct([10, 20, 5, 2]));
+        console.log(maximumProduct([-10, -10, 5, 2]));
+    </script>
+</body>
+
+</html>
