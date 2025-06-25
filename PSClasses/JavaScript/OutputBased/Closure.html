@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function outer() {
+            let a = 10;
+            function inner() {
+                console.log(a); //10
+            }
+            return inner
+        }
+        const fn = outer()
+        fn();
+
+        function counter() {
+            let count = 0;
+            return function () {
+                count++
+                console.log(count);
+            }
+        }
+        const inc = counter();
+        inc() //1 
+        inc() //2
+
+
+        function greet(name) {
+            return function () {
+                console.log("Hello " + name); // Hello John
+            }
+        }
+        const greetJohn = greet("John");
+        greetJohn()
+
+
+        for (var i = 0; i < 3; i++) {
+            setTimeout(() => {
+                console.log(i); // 3,3,3
+            }, 1000)
+        }
+
+        for (let i = 0; i < 3; i++) {
+            setTimeout(() => {
+                console.log(i); // 0, 1, 2
+            }, 1000)
+        }
+
+        for (var i = 0; i < 3; i++) {
+            (function (x) {
+                setTimeout(() => {
+                    console.log(x); //0,1,2
+                }, 1000);
+            })(i)
+        }
+
+        function outerFunc() {
+            let x = 5;
+            return {
+                increment: function () {
+                    x++;
+                    console.log(x);
+                },
+                decrement: function () {
+                    x--;
+                    console.log(x);
+                }
+            };
+        }
+
+        const result = outerFunc();
+        result.increment(); // ? //6
+        result.increment(); // ? //7
+        result.decrement(); // ?  //6
+        // the increment and decrement functions form closures over the same x variable, preserving its value across multiple calls.
+
+        function createFunctions() {
+            const result = [];
+            for (var i = 0; i < 3; i++) {
+                result.push(function () {
+                    return i;
+                });
+            }
+            return result;
+        }
+
+        const funcs = createFunctions();
+        console.log(funcs[0]()); // ? 3
+        console.log(funcs[1]()); // ?3
+        console.log(funcs[2]()); // ?3
+
+        //All three functions close over the same i, and since var is function-scoped, by the time they are executed, i has become 3.
+
+
+       // Declaration Inside Loop	Closure Behavior	Works as Expected
+      //  var	                    One shared i	                ❌
+      //  let                       inside for	New i per loop	     ✅
+      //  let                       outside for	Shared i again	    ❌
+    </script>
+</body>
+
+</html>
