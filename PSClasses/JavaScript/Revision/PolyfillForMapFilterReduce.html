@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //map(num,i,arr) =>{}
+        Array.prototype.myMap = function(cb){
+            let temp = [];
+            for (let i = 0; i < this.length; i++) {
+                temp.push(cb(this[i], i, this))
+            }
+            return temp
+        }
+        const nums = [1,2,3,4,5];
+        console.log(nums.myMap((num) => num*2))
+
+        //filter
+        Array.prototype.myFIlter = function(cb){
+            let temp =[];
+            for (let i = 0; i < this.length; i++) {
+                if(cb(this[i], i,this)){
+                    temp.push(this[i])
+                }
+            }
+            return temp
+        }
+        const digits =[1,2,3,4,5];
+        console.log(digits.filter((num) => num>2));
+
+        //Reduce
+        //arr.reduce((acc,curr, i, arr) => {}, initialValue)
+        Array.prototype.myReduce= function(cb, initialValue){
+            let accumulator = initialValue;
+            for (let i = 0; i < this.length; i++) {
+                accumulator = accumulator ? cb(accumulator, this[i], i, this) : this[i]
+            }
+            return accumulator
+        }
+         const numbers =[1,2,3,4,5];
+        console.log(numbers.myReduce((acc, curr) => acc+curr, 0));
+    </script>
+</body>
+</html>

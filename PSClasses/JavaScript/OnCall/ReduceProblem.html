@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const data = [
+            { imgSrc: "image1.jpg", imgDimensions: "100x100" },
+            { imgSrc: "image2.jpg", imgDimensions: "200x150" },
+            { imgSrc: "image3.jpg", imgDimensions: "300x250" }
+        ];
+
+
+        const { imgSrcs, imgDimensionss } = data.reduce((acc, curr) => {
+            acc.imgSrcs.push(curr.imgSrc)
+            acc.imgDimensionss.push(curr.imgDimensions)
+            return acc
+        }, { imgSrcs: [], imgDimensionss: [] })
+        console.log(imgSrcs)
+        console.log(imgDimensionss)
+
+
+        function add(a) {
+            const args = [a]
+            function inner(b) {
+                if (b === undefined) {
+                    return args.reduce((acc, curr) => {
+                        acc = acc + curr
+                        return acc
+                    }, 0)
+                }
+                args.push(b)
+                return inner
+            }
+            return inner
+        }
+
+
+        console.log(add(1)(2)(3)(4)(5)());
+    </script>
+</body>
+
+</html>
