@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const data = [
+            { name: 'Rakesh', designation: 'SE' },
+            { name: 'Ranjan', designation: 'SSE' },
+            { name: 'Misu', designation: 'TL' }
+        ]
+
+        const { names, designations } = data.reduce((acc, curr) => {
+            acc.names.push(curr.name);
+            acc.designations.push(curr.designation)
+            return acc
+        }, { names: [], designations: [] })
+        console.log(names);
+        console.log(designations);
+
+
+
+        function add(a) {
+            let args = [a];
+            function inner(b) {
+                if (b === undefined) {
+                    return args.reduce((acc, curr) => acc + curr, 0)
+                }
+                args.push(b)
+                return inner // It return the same inner function to allow chaining => To start the chain
+                
+            }
+            return inner // initial return: give us the chaining function => to continue the chain
+            
+        }
+        console.log(add(1)(2)(3)(4)(5)());
+    </script>
+</body>
+
+</html>

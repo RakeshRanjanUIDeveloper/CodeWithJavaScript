@@ -69,7 +69,7 @@ Object.entries(object) --> [10,24,34], [100,102,109]
  
  
 Q. Write a JS program to find count of each character in a string.
-Q. Given a string, find the shortest substring that contains no repeating characters. (not for now)
+Q. Given a string, find the shortest substring that contains no repeating characters. 
 Q. Given an array of strings, group the strings based on their starting character, and return a Map where each key is the starting character and the value is an array of strings that start with that character.
  
 Input: ["abc", "bca", "acb", "cab", "cba", "bac"]
