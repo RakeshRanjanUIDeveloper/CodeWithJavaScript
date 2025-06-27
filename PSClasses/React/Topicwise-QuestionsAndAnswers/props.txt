@@ -43,6 +43,9 @@ How do props help in component reusability?
 <Alert message="Error occurred" type="error" />
 <Alert message="Success!" type="success" />
 ==================================================================================
+What happens if a required prop is missing?
+ - React won’t break.
+ - but if you’re using PropTypes, a warning will be logged in the console during development.
 ==================================================================================
 ==================================================================================
 ==================================================================================

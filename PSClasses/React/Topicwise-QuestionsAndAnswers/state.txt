@@ -1,0 +1,53 @@
+What is state
+- State is a built-in object in React components used to store dynamic data that affects the rendering of components.
+- In functional components, it is managed using hooks like useState.
+==========================================================================================================================
+How do you declare state in a functional component?
+ - const [value, setValue] = useState(initialValue);
+==========================================================================================================================
+About State 
+- Maintained within the component
+- Mutable using hooks like useState
+- Can change and cause re-renders
+===========================================================================================================================
+Can you update state directly in React?
+- No. We must use the state update function (e.g., setCount) returned by useState. 
+- Updating it directly won’t trigger a re-render.
+=============================================================================================================================
+How can you update state based on the previous value?
+- setCount(prevCount => prevCount + 1);
+===========================================================================================================================
+What happens when you call the state update function?
+- React schedules a re-render of the component, and the new state value will be used in the next render.
+==============================================================================================================================
+Can we store an object or array in state?
+- Yes. But we must be careful to not mutate the original value directly.
+- const [user, setUser] = useState({ name: "Rakesh", age: 30 });
+- setUser({ ...user, age: 31 });
+==========================================================================================================================
+What is the difference between useState and useReducer?
+- useState: Best for simple state.
+- useReducer: Best for complex state logic (like managing multiple values or actions).
+==========================================================================================================================
+How to update nested objects or arrays in state?
+- Use spread operator or utility functions to avoid mutating state.
+- const [user, setUser] = useState({ name: "Rakesh", address: { city: "Delhi" } });
+- setUser(prev => ({
+  ...prev,
+  address: {
+    ...prev.address,
+    city: "Mumbai"
+  }
+}));
+==========================================================================================================================
+Why does updating state not reflect immediately?
+- State updates are asynchronous. 
+- React batches multiple state updates to optimize performance.
+==========================================================================================================================
+How to handle state updates in loops or async functions?
+- Use the function form of state updater.
+for (let i = 0; i < 5; i++) {
+  setCount(prev => prev + 1);
+}
+===========================================================================================================================
+

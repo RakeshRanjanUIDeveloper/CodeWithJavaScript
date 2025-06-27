@@ -1,0 +1,8 @@
+Asynchronous -
+setState does not update the state immediately.
+Instead, React schedules the update to happen later, during the next render cycle.
+When multiple setState calls happen in the same synchronous event , React batches them together and performs one render instead of multiple.
+React waits until all code in the event handlers has run before processing your state updates. 
+Batched Updates - 
+
+This improves performance by avoiding unnecessary renders.
