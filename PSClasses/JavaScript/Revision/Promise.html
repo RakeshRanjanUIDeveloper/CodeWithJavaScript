@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2> Challenge 1: Basic Promise Creation</h2>
+        <p>Write a function greetAfter1Second(name) that returns a promise which resolves with "Hello, <name>" after 1 second.</p>
+    <h2>Challenge 2: Promise Chain Calculator</h2>
+        <p>Chain .then() calls to do the following: Start with 2, Multiply by 3, Add 5, Log the result</p>
+    <h2>Challenge 3: Rejecting a Promise</h2>
+        <p>Write a promise that rejects if a number is less than 10, else resolves with "Accepted".Test with both 5 and 20.</p>
+    <script>
+        function greetAfter1Second(name){
+            return myPromise = new Promise((resolve, reject) =>{
+                setTimeout(()=>{
+                    resolve(`Hello ${name}`)
+                },1000)
+            })
+        }
+        greetAfter1Second("Rakesh")
+            .then((result) =>{
+                console.log(result)  
+            })
+            .catch((error) =>{
+                console.log(error)
+            })
+    </script>
+    <script>
+        function calculator(num){
+            return calculatePromise = new Promise((resolve, reject) =>{
+                let success = true;
+                if(success){
+                    resolve(num)
+                }else{
+                    reject()
+                }
+                
+            })
+        }
+        calculator(2)
+            .then((res) =>{
+                return res*3;
+            })
+            .then((res)=>{
+                return res+5;
+            })
+            .then((res)=>{
+                console.log("Result", res)
+            })
+            .catch((error) =>{
+                console.log(error)
+            })
+    </script>
+    <script>
+        function checkNumber(num){
+            return numberPromise = new Promise((resolve, reject) =>{
+                if(num<10){
+                    reject("Number Rejected: Less than 10");
+                }else{
+                    resolve("Number Accepted");
+                }
+            })
+        }
+        checkNumber(20)
+            .then((res) =>{
+                console.log(res)
+            })
+            .catch((err) =>{
+                console.log(err)
+            })
+        checkNumber(5)
+            .then((res) =>{
+                console.log(res)
+            })
+            .catch((err) =>{
+                console.log(err)
+            })
+    </script>
+</body>
+</html>
