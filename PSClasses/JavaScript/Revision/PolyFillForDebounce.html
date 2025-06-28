@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="search" />
+    <h2>Search value - <span id="searchValue"></span></h2>
+
+    <script>
+        const input = document.getElementById('search');
+        const display = document.getElementById('searchValue');
+
+        function makeAPICall(data) {
+            console.log("Fetching Data for", data);
+        }
+        const debouncedAPICall = myDebounce(makeAPICall, 500)
+        input.addEventListener('input', function (e) {
+            const value = e.target.value;
+            display.innerText = value;
+            debouncedAPICall(value);
+        });
+
+    function myDebounce(callback, delay){ // Creates a debounced version of the given callback function
+            let timeoutId; // Stores the ID of the active timer, if any
+            return function(...args){ //Returns a new function that captures arguments to call later
+                console.log(this) 
+                const context = this; // Captures the 'this' context of the caller (e.g., the input element)
+                clearTimeout(timeoutId) // Clears the previous timer to reset the debounce wait time
+                timeoutId = setTimeout(function(){ //Starts a new timer that delays the callback execution
+                        callback.apply(context,args) //Calls the original function with preserved 'this' and arguments
+                }, delay) //Delays execution by the specified time (2000 ms here)
+            }
+        }
+    </script>
+
+</body>
+
+</html>
