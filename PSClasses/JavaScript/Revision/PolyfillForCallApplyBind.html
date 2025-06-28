@@ -61,8 +61,8 @@
             }
 
             context.fn=this;
-            return function(...newArgs){
-                return context.fn(...args, ...newArgs)
+            return function(...newArgs){ // Return a new function that accepts remaining arguments later (like "IPL")
+                return context.fn(...args, ...newArgs) //Call the original function with the bound context and full list of arguments
             }
      }
      const cricket ={
