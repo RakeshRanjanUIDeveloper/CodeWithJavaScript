@@ -1,0 +1,98 @@
+1. Web Fundamentals -Start here to understand the foundation:
+
+How does the web work?
+What are the fundamentals of the web?
+What is the life cycle of a browser?
+Difference between HTTP 2 & HTTP 1.1
+
+2. HTML & Semantic Markup - Focus on structure, accessibility, and best practices:
+
+What is Semantic HTML?
+Where to use <nav>?
+Where to use <article>?
+Where to use <header> <footer>?
+Where to use <h1>, <h2>, <p>?
+Where to use <button> and what is its role?
+Which tag should be placed where?
+What is role?
+What is ARIA?
+What is semantics?
+What is keyboard navigation?
+When to use alt attribute?
+How to be SEO-friendly in HTML?
+
+3. HTML Forms - Forms are essential for interaction:
+
+What are the different states of a form?
+Do you understand validations in HTML forms?
+
+4. CSS Basics and Layouts
+Understand styling and layout behavior:
+What is the Box Model?
+What is Specificity?
+What is Grid Layout?
+Difference between Flexbox and Grid?
+
+5. JavaScript Essentials
+Core JS concepts and execution:
+Where to use JS?
+Should JS be used in <head> or not?
+Why and why not should JS be used?
+When to use defer?
+When to use async?
+What is var, let, and const?
+What is TDZ (Temporal Dead Zone)?
+What is Hoisting?
+What is Closure?
+How does the Event Loop work in JS?
+About Promises in JS
+
+6. Testing Fundamentals - Add confidence to your code:
+
+How is testing done?
+What frameworks are used for testing?
+Which is good or bad for testing?
+What types of tests are there?
+What is unit testing?
+What is integration testing?
+What is end-to-end testing?
+
+7. React Fundamentals - React’s structure and component behavior:
+
+Do you understand the lifecycle of React?
+How do hooks work?
+Can you write custom hooks?
+What is Reconciliation?
+What is memoization in React?
+How to keep rendering in React minimal?
+
+8. Performance Optimization -Make the app fast and efficient:
+
+What is performance in React?
+How does debouncing and throttling work?
+What is virtualization?
+How to show a long list and also make it scrollable?
+What is Lazy Loading?
+What is Code Splitting?
+Why is it necessary to split the code and how to do it?
+
+9. Error & Loading States - Handle app behavior properly:
+
+What is an Error Boundary?
+What are Error States?
+What are Loading States?
+
+10. Tooling & Debugging -Improve dev workflow and debugging:
+
+Do you know debugging?
+Do you know how to use Dev Tools?
+Do you know profiling?
+
+11. State Management & Tooling Opinion - Evaluate tools and make better architectural decisions:
+
+Why didn’t you use useContext?
+What do you feel — is Zustand better than Redux?
+What can be the alternatives to the tools you used?
+Do you know Bundling?
+Do you know Chunking?
+
