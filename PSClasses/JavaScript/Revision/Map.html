@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>A Map is a collection of key-value pairs where:</h2>
+    <ul>
+        <li>Keys can be of any type (objects, functions, primitives).</li>
+        <li>Insertion order is preserved</li>
+        <li>Map is iterable, while regular objects are not directly iterable.</li>
+    </ul>
+    <h2>Syntax - const myMap = new Map();</h2>
+    <h2>You can also initialize a map with values</h2>
+    <script>
+        const person = new Map();
+
+        person.set('name', 'Rakesh');
+        person.set('age', 34);
+        person.set('isDeveloper', true);
+
+        console.log(person.get('name'));
+        console.log(person.get('age'));
+
+        console.log(person.size)
+
+        person.forEach((key,value)=>{
+            console.log(`${key} -> ${value}`)
+        })
+
+        const user1 = {id:1};
+        const user2 = {id:2};
+
+        const userRoles = new Map();
+        userRoles.set(user1, 'Admin');
+        userRoles.set(user2, 'Editor');
+
+        console.log(userRoles.get(user1))
+    </script>
+</body>
+</html>

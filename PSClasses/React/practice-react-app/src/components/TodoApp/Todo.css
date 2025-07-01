@@ -36,28 +36,28 @@ input[type="text"]:focus {
   outline: none;
 }
 
-button {
-  margin-top: 1rem;
-  width: 100%;
-  padding: 0.75rem 0;
-  background-color: #4a90e2;
-  border: none;
-  border-radius: 8px;
-  color: white;
-  font-weight: 700;
-  font-size: 1.15rem;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(74, 144, 226, 0.4);
-  transition: background-color 0.25s ease, box-shadow 0.25s ease;
-  user-select: none;
-}
-
-button:hover,
-button:focus {
-  background-color: #357abd;
-  box-shadow: 0 6px 12px rgba(53, 122, 189, 0.6);
-  outline: none;
-}
+/* button { */
+  /* margin-top: 1rem; */
+  /* width: 100%; */
+  /* padding: 0.75rem 0; */
+  /* background-color: #4a90e2; */
+  /* border: none; */
+  /* border-radius: 8px; */
+  /* color: white; */
+  /* font-weight: 700; */
+  /* font-size: 1.15rem; */
+  /* cursor: pointer; */
+  /* box-shadow: 0 4px 8px rgba(74, 144, 226, 0.4); */
+  /* transition: background-color 0.25s ease, box-shadow 0.25s ease; */
+  /* user-select: none; */
+/* } */
+/*  */
+/* button:hover, */
+/* button:focus { */
+  /* background-color: #357abd; */
+  /* box-shadow: 0 6px 12px rgba(53, 122, 189, 0.6); */
+  /* outline: none; */
+/* } */
 
 button:active {
   background-color: #2c5ca7;

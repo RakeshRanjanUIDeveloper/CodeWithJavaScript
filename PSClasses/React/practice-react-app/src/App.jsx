@@ -1,4 +1,5 @@
 
+import React from 'react'
 import './App.css'
 import Accordion from './components/Accordion/Accordion'
 import AgeCalculator from './components/AgeCalculator/AgeCalculator'
@@ -26,11 +27,13 @@ import Navbar from './components/Navbar/Navbar'
 import NavbarApp from './components/Navbar/NavbarApp'
 import UserProfile from './components/UserProfile/userProfile'
 import Counters from './components/usePrevious/Counters'
+import ChipsInput from './components/ChipsInput/ChipsInput'
+import HolyGrail from './components/HolyGrail/HolyGrail'
 
 
 function App() {
   return (
-    <>
+    <React.Fragment>
       {/* <TodoList /> 
       <Accordion />
       <Counter />
@@ -53,11 +56,12 @@ function App() {
         <ResizableLayout />
         <TabsData /> 
          <NavbarApp />
-         <UserProfile />*/}
+         <UserProfile />
          <Counters />
-        
+        <ChipsInput />*/}
+        <HolyGrail />
 
-    </>
+    </React.Fragment>
   )
 }
 

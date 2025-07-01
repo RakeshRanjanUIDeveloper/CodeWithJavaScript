@@ -5,7 +5,7 @@ import About from './About'
 import Navbar from './Navbar'
 const NavbarApp = () => {
     return (
-        <>
+        <React.Fragment>
             <BrowserRouter>
                 <Navbar />
                 <div className='page-content'>
@@ -17,7 +17,7 @@ const NavbarApp = () => {
             </BrowserRouter>
 
 
-        </>
+        </React.Fragment>
     )
 }
 
