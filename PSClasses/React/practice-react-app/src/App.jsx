@@ -29,6 +29,8 @@ import UserProfile from './components/UserProfile/userProfile'
 import Counters from './components/usePrevious/Counters'
 import ChipsInput from './components/ChipsInput/ChipsInput'
 import HolyGrail from './components/HolyGrail/HolyGrail'
+import ZigzagString from './components/ZigzagString/ZigzagString'
+import ContactForm from './components/ContactForm/ContactForm'
 
 
 function App() {
@@ -58,8 +60,10 @@ function App() {
          <NavbarApp />
          <UserProfile />
          <Counters />
-        <ChipsInput />*/}
+        <ChipsInput />
         <HolyGrail />
+        <ZigzagString />*/}
+        <ContactForm />
 
     </React.Fragment>
   )
