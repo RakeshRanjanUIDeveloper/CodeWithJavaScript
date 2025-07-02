@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Create a Map and store employee names with their department.</h2>
+    <ul>
+        <li>Create a map employeeDept with employees as keys (objects) and departments as values. Then retrieve the department of a specific employee.</li>
+    </ul>
+    <h2>Count the frequency of each character in a string using Map</h2>
+    <script>
+
+        const employee1 ={name:'Rakesh'};
+        const employee2 ={name:'Sweta'}
+        const employeeDept = new Map();
+        employeeDept.set(employee1, "Engineering")
+        employeeDept.set(employee2, "Social")
+        console.log(employeeDept.get(employee1))
+        console.log(employeeDept.get(employee2))
+    </script>
+    <script>
+        const str ='Hello World';
+        const charMap = new Map();
+        for(const char of str){
+            if(charMap.has(char)){
+                charMap.set(char, charMap.get(char)+1);
+            }else{
+                charMap.set(char,1)
+            }
+        }
+        for(const [key,value] of charMap){
+            console.log(`${key} => ${value}`);
+        }
+        console.log(charMap);
+
+    </script>
+</body>
+</html>

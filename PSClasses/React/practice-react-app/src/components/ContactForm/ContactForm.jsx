@@ -40,7 +40,7 @@ const ContactForm = () => {
   return (
     <React.Fragment>
         {
-            submitted ? <h2>Thank You {submittedName}</h2> : (
+            submitted ? <h2>{`Thank You, ${submittedName}`}</h2> : (
                         <form onSubmit={handleSubmit}>
             <div>
                 <label htmlFor='name'>Name : </label>

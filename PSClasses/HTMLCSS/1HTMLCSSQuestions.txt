@@ -13,15 +13,14 @@ What is CSS (Cascading Style Sheets) and what is it used for? - done
 What is the difference between visibility: hidden and display: none in CSS? - done
 Difference between border-box and content-box - done
 What is the Box Model in CSS? How do padding, margin, border, and content work together? - done
-What are the different position values in CSS? What is the default position?
-What is the difference between CSS Grid and Flexbox? When should you use each?
-How do you create layouts using Flexbox and Grid? Explain fr units in Grid
-What is the calc() function in CSS, and how is it used?
-What are shadow elements in CSS? (e.g., box-shadow, text-shadow)
-How does the :nth-child() pseudo-class work in CSS?
-How to put background-color in first line of paragraph out of 4-5 lines paragraph
-Put background-color in second child of div
-How many ways you know to do center a div
+What are the different position values in CSS? What is the default position? - done
+What is the difference between CSS Grid and Flexbox? When should you use each? - done
+How do you create layouts using Flexbox and Grid? Explain fr units in Grid - done
+What is the calc() function in CSS, and how is it used? - done
+What are shadow elements in CSS? (e.g., box-shadow, text-shadow) - done
+How does the :nth-child() pseudo-class work in CSS? - done
+How to put background-color in first line of paragraph out of 4-5 lines paragraph - done
+How many ways you know to do center a div - done
 Create a basic web layout using html and css
 flex
 grid
