@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CSS Position Property Explained</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .box {
+      width: 150px;
+      height: 100px;
+      margin: 20px;
+      color: white;
+      padding: 10px;
+    }
+
+    .static-box {
+      position: static;
+      background-color: gray;
+    }
+
+    .relative-box {
+      position: relative;
+      background-color: orange;
+      top: 20px;
+      left: 20px;
+    }
+
+    .absolute-box {
+      position: absolute;
+      background-color: red;
+      top: 20px;
+      left: 200px;
+    }
+
+    .fixed-box {
+      position: fixed;
+      background-color: green;
+      top: 10px;
+      right: 10px;
+    }
+
+    .sticky-box {
+      position: sticky;
+      top: 0;
+      background-color: blue;
+    }
+
+    .container {
+      height: 600px;
+      padding: 20px;
+      position: relative; /* Required for absolute to reference this */
+    }
+  </style>
+</head>
+<body>
+
+  <h2>What are the different position values in CSS? What is the default position?</h2>
+
+  <ul>
+    <li><strong>position</strong> determines how an element is placed in the document and interacts with other elements.</li>
+    <li><strong>static</strong> (default): Element follows the normal document flow.</li>
+    <li><strong>relative</strong>: Positioned relative to its original position. Still takes up space in layout.</li>
+    <li><strong>absolute</strong>: Positioned relative to the nearest positioned ancestor. Removed from normal flow.</li>
+    <li><strong>fixed</strong>: Positioned relative to the viewport. Stays fixed on scroll.</li>
+    <li><strong>sticky</strong>: Behaves like relative until it reaches a scroll threshold, then becomes fixed.</li>
+  </ul>
+
+  <div class="container">
+    <div class="box static-box">Static</div>
+    <div class="box relative-box">Relative</div>
+    <div class="box absolute-box">Absolute</div>
+    <div class="box fixed-box">Fixed</div>
+    <div class="box sticky-box">Sticky (Scroll to see)</div>
+  </div>
+
+</body>
+</html>

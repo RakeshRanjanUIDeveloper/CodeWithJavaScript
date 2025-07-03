@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .horizontal-container{
+            display: flex;
+            justify-content: center; /* Center a box horizontally */
+            border: 1px solid black;
+            width: 100%;
+        }
+        .vertical-container{
+            display: flex;
+            align-items: center;
+            border: 1px solid red;
+            height: 300px;
+            width: 100%;
+        }
+        .horizontal-box, .vertical-box {
+            height: 200px;
+            width: 200px;
+            border: 2px solid red;
+        }
+        .hz-vt-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+            width: 100%;
+            border: 2px solid red;
+        }
+        .hz-vt-box{
+            height: 200px;
+            width: 200px;
+            border: 2px solid green;
+        }
+.navbar {
+    display: flex;
+    border: 2px solid red;
+    height: 50px;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-end;
+    background: lightcoral;
+}
+.nav-item {
+  padding: 0 12px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.nav-item:hover {
+  text-decoration: underline;
+}
+
+.vertical-sidebar-container{
+    display: flex;
+    height: 300px;
+    border: 1px solid black;
+    width: 80px;
+    flex-direction: column;
+    gap: 10px;
+    background: lightcoral;
+    padding-top: 10px;
+}
+.vertical-sidebar-item{
+  padding: 0 12px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+}
+.vertical-sidebar-item:hover {
+  text-decoration: none;
+  background-color: #fff3f3;
+}
+.boxes-container {
+    display: flex;
+    border: 1px solid red;
+    width: 100%;
+    justify-content: center;
+    gap: 10px;
+    flex-direction: row;
+}
+.box {
+    height: 50px;
+    border: 1px solid red;
+    flex: 1;
+}
+
+.flexbox-container{
+    display: flex;
+    width: 100%;
+    border: 2px solid black;
+    gap: 10px;
+}
+.flexbox{
+    flex: 1 1 calc(33.33% - 10px);
+    border: 2px solid green;
+    text-align: center;
+    background-color: lightgreen;
+}
+    </style>
+</head>
+
+<h2>
+    <h2>Center a box horizontally</h2>
+    <div class="horizontal-container">
+        <div class="horizontal-box">
+            <h2>horizontal-box</h2>
+        </div>
+    </div>
+
+    <h2>Center a box vertically</h2>
+    <div class="vertical-container">
+        <div class="vertical-box">
+            <h2>vertical-box</h2>
+        </div>
+    </div>
+
+    <h2>Center a box both horizontally and vertically</h2>
+    <div class="hz-vt-container">
+        <div class="hz-vt-box">
+            <h2>Center a box both horizontally and vertically</h2>
+        </div>
+    </div>
+
+    <h2>Create a horizontal navigation bar</h2>
+    <div class="navbar">
+        <div class="nav-item">Home</div>
+        <div class="nav-item">About</div>
+        <div class="nav-item">Contact</div>
+    </div>
+
+    <h2>Create a vertical sidebar</h2>
+    <div class="vertical-sidebar-container">
+        <div class="vertical-sidebar-item">Home</div>
+        <div class="vertical-sidebar-item">About</div>
+        <div class="vertical-sidebar-item">Service</div>
+    </div>
+
+    <h2>Make three boxes sit in a row</h2>
+    <div class="boxes-container">
+        <div class="box">1</div>
+        <div class="box">1</div>
+        <div class="box">1</div>
+    </div>
+
+    <h2>Create equal-width columns</h2>
+    <h2>Use flex-grow to fill remaining space</h2>
+    <h2>Use flex-shrink to control shrink behavior</h2>
+    <h2>Use flex-basis to set initial size of items</h2>
+    <div class="flexbox-container">
+        <div class="flexbox">One</div>
+        <div class="flexbox">Two</div>
+        <div class="flexbox">Three</div>
+    </div>
+</body>
+
+</html>

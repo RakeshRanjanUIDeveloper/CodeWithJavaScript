@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Grid vs Inline-Grid</title>
+  <style>
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      border: 2px solid blue;
+      margin-bottom: 20px;
+    }
+
+    .inline-grid-container {
+      display: inline-grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      border: 2px solid red;
+    }
+
+    .item {
+      background-color: lightgreen;
+      padding: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>display: grid (block-level)</h2>
+  <div class="grid-container">
+    <div class="item">1</div>
+    <div class="item">2</div>
+  </div>
+
+  <h2>display: inline-grid (inline-level)</h2>
+  <p>This is some text before the inline-grid 
+    <span class="inline-grid-container">
+      <span class="item">A</span>
+      <span class="item">B</span>
+    </span> and some text after it.
+  </p>
+
+</body>
+</html>

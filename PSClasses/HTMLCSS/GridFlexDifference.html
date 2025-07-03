@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Grid vs Flexbox</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+      margin: 20px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    ul {
+      margin-bottom: 30px;
+    }
+
+    .container {
+      display: flex;
+      gap: 40px;
+    }
+
+    .grid-box,
+    .flex-box {
+      border: 2px solid #ccc;
+      padding: 10px;
+      width: 45%;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .item {
+      background-color: #4CAF50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      flex: 1 1 30%;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>What is the difference between CSS Grid and Flexbox? When should you use each?</h2>
+  <ul>
+    <li><strong>Grid</strong> is used for <strong>2D layout</strong> (both rows and columns). Flexbox is used for <strong>1D layout</strong> (either row or column).</li>
+    <li><strong>Grid</strong> is great for building complex layouts. Flexbox is better for simple, linear UI elements.</li>
+    <li><strong>Grid</strong> allows overlapping content (using grid lines). Flexbox does not support overlap by default.</li>
+    <li><strong>Grid</strong> allows control of row and column separately. Flexbox aligns content in a single axis (row or column).</li>
+    <li><strong>Grid parent:</strong> `display: grid` / `inline-grid`. <strong>Flexbox parent:</strong> `display: flex` / `inline-flex`.</li>
+  </ul>
+
+  <div class="container">
+    <!-- Grid Example -->
+    <div class="grid-box">
+      <h3>Grid Layout (2D)</h3>
+      <div class="grid">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+      </div>
+    </div>
+
+    <!-- Flex Example -->
+    <div class="flex-box">
+      <h3>Flex Layout (1D)</h3>
+      <div class="flex">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
