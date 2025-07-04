@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function customAssign(target, ...sources) {
+            // Your implementation
+            if(target === null || target === undefined){
+                throw new TypeError("Cant not convert undefined or null to object");
+            }
+
+            const to = Object(target)
+
+            for(const source of sources){
+                if(source === null || source === undefined) continue;
+                for(const key in source){
+                    if(Object.prototype.hasOwnProperty.call(source, key)){
+                        to[key] = source[key];
+                    }
+                }
+            }
+            return to
+        }
+        customAssign({a:1}, {b:2}) // {a:1, b:2}
+        customAssign({a:1}, {a:2, b:3}) //{a:2, b:3}
+        customAssign({}, {a:undefined}, {b:numm}) //{a:undefined, b:null}
+        customAssign({}, null, {a:1}) // Throws TypeError
+    </script>
+</body>
+
+</html>
