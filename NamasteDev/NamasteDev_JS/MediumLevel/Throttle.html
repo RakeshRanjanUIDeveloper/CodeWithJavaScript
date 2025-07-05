@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function throttle (callback, delay){
+            let lastcall = 0;
+            return function(...args){
+                const now = Date.now();
+                if(now-lastcall >= delay){
+                    lastcall = now;
+                    callback.apply(this,args)
+                }
+            }
+        }
+        const throttledFn = throttle(() => console.log("Function called"), 400);
+        throttledFn();
+        throttledFn();
+        throttledFn();
+        throttledFn();
+        throttledFn();
+    </script>
+</body>
+</html>
