@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>What is the difference between Map and Filter. </h2>
+    <h3>Map</h3>
+    <ul>
+        <li>Used to transform each element in an array and return a new array with the same length.</li>
+        <li>Does not mutate the original array</li>
+    </ul>
+    <h3>FIlter</h3>
+    <ul>
+        <li>Used to filter/select elements based on a condition and return a new array with fewer or same number of
+            elements.</li>
+        <li>A new array with only elements that pass the condition.</li>
+        <li>Does not mutate the original array</li>
+    </ul>
+    <script>
+        const products = [
+            { id: 1, name: "Laptop", price: 50000 },
+            { id: 2, name: "Mouse", price: 800 },
+            { id: 3, name: "Keyboard", price: 1200 },
+            { id: 4, name: "Monitor", price: 15000 }
+        ];
+        const productsName = products.map((p) => p.name);
+        console.log(productsName);
+
+        const budgetProducts = products.filter((p) => p.price <= 1500);
+        console.log(budgetProducts);
+    </script>
+</body>
+
+</html>

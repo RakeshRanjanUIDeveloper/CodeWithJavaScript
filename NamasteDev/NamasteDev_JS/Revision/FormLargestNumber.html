@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function formLargestNumber (arr){
+            let stringArr = arr.map((num) => num.toString());
+            console.log(stringArr);
+             let sortedArray = stringArr.sort((a,b) => (b+a).localeCompare(a+b));
+             console.log(sortedArray);
+             let largestNumber = sortedArray.join('')
+            console.log(largestNumber);
+
+        }
+        const input = [3, 30, 34, 5, 9];
+        formLargestNumber(input);
+    </script>
+</body>
+</html>

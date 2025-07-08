@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Difference Between map() and forEach() in JavaScript</h2>
+    <h3>Both map() and forEach() are used to iterate over arrays</h3>
+    <h4>Map</h4>
+    <ul>
+        <li>It is used to transform each item in the array.</li>
+        <li>It returns A new array with transformed values.</li>
+        <li>It Can be chained with other methods like filter(), reduce(), etc.</li>
+        <li>It does not mutate the original Array</li>
+    </ul>
+    <h4>forEach</h4>
+    <ul>
+        <li>It is used to perform a side effect (like console logging, updating DOM, etc.) on each item.</li>
+        <li>It returns undefined</li>
+        <li>It cannot be chained — because it returns nothing.</li>
+        <li>It does not mutate the original Array</li>
+    </ul>
+    <p>Examples of forEach updating DOM</p>
+    <ul id="userLists"></ul>
+    <p>Product List Example</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody id="electronicsProductsLists">
+            
+        </tbody>
+    </table>
+    <script>
+        const electronicsProducts = [
+            { name: "Laptop", price: 50000 },
+            { name: "Mouse", price: 800 },
+            { name: "Keyboard", price: 1200 }
+        ];
+
+        const electronicsProductsLists = document.getElementById('electronicsProductsLists');
+        electronicsProducts.forEach((eProduct) =>{
+            const tableRow = document.createElement('tr');
+            const nameCell = document.createElement('td');
+            nameCell.textContent = eProduct.name;
+            const priceCell = document.createElement('td');
+            priceCell.textContent = eProduct.price;
+            tableRow.appendChild(nameCell);
+            tableRow.appendChild(priceCell);
+            electronicsProductsLists.appendChild(tableRow)
+        })
+    </script>
+    <script>
+        const users = ["Rakesh", "Ranjan", "Misu", "Kumar"];
+        const userLists = document.getElementById('userLists');
+        users.forEach((user) => {
+            const listItem = document.createElement('li');
+            listItem.textContent = user;
+            userLists.appendChild(listItem)
+        })
+    </script>
+    <script>
+        const products = [
+            { id: 1, name: "Laptop", price: 50000 },
+            { id: 2, name: "Mouse", price: 800 }
+        ];
+        products.forEach((p) => {
+            console.log(`${p.name} cost of ${p.price} rupees`);
+        })
+    </script>
+</body>
+
+</html>

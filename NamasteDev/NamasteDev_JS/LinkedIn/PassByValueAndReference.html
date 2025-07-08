@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>What is difference between Pass By Value and Pass By Reference ?</h1>
+        <h2>Pass by Value</h2>
+        <ul>
+            <li>When a variable is passed by value, a copy of the variable's value is passed to the function.</li>
+            <li>So, changes made inside the function do not affect the original value</li>
+            <li>Applies to: Primitive types - String, Number, Boolean, undefined, null, Symbol, BigInt</li>
+        </ul>
+        <h2>Pass by Reference</h2>
+        <ul>
+            <li>When a variable is passed by reference, the reference (memory address) is passed to the function</li>
+            <li>So, changes made inside the function affect the original object/array.</li>
+            <li>Applies to: Non-primitive types - Object, Array, Function</li>
+        </ul>
+    <script>
+        function updateValue(x){
+            x= x+10;
+            console.log(x);
+        }
+        let num = 10;
+        updateValue(num)
+        console.log(num);
+
+        function updatePerson(personObj){
+            personObj.age = 32;
+        }
+        const person = {name:'Rakesh', age: 30};
+        updatePerson(person);
+        console.log(person);
+    </script>
+</body>
+</html>

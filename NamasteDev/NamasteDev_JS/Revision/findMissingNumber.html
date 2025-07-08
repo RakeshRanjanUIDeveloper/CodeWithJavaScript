@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function findMissingNumber(arr) {
+            if (arr.length <= 1) {
+                console.log("No missing number because array is too short");
+                return;
+            }
+            const sortedArray = arr.sort((a, b) => a - b);
+            const minNumber = sortedArray[0];
+            const maxNumber = sortedArray[arr.length - 1];
+            const missing = [];
+            for (let i = minNumber; i <= maxNumber; i++) {
+                if (!sortedArray.includes(i)) {
+                    missing.push(i)
+                }
+            }
+            if(missing.length === 0){
+                console.log("No missing numbers");
+            } else if(missing.length === 1) {
+                console.log("Missing number is ", missing[0]);
+            } else {
+                console.log("Missing numbers are ", missing);
+            }
+        }
+        findMissingNumber([3, 0, 1]);
+        findMissingNumber([0, 1]);
+        findMissingNumber([9, 6, 4, 2, 3, 5, 7, 0, 1]);
+        findMissingNumber([0])
+        findMissingNumber([3, 0, 1, 6]);
+    </script>
+</body>
+
+</html>
