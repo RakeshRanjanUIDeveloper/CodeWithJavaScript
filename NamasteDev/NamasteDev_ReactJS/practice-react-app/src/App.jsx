@@ -31,6 +31,7 @@ import ChipsInput from './components/ChipsInput/ChipsInput'
 import HolyGrail from './components/HolyGrail/HolyGrail'
 import ZigzagString from './components/ZigzagString/ZigzagString'
 import ContactForm from './components/ContactForm/ContactForm'
+import KeyIssue from './components/KeyIssue/KeyIssue'
 
 
 function App() {
@@ -62,8 +63,9 @@ function App() {
          <Counters />
         <ChipsInput />
         <HolyGrail />
-        <ZigzagString />*/}
-        <ContactForm />
+        <ZigzagString />
+        <ContactForm />*/}
+        <KeyIssue />
 
     </React.Fragment>
   )
