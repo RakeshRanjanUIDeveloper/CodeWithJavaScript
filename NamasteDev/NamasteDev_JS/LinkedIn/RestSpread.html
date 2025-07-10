@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Rest Operator </h2>
+    <ul>
+        <li>Collects multiple elements into a single variable (array/object)</li>
+        <li>Used in function parameters or destructuring to gather values</li>
+    </ul>
+    <h2>Spread Operator </h2>
+    <ul>
+        <li>Spreads (expands) elements from an array or object into individual items</li>
+        <li>Used in function calls, array/object literals, or destructuring</li>
+    </ul>
+    <script>
+        function sum(...numbers){
+            return numbers.reduce((acc, curr) => acc+curr, 0)
+        }
+        console.log(sum(1,2,3));
+        const [first, ...rest] = [10,20,30,40,50];
+        console.log(first);
+        console.log(rest);
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Pure Function</h2>
+    <ul>
+        <li>A function that returns the same output for the same input and has no side effects.</li>
+        <li>More reusable and reliable.</li>
+    </ul>
+    <h2>Impure Function</h2>
+    <ul>
+        <li>A function that may return different outputs for the same input or has side effects.</li>
+        <li>Less reliable due to external dependencies.</li>
+    </ul>
+
+    <script>
+        //Pure Function
+        function add(x,y){
+            return x+y
+        }
+        console.log(add(2,3));
+        console.log(add(2,3));
+
+        //Imoure Function
+        let counter = 0;
+        function incrementCounter(){
+            counter++
+            return counter
+        }
+        console.log(incrementCounter());
+        console.log(incrementCounter());
+    </script>
+</body>
+</html>

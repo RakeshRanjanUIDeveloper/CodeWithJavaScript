@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ES6 Key Features</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        pre {
+            background: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #007acc;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🚀 ES6 (ECMAScript 2015) Key Features</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Feature</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>let / const</strong></td>
+                <td>Block-scoped variable declarations</td>
+                <td>
+                    <pre><code>let x = 10;
+const y = 20;</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Arrow Functions</strong></td>
+                <td>Short function syntax with lexical `this`</td>
+                <td>
+                    <pre><code>const greet = (name) => `Hello, ${name}`;</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Template Literals</strong></td>
+                <td>Multi-line and embedded expressions</td>
+                <td>
+                    <pre><code>const msg = `Hello
+World!`;</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Default Parameters</strong></td>
+                <td>Set default values for function parameters</td>
+                <td>
+                    <pre><code>function multiply(a, b = 2) {
+  return a * b;
+}</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Destructuring</strong></td>
+                <td>Extract values from objects/arrays</td>
+                <td>
+                    <pre><code>const { name, age } = { name: "Rakesh", age: 30 };</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Spread & Rest</strong></td>
+                <td>Expand or collect values</td>
+                <td>
+                    <pre><code>const arr = [1, 2, 3];
+const newArr = [...arr, 4];</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Enhanced Object Literals</strong></td>
+                <td>Simplified object properties and methods</td>
+                <td>
+                    <pre><code>const age = 25;
+const user = { name: "Rakesh", age };</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Promises</strong></td>
+                <td>Handle async operations</td>
+                <td>
+                    <pre><code>fetch(url).then(res => res.json());</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Classes</strong></td>
+                <td>Simplified syntax for OOP</td>
+                <td>
+                    <pre><code>class Person {
+  constructor(name) {
+    this.name = name;
+  }
+}</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Modules</strong></td>
+                <td>Use `import` / `export` to share code</td>
+                <td>
+                    <pre><code>// file.js
+export const msg = "Hello";
+
+// main.js
+import { msg } from './file.js';</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>for...of</strong></td>
+                <td>Iterate over iterable objects</td>
+                <td>
+                    <pre><code>for (let num of [1, 2, 3]) {
+  console.log(num);
+}</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Map & Set</strong></td>
+                <td>New data structures</td>
+                <td>
+                    <pre><code>const ids = new Set([1, 2, 2, 3]);</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Symbol</strong></td>
+                <td>Unique and immutable identifiers</td>
+                <td>
+                    <pre><code>const id = Symbol('id');</code></pre>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Generators</strong></td>
+                <td>Function that can pause with `yield`</td>
+                <td>
+                    <pre><code>function* gen() {
+  yield 1;
+  yield 2;
+}</code></pre>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
+</html>

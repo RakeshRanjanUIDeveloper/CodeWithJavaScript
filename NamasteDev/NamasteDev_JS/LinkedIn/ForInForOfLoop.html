@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>For...in</h2>
+    <ul>
+        <li>Iterates over enumerable properties (keys) of an object</li>
+        <li>Returns keys/indexes (as strings)</li>
+        <li>Best for objects</li>
+        <li>Objects, Arrays (not recommended for arrays)</li>
+    </ul>
+    <h2>for...of</h2>
+    <ul>
+        <li>Iterates over iterable values (like arrays, strings, maps)</li>
+        <li>Returns values directly</li>
+        <li>Best for arrays, strings, maps, etc.</li>
+        <li>Arrays, Strings, Sets, Maps, NodeLists, etc.</li>
+    </ul>
+    <script>
+        const person ={
+            name:'rakesh',
+            age: 32
+        }
+        for(let key in person){
+            console.log(key);
+            console.log(person[key]);
+        }
+
+
+        const colors = ['red', 'green', 'blue'];
+        for(let color of colors){
+            console.log(color);
+        }
+    </script>
+</body>
+</html>
