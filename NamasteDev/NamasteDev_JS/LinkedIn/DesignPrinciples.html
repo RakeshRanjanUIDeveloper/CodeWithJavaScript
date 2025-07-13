@@ -30,19 +30,27 @@
     </ul>
     <script>
         // function getAdminName(user) {
-            // return user.firstName + " " + user.lastName;
+        // return user.firstName + " " + user.lastName;
         // }
         // function getCustomerName(customer) {
-            // return customer.firstName + " " + customer.lastName;
+        // return customer.firstName + " " + customer.lastName;
         // }
         function getFullName() {
             return this.fname + " " + this.lname;
         }
-        const person ={
-            fname: "Rakesh", 
-            lname: "Ranjan" 
+        const person = {
+            fname: "Rakesh",
+            lname: "Ranjan"
         }
         console.log(getFullName.call(person))
+
+        // function isEven(num) {
+            // return num % 2 === 0 ? true : false;
+        // }
+        function isEven(num) {
+            return num % 2 === 0;
+        }
+        console.log(isEven(10))
     </script>
 </body>
 
