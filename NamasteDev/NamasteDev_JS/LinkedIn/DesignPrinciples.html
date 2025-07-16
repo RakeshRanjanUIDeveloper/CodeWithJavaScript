@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>DRY (Don't Repeat Yourself)</h2>
+    <ul>
+        <li>Avoid code duplication — logic should be written once and reused.</li>
+    </ul>
+    <h2>KISS (Keep It Simple, Stupid)</h2>
+    <ul>
+        <li>Write code as simple and clear as possible. Don’t over-engineer.</li>
+    </ul>
+    <h2>YAGNI (You Aren’t Gonna Need It)</h2>
+    <ul>
+        <li>Don’t add functionality until it is needed.</li>
+    </ul>
+    <h2>SOLID Principles - OOP design</h2>
+    <ul>
+        <li>S - Single Responsibility Principle (SRP)</li>
+        <li>O - Open/Closed Principle</li>
+        <li>L - Liskov Substitution Principle</li>
+        <li>I - Interface Segregation Principle</li>
+        <li>D - Dependency Inversion Principle</li>
+    </ul>
+    <script>
+        // function getAdminName(user) {
+        // return user.firstName + " " + user.lastName;
+        // }
+        // function getCustomerName(customer) {
+        // return customer.firstName + " " + customer.lastName;
+        // }
+        function getFullName() {
+            return this.fname + " " + this.lname;
+        }
+        const person = {
+            fname: "Rakesh",
+            lname: "Ranjan"
+        }
+        console.log(getFullName.call(person))
+
+        // function isEven(num) {
+            // return num % 2 === 0 ? true : false;
+        // }
+        function isEven(num) {
+            return num % 2 === 0;
+        }
+        console.log(isEven(10))
+    </script>
+</body>
+
+</html>

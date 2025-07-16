@@ -1,0 +1,10 @@
+1. How to call a method when a component is rendered for the first time?
+ - In React (functional components), to call a method only once when the component is rendered for the first time,
+ - we should use the useEffect hook with an empty dependency array [].
+ - useEffect(() => { ... }, []) behaves like componentDidMount() in class components.
+ - The empty array [] means "no dependencies", so the effect runs only once after the first render.
+====================================
+2. How to call a method on every re-render of a component?
+ - There are two main ways to call a method on every render of a React functional component
+ - Call the method directly inside the component body - But it Runs before the JSX is returned.
+ - Use useEffect without a dependency array - But it After the component’s JSX is rendered to the DOM.
