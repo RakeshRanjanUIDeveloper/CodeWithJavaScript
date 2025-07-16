@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const myPromise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                let error = false;
+                if (!error) {
+                    resolve({ name: "Rakesh", email: "rakesh@gmail.com" })
+                } else {
+                    reject("Something went wrong!!")
+                }
+            }, 1000);
+        })
+        // myPromise
+        //     .then((userDetails) => {
+        //         console.log(userDetails);
+        //         return userDetails.name
+        //     })
+        //     .then((userName) => {
+        //         console.log(userName);
+        //     })
+        //     .catch((err) => {
+        //         console.log(err);
+        //     })
+        //     .finally(()=> console.log("Promise is either resolved or rejected."))
+
+        async function consumeMyPromise() {
+            try {
+                const response = await myPromise;
+                console.log(response);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        consumeMyPromise()
+    </script>
+</body>
+
+</html>
