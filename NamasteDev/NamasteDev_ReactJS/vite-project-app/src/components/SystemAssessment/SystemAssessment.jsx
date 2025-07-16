@@ -19,6 +19,8 @@ const SystemAssessment = () => {
     const [selectedApproach, setSelectedApproach] = useState('');
     const [showAssessmentInput, setShowAssessmentInput] = useState(false);
     const [showFileUpload, setShowFileUpload] = useState(false);
+    const [uploading, setUploading] = useState(false);
+    const [isConfirmed, setIsConfirmed] = useState(false);
     const mainWrapperRef = useRef(null);
 
     useEffect(() => {
@@ -28,18 +30,18 @@ const SystemAssessment = () => {
                 behavior: 'smooth'
             });
         }
-    }, [contact, selectedApproach, showAssessmentInput, showFileUpload]);
+    }, [contact, selectedApproach, showAssessmentInput, showFileUpload, uploading, isConfirmed]);
 
     const resetAssessment = () =>{
-        setSelectedClient('');
-        setAgentClick('');
-        setContact(false);
-        setSelectedApproach('');
-        setShowAssessmentInput(false);
-        setShowFileUpload(false);
-        setLoading(true);
-        setShowAnalyzing(false);
-
+            setSelectedClient('');
+            setAgentClick('');
+            setContact(false);
+            setSelectedApproach('');
+            setShowAssessmentInput(false);
+            setShowFileUpload(false);
+            setIsConfirmed(false);
+            setLoading(true);
+            setShowAnalyzing(false);
         if(mainWrapperRef.current){
             mainWrapperRef.current.scrollTo({
                 top:0,
@@ -68,6 +70,9 @@ const SystemAssessment = () => {
     }
     const handleUpload = () => {
         setShowFileUpload(true);
+    }
+    const handleQuestionnaire = () =>{
+        
     }
     return (
         <React.Fragment>
@@ -116,14 +121,14 @@ const SystemAssessment = () => {
                                 </div>
                             </div>
                             {selectedClient && showAnalyzing && (
-                                <>
+                                <React.Fragment>
                                     <div className="agent-flex-wrapper">
                                         <img src={DevObjectsIcon} className="devobjicon" alt="dev icon" />
                                         <p className="section-text">Analyzing based on your selection...</p>
 
                                     </div>
                                     <Shimmer />
-                                </>
+                                </React.Fragment>
 
                             )}
                             {selectedClient && !showAnalyzing && (
@@ -164,7 +169,7 @@ const SystemAssessment = () => {
                                             <SapAgentDropdown
                                                 options={['Contract (2)', '9123456782', '2384917491']}
                                                 placeholder="Select Contract ID"
-                                                onSelect={(value) => { setContact(true); }}
+                                                onSelect={() => { setContact(true); }}
                                             />
                                         </div>
                                     </div>
@@ -197,9 +202,7 @@ const SystemAssessment = () => {
                                                 </div>
                                                 <div
                                                     className={`btn-wrapper brownfield-hover ${selectedApproach === 'Landscape' ? 'selected' : ''}`}
-                                                    onClick={() =>
-                                                        setSelectedApproach('Landscape')}
-                                                >
+                                                    onClick={() => setSelectedApproach('Landscape')} >
                                                     <h6 className="btn-title">SAP Landscape (ECC) to an Advanced System (SAP S4 HANA)</h6>
                                                     <p className="btn-desc">Upgrading or transforming an existing (Brownfield)</p>
                                                 </div>
@@ -219,7 +222,13 @@ const SystemAssessment = () => {
                                 showAssessmentInput && (<AssessmentInput onExtract={handleUpload} />)
                             }
                             {
-                                showFileUpload && (<FileUpload />)
+                                showFileUpload && (<FileUpload uploading={uploading} setUploading={setUploading} 
+                                    showAssessmentInput={showAssessmentInput}
+                                    setShowAssessmentInput={setShowAssessmentInput}
+                                    setIsConfirmed={setIsConfirmed}  />)
+                            }
+                            {
+                                isConfirmed && showFileUpload && (<AssessmentInput disabledOption={1} onQuestionnaire={handleQuestionnaire}  />)
                             }
                         </div>
                     )
