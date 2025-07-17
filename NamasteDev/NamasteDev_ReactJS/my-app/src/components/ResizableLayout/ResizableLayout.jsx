@@ -1,20 +1,9 @@
-import React, { useRef, useState, useEffect } from "react";
-import DevObjectsIcon from "../../assets/icons/dev-objects-icon.svg";
-import ConfirmIcon from "../../assets/icons/confirm-icon.png";
-import './ResizableLayout.css';
-
-const ResizableLayout = ({
-  uploadedFiles,
-  activeIframeUrl,
-  setActiveIframeUrl,
-  showResizableLayout,
-  setShowResizableLayout,
-  onConfirm,
-  rightContent
-}) => {
+import React, { useEffect, useRef, useState } from "react";
+import "./ResizableLayout.css";
+const ResizableLayout = ({activeIframeUrl}) => {
   const [leftWidth, setLeftWidth] = useState(70);
   const containerRef = useRef(null);
-  const isDragging = useRef(false);
+  const isDragging = useRef(null);
 
   const handleMouseDown = () => {
     isDragging.current = true;
@@ -23,9 +12,13 @@ const ResizableLayout = ({
   const handleMouseMove = (e) => {
     if (!isDragging.current || !containerRef.current) return;
     const containerWidth = containerRef.current.offsetWidth;
+    console.log(containerWidth); // 1082px
     const offsetLeft = containerRef.current.getBoundingClientRect().left;
+    console.log(offsetLeft); //0
     const mouseX = e.clientX - offsetLeft;
+    console.log(mouseX);
     const newLeftWidth = (mouseX / containerWidth) * 100;
+    console.log(newLeftWidth);
     if (newLeftWidth >= 20 && newLeftWidth <= 80) {
       setLeftWidth(newLeftWidth);
     }
@@ -34,72 +27,40 @@ const ResizableLayout = ({
   const handleMouseUp = () => {
     isDragging.current = false;
   };
-
   useEffect(() => {
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseup", handleMouseUp);
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseup", handleMouseUp);
+      window.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener("mouseup", handleMouseUp);
     };
   }, []);
-
   return (
-    <div className="upload-file-screen" ref={containerRef}>
-      <div className="upload-file-icon" style={{ width: `${leftWidth}%` }}>
-        {uploadedFiles.length > 0 && (
-          <div className="agent-flex-wrapper">
-            <img src={DevObjectsIcon} className="devobjicon" alt="dev icon" />
-            <div className="help-content">
-              <p>
-                Thank you for uploading metadata. To view the metadata extracted click on file icon
-              </p>
-              <div className="selected-file">
-                {uploadedFiles.map((file, index) => (
-                  <div
-                    key={index}
-                    onClick={() => {
-                      setActiveIframeUrl(file.officeUrl);
-                      setShowResizableLayout(true);
-                      setTimeout(() => {
-                        containerRef.current?.scrollIntoView({
-                          behavior: "smooth",
-                          block: "start",
-                        });
-                      }, 100);
-                    }}
-                  >
-                    {file.fileName}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
+    <React.Fragment>
+      <div className="draggable-container" ref={containerRef}>
+        <div className="panel left-panel" style={{ width: `${leftWidth}%` }}>
+          Left Panel - ({Math.round(leftWidth)}%)
+        </div>
+        <div className="divider" onMouseDown={handleMouseDown}>
+          ← →
+        </div>
+        <div
+          className="panel right-panel"
+          style={{ width: `${100 - leftWidth}%` }}
+        >
+          {activeIframeUrl && (
+            <iframe
+              title="Excel Viewer"
+              src={activeIframeUrl}
+              width="100%"
+              height="600px"
+              frameBorder="0"
+            />
+          )}
+        </div>
       </div>
-
-      {showResizableLayout && (
-        <React.Fragment>
-          <div className="divider" onMouseDown={handleMouseDown}>
-            <span>← →</span>
-          </div>
-          <div className="upload-file-frame" style={{ width: `${100 - leftWidth}%` }}>
-            <div className="output-header">
-              <h6>Extracts containing Metadata</h6>
-              <button className='confirm-btn' onClick={onConfirm}>
-                <img src={ConfirmIcon} className='confirm-tick-img' />
-                Confirm
-              </button>
-            </div>
-            {activeIframeUrl && (
-              <iframe className="file-iframe" title="Excel Viewer" src={activeIframeUrl} />
-            )}
-          </div>
-        </React.Fragment>
-      )}
-    </div>
+    </React.Fragment>
   );
 };
 
 export default ResizableLayout;
- 

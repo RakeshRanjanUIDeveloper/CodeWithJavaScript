@@ -3,7 +3,11 @@ import Home from './components/Home/Home'
 
 function App() {
   return (
-        <Home />
+      <React.Fragment>
+          <Home />
+      </React.Fragment>
+
+     
   );
 }
 export default App;

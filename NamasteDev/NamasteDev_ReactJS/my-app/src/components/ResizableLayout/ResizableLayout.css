@@ -1,5 +1,23 @@
- 
-ResizableLayout.css
+.draggable-container {
+  display: flex;
+  width: 100%;
+  height: 60vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.pane {
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.left {
+  background-color: #d0e8ff;
+}
+.right {
+  background-color: #fcdcdc;
+}
 .divider {
   width: 10px;
   background-color: #999;

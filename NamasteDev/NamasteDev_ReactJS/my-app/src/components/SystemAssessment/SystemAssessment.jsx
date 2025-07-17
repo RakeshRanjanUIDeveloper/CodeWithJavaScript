@@ -8,7 +8,6 @@ import ClearIcon from "../../assets/icons/clear-icon.svg";
 import Shimmer from '../Shimmer/Shimmer';
 import AssessmentsList from '../AssessmentsList/AssessmentsList';
 import AssessmentInput from '../AssessmentInput/AssessmentInput';
-import FileUpload from '../FileUpload/FileUpload';
 import Questionnaire from '../Questionnaire/Questionnaire';
 import FileUploads from '../FileUpload/FileUploads';
 
@@ -80,7 +79,7 @@ const SystemAssessment = () => {
     }
     const handleUpload = () => {
         setShowFileUpload(true);
-        //setFileUploadStep(1);
+        setFileUploadStep(1);
     }
     const handleQuestionnaire = () =>{
         setShowQuestionnaire(true);
@@ -240,9 +239,7 @@ const SystemAssessment = () => {
                                 showAssessmentInput && (<AssessmentInput assessmentId={1} onExtract={handleUpload} />)
                             }
                             {
-                                showFileUpload && (<FileUpload
-                                    uploading={uploading} 
-                                    setUploading={setUploading} 
+                                showFileUpload && (<FileUploads stepId={fileUploadStep}
                                     showAssessmentInput={showAssessmentInput}
                                     setShowAssessmentInput={setShowAssessmentInput}
                                     setIsConfirmed={setIsConfirmed} 
