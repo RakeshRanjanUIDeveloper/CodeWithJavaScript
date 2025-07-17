@@ -57,15 +57,16 @@ function App() {
         <Cars />
         <TodoLists />
         <ResizableLayout />
-        <TabsData /> 
+        
          <NavbarApp />
          <UserProfile />
          <Counters />
         <ChipsInput />
         <HolyGrail />
         <ZigzagString />
-        <ContactForm />*/}
-        <KeyIssue />
+        <ContactForm />
+        <KeyIssue />*/}
+        <TabsData /> 
 
     </React.Fragment>
   )
