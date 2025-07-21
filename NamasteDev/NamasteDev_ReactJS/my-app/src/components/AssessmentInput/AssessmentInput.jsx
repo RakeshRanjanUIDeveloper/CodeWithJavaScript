@@ -2,6 +2,7 @@ import React from 'react'
 import DevObjectsIcon from "../../assets/icons/dev-objects-icon.svg";
 import './AssessmentInput.css'
 import { developmentInputs } from '../../data/developmentInputsData';
+import '../FileUpload/FileUpload.css'
 
 const AssessmentInput = ({ onExtract, onQuestionnaire, onProductionLogs, disabledOption, assessmentId }) => {
 

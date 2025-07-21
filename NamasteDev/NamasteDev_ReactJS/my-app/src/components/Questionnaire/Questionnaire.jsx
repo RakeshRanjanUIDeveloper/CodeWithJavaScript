@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react'
 import SapAgentDropdown from '../SapAgentDropdown/SapAgentDropdown';
 import ConfirmIcon from "../../assets/icons/confirm-icon.png";
 import ToolsImg from "../../assets/icons/tools.png";
-import './Questionnaire.css'
+import './Questionnaire.css';
+import '../Home/Home.css';
+
 const Questionnaire = ({onQuestionnaireConfirm}) => {
     const [questionStep, setQuestionStep] = useState(1);
     const [client, setClient] = useState('');

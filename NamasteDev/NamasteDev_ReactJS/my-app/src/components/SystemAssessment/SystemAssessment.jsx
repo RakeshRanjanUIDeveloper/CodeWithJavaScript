@@ -10,6 +10,7 @@ import AssessmentsList from '../AssessmentsList/AssessmentsList';
 import AssessmentInput from '../AssessmentInput/AssessmentInput';
 import Questionnaire from '../Questionnaire/Questionnaire';
 import FileUploads from '../FileUpload/FileUploads';
+import ResizableLayout from '../ResizableLayout/ResizableLayout';
 
 const SystemAssessment = () => {
     const [loading, setLoading] = useState(true);
@@ -27,7 +28,8 @@ const SystemAssessment = () => {
     const [showProductionLog, setShowProductionLog] = useState(false);
     const [fileUploadStep, setFileUploadStep] = useState(null);
     const mainWrapperRef = useRef(null);
-
+    const [questionnairePanelOpen, setQuestionnairePanelOpen] = useState(false);
+    const [activeSidePanelContent, setActiveSidePanelContent] = useState(null);
 
     useEffect(() => {
         if (mainWrapperRef.current) {
@@ -38,23 +40,23 @@ const SystemAssessment = () => {
         }
     }, [selectedClient, agentClick, contact, selectedApproach, showAssessmentInput, showFileUpload, uploading, isConfirmed, isQuestionnaireConfirmed, showProductionLog]);
 
-    const resetAssessment = () =>{
-            setSelectedClient('');
-            setAgentClick('');
-            setContact(false);
-            setSelectedApproach('');
-            setShowAssessmentInput(false);
-            setShowFileUpload(false);
-            setIsConfirmed(false);
-            setLoading(true);
-            setQuestionnaireConfirmed(false)
-            setShowQuestionnaire(false);
-            setShowProductionLog(false);
-            setShowAnalyzing(false);
-        if(mainWrapperRef.current){
+    const resetAssessment = () => {
+        setSelectedClient('');
+        setAgentClick('');
+        setContact(false);
+        setSelectedApproach('');
+        setShowAssessmentInput(false);
+        setShowFileUpload(false);
+        setIsConfirmed(false);
+        setLoading(true);
+        setQuestionnaireConfirmed(false)
+        setShowQuestionnaire(false);
+        setShowProductionLog(false);
+        setShowAnalyzing(false);
+        if (mainWrapperRef.current) {
             mainWrapperRef.current.scrollTo({
-                top:0,
-                behavior:'smooth'
+                top: 0,
+                behavior: 'smooth'
             })
         }
     }
@@ -81,13 +83,15 @@ const SystemAssessment = () => {
         setShowFileUpload(true);
         setFileUploadStep(1);
     }
-    const handleQuestionnaire = () =>{
-        setShowQuestionnaire(true);
-    }
-    const handleQuestionnaireConfirm = () =>{
+    const handleQuestionnaire = () => {
+        setShowQuestionnaire(true); // Optional if you still want inline fallback
+        setQuestionnairePanelOpen(true);
+        setActiveSidePanelContent('questionnaire');
+    };
+    const handleQuestionnaireConfirm = () => {
         setQuestionnaireConfirmed(true);
     }
-    const handleProductionLogs = () =>{
+    const handleProductionLogs = () => {
         setShowProductionLog(true)
         setFileUploadStep(2);
     }
@@ -242,20 +246,30 @@ const SystemAssessment = () => {
                                 showFileUpload && (<FileUploads stepId={fileUploadStep}
                                     showAssessmentInput={showAssessmentInput}
                                     setShowAssessmentInput={setShowAssessmentInput}
-                                    setIsConfirmed={setIsConfirmed} 
-                                     />)
+                                    setIsConfirmed={setIsConfirmed}
+                                />)
                             }
                             {
-                                isConfirmed && showFileUpload && (<AssessmentInput  assessmentId={2} disabledOption={[1]} onQuestionnaire={handleQuestionnaire}  />)
+                                isConfirmed && showFileUpload && (<AssessmentInput assessmentId={2} disabledOption={[1]} onQuestionnaire={handleQuestionnaire} />)
+                            }
+                            {/* {
+                                showQuestionnaire && (<Questionnaire onQuestionnaireConfirm={handleQuestionnaireConfirm} />)
+                            } */}
+                            {
+                                questionnairePanelOpen && activeSidePanelContent === 'questionnaire' && (
+                                    <div className="agent-flex-wrapper">
+                                        <ResizableLayout
+                                            activeIframeUrl={null} // no iframe here
+                                            customContent={<Questionnaire onQuestionnaireConfirm={handleQuestionnaireConfirm} />}
+                                        />
+                                    </div>
+                                )
                             }
                             {
-                                showQuestionnaire && (<Questionnaire  onQuestionnaireConfirm={handleQuestionnaireConfirm} />)
+                                isQuestionnaireConfirmed && (<AssessmentInput assessmentId={3} disabledOption={[1, 2]} onProductionLogs={handleProductionLogs} />)
                             }
                             {
-                                isQuestionnaireConfirmed && (<AssessmentInput  assessmentId={3} disabledOption={[1,2]} onProductionLogs={handleProductionLogs}/>)
-                            }
-                            {
-                                showProductionLog && fileUploadStep && <FileUploads stepId={fileUploadStep}  />
+                                showProductionLog && fileUploadStep && <FileUploads stepId={fileUploadStep} />
                             }
                         </div>
                     )
