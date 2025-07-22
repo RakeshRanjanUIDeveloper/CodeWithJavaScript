@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { fileUploadData } from "../../data/fileUploadData";
 import DevObjectsIcon from "../../assets/icons/dev-objects-icon.svg";
 import ResizableLayout from "../ResizableLayout/ResizableLayout";
+import '../AssessmentInput/AssessmentInput.css';
+
 const FileUploads = ({ stepId, setIsConfirmed }) => {
   const [uploadedFiles, setUploadedFiles] = useState([]); // All uploaded files
   const [activeIframeUrl, setActiveIframeUrl] = useState(""); // Displayed iframe
 
 
   const [isFileUploaded, setIsFileUploaded] = useState(false);
-  const [openFileView, setOpenFileView]= useState(false);
+  const [openFileView, setOpenFileView] = useState(false);
 
   const fileStep = fileUploadData.find((file) => file.id === stepId);
   if (!fileStep) return null;
@@ -55,9 +57,9 @@ const FileUploads = ({ stepId, setIsConfirmed }) => {
       alert("Upload failed");
       setIsFileUploaded(false);
       console.error(error);
-    } 
+    }
   };
-  const handleConfirm = () =>{
+  const handleConfirm = () => {
     setIsConfirmed(true)
   }
   return (
@@ -69,13 +71,13 @@ const FileUploads = ({ stepId, setIsConfirmed }) => {
           <div className="selected-options-wrapper">
             {fileStep.fileButtons.map((fileButton, idx) =>
               fileButton !== "Upload" ? (
-                <button
+                <label
                   className="options-btn upload-click"
                   onClick={(e) => handleClick(e, fileButton)}
                   key={idx}
                 >
                   {fileButton}
-                </button>
+                </label>
               ) : (
                 <label className="options-btn upload-click" key={idx}>
                   {fileButton}
@@ -89,33 +91,53 @@ const FileUploads = ({ stepId, setIsConfirmed }) => {
             )}
           </div>
         </div>
-              {
-        isFileUploaded && ( uploadedFiles.map((file, index) => (
+        {
+          isFileUploaded && (uploadedFiles.map((file, index) => (
             <div
               key={index}
               className="p-3 bg-white border rounded shadow cursor-pointer hover:bg-blue-50"
-              onClick={() =>{
+              onClick={() => {
                 setActiveIframeUrl(file.officeUrl);
                 setOpenFileView(true)
-              } }
+              }}
             >
               {file.fileName}
             </div>
-            
+
           )))
-          
-      }
+        }
 
       </div>
-    {
+      {/* {
         isFileUploaded && openFileView && <div className="agent-flex-wrapper">
+          <div className="extracts-wrapper">
             <button className="confirm-btn" onClick={handleConfirm}>
-                Confirm
+              Confirm
             </button>
-            <ResizableLayout activeIframeUrl={activeIframeUrl} onConfirm={handleConfirm} /> 
+          </div>
+          <ResizableLayout activeIframeUrl={activeIframeUrl} onConfirm={handleConfirm} />
         </div>
+      } */}
+      {
+        isFileUploaded && openFileView && (
+          <div className="agent-flex-wrapper">
+            <ResizableLayout
+              activeIframeUrl={activeIframeUrl}
+              uploadedFiles={uploadedFiles}
+              onFileClick={(url) => setActiveIframeUrl(url)}
+              customContent={
+                <div className="extracts-wrapper">
+                  <h3>Extracts containing Metadata</h3>
+                  <button className="confirm-btn" onClick={handleConfirm}>
+                    Confirm
+                  </button>
+                </div>
+              }
+            />
+          </div>
+        )
       }
-        
+
     </React.Fragment>
   );
 };

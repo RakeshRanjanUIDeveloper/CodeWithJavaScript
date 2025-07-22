@@ -177,10 +177,10 @@
     position: relative;
 }
 
-.side-panel h3 {
+.extracts-wrapper h3 {
     font-family: Graphik;
     font-weight: 500;
-    font-size: 1.4vw;
+    font-size: 1.2vw;
     line-height: 1.3;
     color: #000;
     text-align: left;
@@ -199,14 +199,19 @@
     width: 1vw;
 }
 
-.side-panel .extracts-wrapper {
+.extracts-wrapper {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 1vw;
 }
 
-.side-panel .confirm-btn {
+.custom-scrollable-panel {
+    padding-left: 1vw;
+}
+
+.confirm-btn {
     position: relative;
     background: #FFF;
     border: none;
@@ -227,7 +232,7 @@
     height: 2vw;
 }
 
-.side-panel .confirm-btn::before {
+.confirm-btn::before {
     content: "";
     position: absolute;
     inset: 0;
