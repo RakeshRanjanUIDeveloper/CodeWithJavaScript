@@ -8,3 +8,7 @@
  - There are two main ways to call a method on every render of a React functional component
  - Call the method directly inside the component body - But it Runs before the JSX is returned.
  - Use useEffect without a dependency array - But it After the component’s JSX is rendered to the DOM.
+ ========================================
+3. How to force a component to re-render without using useState?
+ - Using useEffect with the specific state in the dependency array
+ - Using useLayoutEffect for synchronous effect after DOM mutation
