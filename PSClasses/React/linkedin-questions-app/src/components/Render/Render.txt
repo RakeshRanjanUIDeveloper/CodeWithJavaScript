@@ -8,7 +8,27 @@
  - There are two main ways to call a method on every render of a React functional component
  - Call the method directly inside the component body - But it Runs before the JSX is returned.
  - Use useEffect without a dependency array - But it After the component’s JSX is rendered to the DOM.
+====================================================================
+3. How to call a method immediately after state is updated or component is re-rendered?
+- Use useEffect and include the state variable in the dependency array
  ========================================
-3. How to force a component to re-render without using useState?
+4. How to force a component to re-render without using useState?
  - Using useEffect with the specific state in the dependency array
  - Using useLayoutEffect for synchronous effect after DOM mutation
+========================================================================
+5. How to re-render a component on value change?
+ - Use useState — Re-render on state change
+ - Use props — Re-render when props change
+ - Use useEffect if you want to react to value changes
+===========================================================================
+6. What is reconciliation in React?
+- The process of comparing the new Virtual DOM with the previous one to determine the changes.
+=============================================================================
+7. What is React Fiber architecture?
+- React Fiber is the complete rewrite of React’s core algorithm introduced in React 16 (2017) 
+  to make rendering more flexible, incremental, and interruptible.
+- Before React 16, React’s rendering was synchronous and non-interruptible. This meant:
+  If an update took a long time, it would block the main thread.
+
+
+
