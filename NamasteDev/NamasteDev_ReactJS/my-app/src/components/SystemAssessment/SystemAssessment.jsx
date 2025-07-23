@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
+import ScrollToBottom from 'react-scroll-to-bottom';
 import './SystemAssessment.css'
 import SapAgentDropdown from '../SapAgentDropdown/SapAgentDropdown';
 import DevObjectsIcon from "../../assets/icons/dev-objects-icon.svg";
@@ -11,6 +12,10 @@ import AssessmentInput from '../AssessmentInput/AssessmentInput';
 import Questionnaire from '../Questionnaire/Questionnaire';
 import FileUploads from '../FileUpload/FileUploads';
 import ResizableLayout from '../ResizableLayout/ResizableLayout';
+import ObservationData from '../ObservationData/ObservationData';
+import GraphTabs from '../Graphs/GraphTabs';
+import { UploadedFiles } from "../../data/UploadedFiles";
+
 
 const SystemAssessment = () => {
     const [loading, setLoading] = useState(true);
@@ -21,26 +26,34 @@ const SystemAssessment = () => {
     const [selectedApproach, setSelectedApproach] = useState('');
     const [showAssessmentInput, setShowAssessmentInput] = useState(false);
     const [showFileUpload, setShowFileUpload] = useState(false);
-    const [uploading, setUploading] = useState(false);
-    const [isConfirmed, setIsConfirmed] = useState(false);
-    const [showQuestionnaire, setShowQuestionnaire] = useState(false);
-    const [isQuestionnaireConfirmed, setQuestionnaireConfirmed] = useState(false);
     const [showProductionLog, setShowProductionLog] = useState(false);
-    const [fileUploadStep, setFileUploadStep] = useState(null);
-    const mainWrapperRef = useRef(null);
+    const [metadataConfirmed, setMetadataConfirmed] = useState(false); // new
+    const [productionLogConfirmed, setProductionLogConfirmed] = useState(false); // new
+    const [observationConfirmed, setObservationConfirmed] = useState(false); //ProductionLogs proceed click state
+    const [showObservationContent, setShowObservationContent] = useState(false);
+
+    const [isConfirmed, setIsConfirmed] = useState(false);
+    const [isQuestionnaireConfirmed, setQuestionnaireConfirmed] = useState(false);
+
+    const [showQuestionnaire, setShowQuestionnaire] = useState(false);
+    // const [fileUploadStep, setFileUploadStep] = useState(null);
+    // const mainWrapperRef = useRef(null);
     const [questionnairePanelOpen, setQuestionnairePanelOpen] = useState(false);
     const [activeSidePanelContent, setActiveSidePanelContent] = useState(null);
+    const [showObservationPanel, setShowObservationPanel] = useState(false);
+    const [showSummaryReport, setShowSummaryReport] = useState(false);
+    const [summaryReportConfirmed, setSummaryReportConfirmed] = useState(false);
 
-    useEffect(() => {
-        if (mainWrapperRef.current) {
-            mainWrapperRef.current.scrollTo({
-                top: mainWrapperRef.current.scrollHeight,
-                behavior: 'smooth'
-            });
-        }
-    }, [selectedClient, agentClick, contact, selectedApproach, showAssessmentInput, showFileUpload, uploading, isConfirmed, isQuestionnaireConfirmed, showProductionLog]);
+    // useEffect(() => {
+    //     if (mainWrapperRef.current) {
+    //         mainWrapperRef.current.scrollTo({
+    //             top: mainWrapperRef.current.scrollHeight,
+    //             behavior: 'smooth'
+    //         });
+    //     }
+    // }, [selectedClient, agentClick, contact, selectedApproach, showAssessmentInput, showFileUpload, isConfirmed, isQuestionnaireConfirmed, showProductionLog]);
 
-    const resetAssessment = () => {
+   const resetAssessment = () => {
         setSelectedClient('');
         setAgentClick('');
         setContact(false);
@@ -53,12 +66,15 @@ const SystemAssessment = () => {
         setShowQuestionnaire(false);
         setShowProductionLog(false);
         setShowAnalyzing(false);
-        if (mainWrapperRef.current) {
-            mainWrapperRef.current.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            })
-        }
+        setMetadataConfirmed(false);
+        setProductionLogConfirmed(false);
+        setObservationConfirmed(false);        
+        setShowObservationContent(false);      
+        setShowObservationPanel(false);        
+        setShowSummaryReport(false);          
+        setSummaryReportConfirmed(false);      
+        setActiveSidePanelContent(null);
+        setQuestionnairePanelOpen(false);
     }
     useEffect(() => {
         if (selectedClient) {
@@ -81,7 +97,7 @@ const SystemAssessment = () => {
     }
     const handleUpload = () => {
         setShowFileUpload(true);
-        setFileUploadStep(1);
+        // setFileUploadStep(1); // new
     }
     const handleQuestionnaire = () => {
         setShowQuestionnaire(true); // Optional if you still want inline fallback
@@ -93,7 +109,7 @@ const SystemAssessment = () => {
     }
     const handleProductionLogs = () => {
         setShowProductionLog(true)
-        setFileUploadStep(2);
+        // setFileUploadStep(2); //new
     }
     return (
         <React.Fragment>
@@ -122,7 +138,7 @@ const SystemAssessment = () => {
                 </div>
                 {
                     loading ? <Shimmer /> : (
-                        <div className="sap-agent-container" ref={mainWrapperRef}>
+                        <ScrollToBottom className="sap-agent-container">
                             <div className="sap-agent-wrapper">
                                 <img src={DevObjectsIcon} className="devobjicon" alt="dev icon" />
                                 <div className="sap-right-wrapper">
@@ -157,7 +173,7 @@ const SystemAssessment = () => {
                                     <img src={DevObjectsIcon} className="devobjicon" alt="dev icon" />
                                     <div className="deliver-agent-wrapper">
                                         <p className="section-text">Let me know what you are using this agent for.</p>
-                                        <div className="button-group">
+                                        <div className="button-group button-sell-grp">
                                             <div className="btn-wrapper">
                                                 <h6 className="btn-title">Sell</h6>
                                                 <div className="btn-desc">You are using the agent for a client opportunity</div>
@@ -237,20 +253,21 @@ const SystemAssessment = () => {
                                 )
                             }
                             {
-                                selectedApproach === 'Landscape' && (<AssessmentsList onDevelopmentAssessmentClick={handleDevelopmentAssessment} />)
+                                selectedApproach === 'Landscape' && (<AssessmentsList onDevelopmentAssessmentClick={handleDevelopmentAssessment} 
+                                 showAssessmentInput={showAssessmentInput}/>)
                             }
                             {
                                 showAssessmentInput && (<AssessmentInput assessmentId={1} onExtract={handleUpload} />)
                             }
                             {
-                                showFileUpload && (<FileUploads stepId={fileUploadStep}
+                                showFileUpload && (<FileUploads stepId={1}
                                     showAssessmentInput={showAssessmentInput}
                                     setShowAssessmentInput={setShowAssessmentInput}
-                                    setIsConfirmed={setIsConfirmed}
+                                    setIsConfirmed={setMetadataConfirmed}
                                 />)
                             }
                             {
-                                isConfirmed && showFileUpload && (<AssessmentInput assessmentId={2} disabledOption={[1]} onQuestionnaire={handleQuestionnaire} />)
+                                metadataConfirmed && showFileUpload && (<AssessmentInput assessmentId={2} disabledOption={[1]} onQuestionnaire={handleQuestionnaire} />)
                             }
                             {/* {
                                 showQuestionnaire && (<Questionnaire onQuestionnaireConfirm={handleQuestionnaireConfirm} />)
@@ -269,9 +286,62 @@ const SystemAssessment = () => {
                                 isQuestionnaireConfirmed && (<AssessmentInput assessmentId={3} disabledOption={[1, 2]} onProductionLogs={handleProductionLogs} />)
                             }
                             {
-                                showProductionLog && fileUploadStep && <FileUploads stepId={fileUploadStep} />
+                                showProductionLog && <FileUploads stepId={2} setIsConfirmed={setProductionLogConfirmed} />
                             }
-                        </div>
+                            {productionLogConfirmed && (
+                                <>
+                                    <FileUploads
+                                        stepId={3}
+                                        setIsConfirmed={setObservationConfirmed}
+                                        setShowObservationContent={setShowObservationContent}
+                                        setActiveSidePanelContent={setActiveSidePanelContent}
+
+                                    />
+                                </>
+                            )}
+                            {observationConfirmed && (
+                                <div className="agent-flex-wrapper">
+                                    <ResizableLayout
+                                        customLeftContent={
+                                            <ObservationData
+                                                onViewObservationClick={() => {
+                                                    setShowObservationPanel(true);
+                                                }}
+                                            />
+                                        }
+                                        showObservationPanel={showObservationPanel}
+                                        setActiveSidePanelContent={setActiveSidePanelContent}
+                                        onConfirmObservation={() => setShowSummaryReport(true)}
+                                    />
+                                </div>
+                            )}
+                            {showSummaryReport && (
+                                <FileUploads
+                                    stepId={4}
+                                    setIsConfirmed={setSummaryReportConfirmed}
+                                />
+                            )}
+                            {summaryReportConfirmed && (
+                                <div className="agent-flex-wrapper">
+                                    <img src={DevObjectsIcon} className="devobjicon" alt="dev icon" />
+                                    <div>
+                                        <p className="upload-msg">
+                                            {
+                                                UploadedFiles.find(item => item.id === '4')?.label
+                                            }
+                                        </p>
+
+                                        <GraphTabs />
+                                    </div>
+                                </div>
+                            )}
+
+
+
+
+
+
+                        </ScrollToBottom>
                     )
                 }
             </div>

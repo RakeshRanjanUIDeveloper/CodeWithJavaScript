@@ -12,29 +12,29 @@ const SapAgentDropdown = ({ options = [], onSelect, placeholder = '', label = ''
     onSelect(option);
   };
 
-const renderFirstOption = () => {
-  if (options.length > 0) {
-    const firstOption = options[0];
-    if (firstOption.includes('Clients') || firstOption.includes('Contract')) {
-      const parts = firstOption.split(' ');
-      if (parts.length > 1) {
-        return (
-          <div className="first-option-wrapper">
-            <span className="first-option-text">{parts[0]}</span>
-            <span className="client-count">{parts[1].replace(/[()]/g, '')}</span>
-          </div>
-        );
+  const renderFirstOption = () => {
+    if (options.length > 0) {
+      const firstOption = options[0];
+      if (firstOption.includes('Clients') || firstOption.includes('Contract')) {
+        const parts = firstOption.split(' ');
+        if (parts.length > 1) {
+          return (
+            <div className="first-option-wrapper">
+              <span className="first-option-text">{parts[0]}</span>
+              <span className="client-count">{parts[1].replace(/[()]/g, '')}</span>
+            </div>
+          );
+        }
       }
+      return firstOption;
     }
-    return firstOption;
-  }
-  return null;
-};
+    return null;
+  };
 
   return (
     <div className="custom-dropdown">
       {label && <label className="dropdown-label">{label}</label>}
-      <div className="dropdown-header" onClick={() => setIsOpen(!isOpen)}>
+      <div className={`dropdown-header ${selected ? 'selected' : ''}`} onClick={() => setIsOpen(!isOpen)}>
         <span>{selected || placeholder}</span>
         <img
           src={DropdownArrow}

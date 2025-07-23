@@ -92,7 +92,9 @@ img.arrow-icon {
     font-weight: 600;
     position: relative;
 }
-
+.dropdown-header.selected {
+    border: 1px solid #000;
+}
 .dropdown-item:not(.dropdown-header-item):hover {
     background-color: #fbf6ff;
 }

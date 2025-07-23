@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import DevObjectsIcon from "../../assets/icons/dev-objects-icon.svg";
-const AssessmentsList = ({onDevelopmentAssessmentClick}) => {
+const AssessmentsList = ({onDevelopmentAssessmentClick, showAssessmentInput}) => {
+
+
     return (
         <div className="agent-flex-wrapper">
             <img src={DevObjectsIcon} className="devobjicon" alt="dev icon" />
@@ -44,7 +46,8 @@ const AssessmentsList = ({onDevelopmentAssessmentClick}) => {
                         </div>
                     </div>
                     <div className='btn-assessment-wrapper'>
-                        <div className="btn-wrapper btn-assessment btn-develop" onClick={onDevelopmentAssessmentClick}>
+                        <div className={`btn-wrapper btn-assessment btn-develop ${showAssessmentInput ? 'selected' : ''}`}
+                         onClick={onDevelopmentAssessmentClick}>
                             <h6 className="btn-title">Development Assessment</h6>
                             <p className="btn-desc">
                                 Ensure clean core development, reduce technical dept. Fiori first approach

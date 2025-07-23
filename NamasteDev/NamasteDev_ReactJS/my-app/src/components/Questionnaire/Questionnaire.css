@@ -1,13 +1,34 @@
 /* questionaair css */
 /* Style the radio circle */
 .questionair-container input[type="radio"] {
-  accent-color: #7215BE; /* Works in modern browsers like Chrome, Edge, Firefox */
+    accent-color: #7215BE;
+    /* Works in modern browsers like Chrome, Edge, Firefox */
 }
 
 .questionair-container {
-    height: 31vw;
-    /* overflow-y: scroll;
-    scroll-behavior: smooth; */
+    height: 24vw;
+    overflow: auto;
+}
+
+
+/* width */
+.questionair-containe::-webkit-scrollbar {
+    width: 3px;
+}
+
+/* Track */
+.questionair-containe::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+.questionair-containe::-webkit-scrollbar-thumb {
+    background: #EA1C0A;
+}
+
+/* Handle on hover */
+.questionair-containe::-webkit-scrollbar-thumb:hover {
+    background: #EA1C0A;
 }
 
 .questionair-container::-webkit-scrollbar {
@@ -125,6 +146,6 @@
 
 @media all and (display-mode: fullscreen) {
     .questionair-container {
-        height: 38vw;
+        height: 30vw;
     }
 }

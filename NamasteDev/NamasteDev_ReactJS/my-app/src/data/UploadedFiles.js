@@ -5,6 +5,14 @@ export const UploadedFiles = [
     },
     {
         id: '2',
-        label: 'I have the extracts for metadata from source system, the responses from the questionnaire and the production logs. I can analyze your data and share some observations. You may click on ‘Proceed’ to continue.',
+        label: 'Thank you for uploading the Production log. To view  the uploaded logs click on file icon',
+    },
+    {
+        id: '3',
+        label: 'I have analyzed your data and here are my observations.',
+    },
+    {
+        id: '4',
+        label: 'Summarizing your report for your Development Objects for Cleanliness Quotient and Current System Analysis, Deep-dive Analysis and Recommend Solutions.',
     }
 ]

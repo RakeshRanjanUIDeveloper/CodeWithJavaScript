@@ -11,7 +11,7 @@
 .sap-agent-container .sap-agent-wrapper {
   display: flex;
   gap: 1vw;
-  padding: 2vw 0 0 0;
+  padding: 2vw 0 0.8vw 0;
   align-items: flex-start;
   position: relative;
   z-index: 10;
@@ -109,7 +109,9 @@
   transition: border 0.3s ease;
   z-index: 1;
 }
-
+.btn-wrapper.selected:before {
+    background: none;
+}
 .btn-wrapper::before {
   content: "";
   position: absolute;
@@ -145,13 +147,12 @@
   border: 1px solid #000;
 }
 
-.sap-agent-container .btn-wrapper.selected,
-.sap-agent-container .deliver-click-block .btn-wrapper:nth-child(2):hover {
+.sap-agent-container .btn-wrapper.selected{
   border: 1px solid #000;
 }
 
-.sap-agent-container .brownfield-hover:hover,
-.sap-agent-container .btn-assessment:hover {
+
+.sap-agent-container .btn-assessment:hover, .btn-wrapper.brownfield-hover.selected, .btn-wrapper.btn-assessment.btn-develop.selected {
   border: 1px solid #E5CDFF;
   background: #FBF6FF;
 }
@@ -178,8 +179,7 @@
   width: 22%;
 }
 
-.sap-agent-container .deliver-click-block,
-.sap-agent-container .deliver-content,
+
 .sap-agent-container .client-dropdown-wrapper,
 .sap-agent-container .help-content-wrap {
   margin-bottom: 2vw;
@@ -192,7 +192,6 @@
 }
 
 .sap-agent-container .help-content-wrap,
-.sap-agent-container .deliver-content,
 .sap-agent-container .agent-thankyou-wrapper {
   opacity: 0;
   transform: translateY(1vw);
@@ -200,12 +199,6 @@
   animation: fadeslide 0.5s ease-out forwards;
 }
 
-@keyframes fadeslide {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 .sap-agent-container .help-content-wrap .btn-wrapper {
   padding: 1vw;
@@ -272,7 +265,7 @@
 }
 
 .btn-wrapper.btn-assessment:hover {
-  min-height: 5.8vw;
+  min-height: 6.5vw;
   justify-content: flex-start;
 }
 
@@ -302,7 +295,7 @@
   margin: 0.5vw 0 0 0;
 }
 
-.help-content p {
+.help-content p, .upload-msg {
   font-size: 1.2vw;
   margin: 0 0 0.7vw 0;
   color: #000;

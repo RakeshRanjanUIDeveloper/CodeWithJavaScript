@@ -86,3 +86,12 @@
    text-orientation: mixed;
    pointer-events: none;
  }
+
+.file-icon-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.8vw;
+    border: 1px solid #000;
+    width: fit-content;
+    padding: 0.6vw 1vw;
+}
