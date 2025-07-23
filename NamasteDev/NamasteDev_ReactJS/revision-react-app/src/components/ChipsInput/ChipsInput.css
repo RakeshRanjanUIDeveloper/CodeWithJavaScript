@@ -1,0 +1,14 @@
+.chips-output {
+    display: flex;
+    padding: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.chips-output span {
+    border: 1px solid #000;
+    margin: 0 20px 20px;
+    border-radius: 50px;
+    padding: 10px;
+    cursor: pointer;
+}
