@@ -10,7 +10,7 @@ import {
   Cell
 } from 'recharts';
 
-import { extensibilityData } from '../../data/chartData';
+import { extensibilityData } from "../../data/chartData";
 import './ExtensibilityChart.css';
 
 const ExtensibilityChart = () => (

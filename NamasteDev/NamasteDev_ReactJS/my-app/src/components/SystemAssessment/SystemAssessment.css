@@ -1,3 +1,21 @@
+.main-wrapper.shrinked {
+  width: 60%;
+  display: inline-block;
+  vertical-align: top;
+}
+.file-viewer-panel {
+    display: inline-block;
+    vertical-align: top;
+    width: 34%;
+    height: 89vh;
+    margin: 0 auto;
+    padding: 0.7vw;
+    border-radius: 1.5rem;
+    background: #fff;
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, .1);
+    margin: 0 auto;
+    transition: width 0.3s ease;
+}
 .sap-agent-container {
   display: flex;
   flex-direction: column;
@@ -295,7 +313,7 @@
   margin: 0.5vw 0 0 0;
 }
 
-.help-content p, .upload-msg {
+.help-content p, .upload-msg, .shimmer-header {
   font-size: 1.2vw;
   margin: 0 0 0.7vw 0;
   color: #000;

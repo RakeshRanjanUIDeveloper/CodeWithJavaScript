@@ -1,34 +1,34 @@
+// FileUploads.jsx
 import React, { useState } from "react";
 import { fileUploadData } from "../../data/fileUploadData";
 import DevObjectsIcon from "../../assets/icons/dev-objects-icon.svg";
-import ResizableLayout from "../ResizableLayout/ResizableLayout";
-import FileIcon from "../../assets/icons/file-icon.svg"
+import FileIcon from "../../assets/icons/file-icon.svg";
 import '../AssessmentInput/AssessmentInput.css';
-import Shimmer from "../Shimmer/Shimmer"; //July 22
-import ConfirmIcon from "../../assets/icons/confirm-icon.png";
+import Shimmer from "../Shimmer/Shimmer";
+import useShimmer from '../Shimmer/useShimmer';
 
-const FileUploads = ({ stepId, setIsConfirmed, setShowObservationContent,setActiveSidePanelContent }) => {
-  const [uploadedFiles, setUploadedFiles] = useState([]); // All uploaded files
-  const [activeIframeUrl, setActiveIframeUrl] = useState(""); // Displayed iframe
-    const [isUploading, setIsUploading] = useState(false);//July 22
-  const [showObservationPanel, setShowObservationPanel] = useState(false); // July 22
-
-
+const FileUploads = ({ stepId, setIsConfirmed, setShowObservationContent, setActiveIframeUrl, setShowFileViewer, setFileViewerContent }) => {
+  const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [isUploading, setIsUploading] = useState(false);
   const [isFileUploaded, setIsFileUploaded] = useState(false);
-  const [openFileView, setOpenFileView] = useState(false);
+  const showShimmer = useShimmer(isUploading, 10000);
+
+  const shimmerHeaders = {
+    1: "Uploading the metadata extracts...",
+    2: "Getting the Production Logs…​",
+    3: "Generating the observation…​",
+    4: "Uploading Summary Reports...",
+  };
 
   const fileStep = fileUploadData.find((file) => file.id === stepId);
   if (!fileStep) return null;
 
   const handleClick = (event, buttonType) => {
     if (buttonType === "Proceed") {
-      console.log("Proceed clicked");
-       setIsConfirmed(true);//July 22
-
+      setIsConfirmed(true);
       if (stepId === 3) {
-        setShowObservationContent?.(true);
-        setShowObservationPanel(true);
-      }//July 22
+        setShowObservationContent?.();
+      }
     } else if (buttonType === "Upload") {
       handleUpload(event);
     }
@@ -41,68 +41,28 @@ const FileUploads = ({ stepId, setIsConfirmed, setShowObservationContent,setActi
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", "unsigned_excel_upload");
-     setIsUploading(true);//July 22
+    setIsUploading(true);
 
     try {
-      const res = await fetch(
-        "https://api.cloudinary.com/v1_1/drb6o9edj/auto/upload",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const res = await fetch("https://api.cloudinary.com/v1_1/drb6o9edj/auto/upload", {
+        method: "POST",
+        body: formData,
+      });
 
       const data = await res.json();
       const publicUrl = data.secure_url;
-      const officeUrl = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(
-        publicUrl
-      )}`;
+      const officeUrl = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(publicUrl)}`;
 
-      const newFile = {
-        fileName: file.name,
-        officeUrl,
-      };
-
-      setUploadedFiles((prev) => {
-        const isDuplicate = prev.some(f => f.fileName === newFile.fileName);
-        return isDuplicate ? prev : [...prev, newFile];
-      });
+      const newFile = { fileName: file.name, officeUrl };
+      setUploadedFiles((prev) => prev.some(f => f.fileName === file.name) ? prev : [...prev, newFile]);
       setIsFileUploaded(true);
-
     } catch (error) {
       alert("Upload failed");
       setIsFileUploaded(false);
       console.error(error);
     } finally {
-      setIsUploading(false);//July 22
+      setIsUploading(false);
     }
-  };
-
-  const handleConfirm = () => {
-    setIsConfirmed(true)
-  }
-
-  const renderUploadedFileList = () => {
-    return (
-      <>
-        {uploadedFiles.map((file, index) => (
-          <div
-            key={index}
-            className="p-3 bg-white border rounded shadow cursor-pointer hover:bg-blue-50"
-            onClick={() => {
-              setActiveIframeUrl(file.officeUrl);
-              setOpenFileView(true);
-                setShowObservationPanel(false);//July 22
-            }}
-          >
-            <div className="file-icon-wrapper">
-              <img src={FileIcon} className="devobjicon" alt="dev icon" />
-              <span>{file.fileName}</span>
-            </div>
-          </div>
-        ))}
-      </>
-    );
   };
 
   return (
@@ -112,11 +72,13 @@ const FileUploads = ({ stepId, setIsConfirmed, setShowObservationContent,setActi
         <div className="help-content">
           <p>{fileStep.fileTitle}</p>
           <div className="selected-options-wrapper">
-            {fileStep.fileButtons.map((fileButton, idx) =>
-              fileButton !== "Upload" ? (
+            {fileStep.fileButtons.map((fileButton, idx) => {
+              const isProceed = fileButton === "Proceed";
+              const isDisabledProceed = isProceed && (stepId === 1 || stepId === 2);
+              return fileButton !== "Upload" ? (
                 <label
-                  className="options-btn upload-click"
-                  onClick={(e) => handleClick(e, fileButton)}
+                  className={`options-btn upload-click ${isDisabledProceed ? "disabled" : ""}`}
+                  onClick={(e) => !isDisabledProceed && handleClick(e, fileButton)}
                   key={idx}
                 >
                   {fileButton}
@@ -124,53 +86,42 @@ const FileUploads = ({ stepId, setIsConfirmed, setShowObservationContent,setActi
               ) : (
                 <label className="options-btn upload-click" key={idx}>
                   {fileButton}
-                  <input
-                    type="file"
-                    onChange={(e) => handleClick(e, fileButton)}
-                    style={{ display: "none" }}
-                  />
+                  <input type="file" onChange={(e) => handleClick(e, fileButton)} style={{ display: "none" }} />
                 </label>
-              )
-            )}
+              );
+            })}
           </div>
         </div>
       </div>
-      {isUploading && <Shimmer />}
-      {/* 21st */}  
-      {uploadedFiles.length > 0 && (
-        <div className="agent-flex-wrapper">
-          <ResizableLayout
-            stepId={stepId}
-            activeIframeUrl={openFileView ? activeIframeUrl : ""}
-            uploadedFiles={uploadedFiles}
-            onFileClick={(url) => {
-              setActiveIframeUrl(url);
-              setOpenFileView(true);
-            }}
-            customLeftContent={renderUploadedFileList()}
-            customContent={
-              openFileView ? (
-                <div className="extracts-wrapper">
-                  <h3>
-                    {stepId === 2 ? 'Production Logs' : 'Extracts containing Metadata'}
-                  </h3>
-                 <button className="confirm-btn" onClick={handleConfirm}>
-                   <img src={ConfirmIcon} className='confirm-tick-img' />
-                    Confirm
-                  </button>
-                </div>
-              ) : null
-            }
 
-              setActiveSidePanelContent={setActiveSidePanelContent}
-            showObservationPanel={showObservationPanel}
-          />
+      {showShimmer && (
+        <div className="agent-flex-wrapper">
+          <Shimmer headerText={shimmerHeaders[stepId] || "Uploading file..."} />
         </div>
       )}
 
+      {uploadedFiles.length > 0 && (
+        <div className="agent-flex-wrapper">
+          {uploadedFiles.map((file, index) => (
+            <div
+              key={index}
+              className="p-3 bg-white border rounded shadow cursor-pointer hover:bg-blue-50"
+              onClick={() => {
+                setActiveIframeUrl?.(file.officeUrl);
+                setShowFileViewer?.(true);
+                setFileViewerContent?.('excel'); 
+              }}
+            >
+              <div className="file-icon-wrapper">
+                <img src={FileIcon} className="devobjicon" alt="file icon" />
+                <span>{file.fileName}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </React.Fragment>
   );
 };
 
 export default FileUploads;
- 

@@ -16,6 +16,10 @@ import ObservationData from '../ObservationData/ObservationData';
 import GraphTabs from '../Graphs/GraphTabs';
 import { UploadedFiles } from "../../data/UploadedFiles";
 import useShimmer from '../Shimmer/useShimmer';
+import RICEFWBarChart from '../../components/Graphs/RICEFWBarChart';
+import ReportSubcategoryChart from '../../components/Graphs/ReportSubcategoryChart';
+import RecommendationChart from '../../components/Graphs/RecommendationChart';
+import ExtensibilityChart from '../../components/Graphs/ExtensibilityChart';
 
 
 const SystemAssessment = () => {
@@ -39,8 +43,29 @@ const SystemAssessment = () => {
     const [showObservationPanel, setShowObservationPanel] = useState(false);
     const [showSummaryReport, setShowSummaryReport] = useState(false);
     const [summaryReportConfirmed, setSummaryReportConfirmed] = useState(false);
+    const [observationShimmer, setObservationShimmer] = useState(false);
+    const [selectedChartId, setSelectedChartId] = useState(null);
 
+    const [showFileViewer, setShowFileViewer] = useState(false);
+    const [fileViewerContent, setFileViewerContent] = useState(null);
+    const [activeIframeUrl, setActiveIframeUrl] = useState(null);
+    const [currentStepId, setCurrentStepId] = useState(null);
     const showShimmer = useShimmer(contact, 5000);
+
+    const getChartComponent = (id) => {
+        switch (id) {
+            case 'summary':
+                return <RICEFWBarChart />;
+            case 'system':
+                return <ReportSubcategoryChart />;
+            case 'deepdive':
+                return <RecommendationChart />;
+            case 'solutions':
+                return <ExtensibilityChart />;
+            default:
+                return null;
+        }
+    };
 
     const resetAssessment = () => {
         setSelectedClient('');
@@ -63,6 +88,8 @@ const SystemAssessment = () => {
         setSummaryReportConfirmed(false);
         setActiveSidePanelContent(null);
         setQuestionnairePanelOpen(false);
+        setShowFileViewer(false);
+
     }
     useEffect(() => {
         if (selectedClient && agentClick === 'Deliver') {
@@ -75,27 +102,48 @@ const SystemAssessment = () => {
         return () => clearTimeout(timer);
     }, [selectedClient]);
 
+    useEffect(() => {
+        if (productionLogConfirmed) {
+            setCurrentStepId(3);
+        }
+
+    }, [productionLogConfirmed]);
+
 
     const handleDevelopmentAssessment = () => {
         setShowAssessmentInput(true);
     }
-    const handleUpload = () => {
+    const handleMetaDataUpload = () => {
         setShowFileUpload(true);
+        setCurrentStepId(1);
     }
     const handleQuestionnaire = () => {
         setShowQuestionnaire(true);
         setQuestionnairePanelOpen(true);
         setActiveSidePanelContent('questionnaire');
+        setFileViewerContent('questionnaire');
+        setShowFileViewer(true);
+    };
+    const handleExcelFileClick = (url) => {
+        setActiveIframeUrl(url);
+        setFileViewerContent('excel');
+        setShowFileViewer(true);
     };
     const handleQuestionnaireConfirm = () => {
         setQuestionnaireConfirmed(true);
+        setShowFileViewer(false);
     }
     const handleProductionLogs = () => {
         setShowProductionLog(true)
+        setCurrentStepId(2);
     }
+    const handleViewObservationClick = () => {
+        setFileViewerContent('observations');
+        setShowFileViewer(true);
+    };
     return (
         <React.Fragment>
-            <div className='main-wrapper' >
+            <div className={`main-wrapper ${showFileViewer ? 'shrinked' : ''}`}>
                 <div className="assessment-header">
                     <div className="left-header">
                         <span className="back-arrow"><img src={BackArrow} alt="back" /></span>
@@ -145,7 +193,7 @@ const SystemAssessment = () => {
                                     <div className="deliver-agent-wrapper">
                                         <p className="section-text">Let me know what you are using this agent for.</p>
                                         <div className="button-group button-sell-grp">
-                                            <div className="btn-wrapper"  style={{ cursor: 'default' }}>
+                                            <div className="btn-wrapper" style={{ cursor: 'default' }}>
                                                 <h6 className="btn-title">Sell</h6>
                                                 <div className="btn-desc">You are using the agent for a client opportunity</div>
                                             </div>
@@ -158,7 +206,7 @@ const SystemAssessment = () => {
                                                 <div className="btn-desc">You are using the agent for a client contract</div>
                                             </div>
 
-                                            <div className="btn-wrapper"  style={{ cursor: 'default' }}>
+                                            <div className="btn-wrapper" style={{ cursor: 'default' }}>
                                                 <h6 className="btn-title">Learn</h6>
                                                 <p className="btn-desc">You are exploring the agent</p>
                                             </div>
@@ -166,6 +214,7 @@ const SystemAssessment = () => {
                                     </div>
                                 </div>
                             )}
+
                             {
                                 agentClick && (
                                     <div className="agent-flex-wrapper">
@@ -207,7 +256,7 @@ const SystemAssessment = () => {
                                             </p>
                                             <p>To begin with, please confirm the implementation approach you would like to begin with. </p>
                                             <div className="button-group btn-begin">
-                                                <div className="btn-wrapper "  style={{ cursor: 'default' }}>
+                                                <div className="btn-wrapper " style={{ cursor: 'default' }}>
                                                     <h6 className="btn-title">Transformation</h6>
                                                     <p className="btn-desc">Process Harmonization, Organization structure changes, Non-SAP to SAP Transformation</p>
                                                 </div>
@@ -217,7 +266,7 @@ const SystemAssessment = () => {
                                                     <h6 className="btn-title">SAP Landscape (ECC) to an Advanced System (SAP S4 HANA)</h6>
                                                     <p className="btn-desc">Upgrading or transforming an existing (Brownfield)</p>
                                                 </div>
-                                                <div className="btn-wrapper"  style={{ cursor: 'default' }}>
+                                                <div className="btn-wrapper" style={{ cursor: 'default' }}>
                                                     <h6 className="btn-title">Run to New</h6>
                                                     <p className="btn-desc">For existing S4 SAP systems - Clean Core Optimization</p>
                                                 </div>
@@ -231,64 +280,67 @@ const SystemAssessment = () => {
                                     showAssessmentInput={showAssessmentInput} />)
                             }
                             {
-                                showAssessmentInput && (<AssessmentInput assessmentId={1} onExtract={handleUpload}         // Buttons 2 and 3 are greyed out
+                                showAssessmentInput && (<AssessmentInput assessmentId={1} onExtract={handleMetaDataUpload}         // Buttons 2 and 3 are greyed out
                                     pointerOption={[1]} disabledOption={[2, 3]} />)
                             }
-                            {
-                                showFileUpload && (<FileUploads stepId={1}
-                                    showAssessmentInput={showAssessmentInput}
-                                    setShowAssessmentInput={setShowAssessmentInput}
+                            {showFileUpload && (
+                                <FileUploads
+                                    stepId={1}
                                     setIsConfirmed={setMetadataConfirmed}
-                                />)
-                            }
-                            {
-                                metadataConfirmed && showFileUpload && (<AssessmentInput assessmentId={2} disabledOption={[1, 3]} onQuestionnaire={handleQuestionnaire} fadedOption={[1]}            // Only 1 is faded
-                                    pointerOption={[2, 3]} />)
-                            }
-                            {
-                                questionnairePanelOpen && activeSidePanelContent === 'questionnaire' && (
-                                    <div className="agent-flex-wrapper">
-                                        <ResizableLayout
-                                            activeIframeUrl={null} // no iframe here
-                                            customContent={<Questionnaire onQuestionnaireConfirm={handleQuestionnaireConfirm} />}
-                                        />
-                                    </div>
-                                )
-                            }
+                                    setShowFileViewer={setShowFileViewer}
+                                    setActiveSidePanelContent={null}
+                                    setActiveIframeUrl={setActiveIframeUrl}
+                                    setFileViewerContent={setFileViewerContent}
+                                />
+                            )}
+                            {metadataConfirmed && (
+                                <AssessmentInput
+                                    assessmentId={2}
+                                    onQuestionnaire={handleQuestionnaire}
+                                    disabledOption={[1, 3]}
+                                    fadedOption={[1]}
+                                    pointerOption={[2, 3]}
+                                />
+                            )}
                             {
                                 isQuestionnaireConfirmed && (<AssessmentInput assessmentId={3} disabledOption={[1, 2]} onProductionLogs={handleProductionLogs} fadedOption={[1, 2]}
                                     pointerOption={[3]} />)
                             }
                             {
-                                showProductionLog && <FileUploads stepId={2} setIsConfirmed={setProductionLogConfirmed} />
-                            }
-                            {productionLogConfirmed && (
-                                <>
+                                isQuestionnaireConfirmed && showProductionLog && (
                                     <FileUploads
-                                        stepId={3}
-                                        setIsConfirmed={setObservationConfirmed}
-                                        setShowObservationContent={setShowObservationContent}
-                                        setActiveSidePanelContent={setActiveSidePanelContent}
+                                        stepId={2}
+                                        setIsConfirmed={setProductionLogConfirmed}
+                                        setShowFileViewer={setShowFileViewer}
+                                        setActiveSidePanelContent={null}
+                                        setActiveIframeUrl={setActiveIframeUrl}
+                                        setFileViewerContent={setFileViewerContent}
+                                    />
+                                )
+                            }
 
-                                    />
-                                </>
+                            {metadataConfirmed && isQuestionnaireConfirmed && productionLogConfirmed && (
+
+                                <FileUploads
+                                    stepId={3}
+                                    setIsConfirmed={setObservationConfirmed}
+                                    setShowFileViewer={setShowFileViewer}
+                                    setActiveSidePanelContent={null}
+                                    setActiveIframeUrl={setActiveIframeUrl}
+                                    setFileViewerContent={setFileViewerContent}
+
+                                />
+
                             )}
-                            {observationConfirmed && (
-                                <div className="agent-flex-wrapper">
-                                    <ResizableLayout
-                                        customLeftContent={
-                                            <ObservationData
-                                                onViewObservationClick={() => {
-                                                    setShowObservationPanel(true);
-                                                }}
-                                            />
-                                        }
-                                        showObservationPanel={showObservationPanel}
-                                        setActiveSidePanelContent={setActiveSidePanelContent}
-                                        onConfirmObservation={() => setShowSummaryReport(true)}
-                                    />
-                                </div>
-                            )}
+
+                            {
+                                observationShimmer && <Shimmer headerText="Generating the observation…​" />
+                            }
+                            {
+                                observationConfirmed && (
+                                    <ObservationData onViewObservationClick={handleViewObservationClick} />
+                                )
+                            }
                             {showSummaryReport && (
                                 <FileUploads
                                     stepId={4}
@@ -305,11 +357,14 @@ const SystemAssessment = () => {
                                             }
                                         </p>
 
-                                        <GraphTabs />
+                                        <GraphTabs onSelectChart={(chartId) => {
+                                            setSelectedChartId(chartId);
+                                            setShowFileViewer(true);
+                                            setFileViewerContent('chart');
+                                        }} />
                                     </div>
                                 </div>
                             )}
-
 
 
 
@@ -319,6 +374,49 @@ const SystemAssessment = () => {
                     )
                 }
             </div>
+            {showFileViewer && (
+                <div className="file-viewer-panel">
+                    <ResizableLayout
+                        activeIframeUrl={fileViewerContent === 'excel' ? activeIframeUrl : null}
+                        customContent={
+                            fileViewerContent === 'chart' ? getChartComponent(selectedChartId)
+                                : fileViewerContent === 'questionnaire' ? <Questionnaire onQuestionnaireConfirm={handleQuestionnaireConfirm} />
+                                    : null
+                        }
+                        showObservationPanel={fileViewerContent === 'observations'}
+                        observationPanelContent={
+                            <div className="resizer-right-panel">
+                                <div className="extracts-wrapper">
+                                    <h3>Observations</h3>
+                                    <div className="confirm-bar">
+                                        <button onClick={() => {
+                                            setShowFileViewer(false);
+                                            setShowSummaryReport(true)
+                                        }} className="confirm-btn">
+                                            Confirm
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        onConfirmExcel={() => {
+                            if (currentStepId === 1) {
+                                setMetadataConfirmed(true);
+                            } else if (currentStepId === 2) {
+                                setProductionLogConfirmed(true);
+                            } else if (currentStepId === 3) {
+                                setObservationShimmer(true);
+                                setTimeout(() => {
+                                    setObservationShimmer(false);
+                                    setObservationConfirmed(true);
+                                }, 5000)
+                            }
+                            setShowFileViewer(false);
+                        }}
+                    />
+                </div>
+            )}
+
 
 
         </React.Fragment>
