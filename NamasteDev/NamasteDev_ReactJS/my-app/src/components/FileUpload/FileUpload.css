@@ -77,23 +77,7 @@ iframe {
    display: none;
  }
 
- .divider {
-   width: 10px;
-   background-color: #999;
-   cursor: col-resize;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   user-select: none;
- }
 
- .divider span {
-   font-size: 12px;
-   color: white;
-   writing-mode: vertical-lr;
-   text-orientation: mixed;
-   pointer-events: none;
- }
 
  .file-icon-wrapper {
    display: flex;

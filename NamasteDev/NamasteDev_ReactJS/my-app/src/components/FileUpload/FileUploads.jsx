@@ -3,11 +3,19 @@ import React, { useState } from "react";
 import { fileUploadData } from "../../data/fileUploadData";
 import DevObjectsIcon from "../../assets/icons/dev-objects-icon.svg";
 import FileIcon from "../../assets/icons/file-icon.svg";
-import '../AssessmentInput/AssessmentInput.css';
+import "../AssessmentInput/AssessmentInput.css";
 import Shimmer from "../Shimmer/Shimmer";
-import useShimmer from '../Shimmer/useShimmer';
+import useShimmer from "../Shimmer/useShimmer";
 
-const FileUploads = ({ stepId, setIsConfirmed, setShowObservationContent, setActiveIframeUrl, setShowFileViewer, setFileViewerContent }) => {
+const FileUploads = ({
+  stepId,
+  setIsConfirmed,
+  setShowObservationContent,
+  setActiveIframeUrl,
+  setShowFileViewer,
+  setFileViewerContent,
+  // setLeftPanelWidth
+}) => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [isUploading, setIsUploading] = useState(false);
   const [isFileUploaded, setIsFileUploaded] = useState(false);
@@ -44,17 +52,24 @@ const FileUploads = ({ stepId, setIsConfirmed, setShowObservationContent, setAct
     setIsUploading(true);
 
     try {
-      const res = await fetch("https://api.cloudinary.com/v1_1/drb6o9edj/auto/upload", {
-        method: "POST",
-        body: formData,
-      });
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/drb6o9edj/auto/upload",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       const data = await res.json();
       const publicUrl = data.secure_url;
-      const officeUrl = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(publicUrl)}`;
+      const officeUrl = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(
+        publicUrl
+      )}`;
 
       const newFile = { fileName: file.name, officeUrl };
-      setUploadedFiles((prev) => prev.some(f => f.fileName === file.name) ? prev : [...prev, newFile]);
+      setUploadedFiles((prev) =>
+        prev.some((f) => f.fileName === file.name) ? prev : [...prev, newFile]
+      );
       setIsFileUploaded(true);
     } catch (error) {
       alert("Upload failed");
@@ -74,11 +89,16 @@ const FileUploads = ({ stepId, setIsConfirmed, setShowObservationContent, setAct
           <div className="selected-options-wrapper">
             {fileStep.fileButtons.map((fileButton, idx) => {
               const isProceed = fileButton === "Proceed";
-              const isDisabledProceed = isProceed && (stepId === 1 || stepId === 2);
+              const isDisabledProceed =
+                isProceed && (stepId === 1 || stepId === 2);
               return fileButton !== "Upload" ? (
                 <label
-                  className={`options-btn upload-click ${isDisabledProceed ? "disabled" : ""}`}
-                  onClick={(e) => !isDisabledProceed && handleClick(e, fileButton)}
+                  className={`options-btn upload-click ${
+                    isDisabledProceed ? "disabled" : ""
+                  }`}
+                  onClick={(e) =>
+                    !isDisabledProceed && handleClick(e, fileButton)
+                  }
                   key={idx}
                 >
                   {fileButton}
@@ -86,7 +106,11 @@ const FileUploads = ({ stepId, setIsConfirmed, setShowObservationContent, setAct
               ) : (
                 <label className="options-btn upload-click" key={idx}>
                   {fileButton}
-                  <input type="file" onChange={(e) => handleClick(e, fileButton)} style={{ display: "none" }} />
+                  <input
+                    type="file"
+                    onChange={(e) => handleClick(e, fileButton)}
+                    style={{ display: "none" }}
+                  />
                 </label>
               );
             })}
@@ -102,6 +126,10 @@ const FileUploads = ({ stepId, setIsConfirmed, setShowObservationContent, setAct
 
       {uploadedFiles.length > 0 && (
         <div className="agent-flex-wrapper">
+           <img src={DevObjectsIcon} className="devobjicon" alt="dev icon" />
+           <div className="help-content">
+           
+          <p className="upload-success-msg">{fileStep.uploadSuccessMessage}</p>
           {uploadedFiles.map((file, index) => (
             <div
               key={index}
@@ -109,7 +137,8 @@ const FileUploads = ({ stepId, setIsConfirmed, setShowObservationContent, setAct
               onClick={() => {
                 setActiveIframeUrl?.(file.officeUrl);
                 setShowFileViewer?.(true);
-                setFileViewerContent?.('excel'); 
+                setFileViewerContent?.("excel");
+                /* setLeftPanelWidth(60) */
               }}
             >
               <div className="file-icon-wrapper">
@@ -118,6 +147,7 @@ const FileUploads = ({ stepId, setIsConfirmed, setShowObservationContent, setAct
               </div>
             </div>
           ))}
+            </div>
         </div>
       )}
     </React.Fragment>

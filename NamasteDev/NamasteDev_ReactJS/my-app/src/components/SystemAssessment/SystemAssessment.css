@@ -2,6 +2,7 @@
   width: 60%;
   display: inline-block;
   vertical-align: top;
+  padding: 0 0 0 0.7vw;
 }
 .file-viewer-panel {
     display: inline-block;
@@ -9,13 +10,30 @@
     width: 34%;
     height: 89vh;
     margin: 0 auto;
-    padding: 0.7vw;
+    /* padding: 0.7vw; */
     border-radius: 1.5rem;
     background: #fff;
     box-shadow: 0 0 30px 0 rgba(0, 0, 0, .1);
     margin: 0 auto;
     transition: width 0.3s ease;
 }
+ .divider {
+   width: 10px;
+   background-color: #999;
+   cursor: col-resize;
+   align-items: center;
+   justify-content: center;
+   user-select: none;
+   display: inline-block;
+ }
+
+ .divider span {
+   font-size: 12px;
+   color: white;
+   writing-mode: vertical-lr;
+   text-orientation: mixed;
+   pointer-events: none;
+ }
 .sap-agent-container {
   display: flex;
   flex-direction: column;
