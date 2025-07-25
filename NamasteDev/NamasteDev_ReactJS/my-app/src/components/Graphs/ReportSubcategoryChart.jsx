@@ -13,7 +13,7 @@ import './ReportSubcategoryChart.css';
 
 const ReportSubcategoryChart = () => {
   return (
-    <div className="report-chart-container">
+    <div className="report-chart-container graph-container">
       <h3>Report Subcategory</h3>
 
       <div className="chart-section">

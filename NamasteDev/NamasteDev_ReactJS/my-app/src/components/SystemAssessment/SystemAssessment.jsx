@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef} from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import ScrollToBottom from 'react-scroll-to-bottom';
 import './SystemAssessment.css'
 import SapAgentDropdown from '../SapAgentDropdown/SapAgentDropdown';
@@ -20,169 +20,191 @@ import RICEFWBarChart from '../../components/Graphs/RICEFWBarChart';
 import ReportSubcategoryChart from '../../components/Graphs/ReportSubcategoryChart';
 import RecommendationChart from '../../components/Graphs/RecommendationChart';
 import ExtensibilityChart from '../../components/Graphs/ExtensibilityChart';
-
+import CrossIcon from "../../assets/icons/clear-icon.svg";
+import ScreenMode from "../ScreenMode/ScreenMode";
 
 const SystemAssessment = () => {
-    const [initialLoading, setInitialLoading] = useState(true);
-    const [selectedClient, setSelectedClient] = useState('');
-    const [agentClick, setAgentClick] = useState('');
-    const [contact, setContact] = useState(false);
-    const [selectedApproach, setSelectedApproach] = useState('');
-    const [showAssessmentInput, setShowAssessmentInput] = useState(false);
-    const [showFileUpload, setShowFileUpload] = useState(false);
-    const [showProductionLog, setShowProductionLog] = useState(false);
-    const [metadataConfirmed, setMetadataConfirmed] = useState(false); // new
-    const [productionLogConfirmed, setProductionLogConfirmed] = useState(false); // new
-    const [observationConfirmed, setObservationConfirmed] = useState(false); //ProductionLogs proceed click state
-    const [showObservationContent, setShowObservationContent] = useState(false);
-    const [isConfirmed, setIsConfirmed] = useState(false);
-    const [isQuestionnaireConfirmed, setQuestionnaireConfirmed] = useState(false);
-    const [showQuestionnaire, setShowQuestionnaire] = useState(false);
-    const [questionnairePanelOpen, setQuestionnairePanelOpen] = useState(false);
-    const [activeSidePanelContent, setActiveSidePanelContent] = useState(null);
-    const [showObservationPanel, setShowObservationPanel] = useState(false);
-    const [showSummaryReport, setShowSummaryReport] = useState(false);
-    const [summaryReportConfirmed, setSummaryReportConfirmed] = useState(false);
-    const [observationShimmer, setObservationShimmer] = useState(false);
-    const [selectedChartId, setSelectedChartId] = useState(null);
+  const [initialLoading, setInitialLoading] = useState(true);
+  const [selectedClient, setSelectedClient] = useState('');
+  const [agentClick, setAgentClick] = useState('');
+  const [contact, setContact] = useState(false);
+  const [selectedApproach, setSelectedApproach] = useState('');
+  const [showAssessmentInput, setShowAssessmentInput] = useState(false);
+  const [showFileUpload, setShowFileUpload] = useState(false);
+  const [showProductionLog, setShowProductionLog] = useState(false);
+  const [metadataConfirmed, setMetadataConfirmed] = useState(false); // new
+  const [productionLogConfirmed, setProductionLogConfirmed] = useState(false); // new
+  const [observationConfirmed, setObservationConfirmed] = useState(false); //ProductionLogs proceed click state
+  const [showObservationContent, setShowObservationContent] = useState(false);
+  const [isConfirmed, setIsConfirmed] = useState(false);
+  const [isQuestionnaireConfirmed, setQuestionnaireConfirmed] = useState(false);
+  const [showQuestionnaire, setShowQuestionnaire] = useState(false);
+  const [questionnairePanelOpen, setQuestionnairePanelOpen] = useState(false);
+  const [activeSidePanelContent, setActiveSidePanelContent] = useState(null);
+  const [showObservationPanel, setShowObservationPanel] = useState(false);
+  const [showSummaryReport, setShowSummaryReport] = useState(false);
+  const [summaryReportConfirmed, setSummaryReportConfirmed] = useState(false);
+  // const [observationShimmer, setObservationShimmer] = useState(false);
+  const [selectedChartId, setSelectedChartId] = useState(null);
+  const [sidePanelHeading, setSidePanelHeading] = useState('');
+  const [showFileViewer, setShowFileViewer] = useState(false);
+  const [fileViewerContent, setFileViewerContent] = useState(null);
+  const [activeIframeUrl, setActiveIframeUrl] = useState(null);
+  const [currentStepId, setCurrentStepId] = useState(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const showShimmer = useShimmer(contact, 5000);
+  const showGraphShimmer = useShimmer(summaryReportConfirmed, 5000);
+  const observationShimmer = useShimmer(observationConfirmed && currentStepId === 3, 5000);
 
-    const [showFileViewer, setShowFileViewer] = useState(false);
-    const [fileViewerContent, setFileViewerContent] = useState(null);
-    const [activeIframeUrl, setActiveIframeUrl] = useState(null);
-    const [currentStepId, setCurrentStepId] = useState(null);
-    const showShimmer = useShimmer(contact, 5000);
+  const animationFrameId = useRef(null);
+  const containerRef = useRef(null);
+  const outerWrapperRef = useRef(null);
+  const [leftWidth, setLeftWidth] = useState(90);
+  const isDragging = useRef(false);
+
+  const handleMouseDown = (e) => {
+    e.preventDefault();
+    isDragging.current = true;
+  };
+  const handleMouseUp = () => {
+    isDragging.current = false;
+    if (animationFrameId.current) {
+      cancelAnimationFrame(animationFrameId.current);
+      animationFrameId.current = null;
+    }
+  };
+  const handleMouseMove = (e) => {
+    if (!isDragging.current || !outerWrapperRef.current) return;
+
+    if (animationFrameId.current) {
+      cancelAnimationFrame(animationFrameId.current);
+    }
+
+    animationFrameId.current = requestAnimationFrame(() => {
+      const container = outerWrapperRef.current;
+      const containerWidth = container.offsetWidth;
+      const offsetLeft = container.getBoundingClientRect().left;
+      const mouseX = e.clientX - offsetLeft;
+
+      const newLeftWidth = (mouseX / containerWidth) * 100;
+
+      if (newLeftWidth >= 20 && newLeftWidth <= 80) {
+        setLeftWidth(newLeftWidth);
+      }
+    });
+  };
 
 
-      const containerRef = useRef(null);
-      const [leftWidth, setLeftWidth] = useState(90); 
-      const isDragging = useRef(false);
-      const handleMouseDown = () => {
-        isDragging.current = true;
-      };
-      const handleMouseUp = () => {
-        isDragging.current = false;
-      };
-      const handleMouseMove = (e) => {
-        if (!isDragging.current || !containerRef.current) return;
-
-        const containerWidth = containerRef.current.offsetWidth;
-        const offsetLeft = containerRef.current.getBoundingClientRect().left;
-        const mouseX = e.clientX - offsetLeft;
-
-        const newLeftWidth = (mouseX / containerWidth) * 100;
-        if (newLeftWidth >= 20 && newLeftWidth <= 80) {
-          setLeftWidth(newLeftWidth);
-        }
-      };
-
-      React.useEffect(() => {
-        window.addEventListener("mousemove", handleMouseMove);
-        window.addEventListener("mouseup", handleMouseUp);
-        return () => {
-          window.removeEventListener("mousemove", handleMouseMove);
-          window.removeEventListener("mouseup", handleMouseUp);
-        };
-      }, []);
-
-    const getChartComponent = (id) => {
-        switch (id) {
-            case 'summary':
-                return <RICEFWBarChart />;
-            case 'system':
-                return <ReportSubcategoryChart />;
-            case 'deepdive':
-                return <RecommendationChart />;
-            case 'solutions':
-                return <ExtensibilityChart />;
-            default:
-                return null;
-        }
+  useEffect(() => {
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current);
+      }
     };
+  }, []);
 
-    const resetAssessment = () => {
-        setSelectedClient('');
-        setAgentClick('');
-        setContact(false);
-        setSelectedApproach('');
-        setShowAssessmentInput(false);
-        setShowFileUpload(false);
-        setIsConfirmed(false);
-        setInitialLoading(true);
-        setQuestionnaireConfirmed(false)
-        setShowQuestionnaire(false);
-        setShowProductionLog(false);
-        setMetadataConfirmed(false);
-        setProductionLogConfirmed(false);
-        setObservationConfirmed(false);
-        setShowObservationContent(false);
-        setShowObservationPanel(false);
-        setShowSummaryReport(false);
-        setSummaryReportConfirmed(false);
-        setActiveSidePanelContent(null);
-        setQuestionnairePanelOpen(false);
-        setShowFileViewer(false);
-        /* setLeftWidth(90) */
+  const getChartComponent = (id) => {
+    switch (id) {
+      case 'summary':
+        return <RICEFWBarChart />;
+      case 'system':
+        return <ReportSubcategoryChart />;
+      case 'deepdive':
+        return <RecommendationChart />;
+      case 'solutions':
+        return <ExtensibilityChart />;
+      default:
+        return null;
     }
-    useEffect(() => {
-        if (selectedClient && agentClick === 'Deliver') {
-            setAgentClick('Deliver')
-        }
-        const timer = setTimeout(() => {
-            setInitialLoading(false);
-        }, 2000);
+  };
 
-        return () => clearTimeout(timer);
-    }, [selectedClient]);
-
-    useEffect(() => {
-        if (productionLogConfirmed) {
-            setCurrentStepId(3);
-        }
-
-    }, [productionLogConfirmed]);
-
-
-    const handleDevelopmentAssessment = () => {
-        setShowAssessmentInput(true);
+  const resetAssessment = () => {
+    setSelectedClient('');
+    setAgentClick('');
+    setContact(false);
+    setSelectedApproach('');
+    setShowAssessmentInput(false);
+    setShowFileUpload(false);
+    setIsConfirmed(false);
+    setInitialLoading(true);
+    setQuestionnaireConfirmed(false)
+    setShowQuestionnaire(false);
+    setShowProductionLog(false);
+    setMetadataConfirmed(false);
+    setProductionLogConfirmed(false);
+    setObservationConfirmed(false);
+    setShowObservationContent(false);
+    setShowObservationPanel(false);
+    setShowSummaryReport(false);
+    setSummaryReportConfirmed(false);
+    setActiveSidePanelContent(null);
+    setQuestionnairePanelOpen(false);
+    setShowFileViewer(false);
+    /* setLeftWidth(90) */
+  }
+  useEffect(() => {
+    if (selectedClient && agentClick === 'Deliver') {
+      setAgentClick('Deliver')
     }
-    const handleMetaDataUpload = () => {
-        setShowFileUpload(true);
-        setCurrentStepId(1);
-    }
-    const handleQuestionnaire = () => {
-        setShowQuestionnaire(true);
-        setQuestionnairePanelOpen(true);
-        setActiveSidePanelContent('questionnaire');
-        setFileViewerContent('questionnaire');
-        setShowFileViewer(true);
-    /*     setLeftWidth(60) */
-    };
-    const handleQuestionnaireConfirm = () => {
-        setQuestionnaireConfirmed(true);
-        setShowFileViewer(false);
-       /*  setLeftWidth(90) */
-    }
-    const handleProductionLogs = () => {
-        setShowProductionLog(true)
-        setCurrentStepId(2);
-    }
-    const handleViewObservationClick = () => {
-        setFileViewerContent('observations');
-        setShowFileViewer(true);
-        /* setLeftWidth(60) */
-    };
+    const timer = setTimeout(() => {
+      setInitialLoading(false);
+    }, 2000);
 
-    useEffect(()=>{
-        if(showFileViewer){
-            setLeftWidth(60)
-        }else{
-            setLeftWidth(90)
-        }
-    }, [showFileViewer]);
-    
-    return (
-      <React.Fragment>
-        <div className={`main-wrapper ${showFileViewer ? "shrinked" : ""}`} ref={containerRef} style={{ width: `${leftWidth}%` }}>
+    return () => clearTimeout(timer);
+  }, [selectedClient]);
+
+  useEffect(() => {
+    if (productionLogConfirmed) {
+      setCurrentStepId(3);
+    }
+
+  }, [productionLogConfirmed]);
+
+
+  const handleDevelopmentAssessment = () => {
+    setShowAssessmentInput(true);
+  }
+  const handleMetaDataUpload = () => {
+    setShowFileUpload(true);
+    setCurrentStepId(1);
+  }
+  const handleQuestionnaire = () => {
+    setShowQuestionnaire(true);
+    setQuestionnairePanelOpen(true);
+    setActiveSidePanelContent('questionnaire');
+    setFileViewerContent('questionnaire');
+    setShowFileViewer(true);
+  };
+  const handleQuestionnaireConfirm = () => {
+    setQuestionnaireConfirmed(true);
+    setShowFileViewer(false);
+  }
+  const handleProductionLogs = () => {
+    setShowProductionLog(true)
+    setCurrentStepId(2);
+  }
+  const handleViewObservationClick = () => {
+    setFileViewerContent('observations');
+    setShowFileViewer(true);
+  };
+
+  useEffect(() => {
+    if (showFileViewer) {
+      setLeftWidth(60)
+    } else {
+      setLeftWidth(90)
+    }
+  }, [showFileViewer]);
+
+  return (
+    <React.Fragment>
+      <div className="outer-wrapper" ref={outerWrapperRef}>
+         <div className={`main-wrapper ${showFileViewer ? "shrinked" : ""} ${isFullscreen ? "fullscreen-main" : ""}`}
+              style={{ width: isFullscreen ? "0%" : `${leftWidth}%` }}>
           <div className="assessment-header">
             <div className="left-header">
               <span className="back-arrow">
@@ -196,8 +218,9 @@ const SystemAssessment = () => {
                     <span>Super Agent</span>
                   </div>
                 </div>
-
-                {/* <h4>Development Assessment</h4> */}
+                {showAssessmentInput && (
+                  <p className="dev-assess">Development Assessment</p>
+                )}
               </div>
             </div>
 
@@ -268,9 +291,8 @@ const SystemAssessment = () => {
                       </div>
 
                       <div
-                        className={`btn-wrapper ${
-                          agentClick === "Deliver" ? "selected" : ""
-                        } enabled`}
+                        className={`btn-wrapper ${agentClick === "Deliver" ? "selected" : ""
+                          } enabled`}
                         onClick={() => setAgentClick("Deliver")}
                       >
                         <h6 className="btn-title">Deliver</h6>
@@ -326,7 +348,11 @@ const SystemAssessment = () => {
                   </p>
                 </div>
               )}
-              {showShimmer && <Shimmer />}
+              {showShimmer && (
+                <div style={{ paddingLeft: '3.5vw' }}>
+                  <Shimmer />
+                </div>
+              )}
               {!showShimmer && selectedClient && agentClick && contact && (
                 <div className="agent-flex-wrapper">
                   <img
@@ -358,9 +384,8 @@ const SystemAssessment = () => {
                         </p>
                       </div>
                       <div
-                        className={`btn-wrapper brownfield-hover ${
-                          selectedApproach === "Landscape" ? "selected" : ""
-                        }`}
+                        className={`btn-wrapper brownfield-hover ${selectedApproach === "Landscape" ? "selected" : ""
+                          }`}
                         onClick={() => setSelectedApproach("Landscape")}
                       >
                         <h6 className="btn-title">
@@ -393,7 +418,7 @@ const SystemAssessment = () => {
               {showAssessmentInput && (
                 <AssessmentInput
                   assessmentId={1}
-                  onExtract={handleMetaDataUpload} // Buttons 2 and 3 are greyed out
+                  onExtract={handleMetaDataUpload}
                   pointerOption={[1]}
                   disabledOption={[2, 3]}
                 />
@@ -406,7 +431,7 @@ const SystemAssessment = () => {
                   setActiveSidePanelContent={null}
                   setActiveIframeUrl={setActiveIframeUrl}
                   setFileViewerContent={setFileViewerContent}
-                 /*  setLeftPanelWidth={setLeftWidth} */
+                  setSidePanelHeading={setSidePanelHeading}
                 />
               )}
               {metadataConfirmed && (
@@ -425,7 +450,6 @@ const SystemAssessment = () => {
                   onProductionLogs={handleProductionLogs}
                   fadedOption={[1, 2]}
                   pointerOption={[3]}
-                  /* setLeftPanelWidth={setLeftWidth} */
                 />
               )}
               {isQuestionnaireConfirmed && showProductionLog && (
@@ -436,7 +460,7 @@ const SystemAssessment = () => {
                   setActiveSidePanelContent={null}
                   setActiveIframeUrl={setActiveIframeUrl}
                   setFileViewerContent={setFileViewerContent}
-                 /*  setLeftPanelWidth={setLeftWidth} */
+                  setSidePanelHeading={setSidePanelHeading}
                 />
               )}
 
@@ -450,14 +474,17 @@ const SystemAssessment = () => {
                     setActiveSidePanelContent={null}
                     setActiveIframeUrl={setActiveIframeUrl}
                     setFileViewerContent={setFileViewerContent}
-                    /* setLeftPanelWidth={setLeftWidth} */
+                    setSidePanelHeading={setSidePanelHeading}
                   />
                 )}
 
               {observationShimmer && (
-                <Shimmer headerText="Generating the observation…​" />
+                <div style={{paddingLeft: '3.5vw'}}>
+                    <Shimmer headerText="Generating the observation…"  />
+                </div>
+                
               )}
-              {observationConfirmed && (
+              {observationConfirmed && !observationShimmer && (
                 <ObservationData
                   onViewObservationClick={handleViewObservationClick}
                 />
@@ -466,7 +493,7 @@ const SystemAssessment = () => {
                 <FileUploads
                   stepId={4}
                   setIsConfirmed={setSummaryReportConfirmed}
-                 /*  setLeftPanelWidth={setLeftWidth} */
+                  setSidePanelHeading={setSidePanelHeading}
                 />
               )}
               {summaryReportConfirmed && (
@@ -481,28 +508,51 @@ const SystemAssessment = () => {
                       {UploadedFiles.find((item) => item.id === "4")?.label}
                     </p>
 
-                    <GraphTabs 
-                      onSelectChart={(chartId) => {
-                        setSelectedChartId(chartId);
-                        setShowFileViewer(true);
-                        setFileViewerContent("chart");
-                        /* setLeftWidth(60); */
-                      }}
-                    />
+                    {showGraphShimmer ? (
+                      <Shimmer headerText="Generating the summary report…" />
+                    ) : (
+                      <GraphTabs
+                        onSelectChart={(chartId) => {
+                          setSelectedChartId(chartId);
+                          setShowFileViewer(true);
+                          setFileViewerContent("chart");
+                        }}
+                      />
+                    )}
                   </div>
                 </div>
               )}
             </ScrollToBottom>
           )}
         </div>
-        {showFileViewer && (
+        {showFileViewer && !isFullscreen && (
           <div className="divider" onMouseDown={handleMouseDown}>
-            <span>← →</span>
+            <div className="divider-handle">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 13" fill="none">
+                <path id="Icon" fillRule="evenodd" clipRule="evenodd" d="M0.166238 6.05384L5.70186 0.224031C5.92272 -0.012177 6.27985 -0.012177 6.50071 0.224031L6.83435 0.580855C7.05522 0.817063 7.05522 1.19902 6.83435 1.43522L2.02711 6.48102L6.82965 11.5268C7.05052 11.763 7.05052 12.145 6.82965 12.3812L6.49601 12.738C6.27515 12.9742 5.91802 12.9742 5.69716 12.738L0.161538 6.90821C-0.0546229 6.672 -0.0546229 6.29004 0.166238 6.05384Z" fill="black" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 14" fill="none">
+                <path id="Icon" fillRule="evenodd" clipRule="evenodd" d="M6.83376 7.39148L1.29814 13.2213C1.07728 13.4575 0.720147 13.4575 0.499286 13.2213L0.165646 12.8645C-0.0552151 12.6282 -0.0552151 12.2463 0.165646 12.0101L4.97289 6.96429L0.170346 1.91849C-0.0505146 1.68228 -0.0505146 1.30033 0.170346 1.06412L0.503987 0.7073C0.724848 0.471092 1.08198 0.471092 1.30285 0.7073L6.83846 6.53711C7.05462 6.77332 7.05462 7.15527 6.83376 7.39148Z" fill="black" />
+              </svg>
+            </div>
           </div>
         )}
 
         {showFileViewer && (
-          <div className="file-viewer-panel" style={{ width: `${98- leftWidth}%` }}>
+          <div
+            className="file-viewer-panel"
+            style={{
+              width: isFullscreen ? "100%" : `${98 - leftWidth}%`,
+              flexGrow: isFullscreen ? 1 : 0,
+              maxWidth: isFullscreen ? "100%" : "unset",
+              transition: "width 0.3s ease"
+            }}
+          >
+            <div className='right-panel-icons'>
+              {/* <img src={CrossIcon} alt="" /> */}
+              <ScreenMode isFullscreen={isFullscreen} setIsFullscreen={setIsFullscreen} />
+            </div>
+            <br />
             <ResizableLayout
               activeIframeUrl={
                 fileViewerContent === "excel" ? activeIframeUrl : null
@@ -516,6 +566,7 @@ const SystemAssessment = () => {
                   />
                 ) : null
               }
+              sidePanelHeading={sidePanelHeading}
               showObservationPanel={fileViewerContent === "observations"}
               observationPanelContent={
                 <div className="resizer-right-panel">
@@ -526,7 +577,6 @@ const SystemAssessment = () => {
                         onClick={() => {
                           setShowFileViewer(false);
                           setShowSummaryReport(true);
-                          /* setLeftWidth(90) */
                         }}
                         className="confirm-btn"
                       >
@@ -542,20 +592,22 @@ const SystemAssessment = () => {
                 } else if (currentStepId === 2) {
                   setProductionLogConfirmed(true);
                 } else if (currentStepId === 3) {
-                  setObservationShimmer(true);
-                  setTimeout(() => {
-                    setObservationShimmer(false);
-                    setObservationConfirmed(true);
-                  }, 5000);
+                  // setObservationShimmer(true);
+                   setObservationConfirmed(true);
+                  // setTimeout(() => {
+                  //   setObservationShimmer(false);
+                   
+                  // }, 5000);
                 }
                 setShowFileViewer(false);
-               /*  setLeftWidth(90); */
+                /*  setLeftWidth(90); */
               }}
             />
           </div>
         )}
-      </React.Fragment>
-    );
+      </div>
+    </React.Fragment>
+  );
 }
 
 export default SystemAssessment

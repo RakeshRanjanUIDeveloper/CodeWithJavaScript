@@ -14,12 +14,12 @@ const FileUploads = ({
   setActiveIframeUrl,
   setShowFileViewer,
   setFileViewerContent,
-  // setLeftPanelWidth
+  setSidePanelHeading
 }) => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [isUploading, setIsUploading] = useState(false);
   const [isFileUploaded, setIsFileUploaded] = useState(false);
-  const showShimmer = useShimmer(isUploading, 10000);
+  const showShimmer = useShimmer(isUploading, 5000);
 
   const shimmerHeaders = {
     1: "Uploading the metadata extracts...",
@@ -27,6 +27,13 @@ const FileUploads = ({
     3: "Generating the observation…​",
     4: "Uploading Summary Reports...",
   };
+
+  const stepHeadings = [
+    { id: 1, label: "Extracts Metadata" },
+    { id: 2, label: "Production Logs" },
+    { id: 3, label: "Observation Data" },
+    { id: 4, label: "Summary Reports" }
+  ];
 
   const fileStep = fileUploadData.find((file) => file.id === stepId);
   if (!fileStep) return null;
@@ -93,9 +100,8 @@ const FileUploads = ({
                 isProceed && (stepId === 1 || stepId === 2);
               return fileButton !== "Upload" ? (
                 <label
-                  className={`options-btn upload-click ${
-                    isDisabledProceed ? "disabled" : ""
-                  }`}
+                  className={`options-btn upload-click ${isDisabledProceed ? "disabled" : ""
+                    }`}
                   onClick={(e) =>
                     !isDisabledProceed && handleClick(e, fileButton)
                   }
@@ -118,36 +124,37 @@ const FileUploads = ({
         </div>
       </div>
 
-      {showShimmer && (
-        <div className="agent-flex-wrapper">
+ {showShimmer && (
+        <div style={{paddingLeft: '3.5vw'}}>
           <Shimmer headerText={shimmerHeaders[stepId] || "Uploading file..."} />
         </div>
       )}
 
       {uploadedFiles.length > 0 && (
         <div className="agent-flex-wrapper">
-           <img src={DevObjectsIcon} className="devobjicon" alt="dev icon" />
-           <div className="help-content">
-           
-          <p className="upload-success-msg">{fileStep.uploadSuccessMessage}</p>
-          {uploadedFiles.map((file, index) => (
-            <div
-              key={index}
-              className="p-3 bg-white border rounded shadow cursor-pointer hover:bg-blue-50"
-              onClick={() => {
-                setActiveIframeUrl?.(file.officeUrl);
-                setShowFileViewer?.(true);
-                setFileViewerContent?.("excel");
-                /* setLeftPanelWidth(60) */
-              }}
-            >
-              <div className="file-icon-wrapper">
-                <img src={FileIcon} className="devobjicon" alt="file icon" />
-                <span>{file.fileName}</span>
+          <img src={DevObjectsIcon} className="devobjicon" alt="dev icon" />
+          <div className="help-content">
+
+            <p className="upload-success-msg">{fileStep.uploadSuccessMessage}</p>
+            {uploadedFiles.map((file, index) => (
+              <div
+                key={index}
+                className="p-3 bg-white border rounded shadow cursor-pointer hover:bg-blue-50"
+                onClick={() => {
+                  const selectedHeading = stepHeadings.find(item => item.id === stepId)?.label;
+                  setSidePanelHeading(selectedHeading);
+                  setActiveIframeUrl?.(file.officeUrl);
+                  setShowFileViewer?.(true);
+                  setFileViewerContent?.("excel");
+                }}
+              >
+                <div className="file-icon-wrapper">
+                  <img src={FileIcon} className="devobjicon" alt="file icon" />
+                  <span>{file.fileName}</span>
+                </div>
               </div>
-            </div>
-          ))}
-            </div>
+            ))}
+          </div>
         </div>
       )}
     </React.Fragment>

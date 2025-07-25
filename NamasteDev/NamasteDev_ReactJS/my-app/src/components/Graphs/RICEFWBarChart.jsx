@@ -19,7 +19,7 @@ const RICEFWBarChart = () => {
   const percentage = Math.round(cleanlinessScore * 100);
 
   return (
-    <div className="ricefw-container">
+    <div className="ricefw-container graph-container">
       <h3>Current System Analysis</h3>
 
       {/* Bar Chart Section */}

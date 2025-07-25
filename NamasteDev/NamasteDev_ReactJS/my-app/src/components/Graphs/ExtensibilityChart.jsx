@@ -14,7 +14,7 @@ import { extensibilityData } from "../../data/chartData";
 import './ExtensibilityChart.css';
 
 const ExtensibilityChart = () => (
-  <div className="extensibility-chart-container">
+  <div className="extensibility-chart-container graph-container">
     <h3 className="extensibility-chart-title">Extensibility Recommendations</h3>
 
     <ResponsiveContainer width="100%" height={320}>

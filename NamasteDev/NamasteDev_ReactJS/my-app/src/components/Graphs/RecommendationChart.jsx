@@ -13,7 +13,7 @@ import { recommendationData } from '../../data/chartData';
 import './RecommendationChart.css';
 
 const RecommendationChart = () => (
-    <div className="recommendation-chart-container">
+    <div className="recommendation-chart-container graph-container">
         <div className="recommendation-chart-title">
             Prime Recommendations (RICEFW Category)
         </div>

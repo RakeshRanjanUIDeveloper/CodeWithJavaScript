@@ -2,43 +2,94 @@
   width: 60%;
   display: inline-block;
   vertical-align: top;
-  padding: 0 0 0 0.7vw;
+  padding: 0.7vw 0.7vw 0 0.7vw;
+  position: relative;
+  border-radius: 24px 0 0 24px !important;
 }
 .file-viewer-panel {
-    display: inline-block;
-    vertical-align: top;
-    width: 34%;
-    height: 89vh;
-    margin: 0 auto;
-    /* padding: 0.7vw; */
-    border-radius: 1.5rem;
-    background: #fff;
-    box-shadow: 0 0 30px 0 rgba(0, 0, 0, .1);
-    margin: 0 auto;
-    transition: width 0.3s ease;
+  display: inline-block;
+  vertical-align: top;
+  width: 34%;
+  margin: 0 auto;
+  padding: 1vw;
+  border-radius: 0 24px 24px 0;
+  background: #fff;
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, .1);
+  margin: 0 auto;
+  transition: width 0.3s ease;
+  overflow: hidden;
 }
- .divider {
-   width: 10px;
-   background-color: #999;
-   cursor: col-resize;
-   align-items: center;
-   justify-content: center;
-   user-select: none;
-   display: inline-block;
- }
+.divider {
+  width: 1pt;
+  background-color: #E5E4FE;
+  cursor: col-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  user-select: none;
+}
+.outer-wrapper {
+  height: 90vh;
+  display: flex;
+  padding: 0 2vw;
+}
 
- .divider span {
-   font-size: 12px;
-   color: white;
-   writing-mode: vertical-lr;
-   text-orientation: mixed;
-   pointer-events: none;
- }
+.divider-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #FAFAFA;
+  border: 1pt solid #E5E4FE;
+  border-radius: 999px;
+  padding: 1vw 0.3vw;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.divider-handle svg {
+  width: 6px;
+}
+
+.divider-handle div {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1;
+  color: #000;
+}
+
+.react-scroll-to-bottom--css-ukkkd-1tj0vk3{
+  opacity: 0 !important;
+}
+
+.react-scroll-to-bottom--css-ukkkd-1n7m0yu {
+  height: 70vh;
+  overflow: auto;
+}
+
+.react-scroll-to-bottom--css-ukkkd-1n7m0yu::-webkit-scrollbar {
+  width: 8px;
+}
+
+.react-scroll-to-bottom--css-ukkkd-1n7m0yu::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+.react-scroll-to-bottom--css-ukkkd-1n7m0yu::-webkit-scrollbar-thumb {
+  background: #eee6ff;
+  border-radius: 10px;
+  border: 2px solid transparent;
+}
 .sap-agent-container {
   display: flex;
   flex-direction: column;
   gap: 1vw;
-  padding: 1vw 1vw;
+  padding: 1vw 0vw 1vw 0.2vw;
   scroll-behavior: smooth;
   height: 70vh;
   overflow: auto;
@@ -52,7 +103,14 @@
   position: relative;
   z-index: 10;
 }
-
+p.dev-assess {
+  margin: 0.5vw auto 0;
+  color: #7B7B7B;
+  font-family: Graphik;
+  font-size: 1vw;
+  font-weight: 400;
+  line-height: 1.2;
+}
 .deliver-agent-wrapper {
   position: relative;
   z-index: 1;
@@ -434,4 +492,26 @@
 
 img.devobjicon {
   width: 2.3vw;
+}
+
+.main-panel {
+    height: 89vh;
+    overflow-y: auto;
+}
+.main-panel .graph-container {
+    /* height: 100%; */
+    position: relative;
+}
+.fullscreen-main {
+  width: 0 !important;
+  overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+}
+.right-panel-icons{
+  gap: 1.5vw;
+    display: flex;
+    justify-content: end;
+    align-items: center; 
 }
