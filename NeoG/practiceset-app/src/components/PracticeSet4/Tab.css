@@ -1,0 +1,17 @@
+.tab-buttons{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.tab-button{
+    border: 2px solid lightgreen;
+    width: 50%;
+    padding: 20px;
+    text-align: center;
+    font-weight: 700;
+    color: #000;
+    font-family: Graphics;
+    font-size: 20px;
+}
