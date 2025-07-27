@@ -5,6 +5,8 @@ import Welcome from './Welcome'
 import FruitsVegetables from './FruitsVegetables'
 import TodoItems from './TodoItems'
 import Tasks from './Tasks'
+import Books from './Books'
+import Lives from './Lives'
 
 const PracticeSet4 = () => {
     const todoItems = [
@@ -27,6 +29,8 @@ const taskItems = [
         <FruitsVegetables />
         <TodoItems todoItems={todoItems} />
         <Tasks taskItems={taskItems} />
+        <Books />
+        <Lives />
     </div>
   )
 }
