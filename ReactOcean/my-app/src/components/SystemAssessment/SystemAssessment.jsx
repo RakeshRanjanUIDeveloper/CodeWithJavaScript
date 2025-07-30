@@ -16,11 +16,12 @@ import ObservationData from '../ObservationData/ObservationData';
 import GraphTabs from '../Graphs/GraphTabs';
 import { UploadedFiles } from "../../data/UploadedFiles";
 import useShimmer from '../Shimmer/useShimmer';
+import useResizeUtility from '../utils/useResizeUtility';
 import RICEFWBarChart from '../../components/Graphs/RICEFWBarChart';
 import ReportSubcategoryChart from '../../components/Graphs/ReportSubcategoryChart';
 import RecommendationChart from '../../components/Graphs/RecommendationChart';
 import ExtensibilityChart from '../../components/Graphs/ExtensibilityChart';
-import CrossIcon from "../../assets/icons/clear-icon.svg";
+import CrossIcon from "../../assets/icons/clear-icon.svg"
 import ScreenMode from "../ScreenMode/ScreenMode";
 
 const SystemAssessment = () => {
@@ -57,70 +58,31 @@ const SystemAssessment = () => {
   const observationShimmer = useShimmer(observationConfirmed && currentStepId === 3, 5000);
 
   const animationFrameId = useRef(null);
-  const containerRef = useRef(null);
   const outerWrapperRef = useRef(null);
-  const [leftWidth, setLeftWidth] = useState(90);
+  const [leftWidth, setLeftWidth] = useState(100);
   const isDragging = useRef(false);
 
-  const handleMouseDown = (e) => {
-    e.preventDefault();
-    isDragging.current = true;
-  };
-  const handleMouseUp = () => {
-    isDragging.current = false;
-    if (animationFrameId.current) {
-      cancelAnimationFrame(animationFrameId.current);
-      animationFrameId.current = null;
-    }
-  };
-  const handleMouseMove = (e) => {
-    if (!isDragging.current || !outerWrapperRef.current) return;
+  const { handleMouseDown } = useResizeUtility({
+    outerWrapperRef,
+    animationFrameId,
+    isDragging,
+    setLeftWidth
+  });
 
-    if (animationFrameId.current) {
-      cancelAnimationFrame(animationFrameId.current);
-    }
-
-    animationFrameId.current = requestAnimationFrame(() => {
-      const container = outerWrapperRef.current;
-      const containerWidth = container.offsetWidth;
-      const offsetLeft = container.getBoundingClientRect().left;
-      const mouseX = e.clientX - offsetLeft;
-
-      const newLeftWidth = (mouseX / containerWidth) * 100;
-
-      if (newLeftWidth >= 20 && newLeftWidth <= 80) {
-        setLeftWidth(newLeftWidth);
-      }
-    });
-  };
-
-
-  useEffect(() => {
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mouseup", handleMouseUp);
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseup", handleMouseUp);
-      if (animationFrameId.current) {
-        cancelAnimationFrame(animationFrameId.current);
-      }
-    };
-  }, []);
-
-  const getChartComponent = (id) => {
-    switch (id) {
-      case 'summary':
-        return <RICEFWBarChart />;
-      case 'system':
-        return <ReportSubcategoryChart />;
-      case 'deepdive':
-        return <RecommendationChart />;
-      case 'solutions':
-        return <ExtensibilityChart />;
-      default:
-        return null;
-    }
-  };
+const getChartComponent = (id) => {
+  switch (id) {
+    case 'summary':
+      return <RICEFWBarChart activeTab={id} />;
+    case 'system':
+      return <ReportSubcategoryChart activeTab={id} />;
+    case 'deepdive':
+      return <RecommendationChart activeTab={id} />;
+    case 'solutions':
+      return <ExtensibilityChart activeTab={id} />;
+    default:
+      return null;
+  }
+};
 
   const resetAssessment = () => {
     setSelectedClient('');
@@ -196,7 +158,7 @@ const SystemAssessment = () => {
     if (showFileViewer) {
       setLeftWidth(60)
     } else {
-      setLeftWidth(90)
+      setLeftWidth(100)
     }
   }, [showFileViewer]);
 
@@ -549,7 +511,6 @@ const SystemAssessment = () => {
             }}
           >
             <div className='right-panel-icons'>
-              {/* <img src={CrossIcon} alt="" /> */}
               <ScreenMode isFullscreen={isFullscreen} setIsFullscreen={setIsFullscreen} />
             </div>
             <br />
@@ -570,16 +531,14 @@ const SystemAssessment = () => {
               showObservationPanel={fileViewerContent === "observations"}
               observationPanelContent={
                 <div className="resizer-right-panel">
+                  <img src={CrossIcon} className="cross-icon" alt="" onClick={() => {
+                          setShowFileViewer(false);
+                          setShowSummaryReport(true);
+                        }} />
                   <div className="extracts-wrapper">
                     <h3>Observations</h3>
                     <div className="confirm-bar">
-                      <button
-                        onClick={() => {
-                          setShowFileViewer(false);
-                          setShowSummaryReport(true);
-                        }}
-                        className="confirm-btn"
-                      >
+                      <button className="confirm-btn">
                         Confirm
                       </button>
                     </div>

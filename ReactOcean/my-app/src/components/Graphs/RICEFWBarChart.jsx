@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import {
   BarChart,
   Bar,
@@ -12,13 +13,20 @@ import {
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-import { ricefwData, cleanlinessScore } from '../../data/chartData';
+import {ricefwData, cleanlinessScore } from '../../data/chartData';
+import { tabs } from '../../data/GraphTabs';
 import './RICEFWBarChart.css';
 
-const RICEFWBarChart = () => {
-  const percentage = Math.round(cleanlinessScore * 100);
 
+const RICEFWBarChart = ( { activeTab }) => {
+  const percentage = Math.round(cleanlinessScore * 100);
+const currentTab = tabs.find(tab => tab.id === activeTab);
+  const panelTitle = currentTab?.paneltitle;
   return (
+   <>
+    <div className='extracts-wrapper'>
+      <h3>{panelTitle}</h3>
+    </div>
     <div className="ricefw-container graph-container">
       <h3>Current System Analysis</h3>
 
@@ -69,7 +77,8 @@ const RICEFWBarChart = () => {
           <div className="metric"><strong>545</strong> DDIC objects</div>
         </div>
       </div>
-    </div>
+    </div></>
+    
   );
 };
 

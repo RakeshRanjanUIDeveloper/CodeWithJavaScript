@@ -1,7 +1,8 @@
 import React from "react";
-import FullScreenLogo from "../../assets/icons/fullscreen.png"; // Adjust path
+import FullScreenLogo from "../../assets/icons/fullscreen.png"; 
+import NormalScreenLogo from "../../assets/icons/normalscreen.svg";
 
-import "./ScreenMode.css"; // You can add styles here or keep using the same `.fullscreen` class
+import "./ScreenMode.css";
 
 const ScreenMode = ({ isFullscreen, setIsFullscreen }) => {
   const toggleFullscreen = () => {
@@ -10,8 +11,7 @@ const ScreenMode = ({ isFullscreen, setIsFullscreen }) => {
 
   return (
     <img
-      src={FullScreenLogo}
-      alt="Toggle Fullscreen"
+      src={isFullscreen ? NormalScreenLogo : FullScreenLogo}
       className="fullscreen"
       onClick={toggleFullscreen}
     />

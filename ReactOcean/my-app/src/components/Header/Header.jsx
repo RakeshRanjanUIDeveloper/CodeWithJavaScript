@@ -13,7 +13,7 @@ const Header = () => {
       <h3>Genwizard</h3>
     </div>
     <div className='user-header'>
-      <p>John Doe</p>
+      <p>Rakesh Ranjan</p>
       <img src={ProfileLogo} className="user-logo"></img> 
     </div>
     </div>

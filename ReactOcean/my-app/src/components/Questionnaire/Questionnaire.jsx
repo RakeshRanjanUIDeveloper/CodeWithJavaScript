@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import SapAgentDropdown from '../SapAgentDropdown/SapAgentDropdown';
 import ConfirmIcon from "../../assets/icons/confirm-icon.png";
+import CrossIcon from "../../assets/icons/clear-icon.svg"
 import ToolsImg from "../../assets/icons/tools.png";
 import './Questionnaire.css';
 import '../Home/Home.css';
@@ -42,9 +43,10 @@ const Questionnaire = ({onQuestionnaireConfirm}) => {
     ]);
     return (
         <React.Fragment>
+            <img src={CrossIcon} className="cross-icon" alt="" onClick={onQuestionnaireConfirm} />
             <div className="extracts-wrapper">
                 <h3>Questionnaire & Survey</h3>
-                <button className="confirm-btn" onClick={onQuestionnaireConfirm}>
+                <button className="confirm-btn" >
                     <img src={ConfirmIcon} className='confirm-tick-img' />
                     Confirm
                 </button>

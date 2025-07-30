@@ -1,4 +1,4 @@
-// FileUploads.jsx
+  // FileUploads.jsx
 import React, { useState } from "react";
 import { fileUploadData } from "../../data/fileUploadData";
 import DevObjectsIcon from "../../assets/icons/dev-objects-icon.svg";
@@ -6,6 +6,8 @@ import FileIcon from "../../assets/icons/file-icon.svg";
 import "../AssessmentInput/AssessmentInput.css";
 import Shimmer from "../Shimmer/Shimmer";
 import useShimmer from "../Shimmer/useShimmer";
+import { shimmerHeaders } from "../../data/ShimmerHeaders";
+import { stepHeadings } from '../../data/RightPanelHeaders';
 
 const FileUploads = ({
   stepId,
@@ -20,21 +22,7 @@ const FileUploads = ({
   const [isUploading, setIsUploading] = useState(false);
   const [isFileUploaded, setIsFileUploaded] = useState(false);
   const showShimmer = useShimmer(isUploading, 5000);
-
-  const shimmerHeaders = {
-    1: "Uploading the metadata extracts...",
-    2: "Getting the Production Logs…​",
-    3: "Generating the observation…​",
-    4: "Uploading Summary Reports...",
-  };
-
-  const stepHeadings = [
-    { id: 1, label: "Extracts Metadata" },
-    { id: 2, label: "Production Logs" },
-    { id: 3, label: "Observation Data" },
-    { id: 4, label: "Summary Reports" }
-  ];
-
+  const shimmerHeader = shimmerHeaders.find(item => item.id === stepId)?.text || "Uploading file...";
   const fileStep = fileUploadData.find((file) => file.id === stepId);
   if (!fileStep) return null;
 
@@ -126,7 +114,7 @@ const FileUploads = ({
 
  {showShimmer && (
         <div style={{paddingLeft: '3.5vw'}}>
-          <Shimmer headerText={shimmerHeaders[stepId] || "Uploading file..."} />
+          <Shimmer headerText={shimmerHeader} />
         </div>
       )}
 

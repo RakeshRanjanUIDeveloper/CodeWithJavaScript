@@ -20,19 +20,33 @@
   overflow: hidden;
 }
 .divider {
-  width: 1pt;
-  background-color: #E5E4FE;
-  cursor: col-resize;
+  cursor: ew-resize;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   user-select: none;
 }
+.divider:after {
+  content: '';
+  position: absolute;
+  width: 1vw;
+  height: 100%;
+  z-index: 0;
+}
+.divider:before {
+  content: '';
+  position: absolute;
+  width: 1pt;
+  height: 100%;
+  background: #E5E4FE;
+}
 .outer-wrapper {
   height: 90vh;
   display: flex;
   padding: 0 2vw;
+  width: 95%;
+  margin: 0 auto;
 }
 
 .divider-handle {
@@ -49,7 +63,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  pointer-events: none;
+  cursor: ew-resize;
 }
 
 .divider-handle svg {
@@ -509,9 +523,23 @@ img.devobjicon {
   pointer-events: none;
   opacity: 0;
 }
-.right-panel-icons{
+/* .right-panel-icons{
   gap: 1.5vw;
     display: flex;
     justify-content: end;
     align-items: center; 
+} */
+.cross-icon {
+    width: 1.5vw;
+    position: absolute;
+    top: 4.5vw;
+    right: 3vw;
+    cursor: pointer;
+}
+.right-panel-icons {
+    gap: 1.5vw;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding-right: 3vw;
 }

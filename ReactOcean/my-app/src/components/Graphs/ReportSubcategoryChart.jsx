@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid
 } from 'recharts';
@@ -8,11 +9,20 @@ import {
   reportStatsPrimary,
   reportStatsSecondary
 } from '../../data/chartData';
-
+import { tabs } from '../../data/GraphTabs';
 import './ReportSubcategoryChart.css';
 
-const ReportSubcategoryChart = () => {
+
+const ReportSubcategoryChart = ({ activeTab }) => {
+  const currentTab = tabs.find(tab => tab.id === activeTab);
+  const panelTitle = currentTab?.paneltitle;
+
+
   return (
+    <>
+    <div className='extracts-wrapper'>
+      <h3>{panelTitle}</h3>
+    </div>
     <div className="report-chart-container graph-container">
       <h3>Report Subcategory</h3>
 
@@ -51,7 +61,8 @@ const ReportSubcategoryChart = () => {
           </div>
         ))}
       </div>
-    </div>
+    </div></>
+    
   );
 };
 

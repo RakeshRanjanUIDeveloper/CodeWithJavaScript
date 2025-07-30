@@ -1,5 +1,5 @@
 .main-wrapper {
-    width: 93%;
+    /* width: 93%; */
     /* height: 89vh; */
     margin: 0 auto;
     padding: 0.7vw;
@@ -97,19 +97,19 @@
 }
 
 .header-super-agent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1vw;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1vw;
 }
 
 .right-header {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: center;
-    gap: 0.3vw;
-    padding-right: 1vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 0.3vw;
+  padding-right: 1vw;
 }
 
 .clear-btn {
@@ -223,7 +223,7 @@
     font-size: 1.02vw;
     font-weight: 400;
     color: #000;
-    cursor: pointer;
+    /* cursor: pointer; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -354,4 +354,33 @@
 .right-panel {
     min-width: 20%;
     /* Prevent panel from becoming too small */
+}
+
+.main-wrapper.shrinked .btn-wrapper {
+    width: 70% !important;
+}
+
+.main-wrapper.shrinked .button-group.button-landscape {
+    width: 100% !important;
+}
+
+.main-wrapper.shrinked .sap-agent-container .btn-title {
+    font-size: 1.02vw !important;
+}
+
+.main-wrapper.shrinked .button-landscape .btn-assessment-wrapper {
+    width: 40% !important;
+}
+
+.main-wrapper.shrinked .btn-wrapper.btn-assessment:hover {
+    min-height: 11vw !important;
+}
+
+.main-wrapper.shrinked .sap-agent-container {
+    height: 65vh !important;
+}
+
+.main-wrapper.shrinked .assessment-container .dev-objects-btn-wrapper p {
+    min-width: 60% !important;
+    height: 4vw !important;
 }
