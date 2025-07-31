@@ -1,5 +1,6 @@
 import DevObjectsIcon from "../../assets/icons/dev-objects-icon.svg";
 import { AssessmentsComponentData } from '../../data/AssessmentsComponentData';
+import '../SystemAssessment/SystemAssessment.css'
 const AssessmentsList = ({ onSelectAssessment }) => {
     return (
         <div className="agent-flex-wrapper">
@@ -11,7 +12,6 @@ const AssessmentsList = ({ onSelectAssessment }) => {
                 </p>
                 <p>You may select any of the below options to proceed. </p>
                 <div className="button-group button-landscape">
-                    <div className='btn-assessment-wrapper'>
                         {
                             AssessmentsComponentData.map((component) => (
                                 <div className="btn-wrapper btn-assessment" key={component.id} onClick={() =>onSelectAssessment(component.assessmentComponent)}>
@@ -20,7 +20,7 @@ const AssessmentsList = ({ onSelectAssessment }) => {
                                 </div>
                             ))
                         }
-                    </div>
+                   
                 </div>
             </div>
         </div>

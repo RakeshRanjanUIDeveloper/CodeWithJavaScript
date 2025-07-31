@@ -15,6 +15,7 @@ import ScreenMode from "../ScreenMode/ScreenMode";
 
 
 const DevelopmentAssessment = () => {
+    const [showAssessmentInput, setShowAssessmentInput] = useState(false);
     const [metadataConfirmed, setMetadataConfirmed] = useState(false);
     const [showFileUpload, setShowFileUpload] = useState(false);
     const [productionLogConfirmed, setProductionLogConfirmed] = useState(false);
@@ -28,6 +29,7 @@ const DevelopmentAssessment = () => {
     const [showObservationPanel, setShowObservationPanel] = useState(false);
     const [showSummaryReport, setShowSummaryReport] = useState(false);
     const [summaryReportConfirmed, setSummaryReportConfirmed] = useState(false);
+    const observationShimmer = useShimmer(observationConfirmed && currentStepId === 3, 5000);
 
     const handleDevelopmentAssessment = () => {
         setShowAssessmentInput(true);

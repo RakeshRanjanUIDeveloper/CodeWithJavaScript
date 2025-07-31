@@ -9,6 +9,7 @@ import ClearIcon from "../../assets/icons/clear-icon.svg";
 import Shimmer from '../Shimmer/Shimmer';
 import AssessmentsList from '../AssessmentsList/AssessmentsList';
 import useShimmer from '../Shimmer/useShimmer';
+import { AssessmentsComponentData } from '../../data/AssessmentsComponentData';
 
 const SystemAssessment = () => {
   const [initialLoading, setInitialLoading] = useState(true);
@@ -16,8 +17,7 @@ const SystemAssessment = () => {
   const [agentClick, setAgentClick] = useState('');
   const [contact, setContact] = useState(false);
   const [selectedApproach, setSelectedApproach] = useState('');
-  const [showAssessmentInput, setShowAssessmentInput] = useState(false);
-  const [activeAssessmentComponent, setActiveAssessmentComponent] = useState(null);
+  const [SelectedAssessmentComponent, setSelectedAssessmentComponent] = useState(null);
   const [showFileViewer, setShowFileViewer] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const showShimmer = useShimmer(contact, 5000);
@@ -30,7 +30,6 @@ const SystemAssessment = () => {
     setAgentClick('');
     setContact(false);
     setSelectedApproach('');
-    setShowAssessmentInput(false);
     setShowFileUpload(false);
     setIsConfirmed(false);
     setInitialLoading(true);
@@ -70,9 +69,9 @@ const SystemAssessment = () => {
                     <span>Super Agent</span>
                   </div>
                 </div>
-                {showAssessmentInput && (
+                {/* {showAssessmentInput && (
                   <p className="dev-assess">Development Assessment</p>
-                )}
+                )} */}
               </div>
             </div>
 
@@ -262,17 +261,38 @@ const SystemAssessment = () => {
                 </div>
               )}
               {selectedApproach === "Landscape" && (
-                <AssessmentsList onSelectAssessment={setActiveAssessmentComponent} />
-              )}
+                <div className="agent-flex-wrapper">
+                  <img src={DevObjectsIcon} className="devobjicon" alt="dev icon" />
+                  <div className="help-content">
+                    <>
+                      <p>Please click on the choices below to know more about the assessments.</p>
+                      <p>I can help with assessments on Process, Developments, Architecture, Data and other areas which can give you insights on how you can migrate to S4 HANA.</p>
+                      <p>You may select any of the below options to proceed.</p>
 
-              {activeAssessmentComponent && (
-                <div className="assessment-component-view">
-                  {(() => {
-                    const SelectedComponent = activeAssessmentComponent;
-                    return <SelectedComponent />;
-                  })()}
+                      <div className="button-group button-landscape">
+                        {AssessmentsComponentData.map((item) => {
+                          const isSelected = SelectedAssessmentComponent?.name === item.assessmentComponent?.name;
+
+                          return (
+                            <div
+                              key={item.id}
+                              className={`btn-wrapper btn-assessment ${isSelected ? "selected" : ""}`}
+                              onClick={() => setSelectedAssessmentComponent(() => item.assessmentComponent)}
+                            >
+                              <h6 className="btn-title">{item.title}</h6>
+                              <p className="btn-desc">{item.description}</p>
+                            </div>
+                          );
+                        })}
+                      </div>
+
+                    </>
+                  </div>
                 </div>
               )}
+              {SelectedAssessmentComponent && (
+                <SelectedAssessmentComponent />
+              )}  
             </ScrollToBottom>
           )}
         </div>

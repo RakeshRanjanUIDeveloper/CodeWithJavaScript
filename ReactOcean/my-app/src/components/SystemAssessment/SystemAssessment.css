@@ -354,13 +354,47 @@ p.dev-assess {
 }
 
 .button-landscape.button-group {
-  display: flex;
-  flex-wrap: unset;
+ display: grid;
   gap: 1.2vw;
   width: 66%;
   margin-top: 1vw;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto auto;
+}
+.button-landscape.button-group>*:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1;
 }
 
+.button-landscape.button-group>*:nth-child(2) {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.button-landscape.button-group>*:nth-child(3) {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.button-landscape.button-group>*:nth-child(4) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.button-landscape.button-group>*:nth-child(5) {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.button-landscape.button-group>*:nth-child(6) {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.button-landscape.button-group>*:nth-child(7) {
+  grid-column: 3;
+  grid-row: 2;
+}
 .btn-assessment .btn-desc {
   display: none;
   transition: all 0.3s ease;
