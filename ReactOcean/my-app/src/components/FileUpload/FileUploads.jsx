@@ -5,7 +5,7 @@ import DevObjectsIcon from "../../assets/icons/dev-objects-icon.svg";
 import FileIcon from "../../assets/icons/file-icon.svg";
 import "../AssessmentInput/AssessmentInput.css";
 import Shimmer from "../Shimmer/Shimmer";
-import useShimmer from "../Shimmer/useShimmer";
+import useShimmer from "../utils/useShimmer";
 import { shimmerHeaders } from "../../data/ShimmerHeaders";
 import { stepHeadings } from '../../data/RightPanelHeaders';
 

@@ -15,7 +15,7 @@ import ResizableLayout from '../ResizableLayout/ResizableLayout';
 import ObservationData from '../ObservationData/ObservationData';
 import GraphTabs from '../Graphs/GraphTabs';
 import { UploadedFiles } from "../../data/UploadedFiles";
-import useShimmer from '../Shimmer/useShimmer';
+import useShimmer from '../utils/useShimmer';
 import useResizeUtility from '../utils/useResizeUtility';
 import RICEFWBarChart from '../../components/Graphs/RICEFWBarChart';
 import ReportSubcategoryChart from '../../components/Graphs/ReportSubcategoryChart';
