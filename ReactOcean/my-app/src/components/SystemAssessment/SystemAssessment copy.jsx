@@ -326,7 +326,7 @@ const getChartComponent = (id) => {
                     <p>What would you like to get started with today?</p>
                     <p>
                       I can help with assessments on Process, Developments,
-                      Architecture, Data, Integrations, Security and Talent &
+                      Architecture, Data, Integrations, Security and Talent &
                       Change which can give you insights on how you can migrate
                       to S4 HANA.
                     </p>

@@ -21,17 +21,6 @@ const SystemAssessment = () => {
   const [contact, setContact] = useState(false);
   const [selectedApproach, setSelectedApproach] = useState('');
   const [SelectedAssessmentComponent, setSelectedAssessmentComponent] = useState(null);
-  const [fileViewerContent, setFileViewerContent] = useState(null);
-  const [productionLogConfirmed, setProductionLogConfirmed] = useState(false);
-  const [activeIframeUrl, setActiveIframeUrl] = useState(null);
-  const [metadataConfirmed, setMetadataConfirmed] = useState(false);
-  const [sidePanelHeading, setSidePanelHeading] = useState('');
-  const [showSummaryReport, setShowSummaryReport] = useState(false);
-    const [selectedChartId, setSelectedChartId] = useState(null);
-  const [observationConfirmed, setObservationConfirmed] = useState(false);
-  const [currentStepId, setCurrentStepId] = useState(null);
-  const [summaryReportConfirmed, setSummaryReportConfirmed] = useState(false);
-  const [showAssessmentInput, setShowAssessmentInput] = useState(false);
   const [showFileViewer, setShowFileViewer] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const showShimmer = useShimmer(contact, 5000);
@@ -46,10 +35,7 @@ const SystemAssessment = () => {
     setIsConfirmed(false);
     setInitialLoading(true);
   }
-    const handleQuestionnaireConfirm = () => {
-    setQuestionnaireConfirmed(true);
-    setShowFileViewer(false);
-  }
+
 
   useEffect(() => {
     if (selectedClient && agentClick === 'Deliver') {
@@ -81,20 +67,7 @@ const SystemAssessment = () => {
     setLeftWidth
   });
 
-  const getChartComponent = (id) => {
-  switch (id) {
-    case 'summary':
-      return <RICEFWBarChart activeTab={id} />;
-    case 'system':
-      return <ReportSubcategoryChart activeTab={id} />;
-    case 'deepdive':
-      return <RecommendationChart activeTab={id} />;
-    case 'solutions':
-      return <ExtensibilityChart activeTab={id} />;
-    default:
-      return null;
-  }
-};
+
 
   return (
     <React.Fragment>
@@ -164,6 +137,7 @@ const SystemAssessment = () => {
                   />
                 </div>
               </div>
+
               {selectedClient && (
                 <div className="agent-flex-wrapper">
                   <img
@@ -260,7 +234,7 @@ const SystemAssessment = () => {
                     <p>What would you like to get started with today?</p>
                     <p>
                       I can help with assessments on Process, Developments,
-                      Architecture, Data, Integrations, Security and Talent &
+                      Architecture, Data, Integrations, Security and Talent &
                       Change which can give you insights on how you can migrate
                       to S4 HANA.
                     </p>
@@ -335,105 +309,89 @@ const SystemAssessment = () => {
                 </div>
               )}
               {SelectedAssessmentComponent && (
-                <SelectedAssessmentComponent 
-                    setShowFileViewer={setShowFileViewer}
-                    setFileViewerContent={setFileViewerContent}
-                    setActiveIframeUrl={setActiveIframeUrl}
-                    setSidePanelHeading={setSidePanelHeading}
-                    setSummaryReportConfirmed={setSummaryReportConfirmed}
-                    setShowSummaryReport={setShowSummaryReport}
-                    showSummaryReport={showSummaryReport}
-                    summaryReportConfirmed ={summaryReportConfirmed}
-                    setObservationConfirmed={setObservationConfirmed}
-                    setCurrentStepId={setCurrentStepId}
-                    handleQuestionnaireConfirm={handleQuestionnaireConfirm}
-                    setMetadataConfirmed={setMetadataConfirmed}
-                    metadataConfirmed={metadataConfirmed}
-                    productionLogConfirmed={productionLogConfirmed}
-                    setProductionLogConfirmed={setProductionLogConfirmed}
-                    observationConfirmed={observationConfirmed}
-     />
+                <SelectedAssessmentComponent />
+              )}
+              
+              {showFileViewer && !isFullscreen && (
+                <div className="divider" onMouseDown={handleMouseDown}>
+                  <div className="divider-handle">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 13" fill="none">
+                      <path id="Icon" fillRule="evenodd" clipRule="evenodd" d="M0.166238 6.05384L5.70186 0.224031C5.92272 -0.012177 6.27985 -0.012177 6.50071 0.224031L6.83435 0.580855C7.05522 0.817063 7.05522 1.19902 6.83435 1.43522L2.02711 6.48102L6.82965 11.5268C7.05052 11.763 7.05052 12.145 6.82965 12.3812L6.49601 12.738C6.27515 12.9742 5.91802 12.9742 5.69716 12.738L0.161538 6.90821C-0.0546229 6.672 -0.0546229 6.29004 0.166238 6.05384Z" fill="black" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 14" fill="none">
+                      <path id="Icon" fillRule="evenodd" clipRule="evenodd" d="M6.83376 7.39148L1.29814 13.2213C1.07728 13.4575 0.720147 13.4575 0.499286 13.2213L0.165646 12.8645C-0.0552151 12.6282 -0.0552151 12.2463 0.165646 12.0101L4.97289 6.96429L0.170346 1.91849C-0.0505146 1.68228 -0.0505146 1.30033 0.170346 1.06412L0.503987 0.7073C0.724848 0.471092 1.08198 0.471092 1.30285 0.7073L6.83846 6.53711C7.05462 6.77332 7.05462 7.15527 6.83376 7.39148Z" fill="black" />
+                    </svg>
+                  </div>
+                </div>
+              )}
+
+              {showFileViewer && (
+                <div
+                  className="file-viewer-panel"
+                  style={{
+                    width: isFullscreen ? "100%" : `${98 - leftWidth}%`,
+                    flexGrow: isFullscreen ? 1 : 0,
+                    maxWidth: isFullscreen ? "100%" : "unset",
+                    transition: "width 0.3s ease"
+                  }}
+                >
+                  <div className='right-panel-icons'>
+                    <ScreenMode isFullscreen={isFullscreen} setIsFullscreen={setIsFullscreen} />
+                  </div>
+                  <br />
+                  <ResizableLayout
+                    activeIframeUrl={
+                      fileViewerContent === "excel" ? activeIframeUrl : null
+                    }
+                    customContent={
+                      fileViewerContent === "chart" ? (
+                        getChartComponent(selectedChartId)
+                      ) : fileViewerContent === "questionnaire" ? (
+                        <Questionnaire
+                          onQuestionnaireConfirm={handleQuestionnaireConfirm}
+                        />
+                      ) : null
+                    }
+                    sidePanelHeading={sidePanelHeading}
+                    showObservationPanel={fileViewerContent === "observations"}
+                    observationPanelContent={
+                      <div className="resizer-right-panel">
+                        <img src={CrossIcon} className="cross-icon" alt="" onClick={() => {
+                                setShowFileViewer(false);
+                                setShowSummaryReport(true);
+                              }} />
+                        <div className="extracts-wrapper">
+                          <h3>Observations</h3>
+                          <div className="confirm-bar">
+                            <button className="confirm-btn">
+                              Confirm
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    }
+                    onConfirmExcel={() => {
+                      if (currentStepId === 1) {
+                        setMetadataConfirmed(true);
+                      } else if (currentStepId === 2) {
+                        setProductionLogConfirmed(true);
+                      } else if (currentStepId === 3) {
+                        // setObservationShimmer(true);
+                        setObservationConfirmed(true);
+                        // setTimeout(() => {
+                        //   setObservationShimmer(false);
+                        
+                        // }, 5000);
+                      }
+                      setShowFileViewer(false);
+                      /*  setLeftWidth(90); */
+                    }}
+                  />
+                </div>
               )}
             </ScrollToBottom>
           )}
         </div>
-        {showFileViewer && !isFullscreen && (
-          <div className="divider" onMouseDown={handleMouseDown}>
-            <div className="divider-handle">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 13" fill="none">
-                <path id="Icon" fillRule="evenodd" clipRule="evenodd" d="M0.166238 6.05384L5.70186 0.224031C5.92272 -0.012177 6.27985 -0.012177 6.50071 0.224031L6.83435 0.580855C7.05522 0.817063 7.05522 1.19902 6.83435 1.43522L2.02711 6.48102L6.82965 11.5268C7.05052 11.763 7.05052 12.145 6.82965 12.3812L6.49601 12.738C6.27515 12.9742 5.91802 12.9742 5.69716 12.738L0.161538 6.90821C-0.0546229 6.672 -0.0546229 6.29004 0.166238 6.05384Z" fill="black" />
-              </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 14" fill="none">
-                <path id="Icon" fillRule="evenodd" clipRule="evenodd" d="M6.83376 7.39148L1.29814 13.2213C1.07728 13.4575 0.720147 13.4575 0.499286 13.2213L0.165646 12.8645C-0.0552151 12.6282 -0.0552151 12.2463 0.165646 12.0101L4.97289 6.96429L0.170346 1.91849C-0.0505146 1.68228 -0.0505146 1.30033 0.170346 1.06412L0.503987 0.7073C0.724848 0.471092 1.08198 0.471092 1.30285 0.7073L6.83846 6.53711C7.05462 6.77332 7.05462 7.15527 6.83376 7.39148Z" fill="black" />
-              </svg>
-            </div>
-          </div>
-        )}
-
-        {showFileViewer && (
-          <div
-            className="file-viewer-panel"
-            style={{
-              width: isFullscreen ? "100%" : `${98 - leftWidth}%`,
-              flexGrow: isFullscreen ? 1 : 0,
-              maxWidth: isFullscreen ? "100%" : "unset",
-              transition: "width 0.3s ease"
-            }}
-          >
-            <div className='right-panel-icons'>
-              <ScreenMode isFullscreen={isFullscreen} setIsFullscreen={setIsFullscreen} />
-            </div>
-            <br />
-            <ResizableLayout
-              activeIframeUrl={
-                fileViewerContent === "excel" ? activeIframeUrl : null
-              }
-              customContent={
-                fileViewerContent === "chart" ? (
-                  getChartComponent(selectedChartId)
-                ) : fileViewerContent === "questionnaire" ? (
-                  <Questionnaire
-                    onQuestionnaireConfirm={handleQuestionnaireConfirm}
-                  />
-                ) : null
-              }
-              sidePanelHeading={sidePanelHeading}
-              showObservationPanel={fileViewerContent === "observations"}
-              observationPanelContent={
-                <div className="resizer-right-panel">
-                  <img src={CrossIcon} className="cross-icon" alt="" onClick={() => {
-                    setShowFileViewer(false);
-                    setShowSummaryReport(true);
-                  }} />
-                  <div className="extracts-wrapper">
-                    <h3>Observations</h3>
-                    <div className="confirm-bar">
-                      <button className="confirm-btn">
-                        Confirm
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              }
-              onConfirmExcel={() => {
-                if (currentStepId === 1) {
-                  setMetadataConfirmed(true);
-                } else if (currentStepId === 2) {
-                  setProductionLogConfirmed(true);
-                } else if (currentStepId === 3) {
-                  // setObservationShimmer(true);
-                  setObservationConfirmed(true);
-                  // setTimeout(() => {
-                  //   setObservationShimmer(false);
-
-                  // }, 5000);
-                }
-                setShowFileViewer(false);
-                /*  setLeftWidth(90); */
-              }}
-            />
-          </div>
-        )}
       </div>
     </React.Fragment>
   );
