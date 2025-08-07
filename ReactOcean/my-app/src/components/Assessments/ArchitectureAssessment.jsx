@@ -2,7 +2,9 @@ import React from 'react'
 
 const ArchitectureAssessment = () => {
   return (
-    <div>ArchitectureAssessment</div>
+    <div>
+      this is Architecture assessment data
+    </div>
   )
 }
 

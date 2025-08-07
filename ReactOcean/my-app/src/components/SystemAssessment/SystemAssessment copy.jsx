@@ -1,30 +1,31 @@
 import React, { useState, useEffect, useRef } from 'react'
 import ScrollToBottom from 'react-scroll-to-bottom';
 import './SystemAssessment.css'
-import SapAgentDropdown from '../SapAgentDropdown/SapAgentDropdown';
+import SapAgentDropdown from '../common/SapAgentDropdown/SapAgentDropdown';
 import DevObjectsIcon from "../../assets/icons/dev-objects-icon.svg";
 import BackArrow from "../../assets/icons/back-arrow.svg";
 import HeaderIcon from '../../assets/icons/agent-main-icon.svg';
 import ClearIcon from "../../assets/icons/clear-icon.svg";
-import Shimmer from '../Shimmer/Shimmer';
-import AssessmentsList from '../AssessmentsList/AssessmentsList';
-import AssessmentInput from '../AssessmentInput/AssessmentInput';
+import Shimmer from '../common/Shimmer/Shimmer';
+import AssessmentsList from '../common/AssessmentsList/AssessmentsList';
+import AssessmentInput from '../common/AssessmentInput/AssessmentInput';
 import Questionnaire from '../Questionnaire/Questionnaire';
-import FileUploads from '../FileUpload/FileUploads';
-import ResizableLayout from '../ResizableLayout/ResizableLayout';
+import FileUploads from '../common/FileUpload/FileUploads';
+import ResizableLayout from '../common/ResizableLayout/ResizableLayout';
 import ObservationData from '../ObservationData/ObservationData';
 import GraphTabs from '../Graphs/GraphTabs';
 import { UploadedFiles } from "../../data/UploadedFiles";
-import useShimmer from '../utils/useShimmer';
+import useShimmer from '../common/Shimmer/useShimmer';
 import useResizeUtility from '../utils/useResizeUtility';
 import RICEFWBarChart from '../../components/Graphs/RICEFWBarChart';
 import ReportSubcategoryChart from '../../components/Graphs/ReportSubcategoryChart';
 import RecommendationChart from '../../components/Graphs/RecommendationChart';
 import ExtensibilityChart from '../../components/Graphs/ExtensibilityChart';
 import CrossIcon from "../../assets/icons/clear-icon.svg"
-import ScreenMode from "../ScreenMode/ScreenMode";
-
+import ScreenMode from "../common/ScreenMode/ScreenMode";
 const SystemAssessment = () => {
+  const [SelectedAssessmentComponent, setSelectedAssessmentComponent] = useState(null);
+
   const [initialLoading, setInitialLoading] = useState(true);
   const [selectedClient, setSelectedClient] = useState('');
   const [agentClick, setAgentClick] = useState('');
@@ -372,11 +373,17 @@ const getChartComponent = (id) => {
                 </div>
               )}
               {selectedApproach === "Landscape" && (
-                <AssessmentsList
-                  onDevelopmentAssessmentClick={handleDevelopmentAssessment}
-                  showAssessmentInput={showAssessmentInput}
+                
+                 <AssessmentsList
+                  setSelectedAssessmentComponent={setSelectedAssessmentComponent}
+                  SelectedAssessmentComponent={SelectedAssessmentComponent}
                 />
               )}
+              {
+                SelectedAssessmentComponent && (
+                 <SelectedAssessmentComponent/>
+                )
+              }
               {showAssessmentInput && (
                 <AssessmentInput
                   assessmentId={1}
@@ -569,4 +576,4 @@ const getChartComponent = (id) => {
   );
 }
 
-export default SystemAssessment
+export default SystemAssessment;

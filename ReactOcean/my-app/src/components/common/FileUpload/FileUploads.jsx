@@ -1,13 +1,15 @@
   // FileUploads.jsx
-import React, { useState } from "react";
-import { fileUploadData } from "../../data/fileUploadData";
-import DevObjectsIcon from "../../assets/icons/dev-objects-icon.svg";
-import FileIcon from "../../assets/icons/file-icon.svg";
+import React, { useState, useContext, useEffect } from "react";
+import { fileUploadData } from "../../../data/fileUploadData";
+import DevObjectsIcon from "../../../assets/icons/dev-objects-icon.svg";
+import FileIcon from "../../../assets/icons/file-icon.svg";
 import "../AssessmentInput/AssessmentInput.css";
 import Shimmer from "../Shimmer/Shimmer";
-import useShimmer from "../utils/useShimmer";
-import { shimmerHeaders } from "../../data/ShimmerHeaders";
-import { stepHeadings } from '../../data/RightPanelHeaders';
+import useShimmer from "../Shimmer/useShimmer";
+import { shimmerHeaders } from "../../../data/ShimmerHeaders";
+import { stepHeadings } from '../../../data/RightPanelHeaders';
+// import ResizeMainFrameContext from "../../context/ResizeMainFrameContext";
+import MainFrameContext from "../../context/MainFrameContext";
 
 const FileUploads = ({
   stepId,
@@ -16,15 +18,32 @@ const FileUploads = ({
   setActiveIframeUrl,
   setShowFileViewer,
   setFileViewerContent,
-  setSidePanelHeading
+  setSidePanelHeading, 
+  hierarchy,
+  hierarchyStep,
 }) => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
+  // const { setShrinkMainFrame } = useContext(ResizeMainFrameContext);
   const [isUploading, setIsUploading] = useState(false);
   const [isFileUploaded, setIsFileUploaded] = useState(false);
   const showShimmer = useShimmer(isUploading, 5000);
   const shimmerHeader = shimmerHeaders.find(item => item.id === stepId)?.text || "Uploading file...";
   const fileStep = fileUploadData.find((file) => file.id === stepId);
   if (!fileStep) return null;
+  const { setSelectedComponent, uploadeadFile, setUploadeadFile, setIsRightPanelOpen, setHierarchy, updateHierarchyStep, hierarchySteps} = useContext(MainFrameContext);
+
+  useEffect(() =>{
+    let normalizedHierarchy = [];
+    if(Array.isArray(hierarchy)){
+      normalizedHierarchy= hierarchy;
+    }else if(typeof hierarchy === 'string' && hierarchy.trim() !== ''){
+      normalizedHierarchy = [hierarchy];
+    }
+    setHierarchy(normalizedHierarchy);
+    updateHierarchyStep(normalizedHierarchy, hierarchyStep);
+  },  [hierarchy, hierarchyStep])
+  
+  console.log(hierarchy, hierarchyStep,hierarchySteps)
 
   const handleClick = (event, buttonType) => {
     if (buttonType === "Proceed") {
@@ -65,6 +84,7 @@ const FileUploads = ({
       setUploadedFiles((prev) =>
         prev.some((f) => f.fileName === file.name) ? prev : [...prev, newFile]
       );
+      setUploadeadFile(newFile)
       setIsFileUploaded(true);
     } catch (error) {
       alert("Upload failed");
@@ -74,6 +94,7 @@ const FileUploads = ({
       setIsUploading(false);
     }
   };
+  console.log(uploadeadFile, "uploadedFiles");
 
   return (
     <React.Fragment>
@@ -134,6 +155,9 @@ const FileUploads = ({
                   setActiveIframeUrl?.(file.officeUrl);
                   setShowFileViewer?.(true);
                   setFileViewerContent?.("excel");
+                  // setShrinkMainFrame?.(true)
+                  setIsRightPanelOpen(true)
+                  setSelectedComponent({id:'1', type:'file'})
                 }}
               >
                 <div className="file-icon-wrapper">

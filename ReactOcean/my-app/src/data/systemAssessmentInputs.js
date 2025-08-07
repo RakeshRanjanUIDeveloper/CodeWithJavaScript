@@ -1,7 +1,7 @@
-    export const developmentInputs = [
+export const systemAssessmentInputs = [
         {
             id: 1,
-            introText: 'Based on your selection, I can analyze your Development objects (RICEFW) for you to understand your system better. ​ For the assessment, you will need to share all the 3 inputs mentioned below. Which one would you like to start with?',
+            introText: 'Based on your selection, I can analyze your Development objects (RICEFW) for you to understand your system better.  For the assessment, you will need to share all the 3 inputs mentioned below. Which one would you like to start with?',
             inputs: [
                 {
                     id: 1,
@@ -43,7 +43,7 @@
         },
         {
             id: 3,
-            introText: 'Thank you for filling in the Questionnaire. ​To complete the process please click on the next input Production logs to get the logs',
+            introText: 'Thank you for filling in the Questionnaire. To complete the process please click on the next input Production logs to get the logs',
             inputs: [
                 {
                     id: 1,
@@ -62,4 +62,4 @@
                 }
             ]
         }
-    ]
+]

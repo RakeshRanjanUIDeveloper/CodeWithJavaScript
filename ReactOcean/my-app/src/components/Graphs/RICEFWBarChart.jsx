@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import {
   BarChart,
@@ -9,21 +9,33 @@ import {
   ResponsiveContainer,
   CartesianGrid
 } from 'recharts';
-
+import CrossIcon from "../../assets/icons/clear-icon.svg";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 import {ricefwData, cleanlinessScore } from '../../data/chartData';
 import { tabs } from '../../data/GraphTabs';
 import './RICEFWBarChart.css';
+import MainFrameContext from '../context/MainFrameContext';
 
 
 const RICEFWBarChart = ( { activeTab }) => {
+  const {setHierarchyStep, incrementHierarchyStep, hierarchy, setIsRightPanelOpen, setAssessmentCompleted} = useContext(MainFrameContext); 
   const percentage = Math.round(cleanlinessScore * 100);
 const currentTab = tabs.find(tab => tab.id === activeTab);
   const panelTitle = currentTab?.paneltitle;
   return (
    <>
+         <img
+           src={CrossIcon}
+           className="cross-icon"
+           alt=""
+           onClick={() => {
+             setIsRightPanelOpen(false);
+             incrementHierarchyStep(hierarchy);
+             setAssessmentCompleted(true);
+           }}
+         />
     <div className='extracts-wrapper'>
       <h3>{panelTitle}</h3>
     </div>

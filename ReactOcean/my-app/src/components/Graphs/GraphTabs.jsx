@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './GraphTabs.css';
 import GraphIcon from "../../assets/icons/graph-icon.svg";
 import { tabs } from '../../data/GraphTabs';
 
-const GraphTabs = ({ onSelectChart }) => {
-  const [activeTab, setActiveTab] = useState(null); 
+const GraphTabs = ({onTabClick}) => {
+  const [activeTab, setActiveTab] = useState(null);
   const handleClick = (tabId) => {
-    setActiveTab(tabId);       
-    onSelectChart(tabId);     
+    setActiveTab(tabId);  
+    onTabClick?.(tabId);      
   };
-
   return (
     <div className="graph-tabs-container">
       <div className="tab-buttons">

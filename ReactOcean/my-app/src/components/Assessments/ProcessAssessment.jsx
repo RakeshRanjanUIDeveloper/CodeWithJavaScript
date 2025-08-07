@@ -2,7 +2,9 @@ import React from 'react'
 
 const ProcessAssessment = () => {
   return (
-    <div>ProcessAssessment</div>
+    <div>
+      process
+    </div>
   )
 }
 

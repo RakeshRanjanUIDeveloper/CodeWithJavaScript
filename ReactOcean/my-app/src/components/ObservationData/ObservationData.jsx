@@ -1,31 +1,24 @@
-import React from "react";
-import DevObjectsIcon from "../../assets/icons/dev-objects-icon.svg";
-import { UploadedFiles } from "../../data/UploadedFiles";
-import FileIcon from "../../assets/icons/file-icon.svg";
+import React, { useContext } from "react";
+import CrossIcon from "../../assets/icons/clear-icon.svg";
+import MainFrameContext from "../context/MainFrameContext";
 
-const ObservationData = ({ onViewObservationClick }) => {
-  const observationData = UploadedFiles.find((file) => file.id === "3");
-  if (!observationData) return null;
-
+const ObservationData = () => {
+  const {setHierarchyStep, incrementHierarchyStep, hierarchy, setIsRightPanelOpen} = useContext(MainFrameContext); 
   return (
-    <div className="agent-flex-wrapper">
-      <img src={DevObjectsIcon} className="devobjicon" alt="dev icon" />
-      <div class="help-content">
-        <p class="upload-success-msg">{observationData.label}</p>
-        <div
-          className="file-icon-wrapper"
-          onClick={() => {
-            console.log("Clicked View Observations"); // check browser console
-            onViewObservationClick();
-          }}
-          style={{ cursor: "pointer" }}
-        >
-          {/* 22-july */}
-          <img src={FileIcon} className="devobjicon" alt="file icon" />
-          <span>View Observations</span>
-        </div>
+    <React.Fragment>
+      <img
+        src={CrossIcon}
+        className="cross-icon"
+        alt=""
+        onClick={() => {
+          setIsRightPanelOpen(false);
+          incrementHierarchyStep(hierarchy);
+        }}
+      />
+      <div className="extracts-wrapper">
+        <h3>Observation</h3>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

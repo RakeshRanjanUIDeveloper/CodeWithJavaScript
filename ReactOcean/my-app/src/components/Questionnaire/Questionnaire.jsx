@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import SapAgentDropdown from '../SapAgentDropdown/SapAgentDropdown';
+import React, { useState, useEffect, useContext } from 'react'
+import SapAgentDropdown from '../common/SapAgentDropdown/SapAgentDropdown';
 import ConfirmIcon from "../../assets/icons/confirm-icon.png";
 import CrossIcon from "../../assets/icons/clear-icon.svg"
 import ToolsImg from "../../assets/icons/tools.png";
 import './Questionnaire.css';
 import '../Home/Home.css';
+import MainFrameContext from '../context/MainFrameContext';
 
 const Questionnaire = ({onQuestionnaireConfirm}) => {
     const [questionStep, setQuestionStep] = useState(1);
@@ -19,6 +20,8 @@ const Questionnaire = ({onQuestionnaireConfirm}) => {
     const [useCustomNamespace, setUseCustomNamespace] = useState(false);
     const [customNamespace, setCustomNamespace] = useState('');
     const [selectedAssessmentType, setSelectedAssessmentType] = useState(null);
+      const {setHierarchyStep, incrementHierarchyStep, hierarchy, setIsRightPanelOpen} = useContext(MainFrameContext); 
+
     useEffect(() => {
         if (questionStep === 1 && client) setQuestionStep(2);
         else if (questionStep === 2 && group) setQuestionStep(3);
@@ -43,7 +46,10 @@ const Questionnaire = ({onQuestionnaireConfirm}) => {
     ]);
     return (
         <React.Fragment>
-            <img src={CrossIcon} className="cross-icon" alt="" onClick={onQuestionnaireConfirm} />
+            <img src={CrossIcon} className="cross-icon" alt="" onClick={() => {
+              setIsRightPanelOpen(false);
+              incrementHierarchyStep(hierarchy);
+            }} />
             <div className="extracts-wrapper">
                 <h3>Questionnaire & Survey</h3>
                 <button className="confirm-btn" >

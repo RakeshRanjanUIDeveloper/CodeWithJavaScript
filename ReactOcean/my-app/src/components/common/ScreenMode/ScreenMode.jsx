@@ -1,6 +1,6 @@
 import React from "react";
-import FullScreenLogo from "../../assets/icons/fullscreen.png"; 
-import NormalScreenLogo from "../../assets/icons/normalscreen.svg";
+import FullScreenLogo from "../../../assets/icons/fullscreen.png"; 
+import NormalScreenLogo from "../../../assets/icons/normalscreen.svg";
 
 import "./ScreenMode.css";
 

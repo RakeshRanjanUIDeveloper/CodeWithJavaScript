@@ -1,3 +1,13 @@
+// import ProcessAssessment from '../components/Assessments/ProcessAssessment/ProcessAssessment';
+// import DataAssessment from '../components/Assessments/DataAssessment.jsx/DataAssessment';
+// import TalentAssessment from '../components/Assessments/TalentAssessment/TalentAssessment';
+// import ArchitectureAssessment from '../components/Assessments/ArchitectureAssessment/ArchitectureAssessment';
+// import SecurityAssessment from '../components/Assessments/SecurityAssessment/SecurityAssessment';
+// import DevelopmentAssessment from '../components/Assessments/DevelopmentAssessment/DevelopmentAssessment';    
+// import IntegrationAssessment from '../components/Assessments/IntegrationAssessment/IntegrationAssessment';
+
+
+
 import ProcessAssessment from '../components/Assessments/ProcessAssessment';
 import DataAssessment from '../components/Assessments/DataAssessment';
 import TalentAssessment from '../components/Assessments/TalentAssessment';

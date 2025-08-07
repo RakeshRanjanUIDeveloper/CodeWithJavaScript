@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-function useShimmer(trigger, duration = 5000) {
+function useShimmer(trigger, duration = 2000) {
   const [showShimmer, setShowShimmer] = useState(false);
 
   useEffect(() => {

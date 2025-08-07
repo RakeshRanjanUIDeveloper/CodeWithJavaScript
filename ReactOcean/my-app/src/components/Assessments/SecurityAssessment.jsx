@@ -2,7 +2,9 @@ import React from 'react'
 
 const SecurityAssessment = () => {
   return (
-    <div>SecurityAssessment</div>
+    <div>
+      security
+    </div>
   )
 }
 

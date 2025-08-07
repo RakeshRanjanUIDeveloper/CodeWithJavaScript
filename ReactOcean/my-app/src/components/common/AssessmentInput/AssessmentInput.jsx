@@ -1,7 +1,7 @@
 import React from 'react'
-import DevObjectsIcon from "../../assets/icons/dev-objects-icon.svg";
+import DevObjectsIcon from "../../../assets/icons/dev-objects-icon.svg";
 import './AssessmentInput.css'
-import { developmentInputs } from '../../data/developmentInputsData';
+import { systemAssessmentInputs } from '../../../data/systemAssessmentInputs';
 import '../FileUpload/FileUpload.css'
 
 const AssessmentInput = ({
@@ -13,7 +13,7 @@ const AssessmentInput = ({
     pointerOption = [],
     assessmentId
 }) => {
-    const config = developmentInputs.find(item => item.id === assessmentId);
+    const config = systemAssessmentInputs.find(item => item.id === assessmentId);
     if (!config) return null;
 
     const functionMap = {

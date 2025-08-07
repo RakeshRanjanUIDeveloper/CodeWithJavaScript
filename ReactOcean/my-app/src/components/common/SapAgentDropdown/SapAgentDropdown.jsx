@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './SapAgentDropdown.css';
-import DropdownArrow from '../../assets/icons/dropdown-arrow.png';
+import DropdownArrow from '../../../assets/icons/dropdown-arrow.png';
 
 const SapAgentDropdown = ({ options = [], onSelect, placeholder = '', label = '' }) => {
   const [isOpen, setIsOpen] = useState(false);
