@@ -1,0 +1,27 @@
+.common-assessment-header {
+    font-size: 1.2vw;
+    margin: 0.7vw 0;
+    color: #000;
+    font-family: Graphik;
+    font-weight: 500;
+    line-height: 1.3;
+    text-align: left;
+}
+
+.implementation-approach-wrapper .button-group {
+    flex-wrap: nowrap;
+    margin-bottom: 3vw;
+}
+
+.implementation-approach-wrapper .button-group .btn-wrapper {
+    pointer-events: none;
+}
+
+.implementation-proceed-btn .selected-options-wrapper {
+    width: fit-content;
+    gap: 1vw
+}
+
+.implementation-approach-wrapper .button-group .btn-assessment {
+    height: 1.5vw;
+}

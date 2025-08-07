@@ -1,0 +1,72 @@
+import React, { useContext, useState } from 'react';
+import './AssessmentDropDownList.css';
+import Prompticon from '../../../assets/icons/prompt-icon.svg';
+import SendIcon from '../../../assets/icons/send-icon.svg';
+import MainFrameContext from '../../context/MainFrameContext';
+import { AssessmentsComponentData } from '../../../data/AssessmentsComponentData';
+
+const AssessmentDropDownList = () => {
+  const { hierarchy, setNextAssessmentComponent} = useContext(MainFrameContext);
+  
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [selectedAssessmentTitle, setSelectedAssessmentTitle] = useState('');
+  const [dropDownSelectedAssessment, setDropDownSelectedAssessment] = useState(null);
+
+  const handleSelect = (assessment) => {
+    setSelectedAssessmentTitle(assessment.title);
+    setDropDownSelectedAssessment(assessment);
+    setDropdownOpen(false);
+  };
+
+  const handleNextAssessment = (e) => {
+    e.stopPropagation();
+    if (dropDownSelectedAssessment && !hierarchy.includes(dropDownSelectedAssessment.title)) {
+      console.log(dropDownSelectedAssessment.assessmentComponent);
+      setNextAssessmentComponent(dropDownSelectedAssessment);
+    }
+  };
+
+  const isSelectedItemDisabled =
+    dropDownSelectedAssessment && hierarchy.includes(dropDownSelectedAssessment.title);
+
+  return (
+    <div className="assessment-dropdown-wrapper" onClick={() => setDropdownOpen(!dropdownOpen)}>
+      <div className="rectangle-box">
+        <img src={Prompticon} alt="logo" className="dev-icon" />
+        <span className="prompt-text">
+          {selectedAssessmentTitle || 'What would you like to do'}
+        </span>
+        {dropDownSelectedAssessment && !isSelectedItemDisabled && (
+          <img
+            src={SendIcon}
+            className="send-icon"
+            onClick={(e) =>{
+              e.stopPropagation();
+              handleNextAssessment(e);
+            }}
+            style={{ cursor: 'pointer', opacity: 1 }}
+          />
+        )}
+      </div>
+
+      {dropdownOpen && (
+        <ul className="dropdown-list">
+          {AssessmentsComponentData.map((item) => {
+            const isDisabled = hierarchy.includes(item.title);
+            return (
+              <li
+                key={item.id}
+                onClick={() => handleSelect(item)} 
+                className={`dropdown-item ${isDisabled ? 'disabled' : ''}`}
+              >
+                {item.title}
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </div>
+  );
+};
+
+export default AssessmentDropDownList;

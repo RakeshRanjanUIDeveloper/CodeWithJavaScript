@@ -1,0 +1,388 @@
+.main-wrapper {
+    width: 98%;
+    /* height: 89vh; */
+    margin: 0 auto;
+    padding: 0.7vw;
+    border-radius: 24px;
+    background: #fff;
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, .1);
+    margin: 0 auto;
+    transition: width 0.3s ease;
+    /* display: inline-block; */
+    display: flex;
+}
+
+.assessment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1vw;
+    padding: 1vw 0;
+    border-radius: 18px;
+    background: linear-gradient(90deg, rgba(163, 104, 212, 0.08) 0%, rgba(104, 206, 219, 0.08) 100%);
+
+}
+
+.left-header {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+    padding-left: 1vw;
+}
+
+.back-arrow {
+    font-size: 1.2vw;
+    margin-right: 0.5vw;
+}
+
+.header-icon {
+    width: 3.6vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-area: icon;
+}
+
+.header-title {
+    color: #1d1d1f;
+    font-size: 1.5vw;
+    font-family: Graphik;
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.header-develop-btn h3 {
+    margin: 0;
+    font-family: Graphik;
+    font-weight: 400;
+    line-height: 1.3;
+    font-size: 0.9vw;
+    color: #7963ce;
+}
+
+.header-develop-btn {
+    border-radius: 25px;
+    padding: 0.2vw 0.8vw;
+    border: 1px solid #7963ce;
+    width: fit-content;
+}
+
+.header-tag-wrapper h4 {
+    font-size: 1.1vw;
+    font-family: Graphik;
+    margin: 0;
+    font-weight: 400;
+    color: #7b7b7b;
+    line-height: 1.3;
+    text-align: left;
+}
+
+.super-agent {
+    border-radius: 2.5rem;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(90deg, #f4f8fc 0 100%) padding-box, linear-gradient(90deg, #a72dd4 0, #77b3c0) border-box;
+    padding: 0.3vw 1vw;
+    white-space: nowrap;
+}
+
+.super-agent span {
+    font-size: 0.9vw;
+    font-weight: 400;
+    line-height: 1.3;
+    background: linear-gradient(90deg, #A72DD4 0.01%, #77B3C0 99.99%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header-super-agent {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1vw;
+}
+
+.right-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 0.3vw;
+  padding-right: 1vw;
+}
+
+.clear-btn {
+    font-size: 0.9vw;
+    padding: 0.4vw 1vw;
+    border: 1px solid #FF6F7D;
+    background-color: transparent;
+    border-radius: 18px;
+    color: #000;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4vw;
+}
+
+.clear-btn img {
+    width: 0.6vw;
+}
+
+.triggered-text {
+    font-size: 0.8vw;
+    color: #666;
+    margin: 0;
+}
+
+.app-container {
+    height: 90vh;
+    width: 100%;
+    transition: all 0.3s ease;
+    margin-right: 1vw;
+    padding: 1vw 0 0 1vw;
+}
+
+.main-screen-container {
+    width: 98%;
+    height: 100vh;
+    margin: 1% 1% 0 1%;
+    position: relative;
+}
+
+.app-wrapper {
+    display: flex;
+    width: 100%;
+    transition: all 0.3s ease;
+    background-color: #fff;
+    margin: 0.5% auto 0;
+    border-radius: 2vw;
+    box-shadow: 0 0.14vw 0.7vw rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+}
+
+.split-view .app-container {
+    width: 65%;
+}
+
+.app-container,
+.side-panel {
+    transition: width 0.2s ease;
+}
+
+.side-panel {
+    width: 35%;
+    background-color: #FFF;
+    padding: 1rem;
+    border-left: 1px solid #ccc;
+    position: relative;
+}
+
+.extracts-wrapper h3 {
+    font-family: Graphik;
+    font-weight: 500;
+    font-size: 1.2vw;
+    line-height: 1.3;
+    color: #000;
+    text-align: left;
+    margin: 0;
+}
+
+.side-panel .top-right-icons {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-bottom: 1.2vw;
+    gap: 1vw;
+}
+
+.side-panel .top-right-icons img {
+    width: 1vw;
+}
+
+.extracts-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1vw;
+}
+
+.custom-scrollable-panel {
+    padding-left: 1vw;
+}
+
+.confirm-btn {
+    position: relative;
+    background: #FFF;
+    border: none;
+    border-radius: 38px;
+    font-family: Graphik;
+    font-size: 1.02vw;
+    font-weight: 400;
+    color: #000;
+    /* cursor: pointer; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5vw;
+    z-index: 1;
+    overflow: hidden;
+    padding: 0 !important;
+    width: 7vw;
+    height: 2vw;
+}
+
+.confirm-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 0.1vw;
+    /* border thickness */
+    border-radius: 38px;
+    background: linear-gradient(90deg, #7215BE 45.48%, #68CEDB 92.84%);
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    z-index: -1;
+}
+
+.confirm-tick-img {
+    width: 1vw;
+}
+
+.side-panel .text-formatting-toolbar {
+    margin: 1.2vw auto 0;
+    width: 100%;
+}
+
+.side-panel .extract-ss1 {
+    width: 100%;
+    margin: 1.2vw auto 0;
+}
+
+.side-panel .add-row-tools {
+    width: 10vw;
+    position: absolute;
+    top: 6.5vw;
+    right: 1.2vw;
+}
+
+.side-panel .extract-ss3 {
+    width: 100%;
+    margin: 5vw auto 0;
+}
+
+.panel-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.panel-wrapper .left-panel {
+    width: 65%;
+    transition: width 0.2s ease;
+    overflow: auto;
+}
+
+.panel-wrapper .right-panel {
+    width: 35%;
+    transition: width 0.2s ease;
+    overflow: auto;
+}
+
+.panel-wrapper .drag-icon {
+    width: 1vw;
+    /* height: 40px; */
+    /* background-color: #ccc; */
+    border-radius: 2px;
+    transition: all 0.2s ease;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    /* cursor: pointer;*/
+}
+
+/* .resizer:hover .drag-icon,
+.resizer:active .drag-icon {
+    transform: scale(1.2);
+} */
+
+.panel-wrapper .resizer {
+    width: 16px;
+    background: transparent;
+    cursor: col-resize;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+    margin: 0 -8px;
+    cursor: url('../../assets/icons/drag-horizontal.svg'), grab;
+}
+
+/* drag functionality new css */
+/* Add these new styles */
+.panel-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.left-panel,
+.right-panel {
+    will-change: width;
+    /* Optimize for animation */
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.left-panel {
+    min-width: 20%;
+    /* Prevent panel from becoming too small */
+    max-width: 80%;
+    /* Prevent panel from becoming too large */
+}
+
+.right-panel {
+    min-width: 20%;
+    /* Prevent panel from becoming too small */
+}
+
+.main-wrapper.shrinked .btn-wrapper {
+    width: 70% !important;
+}
+
+.main-wrapper.shrinked .button-group.button-landscape {
+    width: 100% !important;
+}
+
+.main-wrapper.shrinked .sap-agent-container .btn-title {
+    font-size: 1.02vw !important;
+}
+
+.main-wrapper.shrinked .button-landscape .btn-assessment-wrapper {
+    width: 40% !important;
+}
+
+.main-wrapper.shrinked .btn-wrapper.btn-assessment:hover {
+    min-height: 11vw !important;
+}
+
+.main-wrapper.shrinked .sap-agent-container {
+    height: 65vh !important;
+}
+
+.main-wrapper.shrinked .assessment-container .dev-objects-btn-wrapper p {
+    min-width: 60% !important;
+    height: 4vw !important;
+}

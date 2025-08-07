@@ -1,0 +1,197 @@
+.assessment-container {
+    width: 100%;
+    /* margin-top: 1.5vw; */
+}
+
+.assessment-container .dev-objects-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1vw;
+}
+
+.assessment-container .dev-objects-margin {
+    margin-top: 5vw;
+}
+
+.assessment-container .devobjicon {
+    width: 2.5vw;
+}
+
+.assessment-container .dev-objects-block {
+    width: 80%;
+}
+
+.assessment-container .dev-objects-block p {
+    font-family: Graphik;
+    font-weight: 400;
+    font-size: 1.05vw;
+    line-height: 1.6;
+    margin: 0;
+    color: #333333;
+    text-align: left;
+    width: 98%;
+}
+
+.assessment-container .dev-objects-block p.metadata-extract {
+    margin-top: 2vw !important;
+    font-style: italic;
+}
+
+.assessment-container .dev-objects-block .loading-img {
+    width: 20vw;
+    margin: 1vw 0 0 !important;
+    display: block;
+}
+
+.assessment-container .dev-objects-btn-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 1vw;
+    gap: 1vw;
+    flex-wrap: wrap;
+}
+
+.assessment-container .dev-objects-btn-wrapper p {
+  width: 30%;
+  min-width: 15vw;
+  max-width: 32%;
+  height: 4.5vw;
+  border-radius: 10px;
+  border: 1px solid rgba(151, 144, 159, 0.50);
+  font-family: Graphik;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #1D1D1F;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 2vw;
+  cursor: pointer;
+  box-sizing: border-box;
+  font-size: 1.15vw !important;
+}
+
+.assessment-container .upload-wrapper {
+    width: 80% !important;
+}
+
+.assessment-container .upload-wrapper p {
+    width: 40% !important;
+}
+
+.assessment-container .upload-wrapper p.disabled {
+    background: #F2F2F2;
+    border: 1pt solid #7F7F7F;
+    color: #7F7F7F;
+    pointer-events: none;
+}
+
+.assessment-container .upload-wrapper p.disabled:hover {
+    background: #F2F2F2;
+    border: 1pt solid #7F7F7F;
+    color: #7F7F7F;
+}
+
+.assessment-container .dev-objects-btn-wrapper p:hover {
+    border: 1px solid #E5CDFF;
+    background: #FBF6FF;
+}
+
+.selected-options-wrapper {
+    width: 12vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1vw;
+}
+
+button.options-btn.proceed-btn {
+    background: #cbcbcb;
+    border: none;
+}
+
+.proceed-click {
+    background: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.upload-click {
+    background: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.no-cursor {
+    pointer-events: none !important;
+}
+
+.report-options {
+    margin-top: 1.5vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+    width: fit-content;
+}
+
+.card-button {
+    display: flex;
+    align-items: center;
+    gap: 0.6vw;
+    border: 1px solid #ddd;
+    padding: 0.9vw;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border 0.3s ease;
+}
+
+.card-button span {
+    font-family: "Graphik";
+    font-size: 1.05vw;
+    font-weight: 400;
+    line-height: 1.4;
+    color: #000;
+
+}
+
+.card-button:hover {
+    border-color: #000;
+}
+
+.card-button img {
+    width: 2vw;
+
+}
+
+/* Assessment buttons css */
+.category-buttons {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+}
+
+.category-buttons button {
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    background-color: white;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.category-buttons button:hover {
+    background-color: #f0f0f0;
+}
+
+.category-buttons .active {
+    background-color: #f0f0f0;
+    box-shadow: inset 0 0 0 1px #ccc;
+}
+

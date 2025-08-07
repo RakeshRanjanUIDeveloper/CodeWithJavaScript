@@ -1,0 +1,51 @@
+body {
+  font-family: "Graphik";
+  font-size: 14px;
+  line-height: 1.4;
+  color: #000;
+  margin: 0;
+  background-color: #fff;
+}
+
+.GenWizard-header {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+}
+
+.GenWizard-header h3 {
+  font-family: 'Graphik';
+  font-size: 1.2vw;
+  font-weight: 500;
+  margin: 0;
+}
+
+.genwizard-header-wrapper {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 95%;
+    margin: 0 auto 1%;
+}
+
+.user-header p {
+  margin: 0;
+  line-height: 1.3;
+  font-weight: 400;
+  font-size: 1.1vw;
+  font-family: "Graphik";
+}
+
+.user-header {
+  display: flex;
+  gap: 0.5vw;
+  justify-content: center;
+  align-items: center;
+}
+
+.acc-logo {
+  width: 1.5vw;
+}
+.user-logo {
+    width: 2.5vw;
+}
