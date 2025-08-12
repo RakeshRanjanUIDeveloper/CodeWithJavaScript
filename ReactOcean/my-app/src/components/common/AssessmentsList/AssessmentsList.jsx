@@ -1,8 +1,10 @@
 
-import React from 'react'
+import React, { useContext } from 'react'
 import DevObjectsIcon from "../../../assets/icons/dev-objects-icon.svg";
 import { AssessmentsComponentData } from '../../../data/AssessmentsComponentData';
+import MainFrameContext from '../../context/MainFrameContext';
 const  AssessmentsList = ({ setSelectedAssessmentComponent, SelectedAssessmentComponent }) => {
+      const {setHierarchy,setHierarchySteps} = useContext(MainFrameContext);
     return (
         <div className="agent-flex-wrapper">
             <img src={DevObjectsIcon} className="devobjicon" alt="dev icon" />
@@ -20,7 +22,11 @@ const  AssessmentsList = ({ setSelectedAssessmentComponent, SelectedAssessmentCo
                                 <div
                                     key={item.id}
                                     className={`btn-wrapper btn-assessment ${isSelected ? "selected" : ""}`}
-                                    onClick={() => setSelectedAssessmentComponent(() => item.assessmentComponent)}>
+                                    onClick={() => {
+                                            setHierarchy(null);
+                                            setHierarchySteps({});
+                                            setSelectedAssessmentComponent(() => item.assessmentComponent)
+                                    }}>
                                     <h6 className="btn-title">{item.title}</h6>
                                     <p className="btn-desc">{item.description}</p>
                                 </div>

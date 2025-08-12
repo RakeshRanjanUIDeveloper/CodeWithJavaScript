@@ -1,34 +1,30 @@
-  // FileUploads.jsx
 import React, { useState, useContext, useEffect } from "react";
-import { fileUploadData } from "../../../data/fileUploadData";
 import DevObjectsIcon from "../../../assets/icons/dev-objects-icon.svg";
 import FileIcon from "../../../assets/icons/file-icon.svg";
 import "../AssessmentInput/AssessmentInput.css";
 import Shimmer from "../Shimmer/Shimmer";
 import useShimmer from "../Shimmer/useShimmer";
-import { shimmerHeaders } from "../../../data/ShimmerHeaders";
 import { stepHeadings } from '../../../data/RightPanelHeaders';
-// import ResizeMainFrameContext from "../../context/ResizeMainFrameContext";
 import MainFrameContext from "../../context/MainFrameContext";
 
 const FileUploads = ({
+  shimmerHeadersList,
+  fileUploadDataList,
   stepId,
-  setIsConfirmed,
-  setShowObservationContent,
+  onProceed,
   setActiveIframeUrl,
   setShowFileViewer,
   setFileViewerContent,
-  setSidePanelHeading, 
+  // setSidePanelHeading, 
   hierarchy,
   hierarchyStep,
 }) => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
-  // const { setShrinkMainFrame } = useContext(ResizeMainFrameContext);
   const [isUploading, setIsUploading] = useState(false);
   const [isFileUploaded, setIsFileUploaded] = useState(false);
   const showShimmer = useShimmer(isUploading, 5000);
-  const shimmerHeader = shimmerHeaders.find(item => item.id === stepId)?.text || "Uploading file...";
-  const fileStep = fileUploadData.find((file) => file.id === stepId);
+  const shimmerHeader = shimmerHeadersList?.find(item => item.id === stepId)?.text || "Uploading file...";
+  const fileStep = fileUploadDataList.find((file) => file.id === stepId);
   if (!fileStep) return null;
   const { setSelectedComponent, uploadeadFile, setUploadeadFile, setIsRightPanelOpen, setHierarchy, updateHierarchyStep, hierarchySteps} = useContext(MainFrameContext);
 
@@ -41,16 +37,16 @@ const FileUploads = ({
     }
     setHierarchy(normalizedHierarchy);
     updateHierarchyStep(normalizedHierarchy, hierarchyStep);
+
+    // setHierarchy(hierarchy);
+    // updateHierarchyStep(hierarchy, hierarchyStep);
   },  [hierarchy, hierarchyStep])
   
   console.log(hierarchy, hierarchyStep,hierarchySteps)
 
   const handleClick = (event, buttonType) => {
     if (buttonType === "Proceed") {
-      setIsConfirmed(true);
-      if (stepId === 3) {
-        setShowObservationContent?.();
-      }
+      onProceed?.();
     } else if (buttonType === "Upload") {
       handleUpload(event);
     }
@@ -94,7 +90,7 @@ const FileUploads = ({
       setIsUploading(false);
     }
   };
-  console.log(uploadeadFile, "uploadedFiles");
+  // console.log(uploadeadFile, "uploadedFiles");
 
   return (
     <React.Fragment>
@@ -105,8 +101,8 @@ const FileUploads = ({
           <div className="selected-options-wrapper">
             {fileStep.fileButtons.map((fileButton, idx) => {
               const isProceed = fileButton === "Proceed";
-              const isDisabledProceed =
-                isProceed && (stepId === 1 || stepId === 2);
+              const hasUploadAndProceed = fileStep.fileButtons.includes("Upload") && fileStep.fileButtons.includes("Proceed");
+              const isDisabledProceed = isProceed && hasUploadAndProceed;
               return fileButton !== "Upload" ? (
                 <label
                   className={`options-btn upload-click ${isDisabledProceed ? "disabled" : ""
@@ -150,12 +146,11 @@ const FileUploads = ({
                 key={index}
                 className="p-3 bg-white border rounded shadow cursor-pointer hover:bg-blue-50"
                 onClick={() => {
-                  const selectedHeading = stepHeadings.find(item => item.id === stepId)?.label;
-                  setSidePanelHeading(selectedHeading);
+                  // const selectedHeading = stepHeadings.find(item => item.id === stepId)?.label;
+                  // setSidePanelHeading(selectedHeading);
                   setActiveIframeUrl?.(file.officeUrl);
                   setShowFileViewer?.(true);
                   setFileViewerContent?.("excel");
-                  // setShrinkMainFrame?.(true)
                   setIsRightPanelOpen(true)
                   setSelectedComponent({id:'1', type:'file'})
                 }}

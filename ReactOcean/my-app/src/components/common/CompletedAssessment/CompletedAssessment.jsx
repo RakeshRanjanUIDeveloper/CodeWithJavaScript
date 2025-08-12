@@ -5,11 +5,11 @@ import MainFrameContext from "../../context/MainFrameContext";
 import "./CompletedAssessment.css";
 
 const CompletedAssessment = () => {
-  const { hierarchy, setShowDropdownComponent} = useContext(MainFrameContext);
+  const { hierarchy, setShowDropdownComponent } = useContext(MainFrameContext);
 
-  const handleNextAssessment = () =>{
-    setShowDropdownComponent(true)
-  }
+  const handleNextAssessment = () => {
+    setShowDropdownComponent(true);
+  };
   return (
     <>
       <div className="agent-flex-wrapper implementation-approach-wrapper">
@@ -17,7 +17,8 @@ const CompletedAssessment = () => {
         <div className="help-content">
           <p>I have completed the assessment for the selections below.</p>
           <h3 className="common-assessment-header">Implementation Approach</h3>
-          <div className="button-group ">
+
+          <div className="button-group btn-grp">
             <div className="btn-wrapper " style={{ cursor: "default" }}>
               <h6 className="btn-title">Transformation</h6>
               <p className="btn-desc">
@@ -25,7 +26,7 @@ const CompletedAssessment = () => {
                 to SAP Transformation
               </p>
             </div>
-            <div className="btn-wrapper brownfield-hover">
+            <div className="btn-wrapper options-btn disabled">
               <h6 className="btn-title">
                 SAP Landscape (ECC) to an Advanced System (SAP S4 HANA)
               </h6>
@@ -40,11 +41,12 @@ const CompletedAssessment = () => {
               </p>
             </div>
           </div>
-          <h3 className="common-assessment-header">Assessments</h3>
-          <div className="button-group">
-            {AssessmentsComponentData.map((item, index) => {
-              const isCompleted = hierarchy.includes(item.title)
 
+          <h3 className="common-assessment-header">Assessments</h3>
+          <div className="button-group button-landscape">
+            {AssessmentsComponentData.map((item, index) => {
+              //const isCompleted = hierarchy.includes(item.title);
+              const isCompleted = Array.isArray(hierarchy) && hierarchy.includes(item.title);
               return (
                 <div
                   key={index}
@@ -52,9 +54,8 @@ const CompletedAssessment = () => {
                     isCompleted ? "options-btn disabled" : ""
                   }`}
                 >
-                  <h6 className="btn-title">
-                    {item.title}
-                  </h6>
+                  <h6 className="btn-title">{item.title}</h6>
+                   <p className="btn-desc">{item.description}</p>
                 </div>
               );
             })}
@@ -70,7 +71,10 @@ const CompletedAssessment = () => {
             other assessments?
           </p>
           <div className="selected-options-wrapper">
-            <label className="options-btn upload-click" onClick={handleNextAssessment}>
+            <label
+              className="options-btn upload-click"
+              onClick={handleNextAssessment}
+            >
               Yes
             </label>
 

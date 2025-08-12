@@ -5,23 +5,15 @@ import { systemAssessmentInputs } from '../../../data/systemAssessmentInputs';
 import '../FileUpload/FileUpload.css'
 
 const AssessmentInput = ({
-    onExtract,
-    onQuestionnaire,
-    onProductionLogs,
+    dataList,
+    functionMap = {},
     disabledOption = [],
     fadedOption = [],
     pointerOption = [],
     assessmentId
 }) => {
-    const config = systemAssessmentInputs.find(item => item.id === assessmentId);
+    const config = dataList.find(item => item.id === assessmentId);
     if (!config) return null;
-
-    const functionMap = {
-        onExtract,
-        onQuestionnaire,
-        onProductionLogs
-    };
-
     return (
         <div className="agent-flex-wrapper">
             <img src={DevObjectsIcon} className="devobjicon" alt="dev icon" />
@@ -32,12 +24,12 @@ const AssessmentInput = ({
                         const isDisabled = disabledOption.includes(item.id);
                         const isFaded = fadedOption.includes(item.id);
                         const showPointer = pointerOption.includes(item.id);
-                        const hasAction = !!functionMap[item.onClick];
+                        const hasAction = item.onClick && functionMap[item.onClick];
 
                         return (
                             <p
                                 key={item.id}
-                                onClick={!isDisabled ? functionMap[item.onClick] : undefined}
+                                onClick={!isDisabled ? hasAction : undefined}
                                 style={{
                                     pointerEvents: isDisabled ? 'none' : 'auto',
                                     opacity: isFaded ? 0.5 : 1,

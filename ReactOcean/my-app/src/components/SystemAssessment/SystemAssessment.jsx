@@ -19,18 +19,12 @@ import RecommendationChart from "../Graphs/RecommendationChart";
 import ExtensibilityChart from "../Graphs/ExtensibilityChart";
 import useResizeUtility from "../utils/useResizeUtility";
 import ScreenMode from "../common/ScreenMode/ScreenMode";
+import ProcessQuestionnaire from "../Questionnaire/ProcessQuestionnaire";
+import ProcessObservationData from "../ObservationData/ProcessObservationData"
 
 const SystemAssessment = () => {
-  const {
-    selectedComponent,
-    isRightPanelOpen,
-    setIsRightPanelOpen,
-    uploadeadFile,
-    setHierarchy,
-    setHierarchySteps,
-  } = useContext(MainFrameContext);
-  const [SelectedAssessmentComponent, setSelectedAssessmentComponent] =
-    useState(null);
+  const {selectedComponent, isRightPanelOpen,setIsRightPanelOpen,uploadeadFile,setHierarchy,setHierarchySteps} = useContext(MainFrameContext);
+  const [SelectedAssessmentComponent, setSelectedAssessmentComponent] =useState(null);
   const [initialLoading, setInitialLoading] = useState(true);
   const [selectedClient, setSelectedClient] = useState("");
   const [agentClick, setAgentClick] = useState("");
@@ -113,6 +107,13 @@ const SystemAssessment = () => {
         default:
           return <p>Chart not found</p>;
       }
+    }
+    
+    if (selectedComponent?.type === "ProcessQuestionnaire") {
+      return <ProcessQuestionnaire />;
+    }
+    if(selectedComponent?.type === "ProcessObservationData"){
+      return <ProcessObservationData/>
     }
     return <p>No content to show.</p>;
   };

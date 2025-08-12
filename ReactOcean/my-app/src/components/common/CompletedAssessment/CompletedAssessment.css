@@ -8,20 +8,19 @@
     text-align: left;
 }
 
-.implementation-approach-wrapper .button-group {
-    flex-wrap: nowrap;
-    margin-bottom: 3vw;
+.btn-grp {
+    flex-wrap: nowrap !important;
+    width: 90%;
+   
 }
-
-.implementation-approach-wrapper .button-group .btn-wrapper {
-    pointer-events: none;
+.btn-begin .btn-desc {
+    font-style: italic;
 }
-
 .implementation-proceed-btn .selected-options-wrapper {
     width: fit-content;
     gap: 1vw
 }
 
 .implementation-approach-wrapper .button-group .btn-assessment {
-    height: 1.5vw;
+    cursor: default;
 }
