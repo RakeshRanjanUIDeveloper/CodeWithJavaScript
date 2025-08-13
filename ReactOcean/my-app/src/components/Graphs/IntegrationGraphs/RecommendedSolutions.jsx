@@ -14,9 +14,9 @@ import {
   reportSubcategoryData,
   reportStatsPrimary,
   reportStatsSecondary
-} from '../../data/chartData'; 
-import { integrationTabs } from '../../data/integrationGraphTabs';
-import '../Graphs/ReportSubcategoryChart.css'; 
+} from '../../../data/chartData'; 
+import { integrationTabs } from '../../../data/IntegrationGraphTabs';
+import '../../Graphs/ReportSubcategoryChart.css'; 
 
 const RecommendedSolutions = ({ activeTab }) => {
   const currentTab = integrationTabs.find(tab => tab.id === activeTab);

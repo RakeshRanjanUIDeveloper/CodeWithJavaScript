@@ -287,9 +287,6 @@ const IntegrationAssessment = () => {
           )}
         </>
       )}
-      {assessmentCompleted && <CompletedAssessment />}
-      {showDropdownComponent && <AssessmentDropDownList />}
-      {nextAssessmentComponent && (<nextAssessmentComponent.assessmentComponent />)}
     </React.Fragment>
   );
 }

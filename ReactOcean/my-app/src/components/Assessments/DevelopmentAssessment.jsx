@@ -20,8 +20,7 @@ import Shimmer from '../common/Shimmer/Shimmer';
 import { systemAssessmentInputs } from '../../data/systemAssessmentInputs';
 import { fileUploadData } from '../../data/fileUploadData';
 import { shimmerHeaders } from "../../data/ShimmerHeaders";
-import AssessmentDropDownList from '../common/AssessmentDropdownList/AssessmentDropDownList';
-import CompletedAssessment from '../common/CompletedAssessment/CompletedAssessment';
+
 
 const DevelopmentAssessment = () => {
   const [showAssessmentInput, setShowAssessmentInput] = useState(false);
@@ -207,9 +206,6 @@ const DevelopmentAssessment = () => {
           </div>
         </div>
       )}
-            {assessmentCompleted && <CompletedAssessment />}
-            {showDropdownComponent && <AssessmentDropDownList />}
-            {nextAssessmentComponent && (<nextAssessmentComponent.assessmentComponent />)}
     </React.Fragment>
   );
 }

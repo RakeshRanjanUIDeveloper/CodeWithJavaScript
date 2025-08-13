@@ -6,8 +6,8 @@ import SendIcon from "../../../assets/icons/send-icon.svg";
 import MainFrameContext from "../../context/MainFrameContext";
 import { AssessmentsComponentData } from "../../../data/AssessmentsComponentData";
 
-const AssessmentDropDownList = () => {
-  const { hierarchy, setNextAssessmentComponent, setHierarchy,setHierarchySteps } =
+const AssessmentDropDownList = ({ setSelectedAssessmentComponent, SelectedAssessmentComponent, setValidComponent }) => {
+  const { hierarchy, setNextAssessmentComponent, setHierarchy,setHierarchySteps, setAssessmentCompleted } =
     useContext(MainFrameContext);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -18,6 +18,7 @@ const AssessmentDropDownList = () => {
     setSelectedAssessmentTitle(assessment.title);
     setDropDownSelectedAssessment(assessment);
     setDropdownOpen(false);
+    setValidComponent(true)
   };
 
   const handleNextAssessment = (e) => {
@@ -25,6 +26,8 @@ const AssessmentDropDownList = () => {
     console.log("Selected Component:", dropDownSelectedAssessment);
     if (dropDownSelectedAssessment && Array.isArray(hierarchy) && !hierarchy.includes(dropDownSelectedAssessment.title)) {
         setNextAssessmentComponent(dropDownSelectedAssessment);
+        setSelectedAssessmentComponent(() => dropDownSelectedAssessment.assessmentComponent)
+        setAssessmentCompleted(false)
     }
   };
 

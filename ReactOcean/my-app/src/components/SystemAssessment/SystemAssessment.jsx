@@ -21,10 +21,15 @@ import useResizeUtility from "../utils/useResizeUtility";
 import ScreenMode from "../common/ScreenMode/ScreenMode";
 import ProcessQuestionnaire from "../Questionnaire/ProcessQuestionnaire";
 import ProcessObservationData from "../ObservationData/ProcessObservationData"
+import AssessmentDropDownList from '../common/AssessmentDropdownList/AssessmentDropDownList';
+import CompletedAssessment from '../common/CompletedAssessment/CompletedAssessment';
 
+import ReportSummary from '../Graphs/IntegrationGraphs/ReportSummary';
+import RecommendedSolutions from '../Graphs/IntegrationGraphs/RecommendedSolutions'
 const SystemAssessment = () => {
-  const {selectedComponent, isRightPanelOpen,setIsRightPanelOpen,uploadeadFile,setHierarchy,setHierarchySteps} = useContext(MainFrameContext);
+  const {selectedComponent, isRightPanelOpen,setIsRightPanelOpen,uploadeadFile,setHierarchy,setHierarchySteps, assessmentCompleted, showDropdownComponent, nextAssessmentComponent} = useContext(MainFrameContext);
   const [SelectedAssessmentComponent, setSelectedAssessmentComponent] =useState(null);
+  const [isComponentDropDownSelectionValid, setIsComponentDropDownSelectionValid] = useState(false)
   const [initialLoading, setInitialLoading] = useState(true);
   const [selectedClient, setSelectedClient] = useState("");
   const [agentClick, setAgentClick] = useState("");
@@ -95,6 +100,7 @@ const SystemAssessment = () => {
       return <ObservationData />;
     }
     if (selectedComponent?.type === "chart") {
+      console.log(selectedComponent.id)
       switch (selectedComponent.id) {
         case "summary":
           return <RICEFWBarChart activeTab="summary" />;
@@ -104,7 +110,15 @@ const SystemAssessment = () => {
           return <RecommendationChart activeTab="deepdive" />;
         case "solutions":
           return <ExtensibilityChart activeTab="solutions" />;
+        case "integrationSummary":{
+                    console.log("called")
+          return <ReportSummary activeTab="integrationSummary" />;
+        }
+
+        case "integrationSolutions":
+          return <RecommendedSolutions activeTab="integrationSolutions" />;
         default:
+         
           return <p>Chart not found</p>;
       }
     }
@@ -349,6 +363,10 @@ const SystemAssessment = () => {
                   />
                 )}
                 {SelectedAssessmentComponent && <SelectedAssessmentComponent />}
+
+            {assessmentCompleted && <CompletedAssessment />}
+            {showDropdownComponent && <AssessmentDropDownList  setSelectedAssessmentComponent={setSelectedAssessmentComponent} setValidComponent={setIsComponentDropDownSelectionValid}  />}
+            {isComponentDropDownSelectionValid && SelectedAssessmentComponent && <SelectedAssessmentComponent />}
               </ScrollToBottom>
             )}
           </div>

@@ -8,14 +8,14 @@ import {
   ResponsiveContainer,
   CartesianGrid
 } from 'recharts';
-import CrossIcon from "../../assets/icons/clear-icon.svg";
+import CrossIcon from "../../../assets/icons/clear-icon.svg";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-import { ricefwData, cleanlinessScore } from '../../data/chartData'; 
-import { integrationTabs } from '../../data/integrationGraphTabs';
-import '../Graphs/RICEFWBarChart.css'; 
-import MainFrameContext from '../context/MainFrameContext';
+import { ricefwData, cleanlinessScore } from '../../../data/chartData'; 
+import { integrationTabs } from '../../../data/IntegrationGraphTabs';
+import '../../Graphs/RICEFWBarChart.css'; 
+import MainFrameContext from '../../context/MainFrameContext';
 
 const ReportSummary = ({ activeTab }) => {
   const { 
