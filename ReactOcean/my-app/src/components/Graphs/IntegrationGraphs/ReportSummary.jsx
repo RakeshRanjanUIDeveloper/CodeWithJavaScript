@@ -12,33 +12,50 @@ import CrossIcon from "../../../assets/icons/clear-icon.svg";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-import { ricefwData, cleanlinessScore } from '../../../data/chartData'; 
+import { 
+  ricefwData, 
+  cleanlinessScore,
+  reportSubcategoryData,
+  reportStatsPrimary,
+  reportStatsSecondary
+} from '../../../data/chartData'; 
+
 import { integrationTabs } from '../../../data/IntegrationGraphTabs';
 import '../../Graphs/RICEFWBarChart.css'; 
 import MainFrameContext from '../../context/MainFrameContext';
 
 const ReportSummary = ({ activeTab }) => {
-  const { 
-    incrementHierarchyStep, 
-    hierarchy, 
-    setIsRightPanelOpen, 
-    setAssessmentCompleted 
-  } = useContext(MainFrameContext);
+  const { incrementHierarchyStep, hierarchy, setIsRightPanelOpen, setLastStepIntegration, setShowDropdownComponent } = useContext(MainFrameContext);
 
-  const percentage = Math.round(cleanlinessScore * 100);
   const currentTab = integrationTabs.find(tab => tab.id === activeTab);
   const panelTitle = currentTab?.paneltitle;
+
+  let dataForChart = ricefwData;
+  let percentage = Math.round(cleanlinessScore * 100);
+  let primaryMetrics = reportStatsPrimary;
+  let secondaryMetrics = reportStatsSecondary;
+
+  switch (activeTab) {
+    case 'summary':
+      dataForChart = reportSubcategoryData;
+      break;
+    case 'solutions':
+      break;
+    default:
+      break;
+  }
 
   return (
     <>
       <img
         src={CrossIcon}
         className="cross-icon"
-        alt=""
+        alt="close"
         onClick={() => {
           setIsRightPanelOpen(false);
           incrementHierarchyStep(hierarchy);
-          setAssessmentCompleted(true);
+          setLastStepIntegration(true);
+          setShowDropdownComponent(false);
         }}
       />
 
@@ -53,9 +70,9 @@ const ReportSummary = ({ activeTab }) => {
         <div className="bar-section">
           <h4>RICEFW Count</h4>
           <ResponsiveContainer width="100%" height={250}>
-            <BarChart data={ricefwData}>
+            <BarChart data={dataForChart}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="category" />
+              <XAxis dataKey={activeTab === 'summary' ? "type" : "category"} />
               <YAxis ticks={[0, 200, 400, 600]} />
               <Tooltip />
               <defs>
@@ -64,7 +81,7 @@ const ReportSummary = ({ activeTab }) => {
                   <stop offset="100%" stopColor="#bc67ff" />
                 </linearGradient>
               </defs>
-              <Bar dataKey="count" fill="url(#gradient)" />
+              <Bar dataKey={activeTab === 'summary' ? "count" : "count"} fill="url(#gradient)" />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -87,13 +104,12 @@ const ReportSummary = ({ activeTab }) => {
           </div>
 
           <div className="metrics-section">
-            <div className="metric"><strong>48</strong> No-Code Objects</div>
-            <div className="metric"><strong>176</strong> Inactive/Syntax Error Objects</div>
-            <div className="metric"><strong>436</strong> Unused Objects (4 Months)</div>
-            <div className="metric"><strong>20</strong> Cloned Objects &gt; 90</div>
-            <div className="metric"><strong>7</strong> Cloned Objects &gt; 80</div>
-            <div className="metric"><strong>1679</strong> RICEFW Objects</div>
-            <div className="metric"><strong>545</strong> DDIC objects</div>
+            {primaryMetrics.map(({ value, label }) => (
+              <div key={label} className="metric"><strong>{value}</strong> {label}</div>
+            ))}
+            {secondaryMetrics.map(({ value, label }) => (
+              <div key={label} className="metric"><strong>{value}</strong> {label}</div>
+            ))}
           </div>
         </div>
       </div>

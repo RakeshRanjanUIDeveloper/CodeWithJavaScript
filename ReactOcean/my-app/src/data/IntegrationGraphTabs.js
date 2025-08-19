@@ -1,4 +1,4 @@
 export const integrationTabs = [
-    { id: 'integrationSummary', label: 'Integration Report Summary- Dashboard', paneltitle: 'Report Summary' },
-    { id: 'integrationSolutions', label: 'Integration Recommended Solutions', paneltitle: 'Recommended Solutions' },
+  { id: 'IntegrationSummary', label: 'Integration Report Summary- Dashboard', paneltitle: 'Integration Report Summary' },
+  { id: 'Integrationsolutions', label: 'Integration Recommended Solutions', paneltitle: 'Integration Recommended Solutions' },
 ];

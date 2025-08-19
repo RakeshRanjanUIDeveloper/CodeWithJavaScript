@@ -10,12 +10,15 @@ import { fileUploadData } from '../../data/fileUploadData';
 import { shimmerHeaders } from "../../data/ShimmerHeaders";
 import FileIcon from "../../assets/icons/file-icon.svg";
 import { UploadedFiles } from "../../data/UploadedFiles";
+import ProcessGraphTabs from '../../components/Graphs/ProcessGraphs/ProcessGraphTabs';
+import AssessmentDropDownList from '../common/AssessmentDropdownList/AssessmentDropDownList';
+import CompletedAssessment from '../common/CompletedAssessment/CompletedAssessment';
 
 
 const ProcessAssessment = () => {
   const [showProcessAssessment, setShowProcessAssessment] = useState(false);
   const [showFileUpload, setShowFileUpload] = useState(false);
-  const { hierarchySteps, setIsRightPanelOpen, hierarchyStep, hierarchy, setSelectedComponent } = useContext(MainFrameContext);
+  const { hierarchySteps, setIsRightPanelOpen, hierarchyStep, hierarchy, setSelectedComponent, showDropdownComponent, lastStepProcess } = useContext(MainFrameContext);
   const [showProcessInputs, setShowProcessInputs] = useState(false);
   const [showFunctionalUpload, setShowFunctionalUpload] = useState(false);
   const [functionalConfirmed, setFunctionalConfirmed] = useState(false);
@@ -83,6 +86,10 @@ const ProcessAssessment = () => {
     setIsRightPanelOpen(true);
     setSelectedComponent({ type: 'ProcessObservationData' });
   }
+  const handleGraphTabClick = (tabId) => {
+    setSelectedComponent({ id: tabId, type: 'chart' });
+    setIsRightPanelOpen(true);
+  };
   return (
     <React.Fragment>
       {
@@ -223,22 +230,28 @@ const ProcessAssessment = () => {
           hierarchyStep={9}
         />
       }
-      {processSummaryReportConfirmed &&
-        <div className="agent-flex-wrapper">
-          <img src={DevObjectsIcon} className="devobjicon" alt="dev icon" />
-          <div>
-            <p className="upload-msg">
-              Summarizing your report for your current S/4HANA Functional Impact (Simplification) Analysis.
-            </p>
-            {showProcessGraphShimmer &&
-              <Shimmer headerText="Generating the Analysis..." />
-            }
-
+      {processSummaryReportConfirmed && (
+        <>
+          <div className="agent-flex-wrapper">
+            <img src={DevObjectsIcon} className="devobjicon" alt="dev icon" />
+            <div>
+              <p className="upload-msg">
+                Summarizing your report for your current S/4HANA Functional Impact (Simplification) Analysis.
+              </p>
+            </div>
           </div>
-        </div>
-      }
+          {showProcessGraphShimmer ? (
+            <div style={{ paddingLeft: '3.5vw' }}>
+              <Shimmer headerText="Generating the Analysis..." />
+            </div>
+          ) : (
+            <ProcessGraphTabs onTabClick={handleGraphTabClick} />
+          )}</>
+      )}
+      {lastStepProcess && <CompletedAssessment />}
+      {lastStepProcess && showDropdownComponent && <AssessmentDropDownList />}
+
     </React.Fragment>
   )
 }
 export default ProcessAssessment;
- 

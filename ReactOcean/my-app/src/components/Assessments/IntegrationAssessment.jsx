@@ -25,7 +25,7 @@ const IntegrationAssessment = () => {
   const resultShimmer = useShimmer(resultsConfirmed, 5000);
   const [activeIframeUrl, setActiveIframeUrl] = useState(null);
   const [showIntegrationInputs, setShowIntegrationInputs] = useState(false);
-  const { hierarchySteps, setIsRightPanelOpen, hierarchyStep, hierarchy, setSelectedComponent, assessmentCompleted, nextAssessmentComponent, showDropdownComponent } = useContext(MainFrameContext);
+  const { hierarchySteps, setIsRightPanelOpen, hierarchyStep, hierarchy, setSelectedComponent, showDropdownComponent, lastStepIntegration } = useContext(MainFrameContext);
 
   useEffect(() => {
     setShowIntegrationAssessment(true)
@@ -94,88 +94,70 @@ const IntegrationAssessment = () => {
 
   return (
     <React.Fragment>
-      {showIntegrationAssessment && (
-        <div className="agent-flex-wrapper">
-          <img
-            src={DevObjectsIcon}
-            className="devobjicon"
-            alt="assessment icon"
-          />
-          <div className="requirements-wrapper">
-            <p>
-              To proceed with the Integration Assessment, I’ll need your input
-              on the requirements through the questionnaire provided below.
-            </p>
-            <div className="questionnaire-section">
-              <div className="question">
-                <p>
-                  Q1. Do you plan to use the existing SAP PI/ PO as integration
-                  platform?
-                </p>
-                <div className="radio-group">
-                  <label className="custom-radio">
-                    <input
-                      type="radio"
-                      name="q1"
-                      checked={answers.q1 === true}
-                      onChange={() => handleAnswerChange("q1", true)}
-                    />
-                    <span className="radio-mark"></span>Yes
-                  </label>
-                  <label className="custom-radio">
-                    <input
-                      type="radio"
-                      name="q1"
-                      checked={answers.q1 === false}
-                      onChange={() => handleAnswerChange("q1", false)}
-                    />
-                    <span className="radio-mark"></span>No
-                  </label>
+      {
+        showIntegrationAssessment && (
+          <div className="agent-flex-wrapper">
+            <img src={DevObjectsIcon} className="devobjicon" alt="assessment icon" />
+            <div className="requirements-wrapper">
+              <p>To proceed with the Integration Assessment, I’ll need your input on the requirements through the questionnaire provided below.</p>
+              <div className="questionnaire-section">
+                <div className="question">
+                  <p>Q1. Do you plan to use the existing SAP PI/ PO as integration platform?</p>
+                  <div className="radio-group">
+                    <label className="custom-radio">
+                      <input
+                        type="radio"
+                        name="q1"
+                        checked={answers.q1 === true}
+                        onChange={() => handleAnswerChange('q1', true)}
+                      />
+                      <span className="radio-mark"></span>Yes
+                    </label>
+                    <label className="custom-radio">
+                      <input
+                        type="radio"
+                        name="q1"
+                        checked={answers.q1 === false}
+                        onChange={() => handleAnswerChange('q1', false)}
+                      />
+                      <span className="radio-mark"></span>No
+                    </label>
+                  </div>
                 </div>
-              </div>
 
-              <div className="question">
-                <p>
-                  Q2. Do you have SAP ECC integration with SAP CPI/ BTP
-                  Integration Suite?
-                </p>
-                <div className="radio-group">
-                  <label className="custom-radio">
-                    <input
-                      type="radio"
-                      name="q2"
-                      checked={answers.q2 === true}
-                      onChange={() => handleAnswerChange("q2", true)}
-                    />
-                    <span className="radio-mark"></span>Yes
-                  </label>
-                  <label className="custom-radio">
-                    <input
-                      type="radio"
-                      name="q2"
-                      checked={answers.q2 === false}
-                      onChange={() => handleAnswerChange("q2", false)}
-                    />
-                    <span className="radio-mark"></span>No
-                  </label>
+                <div className="question">
+                  <p>Q2. Do you have SAP ECC integration with SAP CPI/ BTP Integration Suite?</p>
+                  <div className="radio-group">
+                    <label className="custom-radio">
+                      <input
+                        type="radio"
+                        name="q2"
+                        checked={answers.q2 === true}
+                        onChange={() => handleAnswerChange('q2', true)}
+                      />
+                      <span className="radio-mark"></span>Yes
+                    </label>
+                    <label className="custom-radio">
+                      <input
+                        type="radio"
+                        name="q2"
+                        checked={answers.q2 === false}
+                        onChange={() => handleAnswerChange('q2', false)}
+                      />
+                      <span className="radio-mark"></span>No
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )
+      }
       {bothAnswered && (
         <div className="agent-flex-wrapper">
-          <img
-            src={DevObjectsIcon}
-            className="devobjicon"
-            alt="assessment icon"
-          />
+          <img src={DevObjectsIcon} className="devobjicon" alt="assessment icon" />
           <div className="selection-basis-wrapper">
-            <p>
-              Based on your selection, I can analyze your Integrations and
-              impact assessment for SAP PI/PO and SAP CPI/BTP.
-            </p>
+            <p>Based on your selection, I can analyze your Integrations and impact assessment for SAP PI/PO and SAP CPI/BTP.</p>
           </div>
         </div>
       )}
@@ -265,21 +247,14 @@ const IntegrationAssessment = () => {
       {resultsConfirmed && (
         <>
           <div className="agent-flex-wrapper">
-            <img
-              src={DevObjectsIcon}
-              className="devobjicon"
-              alt="assessment icon"
-            />
+            <img src={DevObjectsIcon} className="devobjicon" alt="assessment icon" />
             <div className="selection-basis-wrapper">
-              <p>
-                Summarizing your report for your Integration Objects impact
-                assessment for S/4 HANA conversion.
-              </p>
+              <p>Summarizing your report for your Integration Objects impact assessment for S/4 HANA conversion.</p>
             </div>
           </div>
 
           {resultShimmer ? (
-            <div style={{ paddingLeft: "3.5vw" }}>
+            <div style={{ paddingLeft: '3.5vw' }}>
               <Shimmer headerText="Generating the Analysis..." />
             </div>
           ) : (
@@ -287,8 +262,10 @@ const IntegrationAssessment = () => {
           )}
         </>
       )}
+      {lastStepIntegration && <CompletedAssessment />}
+      {lastStepIntegration && showDropdownComponent && <AssessmentDropDownList />}
     </React.Fragment>
-  );
+  )
 }
 
 export default IntegrationAssessment

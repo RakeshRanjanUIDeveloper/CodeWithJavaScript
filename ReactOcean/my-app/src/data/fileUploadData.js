@@ -64,7 +64,7 @@ export const fileUploadData = {
       uploadSuccessMessage: "",
     },
   ],
-processFileUploadData: [
+  processFileUploadData: [
     {
       id: 1,
       fileTitle:

@@ -1,0 +1,110 @@
+What is CSS (Cascading Style Sheets) and what is it used for?
+ - CSS is a style sheet language used to describe the presentation (look and feel) of HTML elements on a web page.
+ - It allows US to control layout, colors, fonts, spacing, and responsive behavior—separately from OUR HTML structure.
+ - CSS uses a cascade algorithm to determine which styles apply when there are conflicts.
+ - It prioritizes based on:
+   - Importance (!important)
+   - Specificity (ID > Class > Tag)
+   - Source order (later rules override earlier ones)
+ - Why CSS is Important
+    - Keeps structure (HTML) and style (CSS) separate (inline, Internal, External)
+    - Makes code reusable and scalable
+    - Enables responsive design for different screens
+    - Enhances user experience (UX)
+========================================================================================================================
+What is the difference between visibility: hidden and display: none in CSS?
+ - visibility: hidden and display: none are both CSS properties used to hide elements
+ - display: none	
+    - Element is completely removed from the layout flow.
+    - It doesn’t occupy space.
+    - Behaves like the element is not in the DOM visually.
+ - visibility: hidden
+    - Element is hidden from view, but still occupies space in the layout.
+    - Acts like transparent/ghost content. 
+========================================================================================================================
+What is the Box Model in CSS? How do padding, margin, border, and content work together?
+ - Box Model consists of: content, padding, borders and margins.
+ - * {
+  box-sizing: border-box;
+}
+========================================================================================================================
+What are the different position values in CSS? What is the default position?
+ - position property determines how an element is positioned in the document flow and 
+   how it behaves with respect to its parent or surrounding elements.
+ - static - (Default). Element is positioned according to normal document flow.
+ - relative	- Positioned relative to its normal position. Still takes up space in the flow.
+ - absolute	- Positioned relative to the nearest positioned ancestor (i.e., the nearest relative, absolute, or fixed parent). Removed from normal flow.
+ - fixed	- Positioned relative to the viewport. Doesn't move when the page scrolls.
+ - sticky	- Switches between relative and fixed depending on scroll position.
+========================================================================================================================
+Difference between border-box and content-box
+- The box-sizing property defines how the total width and height of an element is calculated.
+- box-sizing: content-box => Width = content only. Padding and border added outside.
+- box-sizing: border-box; => Width includes content + padding + border.
+========================================================================================================================
+What is the difference between CSS Grid and Flexbox? When should you use each?
+ - Grid is used for 2D (rows and column) But Flexbox is used for 1D layout(either row or column)
+ - Grid is used for complex layout But Flexbox is used for Linear layout.
+ - In Grid, overlapping is possible with grid layers But in Flexbox not possible
+ - In Grid, rows and columns can be aligned independently But in Flexbox items align in one direction based on the flex flow
+ - In Grid, parent element should be display: grid or inline-grid But in FLexbox parent element should be display: flex or inline-flex
+================================================================================================================================
+How do you create layouts using Flexbox and Grid? Explain fr units in Grid
+ - Creating Layouts with Flexbox
+    - Flexbox layouts are 1D (row or column).
+    - We define a flex container, and all direct children become flex items.
+ - Creating Layouts with CSS Grid
+    - CSS Grid is 2D.
+    - Letting us to define rows and columns simultaneously. Great for full-page layouts or dashboards.
+ - fr stands for fraction of available space.
+    - 1fr means "one portion" of the remaining space.
+    - grid-template-columns: 1fr 2fr 1fr
+    - First column: 1 part, Second column: 2 parts, Third column: 1 part
+    - The total parts = 4, so widths will be: 25%, 50%, 25%
+===================================================================================================================================
+What is the calc() function in CSS, and how is it used?
+  - property: calc(expression);
+  - It’s useful when we need flexible, responsive layouts or want to mix different units (like px, %, em, vh, etc.).
+  - We must include spaces around operators:
+  - When to Use calc()
+    - When combining fixed and fluid dimensions
+    - For responsive design
+    - When using CSS variables in dynamic expressions 
+===================================================================================================================================
+What are shadow elements in CSS? (e.g., box-shadow, text-shadow)
+ - box-shadow => Applies a shadow to the outside (or inside) of a box (like a div, button, etc.).
+ - Syntax - box-shadow: offset-x offset-y blur-radius spread-radius color inset;
+ - box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+ - box-content - Adds shadow to text content.
+ - Same as box-shadow but simpler — no spread or inset.
+ - text-shadow: offset-x offset-y blur-radius color;
+ - text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+==================================================================================================================================
+How does the :nth-child() pseudo-class work in CSS?
+ - It is a selector used to target elements based on their position in a parent’s list of children.
+ - Syntax - selector:nth-child(n)
+ - It counts from 1 (not 0) and considers all elements (not just a specific type unless filtered by a tag).
+ - :nth-child(n)	Position among all siblings
+ - :nth-of-type(n)	Position among same tag siblings
+=================================================================================================================================
+How to put background-color in first line of paragraph out of 4-5 lines paragraph
+ - To apply a background-color to only the first line of a multi-line paragraph in CSS, we can use the ::first-line pseudo-element.
+ - p::first-line {
+  background-color: yellow;
+}
+- ::first-line only supports limited properties, such as: color, background-color, font, text-transform, letter-spacing, word-spacing
+- We cannot use properties like margin, padding, border, or box-shadow with ::first-line.
+================================================================================================================================
+Ways to Center a <div> in CSS
+ - Using margin: auto (Horizontally only) - Works when the div has a fixed width and is inside a block container.
+ - Using Flexbox (Horizontal & Vertical)
+ - Using Grid Layout (Horizontal & Vertical)
+ - Using position: absolute + transform
+ - Using position: fixed + transform
+ - Using text-align: center (for inline/inline-block)
+ - Using line-height for vertical centering (single line only)
+ - Using table-cell
+ - 
+
+
+

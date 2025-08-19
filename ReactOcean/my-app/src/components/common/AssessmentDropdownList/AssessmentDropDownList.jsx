@@ -6,33 +6,37 @@ import SendIcon from "../../../assets/icons/send-icon.svg";
 import MainFrameContext from "../../context/MainFrameContext";
 import { AssessmentsComponentData } from "../../../data/AssessmentsComponentData";
 
-const AssessmentDropDownList = ({ setSelectedAssessmentComponent, SelectedAssessmentComponent, setValidComponent }) => {
-  const { hierarchy, setNextAssessmentComponent, setHierarchy,setHierarchySteps, setAssessmentCompleted } =
+const AssessmentDropDownList = () => {
+  const { hierarchy, lastStepDevelopment, lastStepIntegration, lastStepProcess, dropDownSelectedAssessment, setDropDownSelectedAssessment, dropdownOpen, setDropdownOpen, setOpenedAssessments } =
     useContext(MainFrameContext);
 
-  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedAssessmentTitle, setSelectedAssessmentTitle] = useState("");
-  const [dropDownSelectedAssessment, setDropDownSelectedAssessment] = useState(null);
 
   const handleSelect = (assessment) => {
     setSelectedAssessmentTitle(assessment.title);
     setDropDownSelectedAssessment(assessment);
     setDropdownOpen(false);
-    setValidComponent(true)
   };
 
   const handleNextAssessment = (e) => {
     e.stopPropagation();
-    console.log("Selected Component:", dropDownSelectedAssessment);
-    if (dropDownSelectedAssessment && Array.isArray(hierarchy) && !hierarchy.includes(dropDownSelectedAssessment.title)) {
-        setNextAssessmentComponent(dropDownSelectedAssessment);
-        setSelectedAssessmentComponent(() => dropDownSelectedAssessment.assessmentComponent)
-        setAssessmentCompleted(false)
+    if (
+      dropDownSelectedAssessment &&
+      !hierarchy.includes(dropDownSelectedAssessment.title)
+    ) {
+      console.log("Dropdown selected:", dropDownSelectedAssessment);
+      setOpenedAssessments((prev) => {
+        const alreadyOpened = prev.some(
+          (assessment) => assessment.title === dropDownSelectedAssessment.title
+        );
+        return alreadyOpened ? prev : [...prev, dropDownSelectedAssessment];
+      });
     }
   };
 
-
-  const isSelectedItemDisabled =  dropDownSelectedAssessment && Array.isArray(hierarchy) && hierarchy.includes(dropDownSelectedAssessment.title);
+  const isSelectedItemDisabled =
+    dropDownSelectedAssessment &&
+    hierarchy.includes(dropDownSelectedAssessment.title);
 
   return (
     <>
@@ -47,7 +51,7 @@ const AssessmentDropDownList = ({ setSelectedAssessmentComponent, SelectedAssess
             <div className="rectangle-box">
               <img src={Prompticon} alt="logo" className="dev-icon" />
               <span className="prompt-text">
-               
+
                 {selectedAssessmentTitle || "What would you like to do"}
               </span>
               {dropDownSelectedAssessment && !isSelectedItemDisabled && (
@@ -66,14 +70,16 @@ const AssessmentDropDownList = ({ setSelectedAssessmentComponent, SelectedAssess
             {dropdownOpen && (
               <ul className="dropdown-list">
                 {AssessmentsComponentData.map((item) => {
-                  const isDisabled = Array.isArray(hierarchy) && hierarchy.includes(item.title);
+                  const isDevelopment = item.title === "Development Assessment"; // or a better check if you have a type field
+                  const isIntegration = item.title === "Integration Assessment";
+                  const isProcess = item.title === "Process Assessment";
+                  const isDisabled = hierarchy.includes(item.title) || (isDevelopment && lastStepDevelopment) || (isIntegration && lastStepIntegration) || (isProcess && lastStepProcess);
                   return (
                     <li
                       key={item.id}
-                      onClick={() => handleSelect(item)}
-                      className={`dropdown-item ${
-                        isDisabled ? "disabled" : ""
-                      }`}
+                      onClick={() => !isDisabled && handleSelect(item)}
+                      className={`dropdown-item ${isDisabled ? "disabled" : ""
+                        }`}
                     >
                       {item.title}
                     </li>

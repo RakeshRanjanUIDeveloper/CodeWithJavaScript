@@ -5,9 +5,10 @@ import MainFrameContext from "../../context/MainFrameContext";
 import "./CompletedAssessment.css";
 
 const CompletedAssessment = () => {
-  const { hierarchy, setShowDropdownComponent } = useContext(MainFrameContext);
+  const { setShowDropdownComponent, lastStepDevelopment, lastStepIntegration, lastStepProcess } = useContext(MainFrameContext);
 
-  const handleNextAssessment = () => {
+  const handleNextAssessment = (e) => {
+    e.stopPropagation();
     setShowDropdownComponent(true);
   };
   return (
@@ -45,17 +46,19 @@ const CompletedAssessment = () => {
           <h3 className="common-assessment-header">Assessments</h3>
           <div className="button-group button-landscape">
             {AssessmentsComponentData.map((item, index) => {
-              //const isCompleted = hierarchy.includes(item.title);
-              const isCompleted = Array.isArray(hierarchy) && hierarchy.includes(item.title);
+              const disableDevelopment = lastStepDevelopment && item.title === "Development Assessment"; // new
+              const disableIntegration = lastStepIntegration && item.title === "Integration Assessment";
+              const disableProcess = lastStepProcess && item.title === "Process Assessment";
+              const isDisabled = disableDevelopment || disableIntegration || disableProcess;
+
               return (
                 <div
                   key={index}
-                  className={`btn-wrapper btn-assessment ${
-                    isCompleted ? "options-btn disabled" : ""
-                  }`}
+                  className={`btn-wrapper btn-assessment ${isDisabled ? "options-btn disabled" : ""
+                    }`}
                 >
                   <h6 className="btn-title">{item.title}</h6>
-                   <p className="btn-desc">{item.description}</p>
+                  <p className="btn-desc">{item.description}</p>
                 </div>
               );
             })}

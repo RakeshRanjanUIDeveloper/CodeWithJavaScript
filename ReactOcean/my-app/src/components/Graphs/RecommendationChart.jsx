@@ -24,7 +24,7 @@ const RecommendationChart = ({ activeTab }) => {
         </div>
         <div className="recommendation-chart-container graph-container">
             <div className="recommendation-chart-title">
-                Prime Recommendations (RICEFW Category)
+                Prime Recommendations2 (RICEFW Category)
             </div>
             <ResponsiveContainer width="100%" height={350}>
                 <BarChart

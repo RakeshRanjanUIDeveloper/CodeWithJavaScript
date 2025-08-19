@@ -20,7 +20,8 @@ import Shimmer from '../common/Shimmer/Shimmer';
 import { systemAssessmentInputs } from '../../data/systemAssessmentInputs';
 import { fileUploadData } from '../../data/fileUploadData';
 import { shimmerHeaders } from "../../data/ShimmerHeaders";
-
+import AssessmentDropDownList from '../common/AssessmentDropdownList/AssessmentDropDownList';
+import CompletedAssessment from '../common/CompletedAssessment/CompletedAssessment';
 
 const DevelopmentAssessment = () => {
   const [showAssessmentInput, setShowAssessmentInput] = useState(false);
@@ -36,9 +37,10 @@ const DevelopmentAssessment = () => {
   const [sidePanelHeading, setSidePanelHeading] = useState('');
   const [activeIframeUrl, setActiveIframeUrl] = useState(null);
   const showGraphShimmer = useShimmer(summaryReportConfirmed, 5000);
-  const observationShimmer = useShimmer(observationConfirmed , 5000);
-  const { hierarchySteps, setIsRightPanelOpen, hierarchyStep, hierarchy, setSelectedComponent, assessmentCompleted, nextAssessmentComponent, showDropdownComponent} = useContext(MainFrameContext);
+  const observationShimmer = useShimmer(observationConfirmed, 5000);
+  const { hierarchySteps, setIsRightPanelOpen, hierarchyStep, hierarchy, setSelectedComponent, showDropdownComponent, lastStepDevelopment} = useContext(MainFrameContext);
   const observationData = UploadedFiles.find((file) => file.id === "3");
+
   if (!observationData) return null;
   useEffect(() => {
     setShowAssessmentInput(true)
@@ -150,7 +152,7 @@ const DevelopmentAssessment = () => {
             fileUploadDataList={fileUploadData.developmentFileUploadData}
             shimmerHeadersList={shimmerHeaders.developmentShimmerHeaders}
             stepId={3}
-            onProceed = {() => setObservationConfirmed(true)}
+            onProceed={() => setObservationConfirmed(true)}
             setActiveIframeUrl={setActiveIframeUrl}
             setSidePanelHeading={setSidePanelHeading}
             hierarchy="Development Assessment"
@@ -184,7 +186,7 @@ const DevelopmentAssessment = () => {
           fileUploadDataList={fileUploadData.developmentFileUploadData}
           shimmerHeadersList={shimmerHeaders.developmentShimmerHeaders}
           stepId={4}
-          onProceed = {() => setSummaryReportConfirmed(true)}
+          onProceed={() => setSummaryReportConfirmed(true)}
           setSidePanelHeading={setSidePanelHeading}
           hierarchy="Development Assessment"
           hierarchyStep={6}
@@ -206,6 +208,8 @@ const DevelopmentAssessment = () => {
           </div>
         </div>
       )}
+      {lastStepDevelopment && <CompletedAssessment />}
+      {lastStepDevelopment && showDropdownComponent && <AssessmentDropDownList />}
     </React.Fragment>
   );
 }

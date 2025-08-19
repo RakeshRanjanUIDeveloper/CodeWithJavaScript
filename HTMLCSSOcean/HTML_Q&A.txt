@@ -1,0 +1,128 @@
+What is a <!DOCTYPE> Declaration in HTML?
+- <!DOCTYPE> stands for "Document Type Declaration".
+- It tells the browser how to interpret the HTML code — whether in standards mode or quirks mode.
+- This ensures consistent rendering across different browsers.
+- Without a <!DOCTYPE>, browsers may render the page in quirks mode, which can lead to inconsistent styling and layout issues.
+- Syntax - <!DOCTYPE html> 
+- It is an instruction to the browser about what version of HTML the page is written in.
+- It is not an HTML element or tag — it is a declaration.
+- Quirks Mode: A compatibility mode where browsers try to behave like older versions
+- Standards Mode: The browser follows the official W3C specifications for HTML, CSS, and DOM.
+===================================================================================================================================
+What is Meta tag in html ? why its used ?
+- It is an element placed inside the <head> section of a web page.
+- It provides metadata about the HTML document. 
+- Meta tags are not displayed on the page itself but are read by browsers, search engines, and other web services.
+- It is essential for
+    - SEO Optimization 
+        - Meta tags help search engines understand the content and purpose of a webpage.
+        - <meta name="description" content="Learn HTML meta tags and how they improve SEO and page performance.">
+    - Proper display on Mobile Device
+        - Meta tags help websites display correctly on all screen sizes, especially mobile devices.
+        - <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    - Browser behavior control
+        - Meta tags can control how browsers handle content, caching, and page refreshes.
+        - <meta http-equiv="refresh" content="30">
+        - <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    - Describing content for external platforms (search engines, social media)
+        - Special meta tags define how your page looks when shared on social platforms like Facebook, Twitter, or LinkedIn.
+        - <meta property="og:title" content="Learn Meta Tags in HTML">
+            <meta property="og:description" content="A complete guide on using meta tags for SEO and mobile.">
+            <meta property="og:image" content="https://example.com/meta-tags-guide.png">
+            <meta property="og:url" content="https://example.com/meta-tags">
+=================================================================================================================================
+Where Should the <script> Tag Be Placed in an HTML Document — and Why?
+- Inside <head> tag - This blocks the page rendering until the script is downloaded and executed.
+- Before Closing </body> Tag -The page content loads first & scripts don’t block rendering & it improves page speed & user experience.
+- Inside <head> with defer or async Attributes
+    - <script src="script.js" defer></script>
+    - Loads script in the background and runs it after the HTML is parsed.
+    - Maintains script execution order. Best for scripts that depend on DOM being ready.
+    - <script src="script.js" async></script>
+    - Loads script in parallel and executes as soon as it’s ready.
+    - Does not guarantee order if you have multiple scripts.
+    - Good for independent, third-party scripts (e.g., analytics).
+===================================================================================================================================
+What are Block-Level, Inline, inline-block, and Semantic HTML Elements?
+Block-Level Elements 
+ - Block-level elements start on a new line and take up the full width available by default.
+ - <div>, <p>, <h1> to <h6>, <ul>, <ol>, <li>, <section>, <article>, <header>, <footer>
+ - Occupies the entire width of its parent container.
+ - It can contain other block-level or inline elements.
+Inline Elements
+ - Inline elements do not start on a new line and only take up as much width as necessary. 
+ - <span>, <a>, <strong>, <em>, <img>, <label>, <input> (some types)
+ - It cannot contain block-level elements.
+ - Mostly used for styling text or inserting small elements within text.
+Inline-Block Elements
+ - Inline-block elements are rendered like inline elements, but they behave like block elements in terms of accepting 
+   box model properties like width, height, padding, and margin.
+ - There are no native inline-block elements in HTML, but any element can be made inline-block using CSS
+Semantic HTML Elements
+ - Semantic HTML elements clearly describe their meaning in a human- and machine-readable way. 
+ - These elements help with accessibility and SEO by giving structure and context.
+ - <article>, <section>, <header>, <footer>, <nav>, <aside>, <main>, <figure>, <figcaption>
+ ====================================================================================================================================
+Will a webpage still work without using semantic tags? What are the implications for accessibility and SEO?
+- Yes, a webpage will still work technically without semantic HTML tags
+- browsers can still render the content using non-semantic tags like <div> and <span>
+- However, not using semantic tags has important implications, especially for accessibility and SEO (Search Engine Optimization).
+- Using just <div> and <span> can build any layout or content structure, but they don’t communicate meaning. 
+  Semantic tags add context which is vital for: Screen Readers
+==================================================================================================================
+Can a <section> tag be placed inside a <div>? What are best practices?
+- Yes, a <section> tag can absolutely be placed inside a <div> — and it is valid HTML.
+- A <div> is a non-semantic container used purely for layout or grouping.
+- A <section> is a semantic element used to define a thematic grouping of content.
+- Use <section> for meaningful groupings of related content with a heading
+- Each <section> should ideally have a heading (<h1>–<h6>).
+- Prefer <div> for styling/layout only
+===================================================================================================================
+Can you apply width in span tag, take one div and span tag- apply width in both
+- By default, the <span> tag is inline, and inline elements do not respect width, height, padding-top/bottom, or margin-top/bottom`.
+- <div> is a block element, and block elements do respect width.
+- The <span> will not obey the width unless you change its display to inline-block or block.
+=====================================================================================================================
+Which HTML tags are considered inline elements?
+- Inline elements:
+    - Do not start on a new line.
+    - Only take up as much width as necessary.
+    - Cannot set width, height, margin-top, or margin-bottom (unless display is changed)
+- Common Inline HTML Elements
+    - span, a, img, input, b, strong, i, label, select, textarea, code, time.
+- Inline elements can be nested inside block elements.
+- but block elements should not be placed inside inline elements.
+- We can style inline elements using display: inline-block or display: block if we need to apply width/height.
+=======================================================================================================================
+What techniques or tags are used to improve accessibility in HTML?
+- Accessibility (a11y) in HTML ensures your web content is usable by everyone, including people using screen readers,
+  keyboard navigation, or assistive technologies.
+- List of techniques and tags used to improve accessibility:
+    - Use semantic elements so assistive technologies can understand page structure.
+    - ARIA attributes help where semantic HTML falls short.
+    - Always provide a meaningful alt attribute on <img>.
+    - Proper Labeling for Forms
+    - Keyboard Navigation -Use native HTML buttons and links instead of clickable <div> or <span>.
+    - Maintain a logical and hierarchical structure of headings (<h1>, <h2>, …). Avoid skipping levels (e.g., <h1> followed by <h4>).
+    - Ensure sufficient contrast between text and background (at least 4.5:1 for normal text).
+    - Assistive tech can navigate quickly using regions: haeder, footer, main, nav
+=========================================================================================================================
+How do you disable an HTML element using CSS or HTML attributes?
+ - Using HTML disabled attribute (preferred for form elements) Eg: <input type="text" disabled />
+ - Using CSS to mimic disabling (not real disable) : CSS alone cannot truly disable an element but you can simulate it visually and behaviorally:
+ - <button class="disabled-btn">Click Me</button>
+ - .disabled-btn {
+  pointer-events: none; /* disables clicks */
+  opacity: 0.5;         /* makes it look disabled */
+  cursor: not-allowed;  /* changes the mouse cursor */
+}
+ - Disable via JavaScript (dynamic control) - document.getElementById('myInput').disabled = true;
+ - We cannot disable non-form elements (like <div>, <span>, <p>) using the disabled attribute.But we can block interaction
+   using CSS:
+   .blocked {
+  pointer-events: none;
+  user-select: none;
+}
+==========================================================================================================================
+
+

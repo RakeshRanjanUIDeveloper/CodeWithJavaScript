@@ -21,15 +21,16 @@ import useResizeUtility from "../utils/useResizeUtility";
 import ScreenMode from "../common/ScreenMode/ScreenMode";
 import ProcessQuestionnaire from "../Questionnaire/ProcessQuestionnaire";
 import ProcessObservationData from "../ObservationData/ProcessObservationData"
-import AssessmentDropDownList from '../common/AssessmentDropdownList/AssessmentDropDownList';
-import CompletedAssessment from '../common/CompletedAssessment/CompletedAssessment';
+import ReportSummary from "../Graphs/IntegrationGraphs/ReportSummary";
+import RecommendedSolutions from "../Graphs/IntegrationGraphs/RecommendedSolutions";
+import ProcessRICEFWBarChart from "../Graphs/ProcessGraphs/ProcessRICEFWBarChart";
+import ProcessReportSubcategoryChart from "../Graphs/ProcessGraphs/ProcessReportSubcategoryChart";
+import ProcessRecommendationChart from "../Graphs/ProcessGraphs/ProcessRecommendationChart";
+import ProcessExtensibilityChart from "../Graphs/ProcessGraphs/ProcessExtensibilityChart";
 
-import ReportSummary from '../Graphs/IntegrationGraphs/ReportSummary';
-import RecommendedSolutions from '../Graphs/IntegrationGraphs/RecommendedSolutions'
 const SystemAssessment = () => {
-  const {selectedComponent, isRightPanelOpen,setIsRightPanelOpen,uploadeadFile,setHierarchy,setHierarchySteps, assessmentCompleted, showDropdownComponent, nextAssessmentComponent} = useContext(MainFrameContext);
-  const [SelectedAssessmentComponent, setSelectedAssessmentComponent] =useState(null);
-  const [isComponentDropDownSelectionValid, setIsComponentDropDownSelectionValid] = useState(false)
+  const { selectedComponent, isRightPanelOpen, setIsRightPanelOpen, uploadeadFile, setHierarchy, setHierarchySteps, openedAssessments } = useContext(MainFrameContext);
+  const [SelectedAssessmentComponent, setSelectedAssessmentComponent] = useState(null);
   const [initialLoading, setInitialLoading] = useState(true);
   const [selectedClient, setSelectedClient] = useState("");
   const [agentClick, setAgentClick] = useState("");
@@ -43,12 +44,12 @@ const SystemAssessment = () => {
   const isDragging = useRef(false);
 
   useEffect(() => {
-      if (isRightPanelOpen) {
-        setLeftWidth(60)
-      } else {
-        setLeftWidth(100)
-      }
-    }, [isRightPanelOpen]);
+    if (isRightPanelOpen) {
+      setLeftWidth(60)
+    } else {
+      setLeftWidth(100)
+    }
+  }, [isRightPanelOpen]);
   const { handleMouseDown } = useResizeUtility({
     outerWrapperRef,
     animationFrameId,
@@ -100,7 +101,6 @@ const SystemAssessment = () => {
       return <ObservationData />;
     }
     if (selectedComponent?.type === "chart") {
-      console.log(selectedComponent.id)
       switch (selectedComponent.id) {
         case "summary":
           return <RICEFWBarChart activeTab="summary" />;
@@ -110,24 +110,28 @@ const SystemAssessment = () => {
           return <RecommendationChart activeTab="deepdive" />;
         case "solutions":
           return <ExtensibilityChart activeTab="solutions" />;
-        case "integrationSummary":{
-                    console.log("called")
-          return <ReportSummary activeTab="integrationSummary" />;
-        }
-
-        case "integrationSolutions":
-          return <RecommendedSolutions activeTab="integrationSolutions" />;
+        case "IntegrationSummary":
+          return <ReportSummary activeTab="IntegrationSummary" />;
+        case "IntegrationSolutions":
+          return <RecommendedSolutions activeTab="IntegrationSolutions" />;
+        case "processsummary":
+          return <ProcessRICEFWBarChart activeTab="processsummary" />;
+        case "processsystem":
+          return <ProcessReportSubcategoryChart activeTab="processsystem" />;
+        case "processdeepdive":
+          return <ProcessRecommendationChart activeTab="processdeepdive" />;
+        case "processsolutions":
+          return <ProcessExtensibilityChart activeTab="processsolutions" />;
         default:
-         
           return <p>Chart not found</p>;
       }
     }
-    
+
     if (selectedComponent?.type === "ProcessQuestionnaire") {
       return <ProcessQuestionnaire />;
     }
-    if(selectedComponent?.type === "ProcessObservationData"){
-      return <ProcessObservationData/>
+    if (selectedComponent?.type === "ProcessObservationData") {
+      return <ProcessObservationData />
     }
     return <p>No content to show.</p>;
   };
@@ -135,7 +139,7 @@ const SystemAssessment = () => {
     <React.Fragment>
       <div className="outer-wrapper" ref={outerWrapperRef}>
         <div className={`main-wrapper`}>
-           <div className={`left-pane ${isFullscreen ? "hide-left" : ""} ${isRightPanelOpen ? "shrinked" : ""}`}
+          <div className={`left-pane ${isFullscreen ? "hide-left" : ""} ${isRightPanelOpen ? "shrinked" : ""}`}
             style={{ width: isFullscreen ? "0%" : `${leftWidth}%` }}>
             <div className="assessment-header">
               <div className="left-header">
@@ -231,9 +235,8 @@ const SystemAssessment = () => {
                         </div>
 
                         <div
-                          className={`btn-wrapper ${
-                            agentClick === "Deliver" ? "selected" : ""
-                          } enabled`}
+                          className={`btn-wrapper ${agentClick === "Deliver" ? "selected" : ""
+                            } enabled`}
                           onClick={() => setAgentClick("Deliver")}
                         >
                           <h6 className="btn-title">Deliver</h6>
@@ -327,9 +330,8 @@ const SystemAssessment = () => {
                           </p>
                         </div>
                         <div
-                          className={`btn-wrapper brownfield-hover ${
-                            selectedApproach === "Landscape" ? "selected" : ""
-                          }`}
+                          className={`btn-wrapper brownfield-hover ${selectedApproach === "Landscape" ? "selected" : ""
+                            }`}
                           onClick={() => setSelectedApproach("Landscape")}
                         >
                           <h6 className="btn-title">
@@ -363,10 +365,9 @@ const SystemAssessment = () => {
                   />
                 )}
                 {SelectedAssessmentComponent && <SelectedAssessmentComponent />}
-
-            {assessmentCompleted && <CompletedAssessment />}
-            {showDropdownComponent && <AssessmentDropDownList  setSelectedAssessmentComponent={setSelectedAssessmentComponent} setValidComponent={setIsComponentDropDownSelectionValid}  />}
-            {isComponentDropDownSelectionValid && SelectedAssessmentComponent && <SelectedAssessmentComponent />}
+                {openedAssessments.map((assessment, index) => (
+                  <assessment.assessmentComponent key={index} />
+                ))}
               </ScrollToBottom>
             )}
           </div>
@@ -403,12 +404,12 @@ const SystemAssessment = () => {
             </div>
           )}
           {isRightPanelOpen && (
-             <div className={`right-pane ${isFullscreen ? "full-width" : ""}`}
+            <div className={`right-pane ${isFullscreen ? "full-width" : ""}`}
               style={{
                 width: isFullscreen ? "100%" : `${98 - leftWidth}%`,
                 flexGrow: isFullscreen ? 1 : 0,
                 maxWidth: isFullscreen ? "100%" : "unset",
-                
+
               }}
             >
               <div className="right-panel-icons">

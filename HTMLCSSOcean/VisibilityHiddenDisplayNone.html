@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visibility vs Display</title>
+  <style>
+    .visible-hidden {
+      visibility: hidden;
+      height: 100px;
+      width: 100px;
+      border: 2px solid red;
+    }
+
+    .display-none {
+      display: none;
+      height: 100px;
+      width: 100px;
+      border: 2px solid blue;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>What is the difference between <code>visibility: hidden</code> and <code>display: none</code> in CSS?</h2>
+
+  <ul>
+    <li><strong>visibility: hidden</strong> — The element is hidden, but it still occupies space in the layout.</li>
+    <li><strong>display: none</strong> — The element is completely removed from the layout flow and does not occupy space.</li>
+  </ul>
+
+  <div class="container">
+    <div class="visible-hidden">
+      <h3>This is visibility: hidden</h3>
+    </div>
+
+    <div class="display-none">
+      <h3>This is display: none</h3>
+    </div>
+  </div>
+
+</body>
+</html>

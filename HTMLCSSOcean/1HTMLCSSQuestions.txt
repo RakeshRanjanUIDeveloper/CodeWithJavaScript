@@ -1,0 +1,35 @@
+What is a <!DOCTYPE> declaration in HTML, and why is it important? - Done
+What is a <meta> tag in HTML, and why are its attributes important? - Done
+Where should the <script> tag be placed in an HTML document, and why? - Done
+What are block-level, inline, and semantic HTML elements? Can you give examples of each? - done
+Will a webpage still work without using semantic tags? What are the implications for accessibility and SEO? - done
+Can a <section> tag be placed inside a <div>? What are best practices?- done
+Can you apply width in span tag, take one div and span tag- apply width in both- done
+Which HTML tags are considered inline elements? - done
+What techniques or tags are used to improve accessibility in HTML? - done
+How do you disable an HTML element using CSS or HTML attributes? - done
+============================================================================================================================
+What is CSS (Cascading Style Sheets) and what is it used for? - done
+What is the difference between visibility: hidden and display: none in CSS? - done
+Difference between border-box and content-box - done
+What is the Box Model in CSS? How do padding, margin, border, and content work together? - done
+What are the different position values in CSS? What is the default position? - done
+What is the difference between CSS Grid and Flexbox? When should you use each? - done
+How do you create layouts using Flexbox and Grid? Explain fr units in Grid - done
+What is the calc() function in CSS, and how is it used? - done
+What are shadow elements in CSS? (e.g., box-shadow, text-shadow) - done
+How does the :nth-child() pseudo-class work in CSS? - done
+How to put background-color in first line of paragraph out of 4-5 lines paragraph - done
+How many ways you know to do center a div - done
+Create a basic web layout using html and css
+flex
+grid
+float
+inline-block
+How can you prevent a CSS property from being changed while inspecting or testing in the browser?
+What are SCSS and Sass in CSS? How do they work, and what are they used for?
+What are the similarities and differences between SCSS and Sass?
+What is a mixin in Sass/SCSS, and how is it used?
+What is SCSS and how do we use in plane html/css project
+What does @include do in Sass/SCSS?
+How does SCSS compile into CSS? How does the browser understand it?

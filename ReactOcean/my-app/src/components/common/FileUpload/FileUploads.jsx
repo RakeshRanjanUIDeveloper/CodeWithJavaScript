@@ -37,9 +37,6 @@ const FileUploads = ({
     }
     setHierarchy(normalizedHierarchy);
     updateHierarchyStep(normalizedHierarchy, hierarchyStep);
-
-    // setHierarchy(hierarchy);
-    // updateHierarchyStep(hierarchy, hierarchyStep);
   },  [hierarchy, hierarchyStep])
   
   console.log(hierarchy, hierarchyStep,hierarchySteps)
@@ -90,7 +87,7 @@ const FileUploads = ({
       setIsUploading(false);
     }
   };
-  // console.log(uploadeadFile, "uploadedFiles");
+  console.log(uploadeadFile, "uploadedFiles");
 
   return (
     <React.Fragment>

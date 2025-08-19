@@ -8,20 +8,26 @@ const MainFrameProvider = ({ children }) => {
   const [uploadeadFile, setUploadeadFile] = useState(null);
   const [hierarchy, setHierarchy] = useState(null);
   const [hierarchySteps, setHierarchySteps] = useState({});
-  const [assessmentCompleted, setAssessmentCompleted] = useState(false);
-  const [nextAssessmentComponent, setNextAssessmentComponent] = useState(null);
   const [showDropdownComponent, setShowDropdownComponent] = useState(false);
-const updateHierarchyStep = (hierarchy, step) => {
-  setHierarchySteps((prev) => {
-    if (prev[hierarchy] === step) return prev;
-    return { ...prev, [hierarchy]: step };
-  });
-};
+  const [lastStepDevelopment, setLastStepDevelopment] = useState(false);
+  const [lastStepIntegration, setLastStepIntegration] = useState(false);
+  const [lastStepProcess, setLastStepProcess] = useState(false);
+  const [dropDownSelectedAssessment, setDropDownSelectedAssessment] = useState(null);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const [openedAssessments, setOpenedAssessments] = useState([]);
+
+  const updateHierarchyStep = (hierarchy, step) => {
+    setHierarchySteps((prev) => {
+      if (prev[hierarchy] === step) return prev;
+      return { ...prev, [hierarchy]: step };
+    });
+  };
 
   const incrementHierarchyStep = (hierarchy) => {
     setHierarchySteps((prev) => ({
       ...prev,
-      [hierarchy]: (prev[hierarchy] || 1) + 1, 
+      [hierarchy]: (prev[hierarchy] || 1) + 1,
     }));
   };
   return (
@@ -39,12 +45,20 @@ const updateHierarchyStep = (hierarchy, step) => {
         setHierarchySteps,
         updateHierarchyStep,
         incrementHierarchyStep,
-        assessmentCompleted, 
-        setAssessmentCompleted,
         showDropdownComponent,
         setShowDropdownComponent,
-        nextAssessmentComponent,
-        setNextAssessmentComponent
+        lastStepDevelopment,
+        setLastStepDevelopment,
+        lastStepIntegration,
+        setLastStepIntegration,
+        lastStepProcess,
+        setLastStepProcess,
+        dropDownSelectedAssessment, 
+        setDropDownSelectedAssessment,
+        dropdownOpen, 
+        setDropdownOpen,
+        openedAssessments, 
+        setOpenedAssessments
       }}
     >
       {children}
