@@ -32,6 +32,7 @@ import HolyGrail from './components/HolyGrail/HolyGrail'
 import ZigzagString from './components/ZigzagString/ZigzagString'
 import ContactForm from './components/ContactForm/ContactForm'
 import KeyIssue from './components/KeyIssue/KeyIssue'
+import ColorExplorer from './components/ColorExplorer/ColorExplorer'
 
 
 function App() {
@@ -65,9 +66,9 @@ function App() {
         <HolyGrail />
         <ZigzagString />
         <ContactForm />
-        <KeyIssue />*/}
-        <TabsData /> 
-
+        <KeyIssue />
+        <TabsData /> */}
+        <ColorExplorer />
     </React.Fragment>
   )
 }
