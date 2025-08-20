@@ -1,0 +1,2 @@
+- React is a JavaScript library for building user interfaces (UIs), especially single-page applications (SPAs)
+  where parts of the UI update dynamically without reloading the whole page.

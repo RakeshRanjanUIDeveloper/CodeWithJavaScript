@@ -1,0 +1,33 @@
+- A component in React is a reusable piece of UI that can contain HTML, CSS, and JavaScript logic all together.
+- A React component = function/class that returns JSX → which React converts into actual DOM elements.
+- Functional Components
+    - Just JavaScript functions that return JSX.
+    - Can use React Hooks (useState, useEffect, etc.) for state and lifecycle.
+    - State: Managed using React Hooks (useState, useReducer, etc.).
+    - Lifecycle: Managed using Hooks (useEffect, useLayoutEffect, etc.).
+    - function Welcome(props) {
+        return <h1>Hello, {props.name}!</h1>;
+        }
+- Class Components
+    - ES6 classes that extend React.Component
+    - Used this.state and lifecycle methods (componentDidMount, etc.).
+    - State: Managed with this.state and updated with this.setState().
+    - Lifecycle: Has built-in lifecycle methods (componentDidMount, componentDidUpdate, componentWillUnmount).
+    - class Welcome extends React.Component {
+        render() {
+            return <h1>Hello, {this.props.name}!</h1>;
+        }
+        }
+- Why Components?
+    - Reusability → Write once, use anywhere.
+    - Separation of concerns → UI is broken into manageable parts.
+    - Maintainability → Easier to update/change small parts.
+    - Declarative UI → You describe what UI looks like for given state.
+-Life Cycle Mapping Table
+    Class Component Lifecycle -----------Functional Component Equivalent
+    componentDidMount	      ---------->useEffect(() => { ... }, [])
+    componentDidUpdate	      ---------->useEffect(() => { ... }, [dep])
+    componentWillUnmount	  ---------->useEffect(() => { return () => {...}; }, [])
+    shouldComponentUpdate	  ---------->React.memo() or custom comparison
+    getDerivedStateFromProps  ---------->Usually handled by useEffect with props
+    componentDidCatch	      ---------->ErrorBoundary (still class-based, or 3rd-party hook wrappers)
