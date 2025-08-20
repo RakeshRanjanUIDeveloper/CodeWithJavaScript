@@ -23,6 +23,7 @@ const Products = () => {
         {
             allProducts.length > 0 && (
                 <div className='product'>
+                    <img src={allProducts[selectedButton].src} />
                     <p>{allProducts[selectedButton].name}</p>
                     <p>{allProducts[selectedButton].price}</p>
                     <p>{allProducts[selectedButton].desc}</p>
