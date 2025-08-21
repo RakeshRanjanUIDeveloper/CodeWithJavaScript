@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>An arrow function is a concise way to write function expressions in JavaScript. It was introduced in ES6 (ECMAScript 2015).</li>
+        <li>Arrow functions don't have their own this, which makes behavior more predictable inside callbacks and closures.</li>
+        <li>Arrow functions inherit this from lexical scope, which can be problematic in DOM event listeners.</li>
+        <li>Lexical binding means that the value of this is determined by where the function is defined, not where it is called.</li>
+        <li>In arrow functions, this doesn't change based on the context of the call. <br/> It “locks in” the this value from the surrounding (lexical) scope — i.e., the place where the arrow function was written.</li>
+    </ul>
+ <!--    <button id="myBtn">Click Me</button> -->
+    <script>
+        // function Counter(){
+            // this.count =0;
+            // console.log(this)
+            // setInterval(function(){
+                // console.log(this)
+                // this.count++
+                // console.log(this.count)
+            // }, 1000)
+        // }
+        // new Counter()
+
+        // function Counter(){
+            // this.count = 0 ;
+            // setInterval(() =>{
+                // this.count++
+                // console.log(this.count)
+            // }, 1000)
+        // }
+        // new Counter();
+
+        // const button = document.getElementById('myBtn');
+        // button.addEventListener('click', () =>{
+            // console.log(this);
+            // this.style.backgroundColor = 'red'
+        // })
+
+        const person = {
+            name: "Ravi",
+            greet : () =>{
+                console.log(this)
+                console.log(`Hello my name is ${this.name}`)
+            }
+        }
+        person.greet();
+
+        const chai = () =>{
+            let name ="rakesh";
+            console.log(this.name)
+        }
+        chai()
+    </script>
+</body>
+</html>
