@@ -33,6 +33,7 @@ import ZigzagString from './components/ZigzagString/ZigzagString'
 import ContactForm from './components/ContactForm/ContactForm'
 import KeyIssue from './components/KeyIssue/KeyIssue'
 import ColorExplorer from './components/ColorExplorer/ColorExplorer'
+import BackToTop from './components/BackToTop/BackToTop'
 
 
 function App() {
@@ -67,8 +68,9 @@ function App() {
         <ZigzagString />
         <ContactForm />
         <KeyIssue />
-        <TabsData /> */}
-        <ColorExplorer />
+        <TabsData /> 
+        <ColorExplorer />*/}
+        <BackToTop />
     </React.Fragment>
   )
 }
