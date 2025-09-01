@@ -2,10 +2,10 @@ body {
   margin: 0;
   font-family: "Segoe UI", sans-serif;
   user-select: none;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* height: 100vh; */
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
 }
 
 /* .container { */

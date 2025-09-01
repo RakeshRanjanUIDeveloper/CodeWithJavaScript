@@ -34,7 +34,7 @@ import ContactForm from './components/ContactForm/ContactForm'
 import KeyIssue from './components/KeyIssue/KeyIssue'
 import ColorExplorer from './components/ColorExplorer/ColorExplorer'
 import BackToTop from './components/BackToTop/BackToTop'
-
+import DragAndDrop from './components/DragAndDrop/DragAndDrop'
 
 function App() {
   return (
@@ -69,8 +69,9 @@ function App() {
         <ContactForm />
         <KeyIssue />
         <TabsData /> 
-        <ColorExplorer />*/}
-        <BackToTop />
+        <ColorExplorer />
+        <BackToTop />*/}
+        <DragAndDrop />
     </React.Fragment>
   )
 }
