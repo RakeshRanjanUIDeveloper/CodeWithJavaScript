@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+    //   function chunkArray(arr, n) {
+        // let result = [];
+        // for (let i = 0; i < arr.length; i=i+n) {
+            // result.push(arr.slice(i, i+n));
+        // }  
+        // return result
+    //   }
+
+
+    function chunkArray(arr, n){
+        if(arr.length === 0){
+            return []
+        }
+
+        let chunk = arr.slice(0,n)
+        return [chunk].concat(chunkArray(arr.slice(n),n))
+    }
+      console.log(chunkArray([1, 2, 3, 4, 5, 6], 2));
+    </script>
+  </body>
+</html>
