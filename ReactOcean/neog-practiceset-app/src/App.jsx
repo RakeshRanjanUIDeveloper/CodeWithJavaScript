@@ -5,6 +5,7 @@ import PracticeSet3 from './components/PracticeSet3/PracticeSet3'
 import PracticeSet4 from './components/PracticeSet4/PracticeSet4'
 import PracticeSet5 from './components/PracticeSet5/PracticeSet5'
 import PracticeSet6 from './components/PracticeSet6/PracticeSet6'
+import PracticeSet7 from './components/PracticeSet7/PracticeSet7'
 function App() {
   return (
     <React.Fragment>
@@ -12,8 +13,9 @@ function App() {
       <PracticeSet2 />
       <PracticeSet3 />
       <PracticeSet4 />
-      <PracticeSet5 />*/}
-      <PracticeSet6 />
+      <PracticeSet5 />
+      <PracticeSet6 />*/}
+      <PracticeSet7 />
     </React.Fragment>
   )
 }
