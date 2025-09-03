@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validate Palindrome</title>
+  </head>
+  <body>
+    <script>
+      function validatePalindrome(str) {
+        let cleaned = str.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+        let reversed = cleaned.split("").reverse().join("");
+        if (cleaned === reversed) {
+          console.log(`"${str}" is a palindrome.`);
+          return true;
+        } else {
+          console.log(`"${str}" is NOT a palindrome.`);
+          return false;
+        }
+      }
+
+      validatePalindrome("race a car");
+    </script>
+  </body>
+</html>
