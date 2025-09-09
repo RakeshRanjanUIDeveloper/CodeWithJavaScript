@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Write a polyfill for sum(1)(2)(3)() to return 6</h3>
+    <script>
+        function sum(a){
+            let total = a;
+            return function inner(b){
+                if(b === undefined){
+                    return total
+                }else{
+                    total = total + b;
+                    return inner
+                }
+            }
+        }
+        console.log(sum(1)(2)(3)())
+
+
+        function curry(fn){
+            return function curried(...args){
+                if(args.length >= fn.length){
+                    return fn.apply(this, args)
+                }else{
+                    return function(...nextArgs){
+                        return curried.apply(this, args.concat(nextArgs))
+                    }
+                }
+            }
+        }
+
+
+        function calc(a,b,c){
+            return a+b+c
+        }
+
+        const curriedSum = curry(calc);
+        console.log(curriedSum(1)(2)(3))
+    </script>
+</body>
+</html>

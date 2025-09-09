@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function makeCounter(initialValue = 0){
+            let count = initialValue;
+            let counterObj = {
+                increment : () => {count++; return count}, 
+                decrement : () => {count--; return count}, 
+                reset :  () => {count = initialValue; return count}, 
+            };
+            return counterObj
+        }
+        const counter = makeCounter(5);
+        console.log(counter.increment()); // 6
+        console.log(counter.increment()); // 7
+        console.log(counter.decrement()); // 6
+        console.log(counter.reset()); // 5
+        console.log(counter.decrement()); // 4
+    </script>
+</body>
+</html>
