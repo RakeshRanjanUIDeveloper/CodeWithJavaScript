@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log(a);
+      var a = 10;
+      // o/p - Undefined
+      // Reason - Variable Hoist happened but only declaration and not value assignment
+
+      // console.log(b);
+      // let b = 10;
+      //o/p - Reference Error
+      // Reason - let is hoisted but in TDZ where we can not access it before initialization
+
+      // var c=10;
+      // function test(){
+      // console.log(c)
+      // var c = 20;
+      // }
+      // test()
+      // o/p - undefined
+      // Reason - Inside test(), var a is function-scoped, so it shadows the outer a. It's hoisted inside test, so console.log(a) sees undefined.
+
+      (function () {
+        console.log(typeof d);
+        var d = 20;
+      })();
+      // o/p - undefined
+      //Reason: var x is hoisted, but not the value. So typeof x evaluates as undefined
+
+      // let e =10;
+      // (function(){
+      // console.log(e)
+      // let e=20
+      // })()
+      // o/p -ReferenceError:
+      // Reason - let is hoisted but in TDZ where we can not access it before initialization
+
+      console.log(null === undefined);
+      // o/p - true
+      // Reason == allows type coercion, and JavaScript considers null and undefined loosely equal.
+
+      console.log([] == []);
+      // o/p - false
+      // Reason == operator (loose equality) compares references for objects, not their contents.
+
+      console.log([] === []);
+      // o/p - false
+      // Reason - This condition will always return 'false' since JavaScript compares objects by reference, not value.
+
+      console.log(typeof null);
+      // o/p - object
+      // Reason: This is a long-standing JavaScript bug — typeof null returns "object".
+
+      for (var i = 0; i < 3; i++) {
+        setTimeout(() => {
+          console.log(i);
+        }, 0);
+      }
+      // O/P - 3,3,3
+      // Reason - var is function scoped, same i is shared. By the time settimeout runs, loop has finished and i becomes 3
+
+      for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+          console.log(i);
+        }, 0);
+      }
+      // o/p - 0,1,2
+      // Result - let creates a new i for each iteration due to block scope.
+
+      const obj = {
+        f: 10,
+        foo: function () {
+          console.log(this.f);
+        },
+      };
+      obj.foo();
+      // o/p - 10
+      // Reason - Regular function keeps the context of obj, so this.a is 10.
+
+      const objj = {
+        g: 10,
+        fooo: () => {
+          console.log(this.g);
+        },
+      };
+      objj.fooo();
+      // o/p - undefined
+      // Reason - Arrow functions do not bind this. this refers to the global object (window in browser), where a is not defined.
+
+      let h = 10;
+      const obj1 = {
+        h: 20,
+        foo1: function () {
+          return () => this.h;
+        },
+      };
+      const output = obj1.foo1();
+      console.log(output());
+      // o/p - 20
+      // Reason -  Arrow function inherits this from foo1 (a regular function), and this in foo1 refers to obj1.
+
+      let j = 10;
+      const obj2 = {
+        j: 20,
+        foo2: () => {
+          return () => this.j;
+        },
+      };
+      const output2 = obj2.foo2();
+      console.log(output2());
+      // o/p - undefined
+      // Reason -  Both foo2 and the returned arrow function inherit this from their outer (global) context. this.a is undefined globally.
+
+      function test() {
+        console.log(this);
+      }
+      test();
+      // o/p - window
+      // Reason: a regular function is called in the global scope, this defaults to the global object — which is window in browsers.
+
+      ("use strict");
+      function output2() {
+        console.log(this); 
+      }
+      output2();
+      // o/p - undefined 
+      // Reason - In "use strict" mode, this in a regular function (like output2) defaults to **undefined** instead of the global object (window in browsers).
+    </script>
+  </body>
+</html>
