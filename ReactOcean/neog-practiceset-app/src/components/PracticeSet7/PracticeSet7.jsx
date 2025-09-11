@@ -2,6 +2,8 @@ import React from 'react'
 import Weather from './Weather'
 import User from './User'
 import Movies from './Movies'
+import Employee from './Employee'
+import Quotes from './Quotes'
 
 const PracticeSet7 = () => {
   return (
@@ -9,6 +11,8 @@ const PracticeSet7 = () => {
         <Weather />
         <User />
         <Movies />
+        <Employee />
+        <Quotes />
     </React.Fragment>
   )
 }
