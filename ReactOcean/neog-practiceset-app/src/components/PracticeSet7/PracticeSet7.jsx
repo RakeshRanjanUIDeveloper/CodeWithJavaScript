@@ -6,6 +6,7 @@ import Employee from './Employee'
 import Quotes from './Quotes'
 import Video from './Video'
 import Product from './Product'
+import Stationery from './Stationery'
 
 const PracticeSet7 = () => {
   return (
@@ -17,6 +18,7 @@ const PracticeSet7 = () => {
         <Quotes />
         <Video />
         <Product />
+        <Stationery />
     </React.Fragment>
   )
 }
