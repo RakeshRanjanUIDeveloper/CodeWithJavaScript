@@ -124,13 +124,24 @@
       // o/p - window
       // Reason: a regular function is called in the global scope, this defaults to the global object — which is window in browsers.
 
-      ("use strict");
-      function output2() {
-        console.log(this); 
-      }
-      output2();
+      // ("use strict");
+      // function output2() {
+        // console.log(this); 
+      // }
+      // output2();
       // o/p - undefined 
       // Reason - In "use strict" mode, this in a regular function (like output2) defaults to **undefined** instead of the global object (window in browsers).
+    
+    const obj5 ={
+      foo5(){
+        console.log(this)
+        return this
+      }
+    }
+    
+    obj5.foo5()
+    console.log(obj5.foo5() === obj5)
+    
     </script>
   </body>
 </html>

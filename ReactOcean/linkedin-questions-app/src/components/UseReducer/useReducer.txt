@@ -1,0 +1,20 @@
+const [state, dispatch] = useReducer(reducer, initialState);
+useReducer is a function  which return a array - 1st state, 2nd function
+useReducer hook takes 2 things - reducer function and initialState
+    - reducer function is place where we are going to manager all the state of the application 
+    - initialState - initial value
+Using dispatch, we just request to perform the operation to update the state
+dispatch is a function and inside the onclick we generally directly called the dispatch function, we should not do this 
+    - instead whenever we click then only dispatch has to be called
+        onclick={() => dispatch('increment')} => function will be called only when the click happens.
+        onclick={dispatch('increment')} => The function runs during render, not on click.
+Entire state will be handled inside reducer function
+We have to write reducer function outside because each and every time whenever our component is getting mount, 
+    we dont want to call this reducer function, when we are requesting using dispatch only then we have to call the reducer function
+reducer function takes 2 parameters (initialState, action) and return the next state
+
+
+
+
+
+
