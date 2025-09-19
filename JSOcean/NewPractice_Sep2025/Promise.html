@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // how to create a promise
+        function fakeAPI(url){
+            return new Promise((resolve, reject) =>{
+                setTimeout(()=>{
+                    if(url === "https://dummyjson.com/users"){
+                        resolve({
+                            users:[
+                                {id:1, name: "Rakesh"}
+                            ]
+                        })
+                    }else{
+                        reject(new Error("API Not Found"))
+                    }
+                }, 1000)
+            })
+        }
+        fakeAPI('https://dummyjson.com/users')
+            .then((data) =>{
+                console.log(data)
+            })
+            .catch((err) =>{
+                console.log(err)
+            })
+    </script>
+    <script>
+
+        // Using then catch
+        function getUsers(){
+            const apiURL = 'https://dummyjson.com/users';
+            return fetch(apiURL)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data)
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+        }
+        getUsers()
+
+        // using Async Await
+
+        async function getPhotos (){
+            try {
+                const response = await fetch('https://dummyjson.com/users');
+                const data = await response.json();
+                console.log(data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        getPhotos()
+
+    </script>
+</body>
+</html>
