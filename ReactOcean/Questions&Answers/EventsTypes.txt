@@ -1,4 +1,4 @@
-Syntehtic events, Real Events, native events
+Syntehtic events, native events, Real Events
 ======================================================================================================================
 Syntehtic Events
 - Events like onClick, onChange, onSubmit in JSX, are synthetic events.
