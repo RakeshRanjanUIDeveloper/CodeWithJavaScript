@@ -13,6 +13,7 @@ import HOC from './components/TestKnowledge/HOC'
 import ThemeProvider from './components/TestKnowledge/ContextAPI/ThemeProvider'
 import ThemePage from './components/TestKnowledge/ContextAPI/ThemePage'
 import UseMemo from './components/TestKnowledge/UseMemo'
+import FetchData from './components/TestKnowledge/CustomHook/FetchData'
 
 function App() {
   return (
@@ -29,8 +30,9 @@ function App() {
         <HOC />
         <ThemeProvider>
           <ThemePage />
-        </ThemeProvider>*/}
-        <UseMemo />
+        </ThemeProvider>
+        <UseMemo />*/}
+        <FetchData />
     </React.Fragment>
   )
 }
