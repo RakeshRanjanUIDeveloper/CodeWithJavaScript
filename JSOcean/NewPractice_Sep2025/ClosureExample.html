@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function x() {
+            for (let i = 0; i < 5; i++) {
+                function closure(x) {
+                    setTimeout(() => {
+                        console.log(x)
+                    }, 1000);
+                } closure(i)
+            }
+        }
+        x();
+
+
+        function y() {
+            for (let i = 0; i < 5; i++) {
+                function closure(x) {
+                    setTimeout(() => {
+                        console.log(x)
+                    }, 1000);
+                } closure(i)
+            }
+        }
+        y();
+
+
+        function outer(){
+            var outer =10;
+            function inner(){
+                var inner =20;
+                console.log(outer)
+                console.log(inner) 
+            }
+            return inner
+        }
+        const closure = outer();
+        closure()
+    </script>
+</body>
+
+</html>
