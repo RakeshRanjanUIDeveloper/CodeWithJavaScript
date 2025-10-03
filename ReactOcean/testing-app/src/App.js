@@ -5,6 +5,7 @@ import Input from './components/Input';
 import Button from './components/Button';
 import Users from './components/Users';
 import FunctionalComponent from './components/FunctionalComponent';
+import GetByLabelText from './components/getByLabelText';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Button />
         <Users />
         <FunctionalComponent />
+        <GetByLabelText />
     </div>
   );
 }
