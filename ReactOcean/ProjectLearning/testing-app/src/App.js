@@ -11,6 +11,7 @@ import FindBy from './components/FindBy';
 import UserEvent from './components/UserEvent';
 import KeyBoardInteraction from './components/KeyBoardInteraction';
 import User from './components/User';
+import Api from './components/Api';
 
 function App() {
 
@@ -30,8 +31,9 @@ function App() {
         <QueryBy />
         <FindBy />
         <UserEvent />
-        <KeyBoardInteraction /> */}
-        <User name="Rakesh" />
+        <KeyBoardInteraction />
+        <User name="Rakesh" /> */}
+        <Api />
     </div>
   );
 }
