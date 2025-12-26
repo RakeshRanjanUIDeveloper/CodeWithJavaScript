@@ -1,0 +1,20 @@
+command to install - npm init playwright@latest
+command to run test - npx playwright test
+HTML Test Report - npx playwright show-report
+To run only one testcase - test.only
+To skip from running the testcase - test.skip
+We can skip multiple test cases in Playwright. - Skip multiple tests inside a describe block - test.describe.skip
+To run single playwright test tests/login.spec.js --headed
+Adding below properties in playwright.config.js it takes screenshot and make a video as well
+       screenshot:"on",
+        video:"on",
+        trace:"on"
+command which generate the test code - npx playwright codegen
+To generate Playwright code directly into a file using Codegen - npx playwright codegen --output=filename.spec.js
+retries: 2 => Enable Retry in Playwright
+flaky test - Playwright automatically marks a test as flaky if: It fails on the first attempt But passes on a retry
+Headless Mode vs Headed Mode - 
+        - Headless Mode (default) + Browser runs in the background + No UI is shown + Faster execution
+        - npx playwright test --headless
+        - Headed Mode (browser UI visible) + Browser opens with UI + Useful for debugging + visually watch test steps
+        - npx playwright test --headed

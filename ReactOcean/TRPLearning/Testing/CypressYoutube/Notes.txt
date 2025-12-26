@@ -1,0 +1,28 @@
+Cypress is test automation tool, it can test anything that runs on browser. 
+We can write tests in JavaScript or typescript. 
+It is open source.
+Cypress Features
+	- Time Travel takes snapshots as tests run
+	- Debuggability readable error and stack traces
+	- Automatic Waiting automatically waits for commands and assertions before moving on
+	- Consistent Results does not use Selenium or WebDriver. Fast, consistent and reliable
+	- Screenshots and Videos get screenshots and videos
+	- Cross browser Testing locally or remote (CI/CD)
+Cypress enables all types of test
+	- End to end test
+	- Integration test
+	- Unit test
+npm install cypress - install the cypress
+npx cypress open - Open the cypress
+Mocha is a JavaScript test runner
+Implicit Assertion => should() and()
+	- .should() command is used to make assertions about the current subject.
+	- .and() is used to chain multiple assertions after a .should() statement.
+	- .should() starts the assertion chain. & .and() continues using the same subject.
+Explicit Assertion => expect() assert()
+describe(), only(), skip(), beforeEach() - 
+beforeEach - within describe => Runs before each test in that describe group
+		   - outside describe => Runs before each test in that specific file 
+WHY CLI ? 
+	- Easier, faster and efficient, less memory consumption, to integrate testing with external process
+npx cypress run - it run all the test headless
